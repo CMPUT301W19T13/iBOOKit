@@ -13,7 +13,7 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Button check = (Button) findViewById(R.id.logInButton);
+        Button check = (Button) findViewById(R.id.signUp_SignIn);
 
         check.setOnClickListener(new View.OnClickListener() {
             @Override
