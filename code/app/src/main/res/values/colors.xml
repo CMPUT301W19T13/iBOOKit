@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#0600AE</color>
     <color name="colorAccent">#EF4B7F</color>
     <color name="backgroundMaiActivity">#F8ED28</color>
-    <color name="backgroundSignIn">#ffcc0000</color>
+    <color name="backgroundSignIn">#CC0000</color>
 
 </resources>
