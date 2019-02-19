@@ -30,6 +30,7 @@
     </option>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
 =======
 <<<<<<< HEAD
@@ -38,6 +39,9 @@
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
 >>>>>>> 292565600276b3ca2ea34ebb7b17ccf31fb91dc2
 >>>>>>> master
+=======
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+>>>>>>> 6f80a2009b40e9800d6cd624d602a417fed3c203
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
