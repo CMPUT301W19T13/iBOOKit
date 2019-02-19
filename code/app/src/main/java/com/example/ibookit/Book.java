@@ -14,10 +14,4 @@ public class Book extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
     }
-    MultiSelectionSpinner spinner=(MultiSelectionSpinner)findViewById(R.id.input1);
-
-    List<String> list = new ArrayList<String>();
-          list.add("List1");
-          list.add("List2");
-          spinner.setItems(list);
 }
