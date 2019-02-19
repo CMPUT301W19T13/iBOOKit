@@ -1,10 +1,12 @@
-package com.example.ibookit;
+package com.example.ibookit.View;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import com.example.ibookit.R;
 
 public class userProfile extends AppCompatActivity {
 
@@ -16,7 +18,7 @@ public class userProfile extends AppCompatActivity {
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(userProfile.this,contactInformation.class);
+                Intent intent = new Intent(userProfile.this, contactInformation.class);
                 startActivity(intent);
             }
         });
