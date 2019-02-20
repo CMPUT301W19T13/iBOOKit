@@ -10,19 +10,19 @@
     <item
         android:id="@+id/action_myshelf"
         android:enabled="true"
-        android:icon="@drawable/ic_access_time_white_24dp"
-        android:title="@string/navigation2"
+        android:icon="@drawable/myShelf"
+        android:title="Myshelf"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_request"
         android:enabled="true"
-        android:icon="@drawable/ic_audiotrack_white_24dp"
+        android:icon="@drawable/request"
         android:title="Request"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_profile"
         android:enabled="true"
-        android:icon="@drawable/ic_audiotrack_white_24dp"
+        android:icon="@drawable/profile"
         android:title="Profile"
         app:showAsAction="ifRoom" />
 </menu>
