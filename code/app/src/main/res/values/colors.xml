@@ -2,8 +2,9 @@
 <resources>
     <color name="colorPrimary">#040119</color>
     <color name="colorPrimaryDark">#0600AE</color>
-    <color name="colorAccent">#EF4B7F</color>
+    <color name="colorAccent">#1BB4C1</color>
     <color name="backgroundMaiActivity">#F8ED28</color>
-    <color name="backgroundSignIn">#CC0000</color>
+    <color name="backgroundSignIn">#09BDE1</color>
+    <color name="mainButton">#0C3084</color>
 
 </resources>
