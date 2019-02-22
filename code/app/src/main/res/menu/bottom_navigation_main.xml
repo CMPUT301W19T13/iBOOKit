@@ -10,7 +10,7 @@
     <item
         android:id="@+id/action_myshelf"
         android:enabled="true"
-        android:icon="@drawable/myShelf"
+        android:icon="@drawable/my_shelf"
         android:title="Myshelf"
         app:showAsAction="ifRoom" />
     <item
