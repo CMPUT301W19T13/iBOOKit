@@ -8,8 +8,7 @@ public class Book {
     private String author;
     private String category;
     private int status;
-    private User owner;
-    private User borrower;
+
 
     public String getIsbn() {
         return isbn;
@@ -50,20 +49,5 @@ public class Book {
     public void setStatus(int status) {
         this.status = status;
     }
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public User getBorrower() {
-        return borrower;
-    }
-
-    public void setBorrower(User borrower) {
-        this.borrower = borrower;
-    }
+    
 }
