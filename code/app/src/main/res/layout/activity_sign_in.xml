@@ -114,7 +114,7 @@
         app:layout_constraintTop_toBottomOf="@+id/logIn_SignIn" />
 
     <Button
-        android:id="@+id/logIn_signUp"
+        android:id="@+id/signUp_logIn"
         android:layout_width="97dp"
         android:layout_height="32dp"
         android:layout_marginStart="6dp"

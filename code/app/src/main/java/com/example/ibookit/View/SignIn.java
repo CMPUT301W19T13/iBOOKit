@@ -26,7 +26,7 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
-        Button signUpButton = (Button) findViewById(R.id.logIn_signUp);
+        Button signUpButton = (Button) findViewById(R.id.signUp_logIn);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
