@@ -37,44 +37,7 @@ public class BookReturn {
         book.setCategory("testcat");
         assertEquals("testcat", book.getCategory());
 
-        book.setStatus(2);
+        book.setStatus(1);
         assertEquals(1,book.getStatus());
 
-
-
-
-    }
-
-    // User user = new User (...)
-    @Test
-    public void ReturnUserInfo(){
-        // see if the user can returns all of its correct states
-    }
-    // OwnerShelf Shelf = new Shelf(...)
-    // BorrowerShelf BShelf = new BShelf(...)
-    @Test
-    public void ReturnShelf() {
-        // see if user and owner shelfs can return its states
-
-        }
-
-
-    // Scan returns Strings of name isbn
-    @Test
-    public void Scan(String name, String ISBN){
-        //// test to see if the scanned name and ISBN correctly
-    }
-
-    // get array list of users and books in the database
-    @Test
-    public void Search(){
-        /// search for books and users, see if the books and users returned matches the ones in
-        // the database
-    }
-
-
-
-
-
-
-}
+}}
