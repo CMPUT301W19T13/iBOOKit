@@ -7,7 +7,7 @@
     android:background="@drawable/graidentbackground"
     tools:context=".View.userProfile">
 
-    <include android:layout="@layout/activity_navigation"/>
+    <!--<include android:layout="@layout/activity_navigation"/>-->
 
     <ImageView
         android:id="@+id/profilePic_userProfile"
