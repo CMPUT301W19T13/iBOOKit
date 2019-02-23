@@ -6,5 +6,6 @@
     <color name="backgroundMaiActivity">#F8ED28</color>
     <color name="backgroundSignIn">#09BDE1</color>
     <color name="mainButton">#0C3084</color>
+    <color name="redText">#CB0018</color>
 
 </resources>

@@ -108,13 +108,13 @@
         android:text="Don't have an account? -->"
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/signUp_SignIn"
+        app:layout_constraintEnd_toStartOf="@+id/logIn_signUp"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logIn_SignIn" />
 
     <Button
-        android:id="@+id/signUp_SignIn"
+        android:id="@+id/signUp_logIn"
         android:layout_width="97dp"
         android:layout_height="32dp"
         android:layout_marginStart="6dp"

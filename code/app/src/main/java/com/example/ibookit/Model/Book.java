@@ -7,9 +7,8 @@ public class Book {
     private String title;
     private String author;
     private String category;
-    private Integer status;
-    private User owner;
-    private User borrower;
+    private int status;
+
 
     public String getIsbn() {
         return isbn;
@@ -43,27 +42,12 @@ public class Book {
         this.category = category;
     }
 
-    public Integer getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
-    }
-
-    public User getBorrower() {
-        return borrower;
-    }
-
-    public void setBorrower(User borrower) {
-        this.borrower = borrower;
-    }
 }

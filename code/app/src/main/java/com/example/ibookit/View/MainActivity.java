@@ -1,15 +1,11 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.ibookit.Functionality.CategorySelection;
 import com.example.ibookit.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,14 +15,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button check = (Button) findViewById(R.id.logInButton);
+        Button logInButton = (Button) findViewById(R.id.main_logIn);
 
-        check.setOnClickListener(new View.OnClickListener() {
+        logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SignIn.class);
                 startActivity(intent);
             }
         });
+
+        Button signUpButton = (Button) findViewById(R.id.main_signUp);
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SignUp.class);
+                startActivity(intent);
+            }
+        });
     }
+    
 }

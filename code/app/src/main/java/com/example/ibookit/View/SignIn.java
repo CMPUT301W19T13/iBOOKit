@@ -15,9 +15,20 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Button check = (Button) findViewById(R.id.signUp_SignIn);
 
-        check.setOnClickListener(new View.OnClickListener() {
+        Button logInButton = (Button) findViewById(R.id.logIn_SignIn);
+
+        logInButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignIn.this, userProfile.class);
+                startActivity(intent);
+            }
+        });
+
+        Button signUpButton = (Button) findViewById(R.id.signUp_logIn);
+
+        signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignIn.this, SignUp.class);
@@ -25,15 +36,6 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
-        Button check1 = (Button) findViewById(R.id.logIn_SignIn);
-
-        check1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignIn.this, userProfile.class);
-                startActivity(intent);
-            }
-        });
 
     }
 }

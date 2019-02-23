@@ -26,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/logInButton"
+        android:id="@+id/main_logIn"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -36,7 +36,7 @@
         android:shadowDy="4"
         android:shadowRadius="1"
         android:text="Log In"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/backgroundMaiActivity"
         android:textColorLink="@color/colorPrimary"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,10 +57,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
+        app:layout_constraintTop_toBottomOf="@+id/main_logIn" />
 
     <Button
-        android:id="@+id/signUp_Main"
+        android:id="@+id/main_signUp"
         android:layout_width="119dp"
         android:layout_height="29dp"
         android:layout_marginTop="8dp"
@@ -70,7 +70,7 @@
         android:shadowDy="4"
         android:shadowRadius="1"
         android:text="Sign Up"
-        android:textColor="@color/backgroundSignIn"
+        android:textColor="@color/backgroundMaiActivity"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

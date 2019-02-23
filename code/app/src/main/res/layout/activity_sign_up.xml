@@ -97,7 +97,7 @@
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/buttonshape"
         android:text="Sign Up"
         android:textColor="@color/backgroundMaiActivity"
         android:textSize="32sp"
