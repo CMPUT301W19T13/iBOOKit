@@ -14,9 +14,13 @@ public class OwnerShelf {
         return myBooks;
     }
 
-    public void putBook(Book book){
 
 
+    public void add_book(Book aBook){
+        myBooks.add(aBook);
+    }
+    public void remove_book(Book dBook){
+        myBooks.remove(dBook);
     }
 
 
