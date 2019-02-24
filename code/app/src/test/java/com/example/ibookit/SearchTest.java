@@ -1,6 +1,6 @@
 package com.example.ibookit;
 
-import com.example.ibookit.Functionality.SearchUser;
+import com.example.ibookit.Functionality.Search;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.User;
 
@@ -20,19 +20,31 @@ public class SearchTest {
 
     Book book = new Book();
 
-    public ArrayList<User> results;
+    public ArrayList<User> resultsUser;
+    public ArrayList<User> testUser;
+    public ArrayList<Book> resultsBook;
+    public ArrayList<User> testBook;
 
-    SearchUser search = new SearchUser();
+    // set testbook and testUser to the correct arraylist
+
+    Search search = new Search();
 
 
 
     @Test
     public void testSearch(){
          String test = "testID";
-        results = search.getUserId(test);
-        assertEquals(results, "NULL");
+        resultsUser = search.getUserId(test);
+        assertEquals(resultsUser, testUser);
+
+        resultsBook = search.getBooks(test);
+        assertEquals(resultsBook, testBook);
+
+
 
     }
+
+
 
 
 
