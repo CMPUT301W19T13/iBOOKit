@@ -14,10 +14,7 @@ import static org.junit.Assert.assertEquals;
  */
 public class UserTest{
 
-    private String username;
-    private String password;
-    private String email;
-    private String phoneNumber;
+
 
 
     User user = new User();
