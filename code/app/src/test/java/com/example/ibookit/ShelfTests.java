@@ -48,7 +48,7 @@ public class ShelfTests {
 
          borrower.remove_book(book);
          assertEquals(borrower.All_books(), myBooks.remove(book));
-         
+
 
      }
 
