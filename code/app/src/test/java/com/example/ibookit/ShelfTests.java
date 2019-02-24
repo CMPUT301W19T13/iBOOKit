@@ -19,15 +19,22 @@ public class ShelfTests {
 
      private ArrayList<Book> myBooks;
      OwnerShelf owner = new OwnerShelf();
+     Book book = new Book();
+
 
      @Test
      public void OwnerShelf(){
 
+         owner.putBook(book);
+
          myBooks = owner.All_books();
+         assertEquals( myBooks,  book);
 
 
 
      }
+
+
 
 
 
