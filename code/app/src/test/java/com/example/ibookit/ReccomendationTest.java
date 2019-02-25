@@ -28,7 +28,8 @@ public class ReccomendationTest {
     public void testGetAndSet(){
 
         r.setClassics(1.0);
-        assertEquals(1.0, r.getClassics());
+
+        assertEquals(1.0 , r.getClassics());
 
         r.setSciFi(1.0);
         assertEquals(1.0, r.getSciFi());
