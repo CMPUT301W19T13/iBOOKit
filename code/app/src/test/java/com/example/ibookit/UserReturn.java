@@ -12,12 +12,9 @@ import static org.junit.Assert.assertEquals;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class UserTest{
+public class UserReturn {
 
-    private String username;
-    private String password;
-    private String email;
-    private String phoneNumber;
+
 
 
     User user = new User();
