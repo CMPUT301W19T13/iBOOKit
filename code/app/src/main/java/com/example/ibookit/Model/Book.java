@@ -1,11 +1,10 @@
 package com.example.ibookit.Model;
 
-import com.example.ibookit.Model.User;
-
 public class Book {
     private String isbn;
     private String title;
     private String author;
+    //9 categories
     private String category;
     private int status;
 
