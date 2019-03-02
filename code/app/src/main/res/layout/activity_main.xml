@@ -11,7 +11,7 @@
         android:id="@+id/WelcomeiBookit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="280dp"
+        android:layout_marginTop="140dp"
         android:gravity="center"
         android:text="Welcome to iBOOKit"
         android:textAllCaps="false"
@@ -24,6 +24,46 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <EditText
+        android:id="@+id/emailEnter"
+        android:layout_width="320dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/back"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter email address"
+        android:inputType="textEmailAddress"
+        android:textColor="@color/backgroundMaiActivity"
+        android:textColorHighlight="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/WelcomeiBookit"/>
+
+    <EditText
+        android:id="@+id/password_enter"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/back"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter password"
+        android:inputType="textPassword"
+        android:textColor="@color/backgroundMaiActivity"
+        android:textColorHighlight="@color/colorPrimaryDark"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailEnter" />
 
     <Button
         android:id="@+id/logInButton"
@@ -35,14 +75,49 @@
         android:shadowDx="1"
         android:shadowDy="4"
         android:shadowRadius="1"
-        android:text="Log In"
+        android:text="Sign In"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WelcomeiBookit" />
+        app:layout_constraintTop_toBottomOf="@+id/password_enter" />
+
+    <CheckBox
+        android:id="@+id/rememberMe"
+        android:layout_width="153dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back"
+        android:buttonTint="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Remember Me"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
+
+    <Button
+        android:id="@+id/forgotPassword"
+        android:layout_width="165dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="Forgot your password?"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintLeft_toRightOf="@+id/rememberMe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
+
 
     <TextView
         android:id="@+id/noAccountText"
