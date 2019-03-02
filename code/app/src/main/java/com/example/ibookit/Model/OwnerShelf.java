@@ -1,9 +1,13 @@
 package com.example.ibookit.Model;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class OwnerShelf {
 
+    private DatabaseReference mDatabase;
 
 
     private ArrayList<Book> myBooks;
@@ -17,6 +21,8 @@ public class OwnerShelf {
 
 
     public void add_book(Book aBook){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         myBooks.add(aBook);
     }
     public void remove_book(Book dBook){

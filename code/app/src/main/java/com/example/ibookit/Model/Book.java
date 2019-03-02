@@ -1,6 +1,5 @@
 package com.example.ibookit.Model;
 
-import com.example.ibookit.Model.User;
 
 public class Book {
     private String isbn;
