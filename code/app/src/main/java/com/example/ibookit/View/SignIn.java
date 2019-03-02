@@ -28,7 +28,7 @@ public class SignIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        Button logInButton = (Button) findViewById(R.id.logIn_SignIn);
+        Button logInButton = findViewById(R.id.logIn_SignIn);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,7 +61,7 @@ public class SignIn extends AppCompatActivity {
         setupFirebaseAuth();
 
 
-        Button signUpButton = (Button) findViewById(R.id.signUp_logIn);
+        Button signUpButton = findViewById(R.id.signUp_logIn);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
