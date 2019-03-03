@@ -50,12 +50,10 @@ public class User {
 
 
     // sends a request with a given user id
-    public String requestBook(){
+    public void requestBook(String borrowerId, String OwnerId, String bookId ){
 
-        Request request = new Request();
-        String otherUser = request.requestBorrow(this.id);
+        Request request = new Request(borrowerId, OwnerId, bookId);
 
-        return otherUser;
 
     }
 }
