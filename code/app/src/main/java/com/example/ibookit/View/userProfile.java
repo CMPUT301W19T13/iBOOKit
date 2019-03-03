@@ -9,6 +9,7 @@ import android.widget.Button;
 
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class userProfile extends AppCompatActivity {
     private static final String TAG = "UserProfileActivity";
@@ -41,7 +42,8 @@ public class userProfile extends AppCompatActivity {
     }
 
     private void signout() {
-        Log.d(TAG, "signout: ");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.d(TAG, "signout: " + user.getDisplayName());
         FirebaseAuth.getInstance().signOut();
     }
 }
