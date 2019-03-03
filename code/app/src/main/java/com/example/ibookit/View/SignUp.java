@@ -10,10 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -27,11 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class SignUp extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
-<<<<<<< HEAD
-    private TextView mName, mEmail, mPassword, mPhone, mUsername;
-=======
     private TextView mEmail, mPassword, mPhone, mUsername;
->>>>>>> master
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -44,18 +36,10 @@ public class SignUp extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         //get R.id
-<<<<<<< HEAD
-        mName = findViewById(R.id.fullName);
-        mEmail = findViewById(R.id.email_SignUp);
-        mPassword = findViewById(R.id.password_SignUp);
-        mPhone = findViewById(R.id.phone_SignUp);
-        mUsername = findViewById(R.id.username_SignUp);
-=======
         mEmail = findViewById(R.id.email_SignUp);
         mPassword = findViewById(R.id.password_SignUp);
         mPhone = findViewById(R.id.phone_SignUp);
         mUsername = findViewById(R.id.userName_SignUp);
->>>>>>> master
 
 
         Button signUp = findViewById(R.id.signUp);
@@ -63,10 +47,7 @@ public class SignUp extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                String name = mName.getText().toString();
-=======
->>>>>>> master
+
                 final String email = mEmail.getText().toString();
                 String password = mPassword.getText().toString();
                 final String phone = mPhone.getText().toString();
@@ -77,15 +58,13 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-<<<<<<< HEAD
+
                             Log.d(TAG, "createUserWithEmail:success");
-=======
+
                             Toast.makeText(SignUp.this, "SignUp successful.",
                                     Toast.LENGTH_SHORT).show();
 
-                            Log.d(TAG, "createUserWithEmail:success");
 
->>>>>>> master
                             FirebaseUser user = mAuth.getCurrentUser();
                             setUserInfo(user.getUid(), username, email, phone);
 
@@ -114,9 +93,4 @@ public class SignUp extends AppCompatActivity {
         mDatabase.child("users").child(username).setValue(user);
     }
 
-
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 }

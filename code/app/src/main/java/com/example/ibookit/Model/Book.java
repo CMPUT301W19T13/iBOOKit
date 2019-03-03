@@ -1,9 +1,5 @@
 package com.example.ibookit.Model;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 public class Book {
     private String isbn;
     private String title;

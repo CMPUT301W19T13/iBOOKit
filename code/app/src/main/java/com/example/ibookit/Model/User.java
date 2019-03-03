@@ -15,11 +15,8 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-<<<<<<< HEAD
     public User() {}
 
-=======
->>>>>>> master
     public String getId() {
         return id;
     }
@@ -36,10 +33,6 @@ public class User {
         this.username = username;
     }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     public String getEmail() {
         return email;
     }
