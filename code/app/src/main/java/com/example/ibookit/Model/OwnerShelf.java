@@ -30,6 +30,7 @@ public class OwnerShelf {
 
     public ArrayList<Book> All_books(){
         //returns all books that you own
+        init();
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
