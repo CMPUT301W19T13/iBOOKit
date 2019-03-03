@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    >
     <item
         android:id="@+id/action_home"
         android:enabled="true"
         android:icon="@drawable/home_button"
         android:title="Home"
-        app:showAsAction="ifRoom" />
+         />
     <item
         android:id="@+id/action_myshelf"
         android:enabled="true"
         android:icon="@drawable/my_shelf"
         android:title="Myshelf"
-        app:showAsAction="ifRoom" />
+         />
     <item
         android:id="@+id/action_request"
         android:enabled="true"
         android:icon="@drawable/request"
         android:title="Request"
-        app:showAsAction="ifRoom" />
+         />
     <item
         android:id="@+id/action_profile"
         android:enabled="true"
         android:icon="@drawable/profile"
         android:title="Profile"
-        app:showAsAction="ifRoom" />
+         />
 </menu>

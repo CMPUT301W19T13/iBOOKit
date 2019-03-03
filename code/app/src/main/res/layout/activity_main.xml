@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/graidentbackground"
-    tools:context=".MainActivity">
+    tools:context=".View.MainActivity">
 
     <TextView
         android:id="@+id/WelcomeiBookit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="92dp"
         android:gravity="center"
         android:text="Welcome to iBOOKit"
         android:textAllCaps="false"
@@ -21,14 +21,15 @@
         android:typeface="sans"
         app:fontFamily="@font/audiowide"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/emailEnter"
         android:layout_width="320dp"
         android:layout_height="69dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/back"
         android:ellipsize="start"
         android:ems="10"
@@ -41,9 +42,9 @@
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/WelcomeiBookit"/>
+        app:layout_constraintTop_toBottomOf="@+id/WelcomeiBookit" />
 
     <EditText
         android:id="@+id/password_enter"
@@ -69,7 +70,7 @@
         android:id="@+id/logInButton"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="28dp"
         android:background="@drawable/buttonshape"
         android:shadowColor="#2D00A8"
         android:shadowDx="1"
@@ -80,7 +81,7 @@
         android:textSize="30sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password_enter" />
 
@@ -123,14 +124,14 @@
         android:id="@+id/noAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="76dp"
         android:text="Don't have an account? "
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:fontFamily="@font/copse"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logInButton" />
 
@@ -138,7 +139,7 @@
         android:id="@+id/signUp_Main"
         android:layout_width="119dp"
         android:layout_height="29dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/buttonshape"
         android:shadowColor="#2D00A8"
         android:shadowDx="1"
@@ -147,9 +148,10 @@
         android:text="Sign Up"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noAccountText" />
+        app:layout_constraintTop_toBottomOf="@+id/noAccountText"
+        app:layout_constraintVertical_bias="0.125" />
 
 </android.support.constraint.ConstraintLayout>

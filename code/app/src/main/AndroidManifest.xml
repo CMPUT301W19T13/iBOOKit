@@ -12,7 +12,6 @@
         <activity android:name=".View.contactInformation" />
         <activity android:name=".View.userProfile" />
         <activity android:name=".View.SignUp" />
-        <activity android:name=".View.SignIn" />
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
