@@ -14,7 +14,7 @@ public class Requests {
 
     @Test
     public void SendRequest(){
-        //
+        System.out.println("fi");
     }
 
 
