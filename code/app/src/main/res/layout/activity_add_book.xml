@@ -7,8 +7,6 @@
     android:background="@drawable/graidentbackground"
     tools:context=".Model.Book">
 
-    <include layout="@layout/activity_navigation"/>
-
     <ImageButton
         android:id="@+id/bookImageAdd"
         android:layout_width="157dp"
@@ -110,6 +108,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookISBNAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/bookISBNAdd"
+
+    />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/activity_navigation"
+
+    </FrameLayout>
+
 
 </android.support.constraint.ConstraintLayout>
