@@ -134,7 +134,7 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <include layout="@layout/activity_navigation"
+        <include layout="@layout/activity_navigation"/>
 
     </FrameLayout>
 
