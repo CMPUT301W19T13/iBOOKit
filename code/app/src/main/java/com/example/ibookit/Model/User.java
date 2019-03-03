@@ -2,11 +2,15 @@ package com.example.ibookit.Model;
 
 import com.example.ibookit.Functionality.Request;
 
+import java.util.ArrayList;
+
 public class User {
     private String username;
     private String email;
     private String phoneNumber;
     private String id;
+    private ArrayList<Book> ownerShelf;
+    private ArrayList<Book> borrowerShelf;
 
     public User(String id, String username, String email, String phoneNumber) {
         this.id = id;
@@ -14,6 +18,8 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
+
+    public User() {}
 
     public String getId() {
         return id;
@@ -30,7 +36,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
 
     public String getEmail() {
         return email;

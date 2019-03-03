@@ -8,17 +8,18 @@ public class Book {
     private String category;
     // 4 status: available -> 0, requested -> 1, accepted -> 2, borrowed -> 3
     private int status;
-    private User owner;
-    private User currentBorrower;
+    private String owner;
+    private String currentBorrower;
 
-    public Book(String isbn, String title, String author, String category, User owner) {
+    public Book(String isbn, String title, String author, String category, String owner) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.category = category;
         this.owner = owner;
         this.status = 0;
-        this.currentBorrower = null;
+        this.currentBorrower = "";
+
     }
 
     public Book() {}
@@ -64,19 +65,19 @@ public class Book {
         this.status = status;
     }
 
-    public User getOwner() {
+    public String getOwner() {
         return owner;
     }
 
-    public void setOwner(User owner) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
-    public User getCurrentBorrower() {
+    public String getCurrentBorrower() {
         return currentBorrower;
     }
 
-    public void setCurrentBorrower(User currentBorrower) {
+    public void setCurrentBorrower(String currentBorrower) {
         this.currentBorrower = currentBorrower;
     }
 }
