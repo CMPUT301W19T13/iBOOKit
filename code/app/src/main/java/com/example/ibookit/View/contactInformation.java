@@ -1,7 +1,9 @@
-package com.example.ibookit;
+package com.example.ibookit.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.ibookit.R;
 
 public class contactInformation extends AppCompatActivity {
 

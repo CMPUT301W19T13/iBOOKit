@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
+        <item>@font/abril_fatface</item>
         <item>@font/amita</item>
         <item>@font/audiowide</item>
+        <item>@font/black_ops_one</item>
         <item>@font/copse</item>
         <item>@font/monoton</item>
+        <item>@font/trade_winds</item>
+        <item>@font/walter_turncoat</item>
     </array>
 </resources>

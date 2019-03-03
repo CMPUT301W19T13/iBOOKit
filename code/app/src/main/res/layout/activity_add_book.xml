@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Book">
+    android:background="@drawable/graidentbackground"
+    tools:context=".Model.Book">
 
     <ImageButton
-        android:id="@+id/imageButton"
+        android:id="@+id/bookImageAdd"
         android:layout_width="157dp"
         android:layout_height="157dp"
         android:layout_marginTop="32dp"
@@ -18,62 +19,18 @@
         tools:srcCompat="@tools:sample/avatars[3]" />
 
     <EditText
-        android:id="@+id/bookTitle"
+        android:id="@+id/bookTitleAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:textColorHighlight="@color/colorPrimary"
+        android:backgroundTint="@color/colorPrimary"
+        android:ellipsize="start"
         android:ems="10"
+        android:gravity="center"
         android:hint="Book Title"
         android:inputType="textPersonName"
-        android:gravity="center"
-        android:ellipsize="start"
-        android:backgroundTint="@color/colorPrimary"
         android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textColorLink="@color/colorPrimary"
-        android:textCursorDrawable="@color/colorPrimary"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
-
-    <EditText
-        android:id="@+id/bookAuthor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ellipsize="start"
-        android:ems="10"
         android:textColorHighlight="@color/colorPrimary"
-        android:gravity="center"
-        android:hint="Author"
-        android:inputType="textPersonName"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textColorLink="@color/colorPrimary"
-        android:textCursorDrawable="@color/colorPrimary"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookTitle" />
-
-    <EditText
-        android:id="@+id/bookISBN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:ellipsize="start"
-        android:ems="10"
-        android:gravity="center"
-        android:textColorHighlight="@color/colorPrimary"
-        android:hint="ISBN"
-        android:inputType="textPersonName"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
@@ -82,6 +39,76 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookImageAdd" />
+
+    <EditText
+        android:id="@+id/bookAuthorAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Author"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookTitleAdd" />
+
+    <EditText
+        android:id="@+id/bookISBNAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="ISBN"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookAuthorAdd" />
+
+    <EditText
+        android:id="@+id/bookStatusAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Status"
+        android:inputType="textPersonName"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+<<<<<<< HEAD:code/app/src/main/res/layout/activity_book.xml
         app:layout_constraintTop_toBottomOf="@+id/bookAuthor" />
     <com.example.ibookit.MultiSelectionSpinner
         android:id="@+id/input1"
@@ -90,4 +117,8 @@
         android:layout_margin="2dp"
         android:layout_marginTop="8dp"
         />
+=======
+        app:layout_constraintTop_toBottomOf="@+id/bookISBNAdd" />
+
+>>>>>>> master:code/app/src/main/res/layout/activity_add_book.xml
 </android.support.constraint.ConstraintLayout>
