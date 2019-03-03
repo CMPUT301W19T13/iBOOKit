@@ -7,6 +7,8 @@
     android:background="@drawable/graidentbackground"
     tools:context=".Model.Book">
 
+    <include layout="@layout/activity_navigation"/>
+
     <ImageButton
         android:id="@+id/bookImageAdd"
         android:layout_width="157dp"
