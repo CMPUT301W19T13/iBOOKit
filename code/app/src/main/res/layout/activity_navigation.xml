@@ -1,27 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.BottomNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_navigation"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/graidentbackground">
-
-    <!-- Content Container -->
-
-    <android.support.design.widget.BottomNavigationView
-        app:labelVisibilityMode="labeled"
-        android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp"
-        app:itemBackground="@drawable/buttonshape"
-        app:itemIconTint="@color/colorAccent"
-        app:itemTextColor="@color/colorAccent"
-        app:menu="@menu/bottom_navigation_main" />
-
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-        <!--android:background="@color"-->
-
-</RelativeLayout>
+    android:layout_height="56dp"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="start"
+    android:layout_marginBottom="0dp"
+    app:itemBackground="@color/backgroundMaiActivity"
+    app:itemIconTint="@color/colorAccent"
+    app:itemTextColor="@color/colorAccent"
+    app:labelVisibilityMode="labeled"
+    app:menu="@menu/bottom_navigation_main" />
