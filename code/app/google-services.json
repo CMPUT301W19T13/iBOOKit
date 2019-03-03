@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "485733373797",
+    "firebase_url": "https://ibookit-9c5de.firebaseio.com",
+    "project_id": "ibookit-9c5de",
+    "storage_bucket": "ibookit-9c5de.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:485733373797:android:d201aefc57143c10",
+        "android_client_info": {
+          "package_name": "com.example.ibookit.View"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "485733373797-j698dvstc9kb8cdji98kr7prhnna9k0l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdTbekJI2wTz5gOlEga4OGQQB7ft_Qd94"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
