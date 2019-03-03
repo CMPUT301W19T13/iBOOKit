@@ -57,7 +57,11 @@ public class SignUp extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            Toast.makeText(SignUp.this, "SignUp successful.",
+                                    Toast.LENGTH_SHORT).show();
+
                             Log.d(TAG, "createUserWithEmail:success");
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             setUserInfo(user.getUid(), username, email, phone);
 
