@@ -13,10 +13,10 @@ public class SignIn extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in);
+        setContentView(R.layout.activity_main);
 
 
-        Button logInButton = (Button) findViewById(R.id.logIn_SignIn);
+        Button logInButton = (Button) findViewById(R.id.logInButton);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -26,7 +26,7 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
-        Button signUpButton = (Button) findViewById(R.id.signUp_logIn);
+        Button signUpButton = (Button) findViewById(R.id.signUp_Main);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
