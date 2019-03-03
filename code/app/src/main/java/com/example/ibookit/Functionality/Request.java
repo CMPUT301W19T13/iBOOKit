@@ -17,7 +17,7 @@ public class Request {
     private String bookId;
     private Location geolocation;
 
-    public void requestBorrow(String borrower, String owner, String book ) {
+    public Request(String borrower, String owner, String book ) {
 
         setborrowerId(borrower);
         setOwnerId(owner);
