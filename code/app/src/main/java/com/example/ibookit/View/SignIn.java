@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,16 +44,21 @@ public class SignIn extends AppCompatActivity {
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                            Toast.makeText(SignIn.this, "Login successful",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
+                            Toast.makeText(SignIn.this, "Login fail",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     });
 
                 } else {
                     Log.d(TAG, "onClick: Empty");
+                    Toast.makeText(SignIn.this, "Cannot leave empty",
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });
