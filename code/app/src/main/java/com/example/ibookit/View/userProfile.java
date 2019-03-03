@@ -13,6 +13,8 @@ import com.google.firebase.auth.FirebaseAuth;
 public class userProfile extends AppCompatActivity {
     private static final String TAG = "UserProfileActivity";
 
+    private static final String TAG = "UserProfileActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,12 @@ public class userProfile extends AppCompatActivity {
         });
 
 
+<<<<<<< HEAD
         final Button signout = findViewById(R.id.signout_profile);
+=======
+
+        final Button signout = findViewById(R.id.signOut_profile);
+>>>>>>> master
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

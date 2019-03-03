@@ -1,10 +1,14 @@
 package com.example.ibookit.Model;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 public class Book {
     private String isbn;
     private String title;
     private String author;
+    //9 categories
     private String category;
     private int status;
 
