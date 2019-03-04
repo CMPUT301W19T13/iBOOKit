@@ -17,7 +17,7 @@ import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class AddBook extends AppCompatActivity {
+public class AddBookAsOwnerActivity extends AppCompatActivity {
 
     private TextView mTitle, mAuthor, mIsbn, mCategory;
     private Button confirm;
@@ -50,13 +50,21 @@ public class AddBook extends AppCompatActivity {
                 OwnerShelf ownerShelf = new OwnerShelf();
                 ownerShelf.add_book(book);
 
-                Toast.makeText(AddBook.this, "Add a book successful",
+                Toast.makeText(AddBookAsOwnerActivity.this, "Add a book successful",
                         Toast.LENGTH_SHORT).show();
             }
         });
 
+        setBottomNavigationView();
 
 
+
+    }
+
+
+
+
+    private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -69,16 +77,16 @@ public class AddBook extends AppCompatActivity {
                         break;
 
                     case R.id.action_myshelf:
-
+                        Intent intent3 = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                        startActivity(intent3);
                         break;
 
                     case R.id.action_profile:
-                        Intent intent = new Intent(AddBook.this, userProfile.class);
-                        startActivity(intent);
+                        Intent intent4 = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
+                        startActivity(intent4);
                         break;
 
                     case R.id.action_request:
-
                         break;
                 }
 
@@ -86,6 +94,5 @@ public class AddBook extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 }

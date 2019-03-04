@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/graidentbackground"
-    tools:context=".View.userProfile">
+    tools:context=".View.UserProfileActivity">
 
     <!--<include android:layout="@layout/activity_navigation"/>-->
 

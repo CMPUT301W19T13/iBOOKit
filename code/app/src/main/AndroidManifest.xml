@@ -9,10 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.AddBook"/>
-        <activity android:name=".View.contactInformation" />
-        <activity android:name=".View.userProfile" />
-        <activity android:name=".View.SignUp" />
+        <activity android:name=".View.MyShelfBorrowerActivity"/>
+        <activity android:name=".View.MyShelfOwnerActivity"/>
+        <activity android:name=".View.AddBookAsOwnerActivity"/>
+        <activity android:name=".View.ContactInformationActivity" />
+        <activity android:name=".View.UserProfileActivity" />
+        <activity android:name=".View.SignUpActivity" />
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

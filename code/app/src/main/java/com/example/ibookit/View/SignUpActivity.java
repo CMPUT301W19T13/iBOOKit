@@ -21,7 +21,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class SignUp extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
     private TextView mEmail, mPassword, mPhone, mUsername;
@@ -62,7 +62,7 @@ public class SignUp extends AppCompatActivity {
 
                             Log.d(TAG, "createUserWithEmail:success");
 
-                            Toast.makeText(SignUp.this, "SignUp successful.",
+                            Toast.makeText(SignUpActivity.this, "SignUpActivity successful.",
                                     Toast.LENGTH_SHORT).show();
 
 
@@ -79,11 +79,11 @@ public class SignUp extends AppCompatActivity {
 
                             setUserInfo(user.getUid(), username, email, phone);
 
-                            Intent intent = new Intent(SignUp.this, userProfile.class);
+                            Intent intent = new Intent(SignUpActivity.this, UserProfileActivity.class);
                             startActivity(intent);
 
                         } else {
-                            Toast.makeText(SignUp.this, "Authentication failed.",
+                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }

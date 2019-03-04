@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.example.ibookit.R;
 
-public class contactInformation extends AppCompatActivity {
+public class ContactInformationActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
