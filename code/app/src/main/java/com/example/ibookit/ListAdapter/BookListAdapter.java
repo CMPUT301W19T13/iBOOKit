@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.R;
 
@@ -38,7 +39,10 @@ public class BookListAdapter extends ArrayAdapter<Book> {
         mTitle.setText(book.getTitle());
         mAuthor.setText(book.getAuthor());
         mIsbn.setText(book.getIsbn());
-//        mStatus.setText(book.getStatus());
+
+        BookStatusHandler handler = new BookStatusHandler();
+
+        mStatus.setText(handler.StatusString(book));
 
         
         return convertView;

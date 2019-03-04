@@ -53,7 +53,7 @@
         app:layout_constraintTop_toBottomOf="@+id/userName_userProfile" />
 
     <Button
-        android:id="@+id/signout"
+        android:id="@+id/signout_profile"
         android:layout_width="0.0dip"
         android:layout_height="wrap_content"
         android:layout_marginEnd="96dp"
@@ -69,7 +69,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
-        android:id="@+id/edit"
+        android:id="@+id/edit_profile"
         android:layout_width="0.0dip"
         android:layout_height="47dp"
         android:layout_marginStart="96dp"

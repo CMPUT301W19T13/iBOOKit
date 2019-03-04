@@ -15,7 +15,7 @@ public class ContactInformationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_information);
 
-        Button edit =  findViewById(R.id.saveChanges_userprofile);
+        Button edit =  findViewById(R.id.saveChanges_userProfile);
 
         edit.setOnClickListener(new View.OnClickListener() {
             @Override

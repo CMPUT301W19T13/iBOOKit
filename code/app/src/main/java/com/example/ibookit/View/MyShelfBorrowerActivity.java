@@ -24,6 +24,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyShelfBorrowerActivity.this, MyShelfOwnerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -40,11 +41,13 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.action_add:
                         Intent add = new Intent(MyShelfBorrowerActivity.this, AddBookAsOwnerActivity.class);
+                        add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
 
                     case R.id.action_home:
                         Intent home = new Intent(MyShelfBorrowerActivity.this, HomeSearchActivity.class);
+                        home.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(home);
 
                         break;
@@ -55,11 +58,13 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
 
                     case R.id.action_profile:
                         Intent profile = new Intent(MyShelfBorrowerActivity.this, UserProfileActivity.class);
+                        profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;
 
                     case R.id.action_request:
                         Intent request = new Intent(MyShelfBorrowerActivity.this, CheckRequestsActivity.class);
+                        request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 
                         break;

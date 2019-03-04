@@ -72,22 +72,26 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
 
                     case R.id.action_home:
                         Intent home = new Intent(AddBookAsOwnerActivity.this, HomeSearchActivity.class);
+                        home.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(home);
 
                         break;
 
                     case R.id.action_myshelf:
                         Intent myshelf = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                        myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
                         Intent profile = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
+                        profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;
 
                     case R.id.action_request:
                         Intent request = new Intent(AddBookAsOwnerActivity.this, CheckRequestsActivity.class);
+                        request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 
                         break;

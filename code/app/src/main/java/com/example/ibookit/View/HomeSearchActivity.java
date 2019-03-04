@@ -31,6 +31,7 @@ public class HomeSearchActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.action_add:
                         Intent add = new Intent(HomeSearchActivity.this, AddBookAsOwnerActivity.class);
+                        add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
 
@@ -39,16 +40,19 @@ public class HomeSearchActivity extends AppCompatActivity {
 
                     case R.id.action_myshelf:
                         Intent myshelf = new Intent(HomeSearchActivity.this, MyShelfOwnerActivity.class);
+                        myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
                         Intent profile = new Intent(HomeSearchActivity.this, UserProfileActivity.class);
+                        profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;
 
                     case R.id.action_request:
                         Intent request = new Intent(HomeSearchActivity.this, CheckRequestsActivity.class);
+                        request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 
                         break;
