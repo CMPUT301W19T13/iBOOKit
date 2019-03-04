@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".View.AddBook"/>
         <activity android:name=".View.contactInformation" />
         <activity android:name=".View.userProfile" />
         <activity android:name=".View.SignUp" />

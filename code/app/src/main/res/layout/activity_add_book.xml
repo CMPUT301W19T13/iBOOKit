@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bookStatusAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/bookCatAdd" />
 
     <ImageButton
         android:id="@+id/bookImageAdd"
@@ -103,7 +103,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bookAuthorAdd" />
 
     <EditText
-        android:id="@+id/bookStatusAdd"
+        android:id="@+id/bookCatAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -111,7 +111,7 @@
         android:ellipsize="start"
         android:ems="10"
         android:gravity="center"
-        android:hint="Status"
+        android:hint="Category"
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimary"
         android:textColorHighlight="@color/colorPrimary"
