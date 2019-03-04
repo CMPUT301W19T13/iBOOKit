@@ -1,7 +1,10 @@
 package com.example.ibookit.Model;
 
 import android.util.Log;
+<<<<<<< HEAD
 import android.widget.Adapter;
+=======
+>>>>>>> master
 import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -53,6 +56,7 @@ public class OwnerShelf {
         });
 
     }
+
 
 
     public void add_book(Book aBook){

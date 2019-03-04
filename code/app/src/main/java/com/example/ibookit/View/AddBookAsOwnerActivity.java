@@ -61,9 +61,6 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
 
     }
 
-
-
-
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -74,9 +71,14 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_home:
+                        Intent home = new Intent(AddBookAsOwnerActivity.this, HomeSearchActivity.class);
+                        home.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(home);
+
                         break;
 
                     case R.id.action_myshelf:
+<<<<<<< HEAD
                         Intent intent3 = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
                         intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent3);
@@ -86,12 +88,26 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                         Intent intent4 = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
                         intent4.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent4);
+=======
+                        Intent myshelf = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                        myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(myshelf);
+                        break;
+
+                    case R.id.action_profile:
+                        Intent profile = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
+                        profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(profile);
+>>>>>>> master
                         break;
 
                     case R.id.action_request:
+                        Intent request = new Intent(AddBookAsOwnerActivity.this, CheckRequestsActivity.class);
+                        request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(request);
+
                         break;
                 }
-
 
                 return false;
             }

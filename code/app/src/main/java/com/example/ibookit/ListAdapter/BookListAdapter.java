@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.R;
 
@@ -15,7 +16,11 @@ import java.util.ArrayList;
 public class BookListAdapter extends ArrayAdapter<Book> {
 
     private Context mContext;
+<<<<<<< HEAD
     private int mResource;
+=======
+    int mResource;
+>>>>>>> master
     private TextView mTitle, mAuthor, mIsbn, mStatus;
 
     public BookListAdapter(Context context, int resource, ArrayList<Book> objects) {
@@ -30,7 +35,10 @@ public class BookListAdapter extends ArrayAdapter<Book> {
         convertView = inflater.inflate(mResource, parent, false);
 
         Book book = getItem(position);
+<<<<<<< HEAD
 //        Log.d(TAG, "getView: " + book);
+=======
+>>>>>>> master
 
         mTitle = convertView.findViewById(R.id.listName);
         mAuthor = convertView.findViewById(R.id.listAuthor);
@@ -40,8 +48,17 @@ public class BookListAdapter extends ArrayAdapter<Book> {
         mTitle.setText(book.getTitle());
         mAuthor.setText(book.getAuthor());
         mIsbn.setText(book.getIsbn());
+<<<<<<< HEAD
 //        mStatus.setText(book.getStatus());
 
+=======
+
+        BookStatusHandler handler = new BookStatusHandler();
+
+        mStatus.setText(handler.StatusString(book));
+
+        
+>>>>>>> master
         return convertView;
     }
 }
