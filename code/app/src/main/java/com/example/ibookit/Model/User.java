@@ -9,8 +9,6 @@ public class User {
     private String email;
     private String phoneNumber;
     private String id;
-    private ArrayList<Book> ownerShelf;
-    private ArrayList<Book> borrowerShelf;
 
     public User(String id, String username, String email, String phoneNumber) {
         this.id = id;

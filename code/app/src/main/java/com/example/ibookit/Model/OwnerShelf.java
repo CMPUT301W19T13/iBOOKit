@@ -50,14 +50,21 @@ public class OwnerShelf {
     }
 
 
-    public void add_book(){
+    public void add_book(Book aBook){
         init();
-        Book aBook = new Book("111111","fuck me", "666", "horror", username);
-        mDatabase.push().setValue(aBook);
+        String key = createBookKey();
+        mDatabase.child(key).setValue(aBook);
+        FirebaseDatabase.getInstance().getReference().child("books").child(key).setValue(aBook);
+
     }
 
     public void remove_book(Book dBook){
         myBooks.remove(dBook);
+    }
+
+
+    private String createBookKey() {
+        return mDatabase.push().getKey();
     }
 
 

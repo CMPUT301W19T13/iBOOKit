@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     Log.d(TAG, "setupFirebaseAuth: Success");
-                    Intent intent = new Intent(MainActivity.this, userProfile.class);
+                    Intent intent = new Intent(MainActivity.this, AddBook.class);
                     startActivity(intent);
                 } else {
                     Log.d(TAG, "setupFirebaseAuth: Fail");
