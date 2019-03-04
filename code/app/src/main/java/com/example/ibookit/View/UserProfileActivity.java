@@ -39,8 +39,22 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        //edit button added to allow edit on user profile
 
-        final Button signout = findViewById(R.id.signOut_profile);
+        Button edit =  findViewById(R.id.edit);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit_profile();
+                Intent intent = new Intent(UserProfileActivity.this, ContactInformationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        final Button signout = findViewById(R.id.signout);
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +64,13 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void edit_profile() {
+        //
+        //
+        //
+
     }
 
 
