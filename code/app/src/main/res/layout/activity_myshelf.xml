@@ -72,5 +72,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button11"
         app:layout_constraintTop_toTopOf="parent" />
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="410dp">
+
+        <include layout="@layout/activity_navigation" />
+
+    </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>

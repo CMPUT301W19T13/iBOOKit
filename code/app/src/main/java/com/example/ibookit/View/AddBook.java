@@ -1,10 +1,15 @@
 package com.example.ibookit.View;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.OwnerShelf;
@@ -44,6 +49,41 @@ public class AddBook extends AppCompatActivity {
 
                 OwnerShelf ownerShelf = new OwnerShelf();
                 ownerShelf.add_book(book);
+
+                Toast.makeText(AddBook.this, "Add a book successful",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_add:
+                        break;
+
+                    case R.id.action_home:
+                        break;
+
+                    case R.id.action_myshelf:
+
+                        break;
+
+                    case R.id.action_profile:
+                        Intent intent = new Intent(AddBook.this, userProfile.class);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.action_request:
+
+                        break;
+                }
+
+
+                return false;
             }
         });
 

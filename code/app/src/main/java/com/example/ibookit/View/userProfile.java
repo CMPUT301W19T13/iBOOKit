@@ -1,9 +1,13 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,11 +19,50 @@ public class userProfile extends AppCompatActivity {
     private static final String TAG = "UserProfileActivity";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_add:
+                        Intent intent3 = new Intent(userProfile.this, AddBook.class);
+                        startActivity(intent3);
+                        break;
+
+                    case R.id.action_home:
+
+                        break;
+
+                    case R.id.action_myshelf:
+
+                        break;
+
+                    case R.id.action_profile:
+
+                        break;
+
+                    case R.id.action_request:
+
+                        break;
+                }
+
+
+                return false;
+            }
+        });
+
+
+
         Button check = (Button) findViewById(R.id.contactInfo_user);
+
         check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,4 +89,7 @@ public class userProfile extends AppCompatActivity {
         Log.d(TAG, "signout: " + user.getDisplayName());
         FirebaseAuth.getInstance().signOut();
     }
+
+
+
 }

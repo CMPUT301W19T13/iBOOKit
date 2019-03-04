@@ -54,6 +54,8 @@ public class OwnerShelf {
         init();
         String key = createBookKey();
         mDatabase.child(key).setValue(aBook);
+
+        // Add this book on child books
         FirebaseDatabase.getInstance().getReference().child("books").child(key).setValue(aBook);
 
     }
