@@ -9,27 +9,30 @@
 
     <Button
         android:id="@+id/button9"
+        style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
 
-        android:layout_marginTop="32dp"
-        android:background="@color/backgroundMaiActivity"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/backgroundSignIn"
         android:text="Available"
-        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/button10"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button10"
+        style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@color/backgroundMaiActivity"
+        android:background="@color/backgroundSignIn"
         android:text="Requested"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/button11"
@@ -38,14 +41,15 @@
 
     <Button
         android:id="@+id/button11"
+        style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:background="@color/backgroundMaiActivity"
+        android:background="@color/backgroundSignIn"
         android:text="Borrowed"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/button14"
@@ -63,15 +67,18 @@
 
     <Button
         android:id="@+id/button14"
+        style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@color/backgroundMaiActivity"
+        android:layout_marginTop="64dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/backgroundSignIn"
         android:text="Accepted"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button11"
         app:layout_constraintTop_toTopOf="parent" />
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -80,6 +87,30 @@
         tools:layout_editor_absoluteY="410dp">
 
         <include layout="@layout/activity_navigation" />
+
+        <Button
+            android:id="@+id/my_book"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/backgroundSignIn"
+            android:text="My Book"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
+
+        <Button
+            android:id="@+id/borrowed"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="210dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/backgroundSignIn"
+            android:text="Borrowed"
+            android:textColor="@color/backgroundMaiActivity"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
 
     </FrameLayout>
 
