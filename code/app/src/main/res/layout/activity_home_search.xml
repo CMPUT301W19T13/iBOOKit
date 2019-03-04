@@ -75,11 +75,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
+        android:text="Recommendation For You"
         android:textSize="24sp"
         android:textStyle="bold|italic"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_title"
-        tools:text="New Recommendation For You" />
+        app:layout_constraintTop_toBottomOf="@+id/search_title" />
 
     <ListView
         android:layout_width="395dp"
