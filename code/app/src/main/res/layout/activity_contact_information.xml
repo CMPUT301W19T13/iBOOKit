@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMaiActivity"
-    tools:context=".contactInformation">
+    android:background="@drawable/graidentbackground"
+    tools:context=".View.ContactInformationActivity">
 
     <EditText
         android:id="@+id/name_contact"
@@ -100,7 +100,7 @@
         tools:srcCompat="@tools:sample/avatars[3]" />
 
     <Button
-        android:id="@+id/saveChanges_contact"
+        android:id="@+id/saveChanges_userProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

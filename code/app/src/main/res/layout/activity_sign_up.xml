@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMaiActivity"
-    tools:context=".SignUp">
+    android:background="@drawable/graidentbackground"
+    tools:context=".View.SignUpActivity">
 
     <EditText
-        android:id="@+id/fullName"
+
+        android:id="@+id/userName_SignUp"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
         android:layout_marginTop="64dp"
@@ -16,13 +17,14 @@
         android:ellipsize="start"
         android:ems="10"
         android:gravity="center"
-        android:hint="Full Name"
+        android:hint="Username"
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="24sp"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +49,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fullName" />
+        app:layout_constraintTop_toBottomOf="@+id/userName_SignUp" />
 
     <EditText
         android:id="@+id/password_SignUp"
@@ -97,33 +99,14 @@
         android:layout_width="395dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/buttonshape"
         android:text="Sign Up"
         android:textColor="@color/backgroundMaiActivity"
         android:textSize="32sp"
         android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_SignUp" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_SignUp"
+         />
 
-    <EditText
-        android:id="@+id/username_SignUp"
-        android:layout_width="wrap_content"
-        android:layout_height="39dp"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/back"
-        android:ellipsize="start"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Username (Unique)"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/colorPrimary"
-        android:textColorLink="@color/colorPrimary"
-        android:textCursorDrawable="@color/colorPrimary"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_SignUp" />
 </android.support.constraint.ConstraintLayout>

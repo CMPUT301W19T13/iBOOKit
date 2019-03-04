@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/home_button"
+        android:title="Home"
+         />
+    <item
+        android:id="@+id/action_myshelf"
+        android:icon="@drawable/my_shelf"
+        android:title="Myshelf"
+         />
+
+    <item android:id="@+id/action_add"
+        android:icon="@drawable/add_book_icon"
+        android:title="Add Book"/>
+
+    <item
+        android:id="@+id/action_request"
+        android:icon="@drawable/request"
+        android:title="Request"
+         />
+
+    <item
+        android:id="@+id/action_profile"
+        android:icon="@drawable/profile"
+        android:title="Profile"
+         />
+</menu>

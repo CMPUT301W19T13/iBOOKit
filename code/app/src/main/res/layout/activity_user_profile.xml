@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/backgroundMaiActivity"
-    tools:context=".userProfile">
+    android:background="@drawable/graidentbackground"
+    tools:context=".View.UserProfileActivity">
+
+    <!--<include android:layout="@layout/activity_navigation"/>-->
 
     <ImageView
         android:id="@+id/profilePic_userProfile"
         android:layout_width="170dp"
         android:layout_height="172dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,11 +25,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:hint="Username"
         android:textColorLink="@color/colorPrimary"
         android:textSize="24sp"
         android:typeface="sans"
         app:fontFamily="@font/audiowide"
+        app:layout_constraintBottom_toTopOf="@+id/contactInfo_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,4 +51,47 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName_userProfile" />
+
+    <Button
+        android:id="@+id/signout_profile"
+        android:layout_width="0.0dip"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="96dp"
+        android:layout_marginRight="96dp"
+        android:layout_marginBottom="128dp"
+        android:layout_weight="1.0"
+        android:background="@color/backgroundSignIn"
+        android:text="Signout"
+        android:textColor="@color/colorAccent"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/edit_profile"
+        android:layout_width="0.0dip"
+        android:layout_height="47dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
+        android:layout_marginBottom="128dp"
+        android:layout_weight="1.0"
+        android:background="@color/backgroundSignIn"
+        android:text="Edit"
+        android:textColor="@color/colorAccent"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <include layout="@layout/activity_navigation" />
+
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>
