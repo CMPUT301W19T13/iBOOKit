@@ -79,7 +79,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                             setUserInfo(user.getUid(), username, email, phone);
 
-                            Intent intent = new Intent(SignUpActivity.this, UserProfileActivity.class);
+                            Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
                             startActivity(intent);
 
                         } else {

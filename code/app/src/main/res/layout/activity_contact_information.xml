@@ -100,7 +100,7 @@
         tools:srcCompat="@tools:sample/avatars[3]" />
 
     <Button
-        android:id="@+id/saveChanges_contact"
+        android:id="@+id/saveChanges_userProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"

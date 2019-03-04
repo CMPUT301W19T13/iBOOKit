@@ -1,33 +1,23 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.ibookit.R;
 
-public class MyShelfBorrowerActivity extends AppCompatActivity {
+public class HomeSearchActivity extends AppCompatActivity {
+    private static final String TAG = "HomesearchActivity";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myshelf_borrowed);
-
-        Button changeShelf = findViewById(R.id.my_book);
-        changeShelf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MyShelfBorrowerActivity.this, MyShelfOwnerActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-            }
-        });
+        setContentView(R.layout.activity_home_search);
 
         setBottomNavigationView();
     }
@@ -40,30 +30,28 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(MyShelfBorrowerActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(HomeSearchActivity.this, AddBookAsOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
 
                     case R.id.action_home:
-                        Intent home = new Intent(MyShelfBorrowerActivity.this, HomeSearchActivity.class);
-                        home.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(home);
-
                         break;
 
                     case R.id.action_myshelf:
-
+                        Intent myshelf = new Intent(HomeSearchActivity.this, MyShelfOwnerActivity.class);
+                        myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent profile = new Intent(MyShelfBorrowerActivity.this, UserProfileActivity.class);
+                        Intent profile = new Intent(HomeSearchActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(MyShelfBorrowerActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(HomeSearchActivity.this, CheckRequestsActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 

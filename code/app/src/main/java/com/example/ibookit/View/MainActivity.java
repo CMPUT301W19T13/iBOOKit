@@ -30,18 +30,11 @@ public class MainActivity extends AppCompatActivity {
     private EditText mEmail, mPassword;
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-//        SearchForUser a = new SearchForUser("hello");
-//        a.searchByKeyword();
-//        ArrayList<User> c = a.getResult();
-//        for(User d: c){
-//            Toast.makeText(MainActivity.this, d.getUsername(),
-//                    Toast.LENGTH_SHORT).show();
-//        }
 
 
 
@@ -118,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
                     Log.d(TAG, "setupFirebaseAuth: Success");
-                    Intent intent = new Intent(MainActivity.this, UserProfileActivity.class);
+                    Intent intent = new Intent(MainActivity.this, HomeSearchActivity.class);
                     startActivity(intent);
                 } else {
                     Log.d(TAG, "setupFirebaseAuth: Fail");

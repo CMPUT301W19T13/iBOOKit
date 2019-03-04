@@ -10,13 +10,16 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class UserProfileActivity extends AppCompatActivity {
+
     private static final String TAG = "UserProfileActivity";
+    private TextView mUsername, mEmail;
 
 
 
@@ -27,6 +30,7 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         setBottomNavigationView();
+        setInformation();
 
 
         Button check = (Button) findViewById(R.id.contactInfo_user);
@@ -39,8 +43,21 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        //edit button added to allow edit on user profile
 
-        final Button signout = findViewById(R.id.signOut_profile);
+        Button edit =  findViewById(R.id.edit_profile);
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserProfileActivity.this, ContactInformationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+        final Button signout = findViewById(R.id.signout_profile);
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +67,19 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+    }
+
+    private void setInformation() {
+        mUsername = findViewById(R.id.userName_userProfile);
+        mEmail = findViewById(R.id.contactInfo_user);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        mUsername.setText(user.getDisplayName());
+        mEmail.setText(user.getEmail());
+
     }
 
 
@@ -68,25 +98,31 @@ public class UserProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent intent1 = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
-                        startActivity(intent1);
+                        Intent add = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
+                        add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(add);
                         break;
 
                     case R.id.action_home:
+                        Intent home = new Intent(UserProfileActivity.this, HomeSearchActivity.class);
+                        home.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(home);
 
                         break;
 
                     case R.id.action_myshelf:
-                        Intent intent3 = new Intent(UserProfileActivity.this, MyShelfOwnerActivity.class);
-                        startActivity(intent3);
+                        Intent myshelf = new Intent(UserProfileActivity.this, MyShelfOwnerActivity.class);
+                        myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent intent4 = new Intent(UserProfileActivity.this, UserProfileActivity.class);
-                        startActivity(intent4);
                         break;
 
                     case R.id.action_request:
+                        Intent request = new Intent(UserProfileActivity.this, CheckRequestsActivity.class);
+                        request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(request);
 
                         break;
                 }
