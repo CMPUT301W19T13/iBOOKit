@@ -5,27 +5,11 @@ import com.example.ibookit.Model.User;
 
 import java.util.ArrayList;
 
-public class Search {
+public interface Search {
 
+    ArrayList searchByKeyword();
+//    ArrayList searchByName();
 
-    // returns all possible users that match the searches string
-
-    private ArrayList<User> allUsers;
-    private ArrayList<Book> allBooks;
-
-    public ArrayList<User> getUserId(String searchString){
-
-
-
-        return allUsers;
-    }
-
-    public ArrayList<Book> getBooks(String searchString){
-
-
-
-        return allBooks;
-    }
 
 
 }

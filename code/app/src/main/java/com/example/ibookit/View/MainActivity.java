@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ibookit.Functionality.SearchForUser;
+import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,6 +19,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +33,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+//        SearchForUser a = new SearchForUser("hello");
+//        a.searchByKeyword();
+//        ArrayList<User> c = a.getResult();
+//        for(User d: c){
+//            Toast.makeText(MainActivity.this, d.getUsername(),
+//                    Toast.LENGTH_SHORT).show();
+//        }
+
 
 
         Button logInButton = (Button) findViewById(R.id.logInButton);
