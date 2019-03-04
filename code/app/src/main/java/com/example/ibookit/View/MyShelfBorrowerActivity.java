@@ -39,23 +39,32 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
+                        Intent add = new Intent(MyShelfBorrowerActivity.this, AddBookAsOwnerActivity.class);
+                        startActivity(add);
                         break;
 
                     case R.id.action_home:
+                        Intent home = new Intent(MyShelfBorrowerActivity.this, HomeSearchActivity.class);
+                        startActivity(home);
+
                         break;
 
                     case R.id.action_myshelf:
+                        Intent myshelf = new Intent(MyShelfBorrowerActivity.this, MyShelfOwnerActivity.class);
+                        startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent intent4 = new Intent(MyShelfBorrowerActivity.this, UserProfileActivity.class);
-                        startActivity(intent4);
+                        Intent profile = new Intent(MyShelfBorrowerActivity.this, UserProfileActivity.class);
+                        startActivity(profile);
                         break;
 
                     case R.id.action_request:
+                        Intent request = new Intent(MyShelfBorrowerActivity.this, CheckRequestsActivity.class);
+                        startActivity(request);
+
                         break;
                 }
-
 
                 return false;
             }

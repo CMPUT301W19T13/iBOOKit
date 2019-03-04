@@ -89,25 +89,29 @@ public class UserProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent intent1 = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
-                        startActivity(intent1);
+                        Intent add = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
+                        startActivity(add);
                         break;
 
                     case R.id.action_home:
+                        Intent home = new Intent(UserProfileActivity.this, HomeSearchActivity.class);
+                        startActivity(home);
 
                         break;
 
                     case R.id.action_myshelf:
-                        Intent intent3 = new Intent(UserProfileActivity.this, MyShelfOwnerActivity.class);
-                        startActivity(intent3);
+                        Intent myshelf = new Intent(UserProfileActivity.this, MyShelfOwnerActivity.class);
+                        startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent intent4 = new Intent(UserProfileActivity.this, UserProfileActivity.class);
-                        startActivity(intent4);
+                        Intent profile = new Intent(UserProfileActivity.this, UserProfileActivity.class);
+                        startActivity(profile);
                         break;
 
                     case R.id.action_request:
+                        Intent request = new Intent(UserProfileActivity.this, CheckRequestsActivity.class);
+                        startActivity(request);
 
                         break;
                 }
