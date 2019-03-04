@@ -25,7 +25,7 @@ public class AddBook extends AppCompatActivity {
         mTitle = findViewById(R.id.bookTitleAdd);
         mAuthor = findViewById(R.id.bookAuthorAdd);
         mIsbn = findViewById(R.id.bookISBNAdd);
-        mCategory = findViewById(R.id.bookCatAdd);
+        mCategory = findViewById(R.id.bookCategoryAdd);
 
         confirm = findViewById(R.id.confirmAddBook);
 
