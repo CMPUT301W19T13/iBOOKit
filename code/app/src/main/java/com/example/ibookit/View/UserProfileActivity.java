@@ -105,8 +105,6 @@ public class UserProfileActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_profile:
-                        Intent profile = new Intent(UserProfileActivity.this, UserProfileActivity.class);
-                        startActivity(profile);
                         break;
 
                     case R.id.action_request:

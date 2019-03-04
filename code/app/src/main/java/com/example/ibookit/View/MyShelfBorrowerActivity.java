@@ -50,8 +50,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_myshelf:
-                        Intent myshelf = new Intent(MyShelfBorrowerActivity.this, MyShelfOwnerActivity.class);
-                        startActivity(myshelf);
+
                         break;
 
                     case R.id.action_profile:

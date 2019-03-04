@@ -68,8 +68,6 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(AddBookAsOwnerActivity.this, AddBookAsOwnerActivity.class);
-                        startActivity(add);
                         break;
 
                     case R.id.action_home:

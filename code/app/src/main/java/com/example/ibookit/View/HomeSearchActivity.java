@@ -35,9 +35,6 @@ public class HomeSearchActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_home:
-                        Intent home = new Intent(HomeSearchActivity.this, HomeSearchActivity.class);
-                        startActivity(home);
-
                         break;
 
                     case R.id.action_myshelf:

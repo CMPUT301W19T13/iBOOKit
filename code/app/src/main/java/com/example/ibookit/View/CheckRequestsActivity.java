@@ -49,9 +49,6 @@ public class CheckRequestsActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(CheckRequestsActivity.this, CheckRequestsActivity.class);
-                        startActivity(request);
-
                         break;
                 }
 
