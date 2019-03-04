@@ -98,15 +98,9 @@ public class UserProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-<<<<<<< HEAD
-                        Intent intent1 = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
-                        intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent1);
-=======
                         Intent add = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
->>>>>>> master
                         break;
 
                     case R.id.action_home:
@@ -117,15 +111,9 @@ public class UserProfileActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_myshelf:
-<<<<<<< HEAD
-                        Intent intent3 = new Intent(UserProfileActivity.this, MyShelfOwnerActivity.class);
-                        intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent3);
-=======
                         Intent myshelf = new Intent(UserProfileActivity.this, MyShelfOwnerActivity.class);
                         myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
->>>>>>> master
                         break;
 
                     case R.id.action_profile:

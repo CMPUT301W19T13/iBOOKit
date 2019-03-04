@@ -78,17 +78,6 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_myshelf:
-<<<<<<< HEAD
-                        Intent intent3 = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
-                        intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent3);
-                        break;
-
-                    case R.id.action_profile:
-                        Intent intent4 = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
-                        intent4.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent4);
-=======
                         Intent myshelf = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
                         myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
@@ -98,7 +87,6 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                         Intent profile = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
->>>>>>> master
                         break;
 
                     case R.id.action_request:

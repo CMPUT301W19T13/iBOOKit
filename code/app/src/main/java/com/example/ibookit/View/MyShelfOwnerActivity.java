@@ -20,10 +20,6 @@ import com.example.ibookit.R;
 
 import java.util.ArrayList;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 public class MyShelfOwnerActivity extends AppCompatActivity {
 
     private static final String TAG = "MyShelfOwnerActivity";
@@ -65,12 +61,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     }
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> master
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -94,15 +84,9 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_profile:
-<<<<<<< HEAD
-                        Intent intent4 = new Intent(MyShelfOwnerActivity.this, UserProfileActivity.class);
-                        intent4.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent4);
-=======
                         Intent profile = new Intent(MyShelfOwnerActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
->>>>>>> master
                         break;
 
                     case R.id.action_request:

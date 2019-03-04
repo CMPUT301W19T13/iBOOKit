@@ -6,73 +6,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-<<<<<<< HEAD
         android:layout_width="96dp"
         android:layout_height="96dp"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:scaleType="fitXY" />
 
-
-    <TextView
-        android:id="@+id/listName"
-        android:layout_width="311dp"
-        android:layout_height="24dp"
-        android:shadowColor="@color/colorPrimary"
-        android:text="Name:"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="18sp"
-        tools:layout_editor_absoluteX="97dp" />
-
-    <TextView
-        android:id="@+id/listAuthor"
-        android:layout_width="310dp"
-        android:layout_height="26dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:text="Author:"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/listName" />
-
-    <TextView
-        android:id="@+id/listISBN"
-        android:layout_width="314dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:text="ISBN:"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/listAuthor" />
-
-    <TextView
-        android:id="@+id/listStatus"
-        android:layout_width="312dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginLeft="1dp"
-        android:text="Status"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/listISBN" />
-
-
-</android.support.constraint.ConstraintLayout>
-=======
-        android:layout_width="102dp"
-        android:layout_height="98dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -125,4 +62,3 @@
 
     </LinearLayout>
 </LinearLayout>
->>>>>>> master

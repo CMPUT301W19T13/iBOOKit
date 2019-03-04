@@ -57,15 +57,9 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_profile:
-<<<<<<< HEAD
-                        Intent intent4 = new Intent(MyShelfBorrowerActivity.this, UserProfileActivity.class);
-                        intent4.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        startActivity(intent4);
-=======
                         Intent profile = new Intent(MyShelfBorrowerActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
->>>>>>> master
                         break;
 
                     case R.id.action_request:
