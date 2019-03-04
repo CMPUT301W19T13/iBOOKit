@@ -40,11 +40,9 @@
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
-<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/confirmAddBook" />
-=======
         app:layout_constraintTop_toBottomOf="@+id/bookCatAdd" />
->>>>>>> zijunwu
+
 
     <ImageButton
         android:id="@+id/bookImageAdd"
@@ -128,7 +126,7 @@
         app:layout_constraintTop_toBottomOf="@+id/bookAuthorAdd" />
 
     <EditText
-        android:id="@+id/bookCatAdd"
+        android:id="@+id/bookStatusAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -136,7 +134,7 @@
         android:ellipsize="start"
         android:ems="10"
         android:gravity="center"
-        android:hint="Category"
+        android:hint="Status"
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimary"
         android:textColorHighlight="@color/colorPrimary"
@@ -180,7 +178,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp">
+        tools:layout_editor_absoluteY="410dp">
 
         <include layout="@layout/activity_navigation" />
 
