@@ -78,11 +78,13 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
 
                     case R.id.action_myshelf:
                         Intent intent3 = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                        intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent3);
                         break;
 
                     case R.id.action_profile:
                         Intent intent4 = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
+                        intent4.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent4);
                         break;
 

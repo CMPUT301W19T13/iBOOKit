@@ -1,7 +1,8 @@
 package com.example.ibookit.Model;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,11 +18,11 @@ public class OwnerShelf {
 
     private static final String TAG = "OwnerShelf";
     private DatabaseReference mDatabase;
-    private ArrayList<Book> myBooks;
+    private ArrayList<Book> myBooks = new ArrayList<>();
     private String username;
 
     // init FireBase
-    private void init() {
+    public OwnerShelf() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("ownerShelf");
@@ -30,28 +31,31 @@ public class OwnerShelf {
 
     public ArrayList<Book> All_books(){
         //returns all books that you own
-        init();
+        return myBooks;
+    }
+
+    public void SyncBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                books.clear();
+                adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     Book book = d.getValue(Book.class);
-                    myBooks.add(book);
+                    books.add(book);
+                    adapter.notifyDataSetChanged();
                 }
             }
-
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
                 Log.d(TAG, "onCancelled: ");
             }
         });
 
-        return myBooks;
     }
 
 
     public void add_book(Book aBook){
-        init();
         String key = createBookKey();
         mDatabase.child(key).setValue(aBook);
 

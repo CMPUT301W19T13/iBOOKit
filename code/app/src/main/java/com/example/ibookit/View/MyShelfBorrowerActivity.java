@@ -24,6 +24,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyShelfBorrowerActivity.this, MyShelfOwnerActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
             }
         });
@@ -49,6 +50,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
 
                     case R.id.action_profile:
                         Intent intent4 = new Intent(MyShelfBorrowerActivity.this, UserProfileActivity.class);
+                        intent4.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent4);
                         break;
 

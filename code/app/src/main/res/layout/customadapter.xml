@@ -17,8 +17,8 @@
 
     <TextView
         android:id="@+id/listName"
-        android:layout_width="137dp"
-        android:layout_height="wrap_content"
+        android:layout_width="311dp"
+        android:layout_height="24dp"
         android:shadowColor="@color/colorPrimary"
         android:text="Name:"
         android:textColor="@color/colorPrimary"
@@ -29,8 +29,8 @@
 
     <TextView
         android:id="@+id/listAuthor"
-        android:layout_width="274dp"
-        android:layout_height="wrap_content"
+        android:layout_width="310dp"
+        android:layout_height="26dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:text="Author:"
@@ -43,8 +43,8 @@
 
     <TextView
         android:id="@+id/listISBN"
-        android:layout_width="274dp"
-        android:layout_height="wrap_content"
+        android:layout_width="314dp"
+        android:layout_height="24dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:text="ISBN:"
@@ -57,8 +57,8 @@
 
     <TextView
         android:id="@+id/listStatus"
-        android:layout_width="137dp"
-        android:layout_height="wrap_content"
+        android:layout_width="312dp"
+        android:layout_height="24dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
         android:text="Status"

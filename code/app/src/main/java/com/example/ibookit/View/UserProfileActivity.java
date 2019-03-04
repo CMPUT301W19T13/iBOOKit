@@ -69,6 +69,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.action_add:
                         Intent intent1 = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
+                        intent1.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent1);
                         break;
 
@@ -78,12 +79,11 @@ public class UserProfileActivity extends AppCompatActivity {
 
                     case R.id.action_myshelf:
                         Intent intent3 = new Intent(UserProfileActivity.this, MyShelfOwnerActivity.class);
+                        intent3.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent3);
                         break;
 
                     case R.id.action_profile:
-                        Intent intent4 = new Intent(UserProfileActivity.this, UserProfileActivity.class);
-                        startActivity(intent4);
                         break;
 
                     case R.id.action_request:
