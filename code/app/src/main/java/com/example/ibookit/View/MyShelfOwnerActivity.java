@@ -1,5 +1,6 @@
 package com.example.ibookit.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,16 +12,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+
+import android.widget.Toast;
+
+import com.example.ibookit.Functionality.SearchForBook;
+import com.example.ibookit.Functionality.SearchForUser;
+import com.example.ibookit.Model.User;
+
 import android.widget.ListView;
 
 import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.OwnerShelf;
+
 import com.example.ibookit.R;
 
 import java.util.ArrayList;
 
 public class MyShelfOwnerActivity extends AppCompatActivity {
+    public static Context sContext;
 
     private static final String TAG = "MyShelfOwnerActivity";
     private ListView mListView;
@@ -33,7 +43,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_myshelf_mybook);
 
         mListView = findViewById(R.id.bookListView);
-
         Button changeShelf = findViewById(R.id.borrowed);
         changeShelf.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +53,12 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             }
         });
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> master
         setBottomNavigationView();
 
 

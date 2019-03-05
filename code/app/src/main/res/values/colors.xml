@@ -7,5 +7,7 @@
     <color name="backgroundSignIn">#8DB8DE</color>
     <color name="mainButton">#0C3084</color>
     <color name="redText">#CB0018</color>
+    <color name="homeSearch">#2F00C8</color>
+
 
 </resources>
