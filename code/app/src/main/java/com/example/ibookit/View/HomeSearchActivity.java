@@ -1,5 +1,6 @@
 package com.example.ibookit.View;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -8,16 +9,49 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.SearchView;
 
+import com.example.ibookit.Functionality.SearchForBook;
+import com.example.ibookit.Model.Book;
 import com.example.ibookit.R;
+
+import java.util.ArrayList;
 
 public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomesearchActivity";
+    public static Context sContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
+        Button searchAuthor = findViewById(R.id.search_author);
+        Button viewCategory = findViewById(R.id.search_category);
+        Button searchTitle = findViewById(R.id.search_title);
+        final SearchView sv = findViewById(R.id.search_bar);
+        final SearchForBook mySearch = new SearchForBook();
+
+        searchAuthor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Book> searchResult= mySearch.searchByAuthor(sv.getQuery().toString());
+            }
+        });
+        viewCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        searchTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<Book> searchResult= mySearch.searchByTitle(sv.getQuery().toString());
+            }
+        });
+
 
         setBottomNavigationView();
     }
@@ -62,4 +96,9 @@ public class HomeSearchActivity extends AppCompatActivity {
             }
         });
     }
+
+//    public Context getsContext() {
+//        return sContext;
+//    }
+
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public interface Search {
 
-    ArrayList searchByKeyword();
+    ArrayList searchByKeyword(String keyword);
 //    ArrayList searchByName();
 
 

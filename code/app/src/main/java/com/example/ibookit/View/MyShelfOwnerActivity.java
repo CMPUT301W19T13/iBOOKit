@@ -51,19 +51,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //this is used for testing search
-//        sContext = MyShelfOwnerActivity.this;
-//        Button testSearch = findViewById(R.id.borrowed);
-//        testSearch.setOnClickListener(new View.OnClickListener(){
-//
-//            @Override
-//            public void onClick(View v) {
-//                SearchForUser a = new SearchForUser("zijun");
-//                SearchForBook b = new SearchForBook("BOOk1");
-//                a.searchByKeyword();
-////                b.searchByKeyword();
-//            }
-//        });
+
 
 
 
