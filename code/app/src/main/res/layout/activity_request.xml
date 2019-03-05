@@ -22,17 +22,19 @@
     <!--</FrameLayout>-->
     <TextView
         android:id="@+id/request_received"
-        android:layout_width="231dp"
+        android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
         android:text="Requests Received"
-        android:textColor="@color/purpleText"
+        android:textColor="@color/orangeText"
         android:textSize="24sp"
         android:textStyle="italic"
         app:fontFamily="@font/abril_fatface"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
@@ -50,11 +52,13 @@
 
     <TextView
         android:id="@+id/request_sent"
-        android:layout_width="231dp"
+        android:layout_width="match_parent"
         android:layout_height="46dp"
         android:layout_marginTop="16dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
         android:text="Requests Sent"
-        android:textColor="@color/purpleText"
+        android:textColor="@color/orangeText"
         android:textSize="24sp"
         android:textStyle="italic"
         app:fontFamily="@font/abril_fatface"
