@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".View.ViewBookInfoActivity"/>
         <activity android:name=".View.HomeSearchActivity" />
         <activity android:name=".View.CheckRequestsActivity" />
         <activity android:name=".View.MyShelfBorrowerActivity" />

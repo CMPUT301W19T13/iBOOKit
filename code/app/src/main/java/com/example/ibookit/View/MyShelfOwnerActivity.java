@@ -28,6 +28,7 @@ import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.OwnerShelf;
 
 import com.example.ibookit.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -123,7 +124,13 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
 
-                ownerShelf.remove_book(book);
+                Intent intent = new Intent(MyShelfOwnerActivity.this, ViewBookInfoActivity.class);
+                Gson gson = new Gson();
+
+                String out = gson.toJson(book);
+
+                intent.putExtra("book", out);
+                startActivity(intent);
 
             }
         });

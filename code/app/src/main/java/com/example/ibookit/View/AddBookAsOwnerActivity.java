@@ -52,6 +52,9 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
 
                 Toast.makeText(AddBookAsOwnerActivity.this, "Add a book successful",
                         Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                startActivity(intent);
             }
         });
 
