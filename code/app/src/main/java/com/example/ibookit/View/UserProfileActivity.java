@@ -64,6 +64,7 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 signout();
                 Intent intent = new Intent(UserProfileActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
             }
         });
