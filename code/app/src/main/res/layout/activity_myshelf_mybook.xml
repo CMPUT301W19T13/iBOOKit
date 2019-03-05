@@ -8,7 +8,7 @@
     tools:context=".View.MainActivity">
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/myshlf_available"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
 
@@ -18,12 +18,12 @@
         android:layout_marginRight="8dp"
         android:background="@color/backgroundSignIn"
         android:text="Available"
-        app:layout_constraintEnd_toStartOf="@+id/button10"
+        app:layout_constraintEnd_toStartOf="@+id/myshlf_requested"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button10"
+        android:id="@+id/myshlf_requested"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -35,12 +35,12 @@
         android:background="@color/backgroundSignIn"
         android:text="Requested"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/button11"
-        app:layout_constraintStart_toEndOf="@+id/button9"
+        app:layout_constraintEnd_toStartOf="@+id/myshelf_borrowed"
+        app:layout_constraintStart_toEndOf="@+id/myshlf_available"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/myshelf_borrowed"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,8 +52,8 @@
         android:background="@color/backgroundSignIn"
         android:text="Borrowed"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/button14"
-        app:layout_constraintStart_toEndOf="@+id/button10"
+        app:layout_constraintEnd_toStartOf="@+id/myshelf_accepted"
+        app:layout_constraintStart_toEndOf="@+id/myshlf_requested"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
@@ -64,10 +64,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button9" />
+        app:layout_constraintTop_toBottomOf="@+id/myshlf_available" />
 
     <Button
-        android:id="@+id/button14"
+        android:id="@+id/myshelf_accepted"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
         android:text="Accepted"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button11"
+        app:layout_constraintStart_toEndOf="@+id/myshelf_borrowed"
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
