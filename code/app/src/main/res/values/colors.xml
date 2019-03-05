@@ -10,7 +10,6 @@
     <color name="homeSearch">#2F00C8</color>
     <color name="purpleText">#960DF1</color>
     <color name="orangeText">#FFF8A200</color>
-
-
+    <color name="blueBackground">#FF22BBF2</color>
 
 </resources>
