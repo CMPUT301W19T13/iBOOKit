@@ -26,7 +26,7 @@ public class SearchForUser implements Search {
     }
     public SearchForUser(){}
     @Override
-    public ArrayList searchByKeyword() {
+    public ArrayList searchByKeyword(String keyword) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("users");
 
