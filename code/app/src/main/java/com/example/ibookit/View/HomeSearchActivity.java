@@ -27,7 +27,7 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
-        Button searchAuthor = findViewById(R.id.search_author);
+        Button searchAuthor = findViewById(R.id.search_user);
         Button viewCategory = findViewById(R.id.search_category);
         Button searchTitle = findViewById(R.id.search_title);
         final SearchView sv = findViewById(R.id.search_bar);

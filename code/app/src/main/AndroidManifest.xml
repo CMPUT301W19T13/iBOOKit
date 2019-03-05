@@ -9,23 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.HomeSearchActivity"
-            android:noHistory = "true"/>
-        <activity android:name=".View.CheckRequestsActivity"
-            android:noHistory = "true"/>
-        <activity android:name=".View.MyShelfBorrowerActivity"
-            android:noHistory = "true"/>
-        <activity android:name=".View.MyShelfOwnerActivity"
-            android:noHistory = "true"/>
-        <activity android:name=".View.AddBookAsOwnerActivity"
-            android:noHistory = "true"/>
+        <activity android:name=".View.HomeSearchActivity" />
+        <activity android:name=".View.CheckRequestsActivity" />
+        <activity android:name=".View.MyShelfBorrowerActivity" />
+        <activity android:name=".View.MyShelfOwnerActivity" />
+        <activity android:name=".View.AddBookAsOwnerActivity" />
         <activity android:name=".View.ContactInformationActivity" />
-        <activity android:name=".View.UserProfileActivity"
-            android:noHistory = "true"/>
+        <activity android:name=".View.UserProfileActivity" />
         <activity android:name=".View.SignUpActivity" />
         <activity
-            android:name=".View.MainActivity"
-            android:noHistory = "true">
+            android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
