@@ -36,13 +36,13 @@ public class BookListAdapter extends ArrayAdapter<Book> {
         mIsbn = convertView.findViewById(R.id.listISBN);
         mStatus = convertView.findViewById(R.id.listStatus);
 
-        mTitle.setText(book.getTitle());
-        mAuthor.setText(book.getAuthor());
-        mIsbn.setText(book.getIsbn());
+        mTitle.setText("Title:  " + book.getTitle());
+        mAuthor.setText("Author:  " + book.getAuthor());
+        mIsbn.setText("Isbn:  " + book.getIsbn());
 
         BookStatusHandler handler = new BookStatusHandler();
 
-        mStatus.setText(handler.StatusString(book));
+        mStatus.setText("Status:  " + handler.StatusString(book));
 
         
         return convertView;
