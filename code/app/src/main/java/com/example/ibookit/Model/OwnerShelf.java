@@ -57,6 +57,8 @@ public class OwnerShelf {
 
     public void add_book(Book aBook){
         String key = createBookKey();
+
+        aBook.setId(key);
         mDatabase.child(key).setValue(aBook);
 
         // Add this book on child books
@@ -65,7 +67,11 @@ public class OwnerShelf {
     }
 
     public void remove_book(Book dBook){
-        myBooks.remove(dBook);
+        String key = dBook.getId();
+
+        mDatabase.child(key).removeValue();
+
+        FirebaseDatabase.getInstance().getReference().child("books").child(key).removeValue();
     }
 
 

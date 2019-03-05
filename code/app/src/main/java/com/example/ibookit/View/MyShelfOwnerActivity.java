@@ -2,6 +2,7 @@ package com.example.ibookit.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.BadParcelableException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -36,6 +38,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
     private ListView mListView;
     private ArrayAdapter<Book> adapter;
     private ArrayList<Book> mBooks = new ArrayList<>();
+    private OwnerShelf ownerShelf = new OwnerShelf();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,13 +58,14 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
         setBottomNavigationView();
 
+        ListViewClickHandler();
+
 
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        OwnerShelf ownerShelf = new OwnerShelf();
 
         adapter = new BookListAdapter(this, R.layout.customadapter, mBooks);
         mListView.setAdapter(adapter);
@@ -107,6 +111,20 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                 }
 
                 return false;
+            }
+        });
+    }
+
+
+    private void ListViewClickHandler () {
+        final ListView finalList = mListView;
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book book = (Book) finalList.getItemAtPosition(position);
+
+                ownerShelf.remove_book(book);
+
             }
         });
     }
