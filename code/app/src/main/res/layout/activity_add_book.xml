@@ -11,8 +11,6 @@
         android:id="@+id/confirmAddBook"
         android:layout_width="169dp"
         android:layout_height="55dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
         android:layout_marginBottom="96dp"
         android:background="@drawable/buttonshape"
         android:text="Confirm"
@@ -20,7 +18,9 @@
         android:textColorLink="@color/backgroundMaiActivity"
         android:textSize="28dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/scan_add_book"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
 
     <Button
@@ -28,8 +28,8 @@
         android:layout_width="169dp"
         android:layout_height="55dp"
 
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="96dp"
         android:adjustViewBounds="false"
         android:background="@drawable/buttonshape"
@@ -39,9 +39,11 @@
         android:textColor="@android:color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/confirmAddBook"
         app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
-        app:layout_constraintTop_toBottomOf="@+id/bookCatAdd" />
+    app:layout_constraintTop_toBottomOf="@+id/bookCatAdd" />
 
 
     <ImageButton
@@ -156,7 +158,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="8dp">
 
         <include layout="@layout/activity_navigation" />
 
