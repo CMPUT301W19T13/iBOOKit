@@ -53,12 +53,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> master
         setBottomNavigationView();
 
 
