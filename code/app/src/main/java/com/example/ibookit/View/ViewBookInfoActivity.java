@@ -37,6 +37,7 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         mStatus = findViewById(R.id.statusAdd);
         mBorrower = findViewById(R.id.borrowerAdd);
 
+        submit = findViewById(R.id.confirmChangeBook);
 
         Intent intent = getIntent();
         String objStr = intent.getStringExtra("book");
@@ -70,6 +71,12 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         }
 
 
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 
     }
 }
