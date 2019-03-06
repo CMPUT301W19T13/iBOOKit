@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 import com.example.ibookit.Functionality.SearchForBook;
+import com.example.ibookit.Functionality.SearchForUser;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.R;
 
@@ -27,11 +28,12 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
-        Button searchAuthor = findViewById(R.id.search_user);
+        Button searchUser = findViewById(R.id.search_user);
         Button viewCategory = findViewById(R.id.search_category);
         Button searchTitle = findViewById(R.id.search_title);
 
         final SearchView sv = findViewById(R.id.search_bar);
+<<<<<<< HEAD
 
 //        sv.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -42,12 +44,20 @@ public class HomeSearchActivity extends AppCompatActivity {
 //        });
 
         final SearchForBook mySearch = new SearchForBook();
+=======
+        final SearchForBook bookSearch = new SearchForBook();
+        final SearchForUser userSearch = new SearchForUser();
+>>>>>>> 03371202f3c14bfd35a570a55cc1b977d9854f74
 
-        searchAuthor.setOnClickListener(new View.OnClickListener() {
+        searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD
                 ArrayList<Book> searchResult= mySearch.searchByAuthor(sv.getQuery().toString());
 
+=======
+                ArrayList<Book> searchResult= userSearch.searchByKeyword(sv.getQuery().toString());
+>>>>>>> 03371202f3c14bfd35a570a55cc1b977d9854f74
             }
         });
         viewCategory.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +69,7 @@ public class HomeSearchActivity extends AppCompatActivity {
         searchTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Book> searchResult= mySearch.searchByTitle(sv.getQuery().toString());
+                ArrayList<Book> searchResult= bookSearch.searchByTitle(sv.getQuery().toString());
             }
         });
 
