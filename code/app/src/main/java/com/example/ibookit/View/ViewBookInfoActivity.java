@@ -39,7 +39,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
         submit = findViewById(R.id.confirmChangeBook);
 
-
         Intent intent = getIntent();
         String objStr = intent.getStringExtra("book");
 
