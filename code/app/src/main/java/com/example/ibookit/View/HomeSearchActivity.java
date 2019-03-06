@@ -34,14 +34,6 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         final SearchView sv = findViewById(R.id.search_bar);
 
-//        sv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-//                startActivity(request);
-//            }
-//        });
-
         final SearchForBook bookSearch = new SearchForBook();
         final SearchForUser userSearch = new SearchForUser();
 
@@ -50,12 +42,18 @@ public class HomeSearchActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 ArrayList<Book> searchResult= userSearch.searchByKeyword(sv.getQuery().toString());
+                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                request.putExtra(searchResult);
+                startActivity(request);
+
 
             }
         });
         viewCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                startActivity(request);
 
             }
         });
@@ -63,6 +61,8 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ArrayList<Book> searchResult= bookSearch.searchByTitle(sv.getQuery().toString());
+                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                startActivity(request);
             }
         });
 
