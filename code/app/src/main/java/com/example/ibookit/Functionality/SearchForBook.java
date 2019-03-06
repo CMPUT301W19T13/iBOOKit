@@ -69,15 +69,16 @@ public class SearchForBook implements Search {
                     for (DataSnapshot d : dataSnapshot.getChildren()) {
                         Book temp = d.getValue(Book.class);
                         result.add(temp);
-                        String author = d.child("author").getValue().toString();
-                        String title = d.child("title").getValue().toString();
+//                        String author = d.child("author").getValue().toString();
+//                        String title = d.child("title").getValue().toString();
 //                        Toast.makeText(HomeSearchActivity.sContext, title + ":" + author,
 //                                Toast.LENGTH_SHORT).show();
                     }
-                }else{
-                        Toast.makeText(HomeSearchActivity.sContext, "book not found",
-                                Toast.LENGTH_SHORT).show();
                 }
+//                else{
+//                        Toast.makeText(HomeSearchActivity.sContext, "book not found",
+//                                Toast.LENGTH_SHORT).show();
+//                }
 
 
 

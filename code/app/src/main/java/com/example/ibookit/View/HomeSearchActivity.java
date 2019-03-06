@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 public class HomeSearchActivity extends AppCompatActivity {
-    private static final String TAG = "HomesearchActivity";
+    private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
 
     @Override
@@ -68,9 +68,10 @@ public class HomeSearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ArrayList<Book> searchResult= bookSearch.searchByTitle(sv.getQuery().toString());
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-
-                String out = gson.toJson(searchResult);
-                request.putExtra("book search results", out);
+                request.putParcelableArrayListExtra("book search results", searchResult);
+//
+//                String out = gson.toJson(searchResult);
+//                request.putExtra("book search results", out);
 
                 startActivity(request);
             }

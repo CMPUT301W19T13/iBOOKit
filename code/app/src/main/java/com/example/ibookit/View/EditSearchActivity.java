@@ -25,10 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class EditSearchActivity extends AppCompatActivity {
 
     private static final String TAG = "EditSearchActivity";
     private ListView searchResultListView;
+    private ArrayList<Book> bookResult;
+    private ArrayList<User> uerResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +42,9 @@ public class EditSearchActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        String bookSearchResult = intent.getExtras().getString("book search results");
-        String userSearchResult = intent.getExtras().getString("user search results");
+        ArrayList<Book> bookSearchStr = intent.getExtras().
+                                            getParcelableArrayList("book search results");
+//        String userSearchStr = intent.getExtras().getString("user search results");
 
 
 
