@@ -37,14 +37,22 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     private static final String TAG = "MyShelfOwnerActivity";
     private ListView mListView;
+    private Button chooseAvailable, chooseRequested, chooseAccepted, chooseBorrowed;
     private ArrayAdapter<Book> adapter;
     private ArrayList<Book> mBooks = new ArrayList<>();
     private OwnerShelf ownerShelf = new OwnerShelf();
+    private Integer status;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myshelf_mybook);
+
+        chooseAvailable = findViewById(R.id.myshlf_available);
+        chooseRequested = findViewById(R.id.myshlf_requested);
+        chooseAccepted = findViewById(R.id.myshelf_accepted);
+        chooseBorrowed = findViewById(R.id.myshelf_borrowed);
 
         mListView = findViewById(R.id.bookListView);
         Button changeShelf = findViewById(R.id.borrowed);
@@ -54,6 +62,38 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                 Intent intent = new Intent(MyShelfOwnerActivity.this, MyShelfBorrowerActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+            }
+        });
+
+        chooseAvailable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status = 0;
+                ownerShelf.SyncBookShelf(mBooks, adapter, status);
+            }
+        });
+
+        chooseRequested.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status = 1;
+                ownerShelf.SyncBookShelf(mBooks, adapter, status);
+            }
+        });
+
+        chooseAccepted.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status = 2;
+                ownerShelf.SyncBookShelf(mBooks, adapter, status);
+            }
+        });
+
+        chooseBorrowed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status = 3;
+                ownerShelf.SyncBookShelf(mBooks, adapter, status);
             }
         });
 
@@ -71,7 +111,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         adapter = new BookListAdapter(this, R.layout.customadapter, mBooks);
         mListView.setAdapter(adapter);
         mListView.setClickable(true);
-        ownerShelf.SyncBookShelf(mBooks, adapter);
+        ownerShelf.SyncBookShelf(mBooks, adapter, 0);
 
     }
 

@@ -6,6 +6,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.example.ibookit.Model.User;
+import com.example.ibookit.View.HomeSearchActivity;
 import com.example.ibookit.View.MainActivity;
 import com.example.ibookit.View.MyShelfOwnerActivity;
 import com.google.firebase.database.ChildEventListener;
@@ -34,18 +35,24 @@ public class SearchForUser implements Search {
         listUser.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot d: dataSnapshot.getChildren()){
-                    String email = d.child("email").getValue().toString();
-                    String username = d.child("username").getValue().toString();
-                    Toast.makeText(MyShelfOwnerActivity.sContext, username+":"+email,
+                if (dataSnapshot.exists()) {
+                    for (DataSnapshot d : dataSnapshot.getChildren()) {
+                        String email = d.child("email").getValue().toString();
+                        String username = d.child("username").getValue().toString();
+                        Toast.makeText(HomeSearchActivity.sContext, username + ":" + email,
+                                Toast.LENGTH_SHORT).show();
+
+
+                    }
+
+                } else {
+                    Toast.makeText(HomeSearchActivity.sContext, "user not  found",
                             Toast.LENGTH_SHORT).show();
-
-
                 }
-
             }
 
-            @Override
+
+                @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }

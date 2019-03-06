@@ -33,7 +33,7 @@ public class OwnerShelf {
         return myBooks;
     }
 
-    public void SyncBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter) {
+    public void SyncBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter, final Integer status) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -41,7 +41,9 @@ public class OwnerShelf {
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     Book book = d.getValue(Book.class);
-                    books.add(book);
+                    if (book.getStatus() == status) {
+                        books.add(book);
+                    }
                     adapter.notifyDataSetChanged();
                 }
             }
