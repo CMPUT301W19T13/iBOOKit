@@ -9,8 +9,8 @@
 
     <Button
         android:id="@+id/borrowed"
-        android:layout_width="256dp"
-        android:layout_height="20dp"
+        android:layout_width="260dp"
+        android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:background="@color/backgroundSignIn"
         android:text="Books I Borrowed"
@@ -84,8 +84,9 @@
         android:id="@+id/bookListView"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="144dp" />
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/myshlf_available"
+        tools:layout_editor_absoluteX="8dp" />
 
     <Button
         android:id="@+id/myshelf_accepted"
