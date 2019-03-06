@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ibookit.Functionality.Request;
 import com.example.ibookit.Functionality.SearchForUser;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
+        //Request request = new Request("borrower", "BBC", "bookdescr");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
