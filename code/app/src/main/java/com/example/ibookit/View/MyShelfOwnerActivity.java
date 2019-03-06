@@ -122,7 +122,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         adapter = new BookListAdapter(this, R.layout.customadapter, mBooks);
         mListView.setAdapter(adapter);
         mListView.setClickable(true);
-        ownerShelf.SyncBookShelf(mBooks, adapter, -1);
+        ownerShelf.SyncBookShelf(mBooks, adapter, -1); // -1 means let listView showing all books
 
     }
 

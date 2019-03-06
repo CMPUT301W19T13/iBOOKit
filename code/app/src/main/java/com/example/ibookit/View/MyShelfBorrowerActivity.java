@@ -1,23 +1,43 @@
 package com.example.ibookit.View;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.ibookit.ListAdapter.BookListAdapter;
+import com.example.ibookit.Model.Book;
+import com.example.ibookit.Model.BorrowerShelf;
 import com.example.ibookit.R;
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
 
 public class MyShelfBorrowerActivity extends AppCompatActivity {
+
+    private ListView mListView;
+    private ArrayAdapter<Book> adapter;
+    private ArrayList<Book> mBooks = new ArrayList<>();
+    private BorrowerShelf borrowerShelf = new BorrowerShelf();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myshelf_borrowed);
+
+        mListView = findViewById(R.id.BorrowerShelfListView);
+
 
         Button changeShelf = findViewById(R.id.my_book);
         changeShelf.setOnClickListener(new View.OnClickListener() {
@@ -29,7 +49,34 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             }
         });
 
+        ListViewClickHandler();
+
         setBottomNavigationView();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        adapter = new BookListAdapter(this, R.layout.customadapter, mBooks);
+        mListView.setAdapter(adapter);
+        borrowerShelf.SyncBookShelf(mBooks, adapter, 3);
+        mListView.setClickable(true);
+
+    }
+
+    private void ListViewClickHandler () {
+        final ListView finalList = mListView;
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book book = (Book) finalList.getItemAtPosition(position);
+
+                
+
+            }
+        });
     }
 
 
