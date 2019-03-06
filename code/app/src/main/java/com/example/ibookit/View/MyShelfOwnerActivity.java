@@ -37,7 +37,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     private static final String TAG = "MyShelfOwnerActivity";
     private ListView mListView;
-    private Button chooseAvailable, chooseRequested, chooseAccepted, chooseBorrowed;
+    private Button chooseAvailable, chooseRequested, chooseAccepted, chooseBorrowed, myshelf;
     private ArrayAdapter<Book> adapter;
     private ArrayList<Book> mBooks = new ArrayList<>();
     private OwnerShelf ownerShelf = new OwnerShelf();
@@ -53,6 +53,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         chooseRequested = findViewById(R.id.myshlf_requested);
         chooseAccepted = findViewById(R.id.myshelf_accepted);
         chooseBorrowed = findViewById(R.id.myshelf_borrowed);
+        myshelf = findViewById(R.id.my_book);
 
         mListView = findViewById(R.id.bookListView);
         Button changeShelf = findViewById(R.id.borrowed);
@@ -97,6 +98,14 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             }
         });
 
+        myshelf.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                status = -1;
+                ownerShelf.SyncBookShelf(mBooks, adapter, status);
+            }
+        });
+
         setBottomNavigationView();
 
         ListViewClickHandler();
@@ -111,7 +120,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         adapter = new BookListAdapter(this, R.layout.customadapter, mBooks);
         mListView.setAdapter(adapter);
         mListView.setClickable(true);
-        ownerShelf.SyncBookShelf(mBooks, adapter, 0);
+        ownerShelf.SyncBookShelf(mBooks, adapter, -1);
 
     }
 
