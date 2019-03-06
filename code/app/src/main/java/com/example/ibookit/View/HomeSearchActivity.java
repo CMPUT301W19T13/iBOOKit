@@ -33,13 +33,13 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         final SearchView sv = findViewById(R.id.search_bar);
 
-        sv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-                startActivity(request);
-            }
-        });
+//        sv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+//                startActivity(request);
+//            }
+//        });
 
         final SearchForBook mySearch = new SearchForBook();
 
