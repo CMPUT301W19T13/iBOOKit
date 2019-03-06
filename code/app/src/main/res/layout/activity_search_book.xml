@@ -29,13 +29,14 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="24dp"
         android:background="@android:color/holo_blue_bright"
-        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
+        app:layout_constraintBottom_toTopOf="@+id/search_result_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
+        android:id="@+id/search_result_list"
         android:layout_width="395dp"
         android:layout_height="521dp"
         android:layout_marginStart="8dp"

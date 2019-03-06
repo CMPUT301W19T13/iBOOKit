@@ -70,13 +70,31 @@ public class ViewBookInfoActivity extends AppCompatActivity {
             mBorrower.setText(book.getCurrentBorrower());
         }
 
-
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                String title = mTitle.getText().toString();
+                String author = mAuthor.getText().toString();
+                String isbn = mIsbn.getText().toString();
+                String category = mCategory.getText().toString();
+
+                book.setTitle(title);
+                book.setAuthor(author);
+                book.setIsbn(isbn);
+                book.setCategory(category);
+
+                ownerShelf.update_book(book);
+
+                Toast.makeText(ViewBookInfoActivity.this, "Submitted",
+                        Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(ViewBookInfoActivity.this, MyShelfOwnerActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
     }
+
+
 }
