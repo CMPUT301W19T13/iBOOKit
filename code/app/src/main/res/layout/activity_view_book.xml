@@ -8,12 +8,83 @@
     tools:context=".Model.Book">
 
     <TextView
+        android:id="@+id/borrowerAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/borrowerText"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:shadowColor="@color/colorPrimary"
+        android:clickable="false"
+        android:textColor="@color/homeSearch"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/statusAdd" />
+
+    <TextView
+        android:id="@+id/borrowerText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Borrower -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/statusText" />
+
+    <TextView
+        android:id="@+id/statusAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorPrimary"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:clickable="false"
+        android:inputType="textPersonName"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/homeSearch"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/statusText"
+        app:layout_constraintStart_toStartOf="@+id/bookCategoryAdd" />
+
+    <TextView
+        android:id="@+id/statusText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:text="Status -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/categoryText" />
+
+    <TextView
         android:id="@+id/categoryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="Category -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -28,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="ISBN -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -43,7 +114,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:text="Author -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -66,9 +137,9 @@
         android:textColorLink="@color/backgroundMaiActivity"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/borrowerAdd" />
 
 
     <TextView
@@ -77,7 +148,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Title -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -88,13 +159,13 @@
 
     <ImageButton
         android:id="@+id/bookImageAdd"
-        android:layout_width="157dp"
-        android:layout_height="157dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
         tools:srcCompat="@tools:sample/avatars[3]" />
 
 
@@ -114,7 +185,7 @@
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
-        android:textStyle="bold|italic"
+        android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/titleText"
         app:layout_constraintStart_toStartOf="@+id/bookAuthorAdd" />
 
@@ -134,7 +205,7 @@
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
-        android:textStyle="bold|italic"
+        android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/authorText"
         app:layout_constraintStart_toStartOf="@+id/bookISBNAdd" />
 
@@ -154,7 +225,7 @@
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
-        android:textStyle="bold|italic"
+        android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/isbnText"
         app:layout_constraintStart_toStartOf="@+id/bookCategoryAdd" />
 
@@ -176,7 +247,7 @@
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
-        android:textStyle="bold|italic"
+        android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/categoryText"
         app:layout_constraintStart_toEndOf="@+id/categoryText" />
 
@@ -187,8 +258,6 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp">
-
-        <include layout="@layout/activity_navigation" />
 
     </FrameLayout>
 
