@@ -43,7 +43,7 @@ public class SearchForBook implements Search {
                                 Toast.LENGTH_SHORT).show();
                     }
                 }else{
-                    Toast.makeText(HomeSearchActivity.sContext, "booknot found",
+                    Toast.makeText(HomeSearchActivity.sContext, "book not found",
                             Toast.LENGTH_SHORT).show();
                 }
 
