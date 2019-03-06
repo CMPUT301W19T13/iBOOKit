@@ -175,7 +175,12 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
 
-                setDialog(book);
+                if (book.getStatus() == 3) {
+                    Toast.makeText(MyShelfOwnerActivity.this, "Can't edit on this book",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    setDialog(book);
+                }
 
             }
         });
@@ -183,7 +188,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     private void setDialog(final Book book) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("What you want to do?");
+        builder.setMessage("View or delete?");
         builder.setCancelable(true);
 
         builder.setPositiveButton("View", new DialogInterface.OnClickListener() {

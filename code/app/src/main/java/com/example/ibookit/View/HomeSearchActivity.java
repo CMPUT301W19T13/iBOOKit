@@ -35,20 +35,15 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         final SearchView sv = findViewById(R.id.search_bar);
 
-        final SearchForBook bookSearch = new SearchForBook();
-        final SearchForUser userSearch = new SearchForUser();
-
-        final Gson gson = new Gson();
 
         searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                ArrayList<Book> searchResult= userSearch.searchByKeyword(sv.getQuery().toString());
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
 
-                String out = gson.toJson(searchResult);
-                request.putExtra("user search results", out);
+                request.putExtra("type", "SearchUser");
+                request.putExtra("SearchValue", sv.getQuery().toString());
 
                 startActivity(request);
 
@@ -59,6 +54,8 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                request.putExtra("type", "SearchCategory");
+                request.putExtra("SearchValue", sv.getQuery().toString());
                 startActivity(request);
 
             }
@@ -66,13 +63,9 @@ public class HomeSearchActivity extends AppCompatActivity {
         searchTitle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<Book> searchResult= bookSearch.searchByTitle(sv.getQuery().toString());
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-                request.putParcelableArrayListExtra("book search results", searchResult);
-//
-//                String out = gson.toJson(searchResult);
-//                request.putExtra("book search results", out);
-
+                request.putExtra("type", "SearchTitle");
+                request.putExtra("SearchValue", sv.getQuery().toString());
                 startActivity(request);
             }
         });
