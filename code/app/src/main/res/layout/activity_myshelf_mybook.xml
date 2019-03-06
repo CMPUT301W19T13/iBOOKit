@@ -11,16 +11,16 @@
         android:id="@+id/borrowed"
         android:layout_width="260dp"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="64dp"
         android:background="@color/backgroundSignIn"
         android:text="Books I Borrowed"
         android:textColor="@color/colorPrimary"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bookListView" />
+        app:layout_constraintStart_toEndOf="@+id/frameLayout" />
 
     <Button
         android:id="@+id/my_book"
@@ -83,8 +83,10 @@
     <ListView
         android:id="@+id/bookListView"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/borrowed"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
