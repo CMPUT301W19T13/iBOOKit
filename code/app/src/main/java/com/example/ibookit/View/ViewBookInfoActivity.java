@@ -20,8 +20,8 @@ import com.google.gson.Gson;
 public class ViewBookInfoActivity extends AppCompatActivity {
 
     private static final String TAG = "ViewBookInfoActivity";
-    private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower;
-    private Button change, delete;
+    private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower, mCategory;
+    private Button submit;
     private OwnerShelf ownerShelf = new OwnerShelf();
     private Book book;
 
@@ -30,14 +30,13 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_book);
 
-        mTitle = findViewById(R.id.bookTitleView);
-        mAuthor = findViewById(R.id.bookAuthorView);
-        mIsbn = findViewById(R.id.bookISBNView);
-        mStatus = findViewById(R.id.bookStatusView);
-        mBorrower = findViewById(R.id.userTypeView);
+        mTitle = findViewById(R.id.bookTitleAdd);
+        mAuthor = findViewById(R.id.bookAuthorAdd);
+        mIsbn = findViewById(R.id.bookISBNAdd);
+        mCategory = findViewById(R.id.bookCategoryAdd);
+        mStatus = findViewById(R.id.statusAdd);
+        mBorrower = findViewById(R.id.borrowerAdd);
 
-        change = findViewById(R.id.change_viewBook);
-        delete = findViewById(R.id.delete_viewBook);
 
         Intent intent = getIntent();
         String objStr = intent.getStringExtra("book");
@@ -49,27 +48,6 @@ public class ViewBookInfoActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: no objStr");
         }
 
-        change.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ownerShelf.remove_book(book);
-
-                Toast.makeText(ViewBookInfoActivity.this, "Book deleted",
-                        Toast.LENGTH_SHORT).show();
-
-                Intent myShelf = new Intent(ViewBookInfoActivity.this, MyShelfOwnerActivity.class);
-                startActivity(myShelf);
-                finish();
-            }
-        });
-
     }
 
     @Override
@@ -79,10 +57,10 @@ public class ViewBookInfoActivity extends AppCompatActivity {
         mTitle.setText(book.getTitle());
         mAuthor.setText(book.getAuthor());
         mIsbn.setText(book.getIsbn());
+        mCategory.setText(book.getCategory());
 
         BookStatusHandler handler = new BookStatusHandler();
         mStatus.setText(handler.StatusString(book));
-
 
         if (book.getCurrentBorrower().length() == 0) {
             mBorrower.setText("No borrower");
