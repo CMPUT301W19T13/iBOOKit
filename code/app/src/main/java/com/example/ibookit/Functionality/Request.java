@@ -4,6 +4,8 @@ import android.location.Location;
 
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.User;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 // If a request is declined then delete the corresponding request object
@@ -16,15 +18,20 @@ public class Request {
     private String ownerId;
     private String bookId;
     private Location geolocation;
+    private DatabaseReference mDatabase;
 
     public Request(String borrower, String owner, String book ) {
 
         setborrowerId(borrower);
         setOwnerId(owner);
         setBookId(book);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        mDatabase.child("users").child(owner).child("Requests").setValue(this);
 
     }
+
+
 
 
     public int getRid() {
