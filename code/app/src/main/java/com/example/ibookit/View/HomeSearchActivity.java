@@ -33,7 +33,6 @@ public class HomeSearchActivity extends AppCompatActivity {
         Button searchTitle = findViewById(R.id.search_title);
 
         final SearchView sv = findViewById(R.id.search_bar);
-<<<<<<< HEAD
 
 //        sv.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -43,21 +42,15 @@ public class HomeSearchActivity extends AppCompatActivity {
 //            }
 //        });
 
-        final SearchForBook mySearch = new SearchForBook();
-=======
         final SearchForBook bookSearch = new SearchForBook();
         final SearchForUser userSearch = new SearchForUser();
->>>>>>> 03371202f3c14bfd35a570a55cc1b977d9854f74
 
         searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
-                ArrayList<Book> searchResult= mySearch.searchByAuthor(sv.getQuery().toString());
 
-=======
                 ArrayList<Book> searchResult= userSearch.searchByKeyword(sv.getQuery().toString());
->>>>>>> 03371202f3c14bfd35a570a55cc1b977d9854f74
+
             }
         });
         viewCategory.setOnClickListener(new View.OnClickListener() {
