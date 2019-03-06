@@ -7,8 +7,87 @@
     android:background="@drawable/graidentbackground"
     tools:context=".Model.Book">
 
+    <TextView
+        android:id="@+id/categoryText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Category -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/isbnText" />
+
+    <TextView
+        android:id="@+id/isbnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="ISBN -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/authorText" />
+
+    <TextView
+        android:id="@+id/authorText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Author -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+    <Button
+        android:id="@+id/confirmAddBook"
+        android:layout_width="169dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="32dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/buttonshape"
+        android:cropToPadding="false"
+        android:drawableTop="@drawable/manualadd_icon"
+        android:text="Submit"
+        android:textColor="@color/orangeText"
+        android:textColorLink="@color/backgroundMaiActivity"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
+
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Title -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/bookImageAdd" />
+
     <ImageButton
-        android:id="@+id/bookImageView"
+        android:id="@+id/bookImageAdd"
         android:layout_width="157dp"
         android:layout_height="157dp"
         android:layout_marginTop="32dp"
@@ -18,146 +97,100 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars[3]" />
 
+
     <EditText
-        android:id="@+id/bookTitleView"
+        android:id="@+id/bookTitleAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:backgroundTint="@color/colorPrimary"
         android:ellipsize="start"
         android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimary"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/homeSearch"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookImageView" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/titleText"
+        app:layout_constraintStart_toStartOf="@+id/bookAuthorAdd" />
 
     <EditText
-        android:id="@+id/bookAuthorView"
+        android:id="@+id/bookAuthorAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:backgroundTint="@color/colorPrimary"
         android:ellipsize="start"
         android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimary"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/homeSearch"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookTitleView" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/authorText"
+        app:layout_constraintStart_toStartOf="@+id/bookISBNAdd" />
 
     <EditText
-        android:id="@+id/bookISBNView"
+        android:id="@+id/bookISBNAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:backgroundTint="@color/colorPrimary"
         android:ellipsize="start"
         android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimary"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/homeSearch"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookAuthorView" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/isbnText"
+        app:layout_constraintStart_toStartOf="@+id/bookCategoryAdd" />
 
     <EditText
-        android:id="@+id/bookStatusView"
+        android:id="@+id/bookCategoryAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:backgroundTint="@color/colorPrimary"
         android:ellipsize="start"
         android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
         android:gravity="center"
         android:inputType="textPersonName"
-        android:textColor="@color/colorPrimary"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/homeSearch"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookISBNView" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/categoryText"
+        app:layout_constraintStart_toEndOf="@+id/categoryText" />
 
-    <EditText
-        android:id="@+id/userTypeView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:ellipsize="start"
-        android:ems="10"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textColorLink="@color/colorPrimary"
-        android:textCursorDrawable="@color/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bookStatusView" />
 
-    <Button
-        android:id="@+id/change_viewBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="84dp"
-        android:layout_marginLeft="84dp"
-        android:layout_marginTop="45dp"
-        android:text="Change"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTypeView" />
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
-    <Button
-        android:id="@+id/delete_viewBook"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:text="Delete"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userTypeView" />
+        <include layout="@layout/activity_navigation" />
+
+    </FrameLayout>
+
 
 </android.support.constraint.ConstraintLayout>

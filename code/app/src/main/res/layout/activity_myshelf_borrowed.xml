@@ -27,20 +27,18 @@
 
     <Button
         android:id="@+id/borrowed"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/buttonshape"
+        android:background="@color/blueBackground"
+        android:clickable="false"
         android:gravity="center"
         android:text="BOOKS I BORROWED"
-        android:textColor="@color/blueBackground"
+        android:textColor="@color/homeSearch"
         android:textSize="24sp"
         android:textStyle="italic"
         app:fontFamily="@font/abril_fatface"
-        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        tools:layout_editor_absoluteX="84dp" />
 
     <ListView
         android:layout_width="0dp"
