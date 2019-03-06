@@ -1,12 +1,14 @@
 package com.example.ibookit.View;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.BadParcelableException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -120,7 +122,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         adapter = new BookListAdapter(this, R.layout.customadapter, mBooks);
         mListView.setAdapter(adapter);
         mListView.setClickable(true);
-        ownerShelf.SyncBookShelf(mBooks, adapter, -1);
+        ownerShelf.SyncBookShelf(mBooks, adapter, -1); // -1 means let listView showing all books
 
     }
 
@@ -173,6 +175,20 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
 
+                setDialog(book);
+
+            }
+        });
+    }
+
+    private void setDialog(final Book book) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("What you want to do?");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
                 Intent intent = new Intent(MyShelfOwnerActivity.this, ViewBookInfoActivity.class);
                 Gson gson = new Gson();
 
@@ -180,8 +196,24 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
                 intent.putExtra("book", out);
                 startActivity(intent);
-
             }
         });
+
+        builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                ownerShelf.remove_book(book);
+
+                Toast.makeText(MyShelfOwnerActivity.this, "Book deleted",
+                        Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 }

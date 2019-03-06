@@ -41,6 +41,7 @@
         tools:layout_editor_absoluteX="84dp" />
 
     <ListView
+        android:id="@+id/BorrowerShelfListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
