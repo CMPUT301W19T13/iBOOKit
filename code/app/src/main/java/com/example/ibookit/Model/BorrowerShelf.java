@@ -42,8 +42,12 @@ public class BorrowerShelf implements BookShelf{
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     Book book = d.getValue(Book.class);
-                    books.add(book);
-                    adapter.notifyDataSetChanged();
+                    if (book.getStatus() == 3) {
+                        books.add(book);
+                        adapter.notifyDataSetChanged();
+                    } else {
+                        Log.d(TAG, "onDataChange: This book is not supposed to show here: " + book.getId());
+                    }
                 }
             }
             @Override

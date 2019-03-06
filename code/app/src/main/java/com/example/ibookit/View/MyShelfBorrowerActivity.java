@@ -74,7 +74,6 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                 Book book = (Book) finalList.getItemAtPosition(position);
 
                 
-
             }
         });
     }
