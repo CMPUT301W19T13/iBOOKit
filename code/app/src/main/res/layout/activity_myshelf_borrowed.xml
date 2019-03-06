@@ -8,46 +8,59 @@
     tools:context=".View.MainActivity">
 
 
-    <ListView
-        android:layout_width="395dp"
-        android:layout_height="400dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/my_book"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:text="All My Books"
+        android:textColor="@color/blueBackground"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myshlf_available" />
+        app:layout_constraintStart_toEndOf="@+id/frameLayout" />
+
+    <Button
+        android:id="@+id/borrowed"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/blueBackground"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="BOOKS I BORROWED"
+        android:textColor="@color/homeSearch"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        tools:layout_editor_absoluteX="84dp" />
+
+    <ListView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/my_book"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/borrowed"
+        app:layout_constraintVertical_bias="0.0" />
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="410dp">
+        tools:layout_editor_absoluteY="0dp">
 
         <include layout="@layout/activity_navigation" />
-
-        <Button
-            android:id="@+id/my_book"
-            android:layout_width="189dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/backgroundSignIn"
-            android:text="My Book"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
-
-        <Button
-            android:id="@+id/borrowed"
-            android:layout_width="189dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="210dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/backgroundSignIn"
-            android:text="Borrowed"
-            android:textColor="@color/backgroundMaiActivity"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
 
     </FrameLayout>
 

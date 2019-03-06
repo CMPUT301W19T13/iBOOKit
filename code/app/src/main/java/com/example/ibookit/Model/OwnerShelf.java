@@ -41,7 +41,9 @@ public class OwnerShelf {
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     Book book = d.getValue(Book.class);
-                    if (book.getStatus() == status) {
+                    if (status == -1) {
+                        books.add(book);
+                    } else if (book.getStatus() == status) {
                         books.add(book);
                     }
                     adapter.notifyDataSetChanged();
