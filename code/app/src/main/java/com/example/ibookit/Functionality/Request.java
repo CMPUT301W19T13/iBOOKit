@@ -26,9 +26,7 @@ public class Request {
         setOwnerId(owner);
         setBookId(book);
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
         mDatabase.child("users").child(owner).child("Requests").setValue(this);
-
     }
 
 
