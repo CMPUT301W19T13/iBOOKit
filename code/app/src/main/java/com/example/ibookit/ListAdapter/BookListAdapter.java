@@ -33,7 +33,6 @@ public class BookListAdapter extends ArrayAdapter<Book> {
 
         Book book = getItem(position);
 
-//        Log.d(TAG, "getView: " + book);
 
         mTitle = convertView.findViewById(R.id.listName);
         mAuthor = convertView.findViewById(R.id.listAuthor);

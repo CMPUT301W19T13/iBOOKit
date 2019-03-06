@@ -1,33 +1,21 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.ibookit.Functionality.SearchForBook;
 import com.example.ibookit.Functionality.SearchForUser;
 import com.example.ibookit.ListAdapter.BookListAdapter;
+import com.example.ibookit.ListAdapter.UserListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -36,6 +24,7 @@ public class EditSearchActivity extends AppCompatActivity {
     private static final String TAG = "EditSearchActivity";
     private ListView searchResultListView;
     private ArrayAdapter<Book> bookArrayAdapter;
+    private ArrayAdapter<User> userArrayAdapter;
     private ArrayList<Book> bookResult;
     private ArrayList<User> uerResult;
     private String type, searchValue;
@@ -48,17 +37,24 @@ public class EditSearchActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
-        Log.d(TAG, "onCreate: " + type);
         searchValue = intent.getStringExtra("SearchValue");
 
         if (type.equals("SearchUser")) {
 
             SearchForUser userSearch = new SearchForUser();
-            ArrayList<Book> searchResult= userSearch.searchByKeyword(searchValue);
+            ArrayList<User> searchResult= new ArrayList<>();
+
+            userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
+            searchResultListView.setAdapter(bookArrayAdapter);
+            searchResultListView.setClickable(true);
+            // same way as below
 
 
 
         } else if (type.equals("SearchCategory")) {
+
+            // not implemented
+
 
         } else if (type.equals("SearchTitle")) {
 
@@ -68,7 +64,7 @@ public class EditSearchActivity extends AppCompatActivity {
 
             Log.d(TAG, "onCreate: " + searchResult);
 
-            bookArrayAdapter = new BookListAdapter(this, R.layout.customadapter, searchResult);
+            bookArrayAdapter = new BookListAdapter(this, R.layout.adapter_book, searchResult);
             searchResultListView.setAdapter(bookArrayAdapter);
             searchResultListView.setClickable(true);
             bookSearch.searchByTitle(searchValue, searchResult, bookArrayAdapter);
@@ -88,8 +84,7 @@ public class EditSearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
-
-
+                
             }
         });
     }
