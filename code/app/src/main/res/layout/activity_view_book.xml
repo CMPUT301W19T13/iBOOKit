@@ -56,7 +56,7 @@
         android:id="@+id/confirmAddBook"
         android:layout_width="169dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginTop="32dp"
         android:adjustViewBounds="false"
         android:background="@drawable/buttonshape"
         android:cropToPadding="false"
@@ -65,31 +65,9 @@
         android:textColor="@color/orangeText"
         android:textColorLink="@color/backgroundMaiActivity"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/scan_add_book"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
-
-    <Button
-        android:id="@+id/scan_add_book"
-        android:layout_width="169dp"
-        android:layout_height="55dp"
-
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="96dp"
-        android:adjustViewBounds="false"
-        android:background="@drawable/buttonshape"
-        android:cropToPadding="false"
-        android:drawableTop="@drawable/cameranew"
-        android:text="Scan To Add"
-        android:textColor="@color/orangeText"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/confirmAddBook"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
 
 
