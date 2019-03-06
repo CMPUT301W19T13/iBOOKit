@@ -15,6 +15,7 @@ import com.example.ibookit.Functionality.SearchForBook;
 import com.example.ibookit.Functionality.SearchForUser;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -37,13 +38,18 @@ public class HomeSearchActivity extends AppCompatActivity {
         final SearchForBook bookSearch = new SearchForBook();
         final SearchForUser userSearch = new SearchForUser();
 
+        final Gson gson = new Gson();
+
         searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 ArrayList<Book> searchResult= userSearch.searchByKeyword(sv.getQuery().toString());
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-                request.putExtra(searchResult);
+
+                String out = gson.toJson(searchResult);
+                request.putExtra("user search results", out);
+
                 startActivity(request);
 
 
@@ -62,6 +68,10 @@ public class HomeSearchActivity extends AppCompatActivity {
             public void onClick(View v) {
                 ArrayList<Book> searchResult= bookSearch.searchByTitle(sv.getQuery().toString());
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+
+                String out = gson.toJson(searchResult);
+                request.putExtra("book search results", out);
+
                 startActivity(request);
             }
         });
