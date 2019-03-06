@@ -11,5 +11,7 @@
     <color name="purpleText">#960DF1</color>
     <color name="orangeText">#FFF8A200</color>
     <color name="blueBackground">#FF22BBF2</color>
+    <color name="button_pressed">#ff8a00</color>
+    <color name="button_default">#1c76bb</color>
 
 </resources>
