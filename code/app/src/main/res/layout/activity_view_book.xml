@@ -7,7 +7,7 @@
     android:background="@drawable/graidentbackground"
     tools:context=".Model.Book">
 
-    <EditText
+    <TextView
         android:id="@+id/borrowerAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/statusText" />
 
-    <EditText
+    <TextView
         android:id="@+id/statusAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
