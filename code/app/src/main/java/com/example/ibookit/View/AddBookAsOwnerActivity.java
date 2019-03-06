@@ -32,7 +32,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         mIsbn = findViewById(R.id.bookISBNAdd);
         mCategory = findViewById(R.id.bookCategoryAdd);
 
-        confirm = findViewById(R.id.confirmAddBook);
+        confirm = findViewById(R.id.confirmChangeBook);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override

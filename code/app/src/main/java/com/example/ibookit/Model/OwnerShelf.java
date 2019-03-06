@@ -78,6 +78,14 @@ public class OwnerShelf {
         FirebaseDatabase.getInstance().getReference().child("books").child(key).removeValue();
     }
 
+    public void update_book(Book book) {
+
+        mDatabase.child(book.getId()).setValue(book);
+
+        FirebaseDatabase.getInstance().getReference().child("books").child(book.getId()).setValue(book);
+
+    }
+
 
     private String createBookKey() {
         return mDatabase.push().getKey();
