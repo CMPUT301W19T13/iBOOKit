@@ -8,19 +8,47 @@
     tools:context=".View.MainActivity">
 
     <Button
+        android:id="@+id/borrowed"
+        android:layout_width="256dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/backgroundSignIn"
+        android:text="Books I Borrowed"
+        android:textColor="@color/colorPrimary"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/bookListView" />
+
+    <Button
+        android:id="@+id/my_book"
+        android:layout_width="189dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/backgroundSignIn"
+        android:text="ALL MY BOOKS"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <Button
         android:id="@+id/myshlf_available"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
 
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
         android:background="@color/backgroundSignIn"
         android:text="Available"
         app:layout_constraintEnd_toStartOf="@+id/myshlf_requested"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/my_book" />
 
     <Button
         android:id="@+id/myshlf_requested"
@@ -28,16 +56,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginLeft="8dp"
         android:background="@color/backgroundSignIn"
         android:text="Requested"
         android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/myshlf_available"
         app:layout_constraintEnd_toStartOf="@+id/myshelf_borrowed"
-        app:layout_constraintStart_toEndOf="@+id/myshlf_available"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/myshlf_available" />
 
     <Button
         android:id="@+id/myshelf_borrowed"
@@ -46,72 +72,44 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:background="@color/backgroundSignIn"
         android:text="Borrowed"
         android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/myshlf_requested"
         app:layout_constraintEnd_toStartOf="@+id/myshelf_accepted"
-        app:layout_constraintStart_toEndOf="@+id/myshlf_requested"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/myshlf_requested" />
 
     <ListView
         android:id="@+id/bookListView"
-        android:layout_width="395dp"
+        android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/myshlf_available" />
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="144dp" />
 
     <Button
         android:id="@+id/myshelf_accepted"
         style="@android:style/Widget.Material.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:layout_marginRight="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:background="@color/backgroundSignIn"
         android:text="Accepted"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/myshelf_borrowed"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/myshelf_borrowed"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/myshelf_borrowed" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="410dp">
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <include layout="@layout/activity_navigation" />
-
-        <Button
-            android:id="@+id/my_book"
-            android:layout_width="189dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:background="@color/backgroundSignIn"
-            android:text="My Book"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
-
-        <Button
-            android:id="@+id/borrowed"
-            android:layout_width="189dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="210dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:background="@color/backgroundSignIn"
-            android:text="Borrowed"
-            android:textColor="@color/backgroundMaiActivity"
-            android:textSize="24sp"
-            android:textStyle="bold|italic" />
 
     </FrameLayout>
 

@@ -39,7 +39,7 @@
     <ListView
         android:id="@+id/received_list"
         android:layout_width="match_parent"
-        android:layout_height="244dp"
+        android:layout_height="260dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
@@ -53,7 +53,6 @@
         android:id="@+id/request_sent"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:layout_marginTop="32dp"
         android:background="@color/blueBackground"
         android:gravity="center"
         android:text="Requests Sent"
@@ -68,7 +67,7 @@
     <ListView
         android:id="@+id/sent_list"
         android:layout_width="match_parent"
-        android:layout_height="244dp"
+        android:layout_height="260dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
