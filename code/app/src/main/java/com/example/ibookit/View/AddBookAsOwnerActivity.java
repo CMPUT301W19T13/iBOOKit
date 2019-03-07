@@ -32,7 +32,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         mIsbn = findViewById(R.id.bookISBNAdd);
         mCategory = findViewById(R.id.bookCategoryAdd);
 
-        confirm = findViewById(R.id.confirmAddBook);
+        confirm = findViewById(R.id.confirmChangeBook);
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +52,9 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
 
                 Toast.makeText(AddBookAsOwnerActivity.this, "Add a book successful",
                         Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -16,7 +16,8 @@ import java.util.ArrayList;
 public class BookListAdapter extends ArrayAdapter<Book> {
 
     private Context mContext;
-    int mResource;
+    private int mResource;
+
     private TextView mTitle, mAuthor, mIsbn, mStatus;
 
     public BookListAdapter(Context context, int resource, ArrayList<Book> objects) {
@@ -25,26 +26,28 @@ public class BookListAdapter extends ArrayAdapter<Book> {
         mResource = resource;
     }
 
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         convertView = inflater.inflate(mResource, parent, false);
 
         Book book = getItem(position);
 
+
         mTitle = convertView.findViewById(R.id.listName);
         mAuthor = convertView.findViewById(R.id.listAuthor);
         mIsbn = convertView.findViewById(R.id.listISBN);
         mStatus = convertView.findViewById(R.id.listStatus);
 
-        mTitle.setText(book.getTitle());
-        mAuthor.setText(book.getAuthor());
-        mIsbn.setText(book.getIsbn());
+        mTitle.setText("Title:  " + book.getTitle());
+        mAuthor.setText("Author:  " + book.getAuthor());
+        mIsbn.setText("Isbn:  " + book.getIsbn());
+
 
         BookStatusHandler handler = new BookStatusHandler();
 
-        mStatus.setText(handler.StatusString(book));
+        mStatus.setText("Status:  " + handler.StatusString(book));
 
-        
         return convertView;
     }
 }

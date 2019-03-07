@@ -8,15 +8,30 @@
     tools:context=".View.UserProfileActivity">
 
     <!--<FrameLayout-->
-        <!--android:id="@+id/frameLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--tools:layout_editor_absoluteX="0dp"-->
-        <!--tools:layout_editor_absoluteY="410dp">-->
+    <!--android:id="@+id/frameLayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--tools:layout_editor_absoluteX="0dp"-->
+    <!--tools:layout_editor_absoluteY="410dp">-->
 
-        <!--<include layout="@layout/activity_navigation" />-->
+    <!--<include layout="@layout/activity_navigation" />-->
 
     <!--</FrameLayout>-->
+
+    <TextView
+        android:id="@+id/searchBy_home"
+        android:layout_width="98dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:text="Search By:"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
 
     <SearchView
         android:id="@+id/search_bar"
@@ -27,71 +42,87 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@color/backgroundSignIn"
+        android:background="@android:color/holo_blue_bright"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/search_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="59dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:background="@drawable/back"
         android:text="Title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        android:textColor="@color/homeSearch"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/searchBy_home"
+        app:layout_constraintStart_toEndOf="@+id/searchBy_home" />
 
     <Button
-        android:id="@+id/search_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/search_user"
+        android:layout_width="59dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="Author"
-        app:layout_constraintEnd_toStartOf="@+id/search_category"
-        app:layout_constraintStart_toEndOf="@+id/search_title"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="User"
+        android:textColor="@color/homeSearch"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/search_title"
+        app:layout_constraintStart_toEndOf="@+id/search_title" />
 
     <Button
         android:id="@+id/search_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="9dp"
-        android:layout_marginRight="9dp"
-        android:text="Category"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="342dp"
-        android:layout_height="64dp"
+        android:layout_width="104dp"
+        android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Recommendation For You"
-        android:textSize="24sp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="Category"
+        android:textColor="@color/homeSearch"
+        android:textSize="18sp"
         android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/search_user"
+        app:layout_constraintStart_toEndOf="@+id/search_user" />
+
+    <TextView
+        android:id="@+id/recommendationText"
+        android:layout_width="356dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:text="Recommendations For You"
+        android:textColor="@color/backgroundMaiActivity"
+        android:textSize="28sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/amita"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
         app:layout_constraintTop_toBottomOf="@+id/search_title" />
 
     <ListView
         android:layout_width="395dp"
-        android:layout_height="360dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="64dp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/recommendationText" />
 
     <FrameLayout
         android:id="@+id/frameLayout"

@@ -13,7 +13,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class OwnerShelf {
+public class OwnerShelf implements BookShelf{
 
     private static final String TAG = "OwnerShelf";
     private DatabaseReference mDatabase;
@@ -27,13 +27,14 @@ public class OwnerShelf {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("ownerShelf");
     }
 
-
+    @Override
     public ArrayList<Book> All_books(){
         //returns all books that you own
         return myBooks;
     }
 
-    public void SyncBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter) {
+    @Override
+    public void SyncBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter, final Integer status) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -41,7 +42,11 @@ public class OwnerShelf {
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     Book book = d.getValue(Book.class);
-                    books.add(book);
+                    if (status == -1) {
+                        books.add(book);
+                    } else if (book.getStatus() == status) {
+                        books.add(book);
+                    }
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -50,22 +55,37 @@ public class OwnerShelf {
                 Log.d(TAG, "onCancelled: ");
             }
         });
-
     }
 
-
-
-    public void add_book(Book aBook){
+    @Override
+    public void add_book(Book book){
         String key = createBookKey();
-        mDatabase.child(key).setValue(aBook);
+
+        book.setId(key);
+        mDatabase.child(key).setValue(book);
 
         // Add this book on child books
-        FirebaseDatabase.getInstance().getReference().child("books").child(key).setValue(aBook);
+        FirebaseDatabase.getInstance().getReference().child("books").child(key).setValue(book);
 
     }
 
-    public void remove_book(Book dBook){
-        myBooks.remove(dBook);
+    @Override
+    public void remove_book(Book book) {
+        String key = book.getId();
+
+        mDatabase.child(key).removeValue();
+
+        FirebaseDatabase.getInstance().getReference().child("books").child(key).removeValue();
+    }
+
+
+
+    public void update_book(Book book) {
+
+        mDatabase.child(book.getId()).setValue(book);
+
+        FirebaseDatabase.getInstance().getReference().child("books").child(book.getId()).setValue(book);
+
     }
 
 

@@ -89,9 +89,7 @@
         android:id="@+id/rememberMe"
         android:layout_width="153dp"
         android:layout_height="47dp"
-        android:layout_marginStart="44dp"
-        android:layout_marginLeft="44dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/back"
         android:buttonTint="@color/colorPrimary"
         android:gravity="center"
@@ -100,24 +98,24 @@
         android:textColor="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/forgotPassword"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logInButton" />
 
     <Button
         android:id="@+id/forgotPassword"
-        android:layout_width="165dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="203dp"
+        android:layout_height="49dp"
         android:background="@drawable/back"
         android:gravity="center"
         android:text="Forgot your password?"
         android:textAllCaps="false"
         android:textSize="18sp"
+        app:layout_constraintBaseline_toBaselineOf="@+id/rememberMe"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.857"
-        app:layout_constraintLeft_toRightOf="@+id/rememberMe"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/rememberMe" />
 
 
     <TextView
