@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ibookit">
+    
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -9,11 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.contactInformation" />
-        <activity android:name=".View.userProfile" />
-        <activity android:name=".View.SignUp" />
-        <activity android:name=".View.SignIn" />
-        <activity android:name=".View.MainActivity">
+        <activity android:name=".View.EditSearchActivity" />
+        <activity android:name=".View.ViewBookInfoAsOwnerActivity"/>
+        <activity android:name=".View.HomeSearchActivity" />
+        <activity android:name=".View.CheckRequestsActivity" />
+        <activity android:name=".View.MyShelfBorrowerActivity" />
+        <activity android:name=".View.MyShelfOwnerActivity" />
+        <activity android:name=".View.AddBookAsOwnerActivity" />
+        <activity android:name=".View.ContactInformationActivity" />
+        <activity android:name=".View.UserProfileActivity" />
+        <activity android:name=".View.SignUpActivity" />
+        <activity
+            android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
