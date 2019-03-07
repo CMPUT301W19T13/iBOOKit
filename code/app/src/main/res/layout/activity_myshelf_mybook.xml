@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/graidentbackground"
+    tools:context=".View.MainActivity">
+
+    <Button
+        android:id="@+id/borrowed"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonshape"
+        android:text="Books I Borrowed"
+        android:textColor="@color/blueBackground"
+        android:gravity="center"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout" />
+
+    <Button
+        android:id="@+id/my_book"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:text="ALL MY BOOKS"
+        android:textColor="@color/blueBackground"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout" />
+
+    <Button
+        android:id="@+id/myshlf_available"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/black"
+        android:textColor="@color/orangeText"
+        android:text="Available"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/myshlf_requested"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/my_book" />
+
+    <Button
+        android:id="@+id/myshlf_requested"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@android:color/black"
+        android:textColor="@color/orangeText"
+        android:text="Requested"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/myshlf_available"
+        app:layout_constraintEnd_toStartOf="@+id/myshelf_borrowed"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/myshlf_available" />
+
+    <Button
+        android:id="@+id/myshelf_borrowed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@android:color/black"
+        android:textColor="@color/orangeText"
+        android:text="Borrowed"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/myshlf_requested"
+        app:layout_constraintEnd_toStartOf="@+id/myshelf_accepted"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/myshlf_requested" />
+
+    <ListView
+        android:id="@+id/bookListView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/borrowed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myshlf_available" />
+
+    <Button
+        android:id="@+id/myshelf_accepted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@android:color/black"
+        android:textColor="@color/orangeText"
+        android:text="Accepted"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/myshelf_borrowed"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/myshelf_borrowed" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <include layout="@layout/activity_navigation" />
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
