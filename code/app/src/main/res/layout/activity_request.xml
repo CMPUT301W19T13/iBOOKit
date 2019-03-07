@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/graidentbackground"
+    tools:context=".View.UserProfileActivity">
+
+    <!--<include android:layout="@layout/activity_navigation"/>-->
+
+
+    <!--<FrameLayout-->
+    <!--android:id="@+id/frameLayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--tools:layout_editor_absoluteX="0dp">-->
+
+    <!--<include layout="@layout/activity_navigation" />-->
+
+    <!--</FrameLayout>-->
+    <TextView
+        android:id="@+id/request_received"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/blueBackground"
+        android:gravity="center"
+        android:text="Requests Received"
+        android:textColor="@color/homeSearch"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/received_list"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/request_received" />
+
+    <TextView
+        android:id="@+id/request_sent"
+        android:layout_width="match_parent"
+        android:layout_height="46dp"
+        android:background="@color/blueBackground"
+        android:gravity="center"
+        android:text="Requests Sent"
+        android:textColor="@color/homeSearch"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintBottom_toTopOf="@+id/sent_list"
+        app:layout_constraintStart_toStartOf="@+id/request_received"
+        app:layout_constraintTop_toBottomOf="@+id/received_list" />
+
+    <ListView
+        android:id="@+id/sent_list"
+        android:layout_width="match_parent"
+        android:layout_height="260dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/request_sent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="410dp">
+
+        <include layout="@layout/activity_navigation" />
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
