@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        RequestsList test = new RequestsList();
-
 
         Button logInButton = (Button) findViewById(R.id.logInButton);
 
