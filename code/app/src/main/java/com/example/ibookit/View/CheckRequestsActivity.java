@@ -1,22 +1,44 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.ibookit.Model.Request;
+import com.example.ibookit.Model.RequestSent;
 import com.example.ibookit.R;
 
+import java.util.ArrayList;
+
 public class CheckRequestsActivity extends AppCompatActivity {
+
+    private ListView Sent;
+    private ListView received;
+    private ArrayList<Request> RSent=  new ArrayList<>();
+    private ArrayList<Request> Rreceived = new ArrayList<>();
+    private ArrayAdapter<Request> adapterS;
+    private ArrayAdapter<Request> adapterR;
+    private RequestSent requestSent = new RequestSent();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
+
+        Sent = findViewById(R.id.sent_list);
+        received = findViewById(R.id.received_list);
+
+        requestSent.RetriveRequest(adapterS);
+        adapterS = new ArrayAdapter(this,android.R.layout.simple_list_item_1,requestSent.getRequestSent());
+        Sent.setAdapter(adapterS);
+
+
 
         setBottomNavigationView();
     }

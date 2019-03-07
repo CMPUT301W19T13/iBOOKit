@@ -19,7 +19,9 @@ public class RequestSent {
     private DatabaseReference mDatabase;
     private String username;
 
-
+    public ArrayList<Request> getRequestSent() {
+        return requestSent;
+    }
 
     public RequestSent(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
