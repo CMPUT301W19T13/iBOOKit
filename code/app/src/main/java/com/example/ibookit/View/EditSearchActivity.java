@@ -1,8 +1,13 @@
 package com.example.ibookit.View;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+
+import android.support.v7.app.AlertDialog;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,14 +16,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.example.ibookit.Functionality.CreateRequestHandler;
 import com.example.ibookit.Functionality.SearchForBook;
 import com.example.ibookit.Functionality.SearchForUser;
 import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.ListAdapter.UserListAdapter;
 import com.example.ibookit.Model.Book;
+import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -97,10 +106,12 @@ public class EditSearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
-                
+
+                setDialog(book);
             }
         });
     }
+
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -139,6 +150,40 @@ public class EditSearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+
+
+    private void setDialog(final Book book) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Send request to owner?");
+        builder.setCancelable(true);
+
+        builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Request request = new Request(book);
+
+                CreateRequestHandler createRequest = new CreateRequestHandler();
+                createRequest.SendRequestToOwner(request);
+
+                Toast.makeText(EditSearchActivity.this, "send request successful",
+                        Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
 }

@@ -188,7 +188,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(MyShelfOwnerActivity.this, ViewBookInfoActivity.class);
+                Intent intent = new Intent(MyShelfOwnerActivity.this, ViewBookInfoAsOwnerActivity.class);
                 Gson gson = new Gson();
 
                 String out = gson.toJson(book);

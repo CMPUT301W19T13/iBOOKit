@@ -17,9 +17,9 @@ import com.example.ibookit.R;
 import com.google.gson.Gson;
 
 
-public class ViewBookInfoActivity extends AppCompatActivity {
+public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
 
-    private static final String TAG = "ViewBookInfoActivity";
+    private static final String TAG = "ViewBookInfoAsOwnerActivity";
     private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower, mCategory;
     private Button submit;
     private OwnerShelf ownerShelf = new OwnerShelf();
@@ -85,10 +85,10 @@ public class ViewBookInfoActivity extends AppCompatActivity {
 
                 ownerShelf.update_book(book);
 
-                Toast.makeText(ViewBookInfoActivity.this, "Submitted",
+                Toast.makeText(ViewBookInfoAsOwnerActivity.this, "Submitted",
                         Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(ViewBookInfoActivity.this, MyShelfOwnerActivity.class);
+                Intent intent = new Intent(ViewBookInfoAsOwnerActivity.this, MyShelfOwnerActivity.class);
                 startActivity(intent);
                 finish();
             }
