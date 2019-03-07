@@ -18,7 +18,6 @@ public class RequestSent {
     private static final String TAG = "RequestSent";
     private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
-    private DatabaseReference BorrowId;
     private String username;
 
 
@@ -29,15 +28,15 @@ public class RequestSent {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("RequestSent");
     }
 
-    public void SyncRequestSent(final ArrayList<Request> requests, final ArrayAdapter<Request> adapter) {
+    public void RetriveRequest(final ArrayAdapter<Request> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                requests.clear();
+                requestSent.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     Request request = d.getValue(Request.class);
-                    requests.add(request);
+                    requestSent.add(request);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -48,8 +47,7 @@ public class RequestSent {
         });
 
     }
-    public void RetriveRequest(){
-    BorrowId = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("Requests");
-    }
+
+    //Query query = FirebaseDatabase.getInstance().getReference().child("requests").orderByChild("sender").equalTo(username);
 
 }
