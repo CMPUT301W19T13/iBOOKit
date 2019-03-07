@@ -2,6 +2,8 @@ package com.example.ibookit;
 
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -14,7 +16,8 @@ public class Requests {
 
     @Test
     public void SendRequest(){
-        System.out.println("fi");
+        assertEquals(1,1);
+
     }
 
 
