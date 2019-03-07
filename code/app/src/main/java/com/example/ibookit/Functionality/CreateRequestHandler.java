@@ -26,12 +26,12 @@ public class CreateRequestHandler {
         mDatabase.child("requests").child(key).setValue(request);
 
         DatabaseReference receiverRequestReceived = mDatabase.child("users").child(request.getReceiver()).child("requestReceived");
+
         DatabaseReference senderRequestSent = mDatabase.child("users").child(sender).child("requestSent");
 
         receiverRequestReceived.child(key).setValue(request);
 
         senderRequestSent.child(key).setValue(request);
-
 
     }
 

@@ -94,4 +94,8 @@ public class BorrowerShelf implements BookShelf{
         FirebaseDatabase.getInstance().getReference().child("users").child(book.getOwner()).child("ownerShelf").child(book.getId()).setValue(book);
 
     }
+
+    private Boolean checkRequestIsAccept(){
+        return false;
+    }
 }

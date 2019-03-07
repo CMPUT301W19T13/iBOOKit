@@ -19,7 +19,7 @@ import com.google.gson.Gson;
 
 public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
 
-    private static final String TAG = "ViewBookInfoAsOwnerActivity";
+    private static final String TAG = "ViewBookInfoActivity";
     private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower, mCategory;
     private Button submit;
     private OwnerShelf ownerShelf = new OwnerShelf();
@@ -73,20 +73,29 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String title = mTitle.getText().toString();
-                String author = mAuthor.getText().toString();
-                String isbn = mIsbn.getText().toString();
-                String category = mCategory.getText().toString();
 
-                book.setTitle(title);
-                book.setAuthor(author);
-                book.setIsbn(isbn);
-                book.setCategory(category);
+                // update a book only if it is available
+                if (book.getStatus() != 0) {
+                    Toast.makeText(ViewBookInfoAsOwnerActivity.this, "View Only",
+                            Toast.LENGTH_SHORT).show();
 
-                ownerShelf.update_book(book);
+                } else {
 
-                Toast.makeText(ViewBookInfoAsOwnerActivity.this, "Submitted",
-                        Toast.LENGTH_SHORT).show();
+                    String title = mTitle.getText().toString();
+                    String author = mAuthor.getText().toString();
+                    String isbn = mIsbn.getText().toString();
+                    String category = mCategory.getText().toString();
+
+                    book.setTitle(title);
+                    book.setAuthor(author);
+                    book.setIsbn(isbn);
+                    book.setCategory(category);
+
+                    ownerShelf.update_book(book);
+
+                    Toast.makeText(ViewBookInfoAsOwnerActivity.this, "Submitted",
+                            Toast.LENGTH_SHORT).show();
+                }
 
                 Intent intent = new Intent(ViewBookInfoAsOwnerActivity.this, MyShelfOwnerActivity.class);
                 startActivity(intent);
