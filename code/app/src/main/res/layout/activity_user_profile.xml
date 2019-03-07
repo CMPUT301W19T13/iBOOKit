@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/graidentbackground"
-    tools:context=".View.userProfile">
+    tools:context=".View.UserProfileActivity">
 
     <!--<include android:layout="@layout/activity_navigation"/>-->
 
@@ -13,7 +13,7 @@
         android:id="@+id/profilePic_userProfile"
         android:layout_width="170dp"
         android:layout_height="172dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,11 +25,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
         android:hint="Username"
+        android:textColor="@color/homeSearch"
+        android:textColorHighlight="@color/homeSearch"
+        android:textColorHint="@color/homeSearch"
         android:textColorLink="@color/colorPrimary"
-        android:textSize="24sp"
+        android:textSize="30sp"
+        android:gravity="center"
         android:typeface="sans"
         app:fontFamily="@font/audiowide"
+        app:layout_constraintBottom_toTopOf="@+id/contactInfo_user"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,14 +45,62 @@
         android:id="@+id/contactInfo_user"
         android:layout_width="234dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/back"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:background="#00000000"
+        android:clickable="false"
+        android:enabled="false"
         android:text="Contact Information"
-        android:textColor="@color/backgroundSignIn"
+        android:textColor="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userName_userProfile" />
+
+    <Button
+        android:id="@+id/signout_profile"
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_weight="1.0"
+        android:background="@drawable/buttonshape"
+        android:text="Signout"
+        android:textColor="@color/backgroundMaiActivity"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toEndOf="@+id/edit_profile" />
+
+    <Button
+        android:id="@+id/edit_profile"
+        android:layout_width="140dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_weight="1.0"
+        android:background="@drawable/buttonshape"
+        android:text="Edit"
+        android:textColor="@color/backgroundMaiActivity"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/contactInfo_user" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
+
+        <include layout="@layout/activity_navigation" />
+
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>
