@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".View.EditSearchActivity" />
-        <activity android:name=".View.ViewBookInfoActivity"/>
+        <activity android:name=".View.ViewBookInfoAsOwnerActivity"/>
         <activity android:name=".View.HomeSearchActivity" />
         <activity android:name=".View.CheckRequestsActivity" />
         <activity android:name=".View.MyShelfBorrowerActivity" />

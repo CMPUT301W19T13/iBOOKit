@@ -1,9 +1,5 @@
 package com.example.ibookit.Model;
 
-import com.example.ibookit.Functionality.Request;
-
-import java.util.ArrayList;
-
 public class User {
     private String username;
     private String email;
@@ -55,11 +51,4 @@ public class User {
     }
 
 
-    // sends a request with a given user id
-    public void requestBook(String borrowerId, String OwnerId, String bookId ){
-
-        Request request = new Request(borrowerId, OwnerId, bookId);
-
-
-    }
 }
