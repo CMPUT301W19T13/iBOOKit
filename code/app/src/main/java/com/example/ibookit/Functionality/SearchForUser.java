@@ -30,34 +30,39 @@ public class SearchForUser implements Search {
     }
     public SearchForUser(){}
 
+    //todo:searches cannot handle more than one word at present
+    //todo:all searches are case sensitive at present
 
-    @Override
-    public void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter) {
+
+//    @Override
+    //todo:solve the problem that forces user to re-signIn to search for other user.
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //due to bug with google firebaseAuth, you have to sign out and sign in again before testing this code
+    //details: https://stackoverflow.com/questions/40683510/displayname-showing-null-after-creating-user-with-firebase-auth
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public void searchByKeyword(final String mKeyword, final ArrayList<User> result, final ArrayAdapter<User> adapter) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("users");
 
-        Query listUser = userRef.orderByChild("username").equalTo(keyword);
-        listUser.addValueEventListener(new ValueEventListener() {
+        //todo: this is just a temporary solution, I will be looking for more advanced solution(like filtering),
+        //I will use this solution just for demoing for part 4
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot d : dataSnapshot.getChildren()) {
-                        String email = d.child("email").getValue().toString();
-                        String username = d.child("username").getValue().toString();
-                        Toast.makeText(HomeSearchActivity.sContext, username + ":" + email,
-                                Toast.LENGTH_SHORT).show();
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot d : dataSnapshot.getChildren()){
+                        if (d.child("username").getValue().toString().contains
+                                (mKeyword.replaceAll("\\s+",""))){
+                            User temp = d.getValue(User.class);
+                            result.add(temp);
+                            adapter.notifyDataSetChanged();
 
-
+                        }
                     }
-
-                } else {
-                    Toast.makeText(HomeSearchActivity.sContext, "user not  found",
-                            Toast.LENGTH_SHORT).show();
                 }
             }
 
-
-                @Override
+            @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }

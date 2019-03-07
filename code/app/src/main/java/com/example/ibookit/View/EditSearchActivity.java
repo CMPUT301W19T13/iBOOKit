@@ -52,13 +52,16 @@ public class EditSearchActivity extends AppCompatActivity {
         searchValue = intent.getStringExtra("SearchValue");
 
         if (type.equals("SearchUser")) {
-
+            Log.d(TAG, "onCreate: " + searchValue);
             SearchForUser userSearch = new SearchForUser();
             ArrayList<User> searchResult= new ArrayList<>();
 
+            Log.d(TAG, "onCreate: " + searchResult);
+
             userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
-            searchResultListView.setAdapter(bookArrayAdapter);
+            searchResultListView.setAdapter(userArrayAdapter);
             searchResultListView.setClickable(true);
+            userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
             // same way as below
 
 

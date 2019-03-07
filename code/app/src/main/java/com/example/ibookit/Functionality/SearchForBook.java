@@ -27,15 +27,18 @@ public class SearchForBook implements Search {
     }
     public SearchForBook(){}
 //&& (d.child("status").getValue().toString()=="0")
+    //todo:searches cannot handle more than one word at present
+    //todo:all searches are case sensitive at present
 
-    @Override
+//    @Override
     public void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter)  {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
+        Query listBook = bookRef.orderByChild("status").equalTo(0);
 
         //todo: this is just a temporary solution, I will be looking for more advanced solution(like filtering),
         //I will use this solution just for demoing for part 4
-        bookRef.addValueEventListener(new ValueEventListener() {
+        listBook.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
@@ -72,16 +75,20 @@ public class SearchForBook implements Search {
     public void searchByTitle(final String mTitle, final ArrayList<Book> result, final ArrayAdapter<Book> adapter) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
-
+        Query listBook = bookRef.orderByChild("status").equalTo(0);
         //todo: this is just a temporary solution, I will be looking for more advanced solution(like filtering),
         //I will use this solution just for demoing for part 4
-        bookRef.addValueEventListener(new ValueEventListener() {
+        listBook.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot d : dataSnapshot.getChildren()){
                         if ((d.child("title").getValue().toString().contains
                                 (mTitle.replaceAll("\\s+","")))){
+//                            String a = d.child("status").getValue().toString().getClass().getSimpleName();
+//                            Toast.makeText(HomeSearchActivity.sContext, a,
+//                                    Toast.LENGTH_SHORT).show();
+
                             Book temp = d.getValue(Book.class);
                             result.add(temp);
                             adapter.notifyDataSetChanged();
@@ -98,20 +105,24 @@ public class SearchForBook implements Search {
         });
 
     }
+
+    //planning to do buttons for search by category so did not add like functionality
     public void searchByCategory(final String mCategory, final ArrayList<Book> result, final ArrayAdapter<Book> adapter){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
-        Query listUser = bookRef.orderByChild("category").equalTo(mCategory);
-        listUser.addValueEventListener(new ValueEventListener() {
+        Query listBook = bookRef.orderByChild("category").equalTo(mCategory);
+        listBook.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot d : dataSnapshot.getChildren()){
-//                        if (d.child("status").getValue().toString()=="0"){
+                        if (d.child("status").getValue().toString().equals("0")){
                             Book temp = d.getValue(Book.class);
                             result.add(temp);
                             adapter.notifyDataSetChanged();
-//                        }
+                        }
+//                        Toast.makeText(HomeSearchActivity.sContext, Boolean.toString(d.child("status").getValue().equals(0)),
+//                                    Toast.LENGTH_SHORT).show();
                     }
                 }
             }

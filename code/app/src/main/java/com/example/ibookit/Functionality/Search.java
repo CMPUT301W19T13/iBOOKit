@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public interface Search {
 
-    void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter);
+//    void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter);
 //    ArrayList searchByName();
 
 
