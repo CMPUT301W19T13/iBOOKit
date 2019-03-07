@@ -24,7 +24,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private ArrayList<Request> Rreceived = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<Request> adapterR;
-    private RequestSent requestSent = new RequestSent();
+    private RequestSent requestSent2 = new RequestSent();
 
 
     @Override
@@ -38,8 +38,19 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
         //crash if add this one but use for get data
         //requestSent.RetriveRequest(adapterS);
-        adapterS = new RequestListAdapter(this,R.layout.adapter_request,requestSent.getRequestSent());
+        //ArrayList<Request> exam = new ArrayList<>();
+
+
+        //test for adapter ok
+        //Book book = new Book();
+        //Request a= new Request(book);
+        //a.setReceiver("xiaoxiao");
+        //exam.add(a);
+        RSent = requestSent2.RetriveRequest(RSent);
+
+        adapterS = new RequestListAdapter(this,R.layout.adapter_request,RSent);
         Sent.setAdapter(adapterS);
+        //requestSent.RetriveRequest();
 
 
 
