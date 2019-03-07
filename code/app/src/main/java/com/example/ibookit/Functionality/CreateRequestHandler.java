@@ -22,19 +22,16 @@ public class CreateRequestHandler {
 
         request.setRid(key);
         request.setSender(sender);
-        String send_guy = request.getSender();
 
         mDatabase.child("requests").child(key).setValue(request);
 
         DatabaseReference receiverRequestReceived = mDatabase.child("users").child(request.getReceiver()).child("requestReceived");
-        mDatabase.child("users").child(request.getReceiver()).child("RequestsByBook").child(request.getBookName()).child("second").setValue("second");
 
         DatabaseReference senderRequestSent = mDatabase.child("users").child(sender).child("requestSent");
 
         receiverRequestReceived.child(key).setValue(request);
 
         senderRequestSent.child(key).setValue(request);
-
 
     }
 
