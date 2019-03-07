@@ -18,6 +18,21 @@
 
     <!--</FrameLayout>-->
 
+    <TextView
+        android:id="@+id/searchBy_home"
+        android:layout_width="98dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="32dp"
+        android:text="Search By:"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@+id/search_bar"
+        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
@@ -27,27 +42,70 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="24dp"
         android:background="@android:color/holo_blue_bright"
-        app:layout_constraintBottom_toTopOf="@+id/search_result_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/search_title"
+        android:layout_width="59dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:gravity="center"
+        android:background="@drawable/back"
+        android:text="Title"
+        android:textColor="@color/homeSearch"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/searchBy_home"
+        app:layout_constraintStart_toEndOf="@+id/searchBy_home" />
+
+    <Button
+        android:id="@+id/search_user"
+        android:layout_width="59dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="User"
+        android:textColor="@color/homeSearch"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/search_title"
+        app:layout_constraintStart_toEndOf="@+id/search_title" />
+
+    <Button
+        android:id="@+id/search_category"
+        android:layout_width="104dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="Category"
+        android:textColor="@color/homeSearch"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/search_user"
+        app:layout_constraintStart_toEndOf="@+id/search_user" />
+
     <ListView
         android:id="@+id/search_result_list"
         android:layout_width="395dp"
-        android:layout_height="521dp"
+        android:layout_height="466dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/search_user" />
 
     <FrameLayout
         android:id="@+id/frameLayout"

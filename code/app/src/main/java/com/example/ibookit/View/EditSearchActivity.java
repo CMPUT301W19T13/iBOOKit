@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.ibookit.Functionality.CreateRequestHandler;
@@ -40,6 +41,7 @@ public class EditSearchActivity extends AppCompatActivity {
     private ArrayList<Book> bookResult;
     private ArrayList<User> uerResult;
     private String type, searchValue;
+    private SearchView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class EditSearchActivity extends AppCompatActivity {
         Intent intent = getIntent();
         type = intent.getStringExtra("type");
         searchValue = intent.getStringExtra("SearchValue");
+        SearchView sv = findViewById(R.id.search_bar);
+//        sv.setQueryHint(searchValue);
 
         if (type.equals("SearchUser")) {
             Log.d(TAG, "onCreate: " + searchValue);
@@ -60,9 +64,8 @@ public class EditSearchActivity extends AppCompatActivity {
 
             userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
             searchResultListView.setAdapter(userArrayAdapter);
-            searchResultListView.setClickable(true);
+//            searchResultListView.setClickable(true);  //this will be activated if need to show more info about user
             userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
-            // same way as below
 
 
 
@@ -105,14 +108,36 @@ public class EditSearchActivity extends AppCompatActivity {
     }
     private void ListViewClickHandler () {
         final ListView finalList = searchResultListView;
-        searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Book book = (Book) finalList.getItemAtPosition(position);
+        if (this.type == "SearchCategory" || this.type == "SearchTitle"){
+            searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Book book = (Book) finalList.getItemAtPosition(position);
 
-                setDialog(book);
-            }
-        });
+                    setDialog(book);
+                }
+            });
+        }
+
+        //below code will only be activated if need to show more than username and email
+
+//        else if (this.type == "SearchUser"){
+//            searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                @Override
+//                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                    User user = (User) finalList.getItemAtPosition(position);
+//
+//                    Intent resultProfile = new Intent(EditSearchActivity.this, UserProfileActivity.class);
+//                    resultProfile.putExtra("type", "showSearchUserResult");
+//                    Gson gson = new Gson();
+//                    String userResult = gson.toJson(user);
+//                    resultProfile.putExtra("UserResult", userResult);
+//                    resultProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                    startActivity(resultProfile);
+//                }
+//            });
+//        }
+
     }
 
     private void setBottomNavigationView() {

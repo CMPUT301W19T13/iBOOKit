@@ -31,8 +31,6 @@ public class SearchForUser implements Search {
     public SearchForUser(){}
 
     //todo:searches cannot handle more than one word at present
-    //todo:all searches are case sensitive at present
-
 
 //    @Override
     //todo:solve the problem that forces user to re-signIn to search for other user.
@@ -51,8 +49,8 @@ public class SearchForUser implements Search {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot d : dataSnapshot.getChildren()){
-                        if (d.child("username").getValue().toString().contains
-                                (mKeyword.replaceAll("\\s+",""))){
+                        if (d.child("username").getValue().toString().toLowerCase().contains
+                                (mKeyword.replaceAll("\\s+","").toLowerCase())){
                             User temp = d.getValue(User.class);
                             result.add(temp);
                             adapter.notifyDataSetChanged();

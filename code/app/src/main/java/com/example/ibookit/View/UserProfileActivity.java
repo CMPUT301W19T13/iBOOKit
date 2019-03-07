@@ -12,9 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.gson.Gson;
 
 public class UserProfileActivity extends AppCompatActivity {
 
@@ -31,6 +33,17 @@ public class UserProfileActivity extends AppCompatActivity {
 
         setBottomNavigationView();
         setInformation();
+
+        //this used for show user search result
+        Intent intent = getIntent();
+        String type = intent.getStringExtra("type");
+        String objStr = intent.getStringExtra("UserResult");
+        if (type == "showSearchUserResult"){
+            Gson gson = new Gson();
+            User sUser = gson.fromJson(objStr, User.class);
+
+        }
+        //the above code will only be activated when information other than username and email need to be shown
 
 
         Button check = (Button) findViewById(R.id.contactInfo_user);
