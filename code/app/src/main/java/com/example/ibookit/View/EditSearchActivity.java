@@ -1,9 +1,12 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -53,7 +56,16 @@ public class EditSearchActivity extends AppCompatActivity {
 
         } else if (type.equals("SearchCategory")) {
 
-            // not implemented
+            Log.d(TAG, "onCreate: " + searchValue);
+            SearchForBook bookSearch = new SearchForBook();
+            ArrayList<Book> searchResult = new ArrayList<>();
+
+            Log.d(TAG, "onCreate: " + searchResult);
+
+            bookArrayAdapter = new BookListAdapter(this, R.layout.adapter_book, searchResult);
+            searchResultListView.setAdapter(bookArrayAdapter);
+            searchResultListView.setClickable(true);
+            bookSearch.searchByCategory(searchValue, searchResult, bookArrayAdapter);
 
 
         } else if (type.equals("SearchTitle")) {
@@ -76,6 +88,7 @@ public class EditSearchActivity extends AppCompatActivity {
 
 
         ListViewClickHandler();
+        setBottomNavigationView();
 
     }
     private void ListViewClickHandler () {
@@ -88,4 +101,44 @@ public class EditSearchActivity extends AppCompatActivity {
             }
         });
     }
+    private void setBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.action_add:
+                        Intent add = new Intent(EditSearchActivity.this, AddBookAsOwnerActivity.class);
+                        add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(add);
+                        break;
+
+                    case R.id.action_home:
+                        break;
+
+                    case R.id.action_myshelf:
+                        Intent myshelf = new Intent(EditSearchActivity.this, MyShelfOwnerActivity.class);
+                        myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(myshelf);
+                        break;
+
+                    case R.id.action_profile:
+                        Intent profile = new Intent(EditSearchActivity.this, UserProfileActivity.class);
+                        profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(profile);
+                        break;
+
+                    case R.id.action_request:
+                        Intent request = new Intent(EditSearchActivity.this, CheckRequestsActivity.class);
+                        request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(request);
+
+                        break;
+                }
+
+                return false;
+            }
+        });
+    }
+
 }

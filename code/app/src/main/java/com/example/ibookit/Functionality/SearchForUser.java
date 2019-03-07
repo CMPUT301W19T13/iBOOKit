@@ -3,8 +3,10 @@ package com.example.ibookit.Functionality;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.View.HomeSearchActivity;
 import com.example.ibookit.View.MainActivity;
@@ -30,7 +32,7 @@ public class SearchForUser implements Search {
 
 
     @Override
-    public ArrayList searchByKeyword(String keyword) {
+    public void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("users");
 
@@ -61,7 +63,6 @@ public class SearchForUser implements Search {
             }
         });
 
-        return result;
     }
 
 

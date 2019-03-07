@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 public class SearchForBook implements Search {
     private String keyword;
+    private String mTitle;
     private ArrayList<Book> result = new ArrayList<>();
 
     public SearchForBook(String keyword){
@@ -25,29 +26,39 @@ public class SearchForBook implements Search {
 
     }
     public SearchForBook(){}
-
+//&& (d.child("status").getValue().toString()=="0")
 
     @Override
-    public ArrayList searchByKeyword(String keyword) {
+    public void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter)  {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
 
-        Query listUser = bookRef.orderByChild("title").equalTo(keyword);
-        listUser.addValueEventListener(new ValueEventListener() {
+        //todo: this is just a temporary solution, I will be looking for more advanced solution(like filtering),
+        //I will use this solution just for demoing for part 4
+        bookRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot d : dataSnapshot.getChildren()) {
-                        String author = d.child("author").getValue().toString();
-                        String title = d.child("title").getValue().toString();
-                        Toast.makeText(HomeSearchActivity.sContext, title + ":" + author,
-                                Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(HomeSearchActivity.sContext, "book not found",
-                            Toast.LENGTH_SHORT).show();
-                }
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot d : dataSnapshot.getChildren()){
+                        if ((d.child("title").getValue().toString().contains
+                                (mKeyword.replaceAll("\\s+","")))){
+                            Book temp = d.getValue(Book.class);
+                            result.add(temp);
+                            adapter.notifyDataSetChanged();
 
+                        }else if ((d.child("author").getValue().toString().contains
+                                (mKeyword.replaceAll("\\s+","")))){
+                            Book temp = d.getValue(Book.class);
+                            result.add(temp);
+                            adapter.notifyDataSetChanged();
+                        }else if ((d.child("isbn").getValue().toString().contains
+                                (mKeyword.replaceAll("\\s+","")))){
+                            Book temp = d.getValue(Book.class);
+                            result.add(temp);
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                }
             }
 
             @Override
@@ -56,35 +67,28 @@ public class SearchForBook implements Search {
             }
         });
 
-        return result;
     }
 
-    public void searchByTitle(String title, final ArrayList<Book> result, final ArrayAdapter<Book> adapter) {
+    public void searchByTitle(final String mTitle, final ArrayList<Book> result, final ArrayAdapter<Book> adapter) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
-        Query listUser = bookRef.orderByChild("title").equalTo(title);
-        listUser.addValueEventListener(new ValueEventListener() {
+
+        //todo: this is just a temporary solution, I will be looking for more advanced solution(like filtering),
+        //I will use this solution just for demoing for part 4
+        bookRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot d : dataSnapshot.getChildren()) {
-                        Book temp = d.getValue(Book.class);
-                        result.add(temp);
-                        adapter.notifyDataSetChanged();
-//                        String author = d.child("author").getValue().toString();
-//                        String title = d.child("title").getValue().toString();
-//                        Toast.makeText(HomeSearchActivity.sContext, title + ":" + author,
-//                                Toast.LENGTH_SHORT).show();
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot d : dataSnapshot.getChildren()){
+                        if ((d.child("title").getValue().toString().contains
+                                (mTitle.replaceAll("\\s+","")))){
+                            Book temp = d.getValue(Book.class);
+                            result.add(temp);
+                            adapter.notifyDataSetChanged();
+
+                        }
                     }
                 }
-//                else{
-//                        Toast.makeText(HomeSearchActivity.sContext, "book not found",
-//                                Toast.LENGTH_SHORT).show();
-//                }
-
-
-
-
             }
 
             @Override
@@ -92,6 +96,32 @@ public class SearchForBook implements Search {
 
             }
         });
+
+    }
+    public void searchByCategory(final String mCategory, final ArrayList<Book> result, final ArrayAdapter<Book> adapter){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference bookRef = database.getReference("books");
+        Query listUser = bookRef.orderByChild("category").equalTo(mCategory);
+        listUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot d : dataSnapshot.getChildren()){
+//                        if (d.child("status").getValue().toString()=="0"){
+                            Book temp = d.getValue(Book.class);
+                            result.add(temp);
+                            adapter.notifyDataSetChanged();
+//                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 
