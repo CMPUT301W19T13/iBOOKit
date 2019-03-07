@@ -20,6 +20,7 @@ public class RequestsList {
     }
 
     public ArrayList<User> getBorrowUsers() {
+
         return BorrowUsers;
     }
 

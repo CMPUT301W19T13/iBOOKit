@@ -1,9 +1,7 @@
 package com.example.ibookit.Model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
 
-public class Book implements Parcelable {
+public class Book {
     private String id;
     private String isbn;
     private String title;
@@ -92,36 +90,5 @@ public class Book implements Parcelable {
         this.currentBorrower = currentBorrower;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(isbn);
-        dest.writeString(title);
-        dest.writeString(author);
-        dest.writeString(category);
-        dest.writeString(owner);
-        /*TODO: the current structure does not allow passing current borrower and status
-        which can cause trouble in the future
-        */
-        dest.writeInt(status);
-        dest.writeString(currentBorrower);
-    }
-    public final Parcelable.Creator<Book> CREATOR = new Parcelable.Creator<Book>() {
-        @Override
-        public Book createFromParcel(Parcel source) {
-
-            return new Book(source.readString(), source.readString(), source.readString(),
-                    source.readString(), source.readString());
-        }
-
-        @Override
-        public Book[] newArray(int size) {
-            return new Book[size];
-        }
-    };
 }
 

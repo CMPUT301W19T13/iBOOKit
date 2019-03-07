@@ -3,14 +3,12 @@ package com.example.ibookit.View;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.BadParcelableException;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,10 +16,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 
 import android.widget.Toast;
-
-import com.example.ibookit.Functionality.SearchForBook;
-import com.example.ibookit.Functionality.SearchForUser;
-import com.example.ibookit.Model.User;
 
 import android.widget.ListView;
 
@@ -119,7 +113,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        adapter = new BookListAdapter(this, R.layout.customadapter, mBooks);
+        adapter = new BookListAdapter(this, R.layout.adapter_book, mBooks);
         mListView.setAdapter(adapter);
         mListView.setClickable(true);
         ownerShelf.SyncBookShelf(mBooks, adapter, -1); // -1 means let listView showing all books
@@ -175,7 +169,12 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
 
-                setDialog(book);
+                if (book.getStatus() == 3) {
+                    Toast.makeText(MyShelfOwnerActivity.this, "Can't edit on this book",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    setDialog(book);
+                }
 
             }
         });
@@ -183,7 +182,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     private void setDialog(final Book book) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("What you want to do?");
+        builder.setMessage("View or delete?");
         builder.setCancelable(true);
 
         builder.setPositiveButton("View", new DialogInterface.OnClickListener() {

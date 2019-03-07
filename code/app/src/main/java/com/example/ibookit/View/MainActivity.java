@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
-        //Request request = new Request("borrower", "BBC", "bookdescr");
+        Request request = new Request("borrower", "owner", "bookID");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

@@ -1,6 +1,7 @@
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.ibookit.Model.Book;
@@ -58,7 +59,7 @@ public class SearchForBook implements Search {
         return result;
     }
 
-    public ArrayList searchByTitle(String title) {
+    public void searchByTitle(String title, final ArrayList<Book> result, final ArrayAdapter<Book> adapter) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
         Query listUser = bookRef.orderByChild("title").equalTo(title);
@@ -69,6 +70,7 @@ public class SearchForBook implements Search {
                     for (DataSnapshot d : dataSnapshot.getChildren()) {
                         Book temp = d.getValue(Book.class);
                         result.add(temp);
+                        adapter.notifyDataSetChanged();
 //                        String author = d.child("author").getValue().toString();
 //                        String title = d.child("title").getValue().toString();
 //                        Toast.makeText(HomeSearchActivity.sContext, title + ":" + author,
@@ -90,7 +92,6 @@ public class SearchForBook implements Search {
 
             }
         });
-        return result;
     }
 
 

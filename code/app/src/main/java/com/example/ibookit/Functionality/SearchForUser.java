@@ -20,12 +20,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class SearchForUser implements Search {
+
     private String keyword;
     private ArrayList<User> result = new ArrayList<User>();
     public SearchForUser(String keyword){
         this.keyword = keyword;
     }
     public SearchForUser(){}
+
+
     @Override
     public ArrayList searchByKeyword(String keyword) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();

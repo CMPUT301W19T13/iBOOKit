@@ -1,29 +1,21 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.ibookit.Functionality.SearchForBook;
+import com.example.ibookit.Functionality.SearchForUser;
+import com.example.ibookit.ListAdapter.BookListAdapter;
+import com.example.ibookit.ListAdapter.UserListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
@@ -31,8 +23,11 @@ public class EditSearchActivity extends AppCompatActivity {
 
     private static final String TAG = "EditSearchActivity";
     private ListView searchResultListView;
+    private ArrayAdapter<Book> bookArrayAdapter;
+    private ArrayAdapter<User> userArrayAdapter;
     private ArrayList<Book> bookResult;
     private ArrayList<User> uerResult;
+    private String type, searchValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +36,42 @@ public class EditSearchActivity extends AppCompatActivity {
         searchResultListView = findViewById(R.id.search_result_list);
 
         Intent intent = getIntent();
+        type = intent.getStringExtra("type");
+        searchValue = intent.getStringExtra("SearchValue");
 
-        ArrayList<Book> bookSearchStr = intent.getExtras().
-                                            getParcelableArrayList("book search results");
-//        String userSearchStr = intent.getExtras().getString("user search results");
+        if (type.equals("SearchUser")) {
+
+            SearchForUser userSearch = new SearchForUser();
+            ArrayList<User> searchResult= new ArrayList<>();
+
+            userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
+            searchResultListView.setAdapter(bookArrayAdapter);
+            searchResultListView.setClickable(true);
+            // same way as below
 
 
+
+        } else if (type.equals("SearchCategory")) {
+
+            // not implemented
+
+
+        } else if (type.equals("SearchTitle")) {
+
+            Log.d(TAG, "onCreate: " + searchValue);
+            SearchForBook bookSearch = new SearchForBook();
+            ArrayList<Book> searchResult = new ArrayList<>();
+
+            Log.d(TAG, "onCreate: " + searchResult);
+
+            bookArrayAdapter = new BookListAdapter(this, R.layout.adapter_book, searchResult);
+            searchResultListView.setAdapter(bookArrayAdapter);
+            searchResultListView.setClickable(true);
+            bookSearch.searchByTitle(searchValue, searchResult, bookArrayAdapter);
+
+        } else {
+            Log.d(TAG, "onCreate: Unexpected type: " + type);
+        }
 
 
 
@@ -59,15 +84,7 @@ public class EditSearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
-
-                Intent intent = new Intent(EditSearchActivity.this, ViewBookInfoActivity.class);
-                Gson gson = new Gson();
-
-                String out = gson.toJson(book);
-
-                intent.putExtra("book", out);
-                startActivity(intent);
-
+                
             }
         });
     }
