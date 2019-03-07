@@ -108,16 +108,16 @@ public class EditSearchActivity extends AppCompatActivity {
     }
     private void ListViewClickHandler () {
         final ListView finalList = searchResultListView;
-        if (this.type == "SearchCategory" || this.type == "SearchTitle"){
-            searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Book book = (Book) finalList.getItemAtPosition(position);
+//        if (this.type == "SearchCategory" || this.type == "SearchTitle"){
+        searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book book = (Book) finalList.getItemAtPosition(position);
 
-                    setDialog(book);
-                }
-            });
-        }
+                setDialog(book);
+            }
+        });
+    }
 
         //below code will only be activated if need to show more than username and email
 
@@ -138,7 +138,7 @@ public class EditSearchActivity extends AppCompatActivity {
 //            });
 //        }
 
-    }
+//    }
 
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);

@@ -12,13 +12,15 @@ public class Request {
     private int isAccept;
     private String sender;
     private String receiver;
-    private Book book;
+    private String bookId;
     private Location geolocation;
+
+    public Request () {}
 
     public Request(Book book) {
         this.receiver = book.getOwner();
         this.isAccept = 0;
-        this.book = book;
+        this.bookId = book.getId();
 
     }
 
@@ -55,16 +57,12 @@ public class Request {
         this.receiver = receiver;
     }
 
-    public Book getBook() {
-        return book;
+    public String getBookId() {
+        return bookId;
     }
 
-    public String getBookName(){
-        return book.getTitle();
-    }
-
-    public void setBook(Book book) {
-        this.book = book;
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
     }
 
     public Location getGeolocation() {

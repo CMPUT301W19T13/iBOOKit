@@ -1,6 +1,7 @@
 package com.example.ibookit.Model;
 
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,26 +30,24 @@ public class RequestSent {
     public RequestSent(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("RequestSent");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestSent");
     }
 
-    public ArrayList<Request> RetriveRequest(final ArrayList<Request> requestSent2) {
+    public void RetriveRequest(final ArrayList<Request> requestSent, final ArrayAdapter<Request> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 requestSent.clear();
-                //adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                    //Request request = new Request(d.getValue(Request.class).getBook());
                    //request.setReceiver(d.getValue(Request.class).getReceiver());
                     Request request = d.getValue(Request.class);
 
-                    System.out.println("requestsent " + request.getRid());
-                    requestSent2.add(request);
-                    //adapter.notifyDataSetChanged();
+                    requestSent.add(request);
+                    adapter.notifyDataSetChanged();
                 //Show(dataSnapshot);
                 }
-
 
             }
             @Override
@@ -56,7 +55,6 @@ public class RequestSent {
                 Log.d(TAG, "onCancelled: ");
             }
         });
-        return requestSent2;
 
     }
 //    public void Show(DataSnapshot dataSnapshot){

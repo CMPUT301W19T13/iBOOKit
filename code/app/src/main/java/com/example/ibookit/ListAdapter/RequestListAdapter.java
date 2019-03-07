@@ -37,7 +37,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         mReceiver = convertView.findViewById(R.id.listReceiver);
         mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
 
-        mTitle.setText("Title:  " + request.getBook().getTitle());
+        mTitle.setText("Title:  " + request.getBookId());
         mReceiver.setText("Author:  " + request.getReceiver());
         mIs_accpected.setText("Isbn:  " + request.getIsAccept());
 
