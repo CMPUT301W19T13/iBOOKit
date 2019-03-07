@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestSent;
 import com.example.ibookit.R;
@@ -34,8 +35,10 @@ public class CheckRequestsActivity extends AppCompatActivity {
         Sent = findViewById(R.id.sent_list);
         received = findViewById(R.id.received_list);
 
-        requestSent.RetriveRequest(adapterS);
-        adapterS = new ArrayAdapter(this,android.R.layout.simple_list_item_1,requestSent.getRequestSent());
+
+        //crash if add this one but use for get data
+        //requestSent.RetriveRequest(adapterS);
+        adapterS = new RequestListAdapter(this,R.layout.adapter_request,requestSent.getRequestSent());
         Sent.setAdapter(adapterS);
 
 
