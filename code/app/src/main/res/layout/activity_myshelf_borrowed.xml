@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/graidentbackground"
+    tools:context=".View.MainActivity">
+
+
+    <Button
+        android:id="@+id/my_book"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/buttonshape"
+        android:gravity="center"
+        android:text="All My Books"
+        android:textColor="@color/blueBackground"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/frameLayout" />
+
+    <Button
+        android:id="@+id/borrowed"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/blueBackground"
+        android:clickable="false"
+        android:gravity="center"
+        android:text="BOOKS I BORROWED"
+        android:textColor="@color/homeSearch"
+        android:textSize="24sp"
+        android:textStyle="italic"
+        app:fontFamily="@font/abril_fatface"
+        app:layout_constraintTop_toTopOf="@+id/frameLayout"
+        tools:layout_editor_absoluteX="84dp" />
+
+    <ListView
+        android:id="@+id/BorrowerShelfListView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/my_book"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/borrowed"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <include layout="@layout/activity_navigation" />
+
+    </FrameLayout>
+
+</android.support.constraint.ConstraintLayout>
