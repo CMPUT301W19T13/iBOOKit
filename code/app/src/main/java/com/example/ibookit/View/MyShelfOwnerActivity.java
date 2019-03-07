@@ -169,12 +169,10 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book book = (Book) finalList.getItemAtPosition(position);
 
-                if (book.getStatus() == 3) {
-                    Toast.makeText(MyShelfOwnerActivity.this, "Can't edit on this book",
-                            Toast.LENGTH_SHORT).show();
-                } else {
-                    setDialog(book);
-                }
+
+                // todo: update or delete if this book is not in available status, need to update this info under all requests
+
+                setDialog(book);
 
             }
         });
@@ -202,11 +200,15 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                ownerShelf.remove_book(book);
-
-                Toast.makeText(MyShelfOwnerActivity.this, "Book deleted",
-                        Toast.LENGTH_SHORT).show();
-
+                if (book.getStatus() == 0) {
+                    ownerShelf.remove_book(book);
+                    Toast.makeText(MyShelfOwnerActivity.this, "Book deleted",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MyShelfOwnerActivity.this, "Can't delete this book",
+                            Toast.LENGTH_SHORT).show();
+                }
+                
                 dialog.dismiss();
             }
         });
