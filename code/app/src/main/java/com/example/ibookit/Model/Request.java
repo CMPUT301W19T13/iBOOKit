@@ -59,6 +59,10 @@ public class Request {
         return book;
     }
 
+    public String getBookName(){
+        return book.getTitle();
+    }
+
     public void setBook(Book book) {
         this.book = book;
     }
