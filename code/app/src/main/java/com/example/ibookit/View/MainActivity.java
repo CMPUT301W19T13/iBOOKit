@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.ibookit.Functionality.RequestsList;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        RequestsList test = new RequestsList();
 
 
         Button logInButton = (Button) findViewById(R.id.logInButton);
