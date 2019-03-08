@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
+import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
 import java.util.ArrayList;
 import com.example.ibookit.R;
@@ -24,6 +25,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<Request> adapterR;
     private RequestSent requestSent = new RequestSent();
+    private RequestReceived requestReceived = new RequestReceived();
 
 
     @Override
@@ -37,6 +39,13 @@ public class CheckRequestsActivity extends AppCompatActivity {
         adapterS = new RequestListAdapter(this, R.layout.adapter_request, RSent);
         Sent.setAdapter(adapterS);
         requestSent.RetriveRequest(RSent, adapterS);
+
+
+        adapterR = new RequestListAdapter(this, R.layout.adapter_request, Rreceived);
+        received.setAdapter(adapterR);
+        requestReceived.RetriveRequest(Rreceived, adapterR);
+
+
 
 
         setBottomNavigationView();

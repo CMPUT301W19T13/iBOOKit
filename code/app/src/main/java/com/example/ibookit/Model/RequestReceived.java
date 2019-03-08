@@ -9,36 +9,46 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class RequestReceived {
-    private static final String TAG = "RequestReceived";
-    private ArrayList<Request> requestReceived = new ArrayList<>();
+    private static final String TAG = "RequestSent";
+    private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
     private String username;
 
+    public ArrayList<Request> getRequestSent() {
+        return requestSent;
+    }
 
+    public void setRequestSent(ArrayList<Request> requestSent) {
+        this.requestSent = requestSent;
+    }
 
     public RequestReceived(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("RequestReceived");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
     }
 
-    public void RetriveRequest(final ArrayAdapter<Request> adapter) {
+    public void RetriveRequest(final ArrayList<Request> requestSent, final ArrayAdapter<Request> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                requestReceived.clear();
+                requestSent.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
+                    //Request request = new Request(d.getValue(Request.class).getBook());
+                    //request.setReceiver(d.getValue(Request.class).getReceiver());
                     Request request = d.getValue(Request.class);
-                    requestReceived.add(request);
+
+                    requestSent.add(request);
                     adapter.notifyDataSetChanged();
+                    //Show(dataSnapshot);
                 }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -47,9 +57,13 @@ public class RequestReceived {
         });
 
     }
+//    public void Show(DataSnapshot dataSnapshot){
+//        for (DataSnapshot d: dataSnapshot.getChildren()) {
+//            Request request;
+//            request = d.getValue(Request.class);
+//            requestSent.add(request);
+//    }
 
-    public void showBook(){
-        Query query = mDatabase.orderByChild("book");
+    //Query query = FirebaseDatabase.getInstance().getReference().child("requests").orderByChild("sender").equalTo(username);
 
-    }
 }

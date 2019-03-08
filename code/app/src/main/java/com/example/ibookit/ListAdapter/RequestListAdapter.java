@@ -50,7 +50,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
 
         getBook(request.getBookId(), mTitle);
 
-        mReceiver.setText("Owner:  " + request.getReceiver());
+        mReceiver.setText("Sender:  " + request.getSender());
 
         BookStatusHandler handler = new BookStatusHandler();
 
