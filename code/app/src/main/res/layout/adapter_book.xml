@@ -5,7 +5,7 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageBook"
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:scaleType="fitXY" />

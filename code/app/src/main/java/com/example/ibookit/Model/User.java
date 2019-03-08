@@ -5,6 +5,7 @@ public class User {
     private String email;
     private String phoneNumber;
     private String id;
+    private String imageURL;
 
     public User(String id, String username, String email, String phoneNumber) {
         this.id = id;
