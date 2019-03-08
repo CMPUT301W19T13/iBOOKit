@@ -9,22 +9,23 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.ibookit.Functionality.LoadRequests;
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestSent;
-import com.example.ibookit.R;
-
 import java.util.ArrayList;
+import com.example.ibookit.R;
 
 public class CheckRequestsActivity extends AppCompatActivity {
 
     private ListView Sent;
     private ListView received;
-    private ArrayList<Request> RSent=  new ArrayList<>();
+    private ArrayList<Request> RSent = new ArrayList<>();
     private ArrayList<Request> Rreceived = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<Request> adapterR;
     private RequestSent requestSent = new RequestSent();
+    //int semaphore = 1;
 
 
     @Override
@@ -48,12 +49,26 @@ public class CheckRequestsActivity extends AppCompatActivity {
         //exam.add(a);
 //        RSent = requestSent2.RetriveRequest(RSent);
 
-        adapterS = new RequestListAdapter(this,R.layout.adapter_request, RSent);
-        Sent.setAdapter(adapterS);
-        requestSent.RetriveRequest(RSent, adapterS);
+        //adapterS = new RequestListAdapter(this, R.layout.adapter_request, RSent);
+        //Sent.setAdapter(adapterS);
+        //requestSent.RetriveRequest(RSent, adapterS);
+
+
+        LoadRequests load = new LoadRequests();
+        ArrayList<Request> sortedReq = load.return_request();
+
+        System.out.println(sortedReq);
+
+        if (sortedReq == null) {
+            System.out.println("null");
+        }
+
+
+        //searchResultListView = findViewById(R.id.search_result_list);
+        //userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
+        //searchResultListView.setAdapter(userArrayAdapter);
 
         //requestSent.RetriveRequest();
-
 
 
         setBottomNavigationView();
@@ -64,7 +79,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_add:
                         Intent add = new Intent(CheckRequestsActivity.this, AddBookAsOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -98,4 +113,5 @@ public class CheckRequestsActivity extends AppCompatActivity {
             }
         });
     }
+
 }
