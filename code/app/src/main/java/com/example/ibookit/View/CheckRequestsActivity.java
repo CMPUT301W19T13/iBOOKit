@@ -36,21 +36,11 @@ public class CheckRequestsActivity extends AppCompatActivity {
         received = findViewById(R.id.received_list);
 
 
-        //crash if add this one but use for get data
-        //requestSent.RetriveRequest(adapterS);
-        //ArrayList<Request> exam = new ArrayList<>();
 
-
-        //test for adapter ok
-        //Book book = new Book();
-        //Request a= new Request(book);
-        //a.setReceiver("xiaoxiao");
-        //exam.add(a);
-        RSent = requestSent2.RetriveRequest(RSent);
 
         adapterS = new RequestListAdapter(this,R.layout.adapter_request,RSent);
         Sent.setAdapter(adapterS);
-        //requestSent.RetriveRequest();
+        requestSent2.RetriveRequest(RSent,adapterS);
 
 
 

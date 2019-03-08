@@ -55,6 +55,10 @@ public class RequestReceived {
 
     }
 
+    public void RequestInBook(final ArrayList<User> users,final ArrayAdapter<User> adapter){
+
+    }
+
 
 
 }

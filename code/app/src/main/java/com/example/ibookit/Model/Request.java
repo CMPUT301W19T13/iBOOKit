@@ -22,6 +22,10 @@ public class Request {
 
     }
 
+    public Request(){
+
+    }
+
 
     public String getRid() {
         return rid;
