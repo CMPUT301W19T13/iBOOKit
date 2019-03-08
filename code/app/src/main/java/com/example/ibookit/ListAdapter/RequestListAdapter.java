@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
@@ -51,7 +52,9 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
 
         mReceiver.setText("Owner:  " + request.getReceiver());
 
-        mIs_accpected.setText("Isbn:  " + request.getIsAccept());
+        BookStatusHandler handler = new BookStatusHandler();
+
+        mIs_accpected.setText("Status:  " + handler.StatusIntegerToString(request.getIsAccept()));
 
 
         return convertView;
@@ -75,7 +78,6 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
 
 
     }
-
 
 }
 
