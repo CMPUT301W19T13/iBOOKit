@@ -22,6 +22,7 @@ import java.util.ArrayList;
 public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
+    private SearchView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,17 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
+
+        configure_SearchButtonsAndSearchBar();
+        setBottomNavigationView();
+    }
+
+
+    private void configure_SearchButtonsAndSearchBar(){
         Button searchUser = findViewById(R.id.search_user);
         Button viewCategory = findViewById(R.id.search_category);
         Button searchTitle = findViewById(R.id.search_title);
-
-        final SearchView sv = findViewById(R.id.search_bar);
+        sv = findViewById(R.id.search_bar);
 
 
         searchUser.setOnClickListener(new View.OnClickListener() {
@@ -70,8 +77,6 @@ public class HomeSearchActivity extends AppCompatActivity {
             }
         });
 
-
-        setBottomNavigationView();
     }
 
 
