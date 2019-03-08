@@ -55,18 +55,18 @@ public class EditSearchActivity extends AppCompatActivity {
         type = intent.getStringExtra("type");
         searchValue = intent.getStringExtra("SearchValue");
 
-        SearchView sv = findViewById(R.id.search_bar);
+        sv = findViewById(R.id.search_bar);
 //        sv.setQueryHint(searchValue);
 
         configure_SearchButtonsAndSearchBar();
-        configure_resultList();
+        load_resultList();
         ListViewClickHandler();
         setBottomNavigationView();
 
     }
 
 
-    private void configure_resultList(){
+    private void load_resultList(){
         if (type.equals("SearchUser")) {
             Log.d(TAG, "onCreate: " + searchValue);
             SearchForUser userSearch = new SearchForUser();
@@ -148,7 +148,7 @@ public class EditSearchActivity extends AppCompatActivity {
     private void configure_SearchButtonsAndSearchBar(){
         Button searchUser = findViewById(R.id.re_search_user);
         Button viewCategory = findViewById(R.id.re_search_category);
-        Button searchTitle = findViewById(R.id.re_search_title);
+        Button searchBook = findViewById(R.id.re_search_book);
         sv = findViewById(R.id.re_search_bar);
 
         //todo:this works, but not really sure if it is the best solution
@@ -158,11 +158,15 @@ public class EditSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                intent.putExtra("type", "SearchUser");
-                intent.putExtra("SearchValue", sv.getQuery().toString());
-
-                finish(); //should I do this? If i don't then user will go back to previous search, but this might consume memory?
-                startActivity(intent);
+//                intent.putExtra("type", "SearchUser");
+//                intent.putExtra("SearchValue", sv.getQuery().toString());
+//
+//                finish(); //should I do this? If i don't then user will go back to previous search, but this might consume memory?
+//                startActivity(intent);
+                type = "SearchUser";
+                searchValue = sv.getQuery().toString();
+                load_resultList();
+                sv.clearFocus();
 
 
             }
@@ -171,23 +175,23 @@ public class EditSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                intent.putExtra("type", "SearchCategory");
-                intent.putExtra("SearchValue", sv.getQuery().toString());
-
-                finish();
-                startActivity(intent);
+               setCategoryDialog();
 
             }
         });
-        searchTitle.setOnClickListener(new View.OnClickListener() {
+        searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                intent.putExtra("type", "SearchTitle");
-                intent.putExtra("SearchValue", sv.getQuery().toString());
-
-                finish();
-                startActivity(intent);
+//                intent.putExtra("type", "SearchTitle");
+//                intent.putExtra("SearchValue", sv.getQuery().toString());
+//
+//                finish();
+//                startActivity(intent);
+                type = "SearchTitle";
+                searchValue = sv.getQuery().toString();
+                load_resultList();
+                sv.clearFocus();
             }
         });
 
@@ -265,6 +269,34 @@ public class EditSearchActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+    private void setCategoryDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //some of these options will be changed later, this is just for test
+        final CharSequence[] options  = {"fine", "fivestar", "KKK", "Westeast", "thrilling"};
+        builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+//                intent.putExtra("type", "SearchCategory");
+//                intent.putExtra("SearchValue", options[which]);
+//                finish();
+//                startActivity(intent);
+                type = "SearchCategory";
+                searchValue = options[which].toString();
+                load_resultList();
+                sv.clearFocus();
+
+            }
+        });
+
+
+
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

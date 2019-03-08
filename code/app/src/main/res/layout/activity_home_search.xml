@@ -49,14 +49,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/search_title"
+        android:id="@+id/search_book"
         android:layout_width="59dp"
         android:layout_height="42dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:gravity="center"
         android:background="@drawable/back"
-        android:text="Title"
+        android:text="Book"
         android:textColor="@color/homeSearch"
         android:textSize="18sp"
         android:textStyle="bold|italic"
@@ -75,8 +75,8 @@
         android:textColor="@color/homeSearch"
         android:textSize="18sp"
         android:textStyle="bold|italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/search_title"
-        app:layout_constraintStart_toEndOf="@+id/search_title" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/search_book"
+        app:layout_constraintStart_toEndOf="@+id/search_book" />
 
     <Button
         android:id="@+id/search_category"
@@ -112,7 +112,7 @@
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/search_title" />
+        app:layout_constraintTop_toBottomOf="@+id/search_book" />
 
     <ListView
         android:layout_width="395dp"
