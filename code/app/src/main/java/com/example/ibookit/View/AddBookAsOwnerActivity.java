@@ -24,7 +24,7 @@ import com.squareup.picasso.Picasso;
 
 public class AddBookAsOwnerActivity extends AppCompatActivity {
 
-    private TextView mTitle, mAuthor, mIsbn, mCategory;
+    private TextView mTitle, mAuthor, mIsbn, mCategory, mDescription;
     private Button confirm;
     private ImageButton imageButton;
     private Uri mImageUri;
@@ -41,6 +41,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         mAuthor = findViewById(R.id.bookAuthorAdd);
         mIsbn = findViewById(R.id.bookISBNAdd);
         mCategory = findViewById(R.id.bookCategoryAdd);
+        mDescription = findViewById(R.id.descriptionAdd);
 
         confirm = findViewById(R.id.confirmChangeBook);
         imageButton = findViewById(R.id.bookImageAdd);
@@ -53,11 +54,12 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                 String author = mAuthor.getText().toString();
                 String isbn = mIsbn.getText().toString();
                 String category = mCategory.getText().toString();
+                String description = mDescription.getText().toString();
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String username = user.getDisplayName();
 
-                Book book = new Book(isbn, title, author, "",category, username);
+                Book book = new Book(isbn, title, author, description ,category, username);
 
                 OwnerShelf ownerShelf = new OwnerShelf();
                 ownerShelf.add_book_with_image(book, mImageUri);
