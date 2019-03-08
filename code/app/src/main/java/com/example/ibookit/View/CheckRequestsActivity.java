@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.ibookit.Functionality.LoadRequests;
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestSent;
@@ -25,7 +24,6 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<Request> adapterR;
     private RequestSent requestSent = new RequestSent();
-    //int semaphore = 1;
 
 
     @Override
@@ -36,39 +34,9 @@ public class CheckRequestsActivity extends AppCompatActivity {
         Sent = findViewById(R.id.sent_list);
         received = findViewById(R.id.received_list);
 
-
-        //crash if add this one but use for get data
-        //requestSent.RetriveRequest(adapterS);
-        //ArrayList<Request> exam = new ArrayList<>();
-
-
-        //test for adapter ok
-        //Book book = new Book();
-        //Request a= new Request(book);
-        //a.setReceiver("xiaoxiao");
-        //exam.add(a);
-//        RSent = requestSent2.RetriveRequest(RSent);
-
-        //adapterS = new RequestListAdapter(this, R.layout.adapter_request, RSent);
-        //Sent.setAdapter(adapterS);
-        //requestSent.RetriveRequest(RSent, adapterS);
-
-
-        LoadRequests load = new LoadRequests();
-        ArrayList<Request> sortedReq = load.return_request();
-
-        System.out.println(sortedReq);
-
-        if (sortedReq == null) {
-            System.out.println("null");
-        }
-
-
-        //searchResultListView = findViewById(R.id.search_result_list);
-        //userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
-        //searchResultListView.setAdapter(userArrayAdapter);
-
-        //requestSent.RetriveRequest();
+        adapterS = new RequestListAdapter(this, R.layout.adapter_request, RSent);
+        Sent.setAdapter(adapterS);
+        requestSent.RetriveRequest(RSent, adapterS);
 
 
         setBottomNavigationView();
