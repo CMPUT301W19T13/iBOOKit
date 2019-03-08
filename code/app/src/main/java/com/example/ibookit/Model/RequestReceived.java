@@ -1,5 +1,6 @@
 package com.example.ibookit.Model;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
@@ -35,7 +36,7 @@ public class RequestReceived {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
     }
 
-    public void RetriveBook(final ArrayList<String> bookList,final ArrayAdapter<Request> adapter) {
+    public void RetriveBook(final ArrayList<String> bookList,final ArrayAdapter<String> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -46,8 +47,20 @@ public class RequestReceived {
                     Request request = d.getValue(Request.class);
 
                     if (request.getBookId() != last){
-                        bookList.add(request.getBookId());
-                        adapter.notifyDataSetChanged();
+                        final DatabaseReference bDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request.getBookId());
+                        bDatabase.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                Book book = dataSnapshot.getValue(Book.class);
+                                bookList.add(book.getTitle());
+                                adapter.notifyDataSetChanged();
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
 
                     last = request.getBookId();

@@ -13,17 +13,19 @@ import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
-import java.util.ArrayList;
 import com.example.ibookit.R;
+
+import java.util.ArrayList;
 
 public class CheckRequestsActivity extends AppCompatActivity {
 
     private ListView Sent;
-    private ListView received;
+    private ListView Received;
     private ArrayList<Request> RSent = new ArrayList<>();
+    private ArrayList<String> Rbook = new ArrayList<>();
     private ArrayList<Request> Rreceived = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
-    private ArrayAdapter<Request> adapterR;
+    private ArrayAdapter<String> adapterB;
     private RequestSent requestSent = new RequestSent();
     private RequestReceived requestReceived = new RequestReceived();
 
@@ -34,14 +36,18 @@ public class CheckRequestsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_request);
 
         Sent = findViewById(R.id.sent_list);
-        received = findViewById(R.id.received_list);
+        Received = findViewById(R.id.received_list);
 
 
 
 
         adapterS = new RequestListAdapter(this,R.layout.adapter_request,RSent);
         Sent.setAdapter(adapterS);
-        requestSent2.RetriveRequest(RSent,adapterS);
+        requestSent.RetriveRequest(RSent,adapterS);
+
+        adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
+        Received.setAdapter(adapterB);
+        requestReceived.RetriveBook(Rbook,adapterB);
 
 
 

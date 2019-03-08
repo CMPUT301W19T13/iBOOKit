@@ -2,7 +2,6 @@ package com.example.ibookit.ListAdapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +19,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-
-import static android.support.constraint.Constraints.TAG;
 
 public class RequestListAdapter extends ArrayAdapter<Request> {
     private Context mContext;
@@ -50,7 +47,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
 
         getBook(request.getBookId(), mTitle);
 
-        mReceiver.setText("Sender:  " + request.getSender());
+        mReceiver.setText("Owner:  " + request.getReceiver());
 
         BookStatusHandler handler = new BookStatusHandler();
 
