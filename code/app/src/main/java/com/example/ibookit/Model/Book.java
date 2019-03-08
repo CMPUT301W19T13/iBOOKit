@@ -6,22 +6,24 @@ public class Book {
     private String isbn;
     private String title;
     private String author;
+    private String description;
     //9 categories
     private String category;
     // 4 status: available -> 0, requested -> 1, accepted -> 2, borrowed -> 3
     private int status;
     private String owner;
     private String currentBorrower;
+    private String imageURL;
 
-    public Book(String isbn, String title, String author, String category, String owner) {
+    public Book(String isbn, String title, String author, String description, String category, String owner) {
         this.isbn = isbn;
         this.title = title;
         this.author = author;
+        this.description = description;
         this.category = category;
         this.owner = owner;
         this.status = 0;
         this.currentBorrower = "";
-
     }
 
     public Book() {}
@@ -58,6 +60,14 @@ public class Book {
         this.author = author;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getCategory() {
         return category;
     }
@@ -90,5 +100,12 @@ public class Book {
         this.currentBorrower = currentBorrower;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }
 

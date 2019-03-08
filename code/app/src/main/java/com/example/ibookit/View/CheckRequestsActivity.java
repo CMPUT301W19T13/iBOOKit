@@ -11,20 +11,21 @@ import android.widget.ListView;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
+import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
-import com.example.ibookit.R;
-
 import java.util.ArrayList;
+import com.example.ibookit.R;
 
 public class CheckRequestsActivity extends AppCompatActivity {
 
     private ListView Sent;
     private ListView received;
-    private ArrayList<Request> RSent=  new ArrayList<>();
+    private ArrayList<Request> RSent = new ArrayList<>();
     private ArrayList<Request> Rreceived = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<Request> adapterR;
-    private RequestSent requestSent2 = new RequestSent();
+    private RequestSent requestSent = new RequestSent();
+    private RequestReceived requestReceived = new RequestReceived();
 
 
     @Override
@@ -52,7 +53,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.action_add:
                         Intent add = new Intent(CheckRequestsActivity.this, AddBookAsOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -86,4 +87,5 @@ public class CheckRequestsActivity extends AppCompatActivity {
             }
         });
     }
+
 }

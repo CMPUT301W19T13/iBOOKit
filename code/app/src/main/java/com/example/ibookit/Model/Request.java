@@ -15,14 +15,12 @@ public class Request {
     private String bookId;
     private Location geolocation;
 
+    public Request () {}
+
     public Request(Book book) {
         this.receiver = book.getOwner();
         this.isAccept = 0;
         this.bookId = book.getId();
-
-    }
-
-    public Request(){
 
     }
 

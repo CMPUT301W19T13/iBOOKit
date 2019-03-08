@@ -1,13 +1,16 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,11 +19,18 @@ import com.example.ibookit.Model.OwnerShelf;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
+
 
 public class AddBookAsOwnerActivity extends AppCompatActivity {
 
-    private TextView mTitle, mAuthor, mIsbn, mCategory;
+    private TextView mTitle, mAuthor, mIsbn, mCategory, mDescription;
     private Button confirm;
+    private ImageButton imageButton;
+    private Uri mImageUri;
+
+
+    private static final int PICK_IMAGE_REQUEST = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +41,11 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         mAuthor = findViewById(R.id.bookAuthorAdd);
         mIsbn = findViewById(R.id.bookISBNAdd);
         mCategory = findViewById(R.id.bookCategoryAdd);
+        mDescription = findViewById(R.id.descriptionAdd);
 
         confirm = findViewById(R.id.confirmChangeBook);
+        imageButton = findViewById(R.id.bookImageAdd);
+
 
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,14 +54,16 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                 String author = mAuthor.getText().toString();
                 String isbn = mIsbn.getText().toString();
                 String category = mCategory.getText().toString();
+                String description = mDescription.getText().toString();
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String username = user.getDisplayName();
 
-                Book book = new Book(isbn, title, author, category, username);
+                Book book = new Book(isbn, title, author, description ,category, username);
 
                 OwnerShelf ownerShelf = new OwnerShelf();
-                ownerShelf.add_book(book);
+                ownerShelf.add_book_with_image(book, mImageUri);
+
 
                 Toast.makeText(AddBookAsOwnerActivity.this, "Add a book successful",
                         Toast.LENGTH_SHORT).show();
@@ -58,9 +73,37 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
             }
         });
 
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fileChooser();
+            }
+        });
+
         setBottomNavigationView();
 
+    }
 
+    // reference: https://codinginflow.com/tutorials/android/firebase-storage-upload-and-retrieve-images/part-2-image-chooser
+    private void fileChooser () {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMAGE_REQUEST);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            mImageUri = data.getData();
+
+            Picasso.get().load(mImageUri).into(imageButton);
+
+        }
 
     }
 

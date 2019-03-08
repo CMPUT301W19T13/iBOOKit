@@ -22,6 +22,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "UserProfileActivity";
     private TextView mUsername, mEmail;
+    private Button email,edit,signout;
 
 
 
@@ -33,22 +34,29 @@ public class UserProfileActivity extends AppCompatActivity {
 
         setBottomNavigationView();
         setInformation();
+        configure_buttons();
 
         //this used for show user search result
         Intent intent = getIntent();
-        String type = intent.getStringExtra("type");
         String objStr = intent.getStringExtra("UserResult");
-        if (type == "showSearchUserResult"){
+        if (objStr != null){
             Gson gson = new Gson();
             User sUser = gson.fromJson(objStr, User.class);
-
+            setOtherUserInformation(sUser);
+            edit.setVisibility(View.GONE);
+            signout.setVisibility(View.GONE);
         }
-        //the above code will only be activated when information other than username and email need to be shown
 
 
-        Button check = (Button) findViewById(R.id.contactInfo_user);
+    }
 
-        check.setOnClickListener(new View.OnClickListener() {
+
+    private void configure_buttons(){
+        email = (Button) findViewById(R.id.contactInfo_user);
+        edit =  findViewById(R.id.edit_profile);
+        signout = findViewById(R.id.signout_profile);
+
+        email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfileActivity.this, ContactInformationActivity.class);
@@ -57,9 +65,6 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         //edit button added to allow edit on user profile
-
-        Button edit =  findViewById(R.id.edit_profile);
-
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,10 +72,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-        final Button signout = findViewById(R.id.signout_profile);
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,7 +84,6 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     private void setInformation() {
@@ -94,6 +94,12 @@ public class UserProfileActivity extends AppCompatActivity {
         mUsername.setText(user.getDisplayName());
         mEmail.setText(user.getEmail());
 
+    }
+    private void setOtherUserInformation(User mUser){
+        mUsername = findViewById(R.id.userName_userProfile);
+        mEmail = findViewById(R.id.contactInfo_user);
+        mUsername.setText(mUser.getUsername());
+        mEmail.setText(mUser.getEmail());
     }
 
 

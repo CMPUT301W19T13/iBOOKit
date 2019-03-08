@@ -14,14 +14,20 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class RequestReceived {
-    private static final String TAG = "RequestReceived";
-    private ArrayList<Request> requestReceived = new ArrayList<>();
+    private static final String TAG = "RequestSent";
+    private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
     private String username;
     private String last;
 
 
+    public ArrayList<Request> getRequestSent() {
+        return requestSent;
+    }
 
+    public void setRequestSent(ArrayList<Request> requestSent) {
+        this.requestSent = requestSent;
+    }
 
     public RequestReceived(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -46,6 +52,7 @@ public class RequestReceived {
 
                     last = request.getBookId();
                 }
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -54,6 +61,12 @@ public class RequestReceived {
         });
 
     }
+//    public void Show(DataSnapshot dataSnapshot){
+//        for (DataSnapshot d: dataSnapshot.getChildren()) {
+//            Request request;
+//            request = d.getValue(Request.class);
+//            requestSent.add(request);
+//    }
 
     public void RequestInBook(final ArrayList<User> users,final ArrayAdapter<User> adapter){
 

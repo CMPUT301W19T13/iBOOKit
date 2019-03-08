@@ -27,4 +27,19 @@ public class BookStatusHandler {
             return "";
         }
     }
+
+    public String StatusIntegerToString (Integer status) {
+        if (status == 0) {
+            return "Available";
+        } else if (status == 1) {
+            return "Requested";
+        } else if (status == 2) {
+            return "Accepted";
+        } else if (status == 3){
+            return "Borrowed";
+        } else {
+            Log.d(TAG, "StatusString: Out of range");
+            return "";
+        }
+    }
 }

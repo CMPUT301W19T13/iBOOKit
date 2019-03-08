@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
 
     private static final String TAG = "ViewBookInfoActivity";
-    private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower, mCategory;
+    private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower, mCategory, mDescription;
     private Button submit;
     private OwnerShelf ownerShelf = new OwnerShelf();
     private Book book;
@@ -36,6 +36,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
         mCategory = findViewById(R.id.bookCategoryAdd);
         mStatus = findViewById(R.id.statusAdd);
         mBorrower = findViewById(R.id.borrowerAdd);
+        mDescription = findViewById(R.id.descriptionView);
 
         submit = findViewById(R.id.confirmChangeBook);
 
@@ -59,6 +60,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
         mAuthor.setText(book.getAuthor());
         mIsbn.setText(book.getIsbn());
         mCategory.setText(book.getCategory());
+        mDescription.setText(book.getDescription());
 
         BookStatusHandler handler = new BookStatusHandler();
         mStatus.setText(handler.StatusString(book));
@@ -85,11 +87,13 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
                     String author = mAuthor.getText().toString();
                     String isbn = mIsbn.getText().toString();
                     String category = mCategory.getText().toString();
+                    String description = mDescription.getText().toString();
 
                     book.setTitle(title);
                     book.setAuthor(author);
                     book.setIsbn(isbn);
                     book.setCategory(category);
+                    book.setDescription(description);
 
                     ownerShelf.update_book(book);
 
