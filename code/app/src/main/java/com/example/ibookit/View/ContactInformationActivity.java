@@ -71,12 +71,11 @@ public class ContactInformationActivity extends AppCompatActivity {
                 mDatabase.child("phoneNumber").setValue(mPhone.getText().toString());
                 setUserImage(mDatabase);
 
-<<<<<<< HEAD
-=======
+
                 Toast.makeText(ContactInformationActivity.this, "Submitted",
                         Toast.LENGTH_SHORT).show();
 
->>>>>>> master
+
                 Intent intent = new Intent(ContactInformationActivity.this, UserProfileActivity.class);
                 startActivity(intent);
             }
