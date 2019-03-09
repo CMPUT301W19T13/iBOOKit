@@ -64,7 +64,6 @@ public class CheckRequestsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
-<<<<<<< HEAD
 
 
 
@@ -72,14 +71,8 @@ public class CheckRequestsActivity extends AppCompatActivity {
                 Bundle b = new Bundle();
                 b.putString("bookname",item);
                 //b.putString("requestId", )
-=======
-                //Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
-//                Bundle b = new Bundle();
-//                b.putString("bookname",item);
-
->>>>>>> fd398f1ad0126d5f4ec00c266c1dbe59a0280ae3
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
-                intent.putExtra("bookname",item);
+                intent.putExtras(b);
                 startActivity(intent);
                 //intent.putExtra("bookname",item);
             }

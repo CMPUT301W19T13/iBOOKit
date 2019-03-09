@@ -8,7 +8,7 @@ import android.location.Location;
 public class Request {
 
     private String rid;
-    // 0: not decided;   1: accepted;    2:declined
+    // 0: not accepted;   1: accepted
     private int isAccept;
     private String sender;
     private String receiver;

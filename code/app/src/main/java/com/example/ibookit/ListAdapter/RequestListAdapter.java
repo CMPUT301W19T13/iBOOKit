@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ibookit.Functionality.RequestStatusHandler;
+import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
@@ -18,7 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -29,7 +27,6 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
     private DatabaseReference mDatabase;
     private TextView mTitle, mReceiver, mIs_accpected;
     private Book mBook;
-    private ImageView imageView;
 
 
     public RequestListAdapter(Context context, int resource, ArrayList<Request> objects) {
@@ -48,14 +45,13 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         mTitle = convertView.findViewById(R.id.listTitle);
         mReceiver = convertView.findViewById(R.id.listReceiver);
         mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
-        imageView = convertView.findViewById(R.id.imageRequest);
 
-        getBook(request.getBookId(), mTitle, imageView);
+        getBook(request.getBookId(), mTitle);
 
 
         mReceiver.setText("Owner:  " + request.getReceiver());
 
-        RequestStatusHandler handler = new RequestStatusHandler();
+        BookStatusHandler handler = new BookStatusHandler();
 
         mIs_accpected.setText("Status:  " + handler.StatusIntegerToString(request.getIsAccept()));
 
@@ -63,7 +59,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         return convertView;
     }
 
-    private void getBook(final String bookID, final TextView mTitle, final ImageView imageView) {
+    private void getBook(final String bookID, final TextView mTitle) {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(bookID);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -71,7 +67,6 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Book book = dataSnapshot.getValue(Book.class);
                 mTitle.setText("Title: " + book.getTitle());
-                setImage(book.getImageURL(), imageView);
             }
 
             @Override
@@ -80,10 +75,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
             }
         });
 
-    }
 
-    private void setImage(String path, ImageView imageView) {
-        Picasso.get().load(path).fit().centerCrop().into(imageView);
     }
 
 }
