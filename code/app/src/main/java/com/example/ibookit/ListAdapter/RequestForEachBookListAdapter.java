@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ibookit.Functionality.RequestStatusHandler;
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
     private DatabaseReference mDatabase;
     private TextView mTitle, mSender, mIs_accpected;
     private Book mBook;
+    private ImageView imageView;
 
     public RequestForEachBookListAdapter(Context context, int resource, ArrayList<Request> objects) {
         super(context, resource, objects);
@@ -43,8 +46,9 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
         mTitle = convertView.findViewById(R.id.listTitle);
         mSender = convertView.findViewById(R.id.listReceiver);
         mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
+        imageView = convertView.findViewById(R.id.imageRequest);
 
-        getBook(request.getBookId(), mTitle);
+        getBook(request.getBookId(), mTitle, imageView);
 
         mSender.setText("Sender:  " + request.getSender());
 
@@ -56,7 +60,7 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
         return convertView;
     }
 
-    private void getBook(final String bookID, final TextView mTitle) {
+    private void getBook(final String bookID, final TextView mTitle, final ImageView imageView) {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(bookID);
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -64,6 +68,7 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 Book book = dataSnapshot.getValue(Book.class);
                 mTitle.setText("Title: " + book.getTitle());
+                setImage(book.getImageURL(), imageView);
             }
 
             @Override
@@ -73,6 +78,10 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
         });
 
 
+    }
+
+    private void setImage(String path, ImageView imageView) {
+        Picasso.get().load(path).fit().centerCrop().into(imageView);
     }
 
 }
