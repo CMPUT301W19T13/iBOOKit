@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
@@ -26,7 +25,6 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private ListView Received;
     private ArrayList<Request> RSent = new ArrayList<>();
     private ArrayList<String> Rbook = new ArrayList<>();
-    private ArrayList<Request> Rreceived = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<String> adapterB;
     private RequestSent requestSent = new RequestSent();
@@ -56,14 +54,25 @@ public class CheckRequestsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
-                Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
-
+                //Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
+                Bundle b = new Bundle();
+                b.putString("bookname",item);
+                Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
+                intent.putExtras(b);
+                startActivity(intent);
+                //intent.putExtra("bookname",item);
             }
         });
 
 
 
+
         setBottomNavigationView();
+    }
+
+    public void openactivity(){
+        Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
+        startActivityForResult(intent, 0);
     }
 
     private void setBottomNavigationView() {

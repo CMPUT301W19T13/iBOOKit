@@ -30,7 +30,7 @@ public class RequestSent {
     public RequestSent(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestSent");
+        mDatabase = FirebaseDatabase.getInstance().getReference("users").child(username).child("requestSent");
     }
 
     public void RetriveRequest(final ArrayList<Request> requestSent2, final ArrayAdapter<Request> adapter) {
