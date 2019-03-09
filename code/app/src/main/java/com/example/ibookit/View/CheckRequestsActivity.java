@@ -40,28 +40,24 @@ public class CheckRequestsActivity extends AppCompatActivity {
         Received = findViewById(R.id.received_list);
 
 
-
-
         adapterS = new RequestListAdapter(this,R.layout.adapter_request,RSent);
         Sent.setAdapter(adapterS);
         requestSent.RetriveRequest(RSent,adapterS);
 
         adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
         Received.setAdapter(adapterB);
-        requestReceived.RetriveBook(Rbook,adapterB);
+
 
         Received.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
-                //Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
-//                Bundle b = new Bundle();
-//                b.putString("bookname",item);
+
 
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
                 intent.putExtra("bookname",item);
                 startActivity(intent);
-                //intent.putExtra("bookname",item);
+
             }
         });
 
@@ -74,6 +70,15 @@ public class CheckRequestsActivity extends AppCompatActivity {
     public void openactivity(){
         Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
         startActivityForResult(intent, 0);
+    }
+
+    protected void onResume() {
+
+        super.onResume();
+
+        Rbook.clear();
+        adapterB.notifyDataSetChanged();
+        requestReceived.RetriveBook(Rbook,adapterB);
     }
 
     private void setBottomNavigationView() {
