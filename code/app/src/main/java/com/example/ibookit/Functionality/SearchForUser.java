@@ -21,6 +21,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static android.support.constraint.Constraints.TAG;
+
 public class SearchForUser implements Search {
 
     private String keyword;
@@ -48,13 +50,12 @@ public class SearchForUser implements Search {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    for (DataSnapshot d : dataSnapshot.getChildren()){
-                        if (d.child("username").getValue().toString().toLowerCase().contains
+                    for (DataSnapshot d : dataSnapshot.getChildren()) {
+                        if (d.getKey().toLowerCase().contains
                                 (mKeyword.replaceAll("\\s+","").toLowerCase())){
                             User temp = d.getValue(User.class);
                             result.add(temp);
                             adapter.notifyDataSetChanged();
-
                         }
                     }
                 }
