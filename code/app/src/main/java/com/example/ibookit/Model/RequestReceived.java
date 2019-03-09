@@ -21,7 +21,7 @@ public class RequestReceived {
     private String username;
     private ArrayList<String> last = new ArrayList<>();
     private String bookTitle;
-    private Request request1;
+    private static Request request1;
 
 
 
@@ -77,7 +77,7 @@ public class RequestReceived {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 users.clear();
                 adapter.notifyDataSetChanged();
-                for (DataSnapshot d: dataSnapshot.getChildren()) {
+                for (final DataSnapshot d: dataSnapshot.getChildren()) {
                     request1 = d.getValue(Request.class);
                     final DatabaseReference cDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request1.getBookId());
                     cDatabase.addValueEventListener(new ValueEventListener() {
@@ -86,7 +86,8 @@ public class RequestReceived {
                                 Book book1 = dataSnapshot.getValue(Book.class);
                                 bookTitle = book1.getTitle();
                                 if (bookTitle.equals(bookname)) {
-                                    users.add(request1.getSender());
+                                    Request rew = d.getValue(Request.class);
+                                    users.add(rew.getSender());
                                     adapter.notifyDataSetChanged();
                                 }
 
@@ -97,9 +98,9 @@ public class RequestReceived {
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
-                    });
-//                    if (bookTitle.equals(bookname)) {
-//                        users.add(request.getSender());
+                   });
+//                    if (bookname.equals(bookTitle)) {
+//                        users.add(request1.getSender());
 //                        adapter.notifyDataSetChanged();
 //                    }
 
