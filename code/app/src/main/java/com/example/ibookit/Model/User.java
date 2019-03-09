@@ -51,5 +51,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
 
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }

@@ -44,7 +44,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         mDescription = findViewById(R.id.descriptionAdd);
 
         confirm = findViewById(R.id.confirmChangeBook);
-        imageButton = findViewById(R.id.bookImageAdd);
+        imageButton = findViewById(R.id.bookImageUpdate);
 
 
         confirm.setOnClickListener(new View.OnClickListener() {
