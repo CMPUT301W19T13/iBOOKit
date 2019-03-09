@@ -19,7 +19,7 @@ public class RequestReceived {
     private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
     private String username;
-    private String last;
+    private ArrayList<String> last = new ArrayList<>();
 
 
     public ArrayList<Request> getRequestSent() {
@@ -46,7 +46,7 @@ public class RequestReceived {
 
                     Request request = d.getValue(Request.class);
 
-                    if (request.getBookId() != last){
+                    if (!last.contains(request.getBookId())){
                         final DatabaseReference bDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request.getBookId());
                         bDatabase.addValueEventListener(new ValueEventListener() {
                             @Override
@@ -61,9 +61,8 @@ public class RequestReceived {
 
                             }
                         });
+                        last.add(request.getBookId());
                     }
-
-                    last = request.getBookId();
                 }
 
             }
@@ -74,16 +73,29 @@ public class RequestReceived {
         });
 
     }
-//    public void Show(DataSnapshot dataSnapshot){
-//        for (DataSnapshot d: dataSnapshot.getChildren()) {
-//            Request request;
-//            request = d.getValue(Request.class);
-//            requestSent.add(request);
+
+//    public void RequestInBook(final ArrayList<User> users,final ArrayAdapter<User> adapter){
+//        mDatabase.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                books.clear();
+//                adapter.notifyDataSetChanged();
+//                for (DataSnapshot d: dataSnapshot.getChildren()) {
+//                    Book book = d.getValue(Book.class);
+//                    if (status == -1) {
+//                        books.add(book);
+//                    } else if (book.getStatus() == status) {
+//                        books.add(book);
+//                    }
+//                    adapter.notifyDataSetChanged();
+//                }
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.d(TAG, "onCancelled: ");
+//            }
+//        });
 //    }
-
-    public void RequestInBook(final ArrayList<User> users,final ArrayAdapter<User> adapter){
-
-    }
 
 
 

@@ -6,8 +6,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
@@ -48,6 +51,15 @@ public class CheckRequestsActivity extends AppCompatActivity {
         adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
         Received.setAdapter(adapterB);
         requestReceived.RetriveBook(Rbook,adapterB);
+
+        Received.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String item = (String) Received.getItemAtPosition(position);
+                Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
+
+            }
+        });
 
 
 
