@@ -19,10 +19,9 @@ public class RequestReceived {
     private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
     private DatabaseReference bDatabase;
-    public String username;
+    private String username;
     private ArrayList<String> last = new ArrayList<>();
     private String bookTitle;
-    public ArrayList<String> currentIds = new ArrayList<String>();
 
 
     public ArrayList<Request> getRequestSent() {
@@ -31,10 +30,6 @@ public class RequestReceived {
 
     public void setRequestSent(ArrayList<Request> requestSent) {
         this.requestSent = requestSent;
-    }
-
-    public ArrayList<String> getIds(){
-        return currentIds;
     }
 
     public RequestReceived(){
@@ -85,23 +80,10 @@ public class RequestReceived {
 
     public void RequestInBook(final ArrayList<String> users,final ArrayAdapter<String> adapter,final String bookname){
 
-
-
-        users.clear();
-        currentIds.clear();
-        adapter.notifyDataSetChanged();
-
         mDatabase.addValueEventListener(new ValueEventListener() {
-
-
-
-
-
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 users.clear();
-                currentIds.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                     final Request request = d.getValue(Request.class);
@@ -112,14 +94,8 @@ public class RequestReceived {
                                 Book book1 = ds.getValue(Book.class);
                                 bookTitle = book1.getTitle();
                                 if (bookTitle.equals(bookname)) {
-                                    // actually requestid
-
-
                                     users.add(request.getSender());
-                                    currentIds.add(request.getRid());
-
                                     adapter.notifyDataSetChanged();
-
                                 }
                             }
                         }
@@ -139,7 +115,6 @@ public class RequestReceived {
                 Log.d(TAG, "onCancelled: ");
             }
         });
-
     }
 
 
