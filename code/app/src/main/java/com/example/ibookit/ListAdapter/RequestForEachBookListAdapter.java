@@ -20,15 +20,14 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class RequestListAdapter extends ArrayAdapter<Request> {
-    private Context mContext;
+public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { private Context mContext;
 
     private int mResource;
     private DatabaseReference mDatabase;
-    private TextView mTitle, mReceiver, mIs_accpected;
+    private TextView mTitle, mSender, mIs_accpected;
     private Book mBook;
 
-    public RequestListAdapter(Context context, int resource, ArrayList<Request> objects) {
+    public RequestForEachBookListAdapter(Context context, int resource, ArrayList<Request> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -42,12 +41,12 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         Request request = getItem(position);
 
         mTitle = convertView.findViewById(R.id.listTitle);
-        mReceiver = convertView.findViewById(R.id.listReceiver);
+        mSender = convertView.findViewById(R.id.listReceiver);
         mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
 
         getBook(request.getBookId(), mTitle);
 
-        mReceiver.setText("Owner:  " + request.getReceiver());
+        mSender.setText("Sender:  " + request.getSender());
 
         RequestStatusHandler handler = new RequestStatusHandler();
 
@@ -77,3 +76,4 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
     }
 
 }
+

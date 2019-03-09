@@ -70,7 +70,7 @@ public class RequestReceived {
 
     }
 
-    public void RequestInBook(final ArrayList<String> users,final ArrayAdapter<String> adapter,final String bookname){
+    public void RequestInBook(final ArrayList<Request> users,final ArrayAdapter<Request> adapter,final String bookname){
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -87,7 +87,7 @@ public class RequestReceived {
                                 bookTitle = book1.getTitle();
                                 if (bookTitle.equals(bookname)) {
                                     Request rew = d.getValue(Request.class);
-                                    users.add(rew.getSender());
+                                    users.add(rew);
                                     adapter.notifyDataSetChanged();
                                 }
 
