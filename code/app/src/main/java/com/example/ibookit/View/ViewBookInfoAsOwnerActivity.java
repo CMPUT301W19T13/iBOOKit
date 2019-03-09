@@ -137,7 +137,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
     private void updateImage (final Book book) {
         if (mImageUri != null) {
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
-            final StorageReference fileRef = mStorageRef.child("book").child(book.getId());
+            final StorageReference fileRef = mStorageRef.child("books").child(book.getId());
 
 
             fileRef.putFile(mImageUri).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -160,9 +160,11 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
                 }
             });
 
-        } else {
-            ownerShelf.update_book(book);
+            return;
+
         }
+
+        ownerShelf.update_book(book);
 
     }
 
