@@ -18,20 +18,20 @@ public class RequestReceived {
     private static final String TAG = "RequestReceived";
     private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
-<<<<<<< HEAD
     private DatabaseReference bDatabase;
     public String username;
     private ArrayList<String> last = new ArrayList<>();
     private String bookTitle;
     public ArrayList<String> currentIds = new ArrayList<String>();
-=======
-    private String username;
-    private ArrayList<String> last = new ArrayList<>();
-    private String bookTitle;
-    private static Request request1;
->>>>>>> fd398f1ad0126d5f4ec00c266c1dbe59a0280ae3
 
 
+    public ArrayList<Request> getRequestSent() {
+        return requestSent;
+    }
+
+    public void setRequestSent(ArrayList<Request> requestSent) {
+        this.requestSent = requestSent;
+    }
 
     public ArrayList<String> getIds(){
         return currentIds;
@@ -41,6 +41,7 @@ public class RequestReceived {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
+        bDatabase = FirebaseDatabase.getInstance().getReference().child("books");
     }
 
     public void RetriveBook(final ArrayList<String> bookList,final ArrayAdapter<String> adapter) {
@@ -82,7 +83,7 @@ public class RequestReceived {
 
     }
 
-    public void RequestInBook(final ArrayList<Request> users,final ArrayAdapter<Request> adapter,final String bookname){
+    public void RequestInBook(final ArrayList<String> users,final ArrayAdapter<String> adapter,final String bookname){
 
 
 
@@ -102,42 +103,32 @@ public class RequestReceived {
                 users.clear();
                 currentIds.clear();
                 adapter.notifyDataSetChanged();
-                for (final DataSnapshot d: dataSnapshot.getChildren()) {
-                    request1 = d.getValue(Request.class);
-                    final DatabaseReference cDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request1.getBookId());
-                    cDatabase.addValueEventListener(new ValueEventListener() {
+                for (DataSnapshot d: dataSnapshot.getChildren()) {
+                    final Request request = d.getValue(Request.class);
+                    bDatabase.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                Book book1 = dataSnapshot.getValue(Book.class);
+                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                Book book1 = ds.getValue(Book.class);
                                 bookTitle = book1.getTitle();
                                 if (bookTitle.equals(bookname)) {
-<<<<<<< HEAD
                                     // actually requestid
 
 
                                     users.add(request.getSender());
                                     currentIds.add(request.getRid());
 
-=======
-                                    Request rew = d.getValue(Request.class);
-                                    users.add(rew);
->>>>>>> fd398f1ad0126d5f4ec00c266c1dbe59a0280ae3
                                     adapter.notifyDataSetChanged();
 
                                 }
-
+                            }
                         }
-
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
-                   });
-//                    if (bookname.equals(bookTitle)) {
-//                        users.add(request1.getSender());
-//                        adapter.notifyDataSetChanged();
-//                    }
+                    });
 
 
 

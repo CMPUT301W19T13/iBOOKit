@@ -21,6 +21,8 @@ import com.example.ibookit.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -65,9 +67,6 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: no objStr");
         }
 
-        // load image once
-        setImage(book.getImageURL(), imageButton);
-
     }
 
     @Override
@@ -94,8 +93,8 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // cannot update a book if it is borrowed
-                if (book.getStatus() == 3) {
+                // update a book only if it is available
+                if (book.getStatus() != 0) {
                     Toast.makeText(ViewBookInfoAsOwnerActivity.this, "View Only",
                             Toast.LENGTH_SHORT).show();
 
@@ -185,14 +184,10 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-            Picasso.get().load(mImageUri).fit().centerCrop().into(imageButton);
+            Picasso.get().load(mImageUri).into(imageButton);
 
         }
 
-    }
-
-    private void setImage(String path, ImageButton image) {
-        Picasso.get().load(path).fit().centerCrop().into(image);
     }
 
 
