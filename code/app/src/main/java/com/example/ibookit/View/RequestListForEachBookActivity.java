@@ -25,8 +25,8 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
 
 
         Userlist = findViewById(R.id.userlist);
-        Bundle extras = getIntent().getExtras();
-        String bookname = extras.getString("bookname");
+        //Bundle extras = getIntent().getExtras();
+        String bookname = getIntent().getStringExtra("bookname");
         //Toast.makeText(RequestListForEachBookActivity.this,"You selected : "+ bookname,Toast.LENGTH_LONG).show();
         //String bookname= getIntent().getStringExtra("bookname");
         adapterR = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rreceived);

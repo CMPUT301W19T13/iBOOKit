@@ -55,10 +55,11 @@ public class CheckRequestsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
                 //Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
-                Bundle b = new Bundle();
-                b.putString("bookname",item);
+//                Bundle b = new Bundle();
+//                b.putString("bookname",item);
+
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
-                intent.putExtras(b);
+                intent.putExtra("bookname",item);
                 startActivity(intent);
                 //intent.putExtra("bookname",item);
             }

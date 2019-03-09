@@ -18,25 +18,17 @@ public class RequestReceived {
     private static final String TAG = "RequestReceived";
     private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
-    private DatabaseReference bDatabase;
     private String username;
     private ArrayList<String> last = new ArrayList<>();
     private String bookTitle;
+    private Request request1;
 
 
-    public ArrayList<Request> getRequestSent() {
-        return requestSent;
-    }
-
-    public void setRequestSent(ArrayList<Request> requestSent) {
-        this.requestSent = requestSent;
-    }
 
     public RequestReceived(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
-        bDatabase = FirebaseDatabase.getInstance().getReference().child("books");
     }
 
     public void RetriveBook(final ArrayList<String> bookList,final ArrayAdapter<String> adapter) {
@@ -86,25 +78,30 @@ public class RequestReceived {
                 users.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
-                    final Request request = d.getValue(Request.class);
-                    bDatabase.addValueEventListener(new ValueEventListener() {
+                    request1 = d.getValue(Request.class);
+                    final DatabaseReference cDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request1.getBookId());
+                    cDatabase.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                Book book1 = ds.getValue(Book.class);
+                                Book book1 = dataSnapshot.getValue(Book.class);
                                 bookTitle = book1.getTitle();
                                 if (bookTitle.equals(bookname)) {
-                                    users.add(request.getSender());
+                                    users.add(request1.getSender());
                                     adapter.notifyDataSetChanged();
                                 }
-                            }
+
                         }
+
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
                     });
+//                    if (bookTitle.equals(bookname)) {
+//                        users.add(request.getSender());
+//                        adapter.notifyDataSetChanged();
+//                    }
 
 
 
