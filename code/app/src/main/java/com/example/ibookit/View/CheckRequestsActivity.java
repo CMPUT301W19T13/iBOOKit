@@ -10,13 +10,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
+import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CheckRequestsActivity extends AppCompatActivity {
@@ -28,6 +33,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<String> adapterB;
     private RequestSent requestSent = new RequestSent();
+    private DatabaseReference requestId;
     private RequestReceived requestReceived = new RequestReceived();
 
 
@@ -48,15 +54,23 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
         adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
         Received.setAdapter(adapterB);
+        // prints all the books strings
         requestReceived.RetriveBook(Rbook,adapterB);
+
+
+
 
         Received.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
-                //Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
+
+
+
+                //Toast.makeText(CheckRequestsActivity.this,"You selected : "+ test,Toast.LENGTH_LONG).show();
                 Bundle b = new Bundle();
                 b.putString("bookname",item);
+                //b.putString("requestId", )
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
                 intent.putExtras(b);
                 startActivity(intent);
@@ -69,6 +83,16 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
         setBottomNavigationView();
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        requestReceived.RetriveBook(Rbook,adapterB);
+
+    }
+
+
+
 
     public void openactivity(){
         Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);

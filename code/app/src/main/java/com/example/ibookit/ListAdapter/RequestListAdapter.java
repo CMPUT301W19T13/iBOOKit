@@ -28,6 +28,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
     private TextView mTitle, mReceiver, mIs_accpected;
     private Book mBook;
 
+
     public RequestListAdapter(Context context, int resource, ArrayList<Request> objects) {
         super(context, resource, objects);
         mContext = context;
@@ -46,6 +47,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
 
         getBook(request.getBookId(), mTitle);
+
 
         mReceiver.setText("Owner:  " + request.getReceiver());
 
