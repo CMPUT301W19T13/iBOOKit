@@ -28,9 +28,9 @@ public class SearchForBook implements Search {
     public SearchForBook(){}
 //&& (d.child("status").getValue().toString()=="0")
     //todo:searches cannot handle more than one word at present
-    //todo:all searches are case sensitive at present
 
 //    @Override
+    //searchByKeyword is not updated until needed
     public void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter)  {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
@@ -83,8 +83,8 @@ public class SearchForBook implements Search {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot d : dataSnapshot.getChildren()){
-                        if ((d.child("title").getValue().toString().contains
-                                (mTitle.replaceAll("\\s+","")))){
+                        if (d.child("title").getValue().toString().toLowerCase().contains
+                                (mTitle.replaceAll("\\s+","").toLowerCase())){
 //                            String a = d.child("status").getValue().toString().getClass().getSimpleName();
 //                            Toast.makeText(HomeSearchActivity.sContext, a,
 //                                    Toast.LENGTH_SHORT).show();
@@ -136,6 +136,7 @@ public class SearchForBook implements Search {
     }
 
 
+    //searchByAuthor is not updated until needed
     public ArrayList searchByAuthor(String author) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");

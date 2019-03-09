@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "699873666476-n4lblo3feqdcec0pdsk2ruld80ruic5h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ibookit",
+            "certificate_hash": "c083112e85e0cf3a5d5bca38d5814a6fc88f910e"
+          }
+        },
+        {
           "client_id": "699873666476-i8m3rqh41qtjf3abhe080v0i72suj24v.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -8,12 +8,49 @@
     tools:context=".Model.Book">
 
     <TextView
+        android:id="@+id/descriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Description"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="sans-serif"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout"
+        app:layout_constraintTop_toBottomOf="@+id/categoryText" />
+
+    <EditText
+        android:id="@+id/descriptionAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintBaseline_toBaselineOf="@+id/descriptionText"
+        app:layout_constraintStart_toEndOf="@+id/descriptionText"
+        android:backgroundTint="@color/colorPrimary"
+        android:ellipsize="start"
+        android:gravity="center"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/homeSearch"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"/>
+
+    <TextView
         android:id="@+id/categoryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Category -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -28,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="ISBN -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -43,7 +80,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Author -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
@@ -56,7 +93,9 @@
         android:id="@+id/confirmChangeBook"
         android:layout_width="169dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="120dp"
         android:adjustViewBounds="false"
         android:background="@drawable/buttonshape"
         android:cropToPadding="false"
@@ -65,20 +104,16 @@
         android:textColor="@color/orangeText"
         android:textColorLink="@color/backgroundMaiActivity"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/scan_add_book"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
+        app:layout_constraintStart_toStartOf="@+id/frameLayout" />
 
     <Button
         android:id="@+id/scan_add_book"
         android:layout_width="169dp"
         android:layout_height="55dp"
 
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginBottom="96dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:adjustViewBounds="false"
         android:background="@drawable/buttonshape"
         android:cropToPadding="false"
@@ -86,11 +121,8 @@
         android:text="Scan To Add"
         android:textColor="@color/orangeText"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/confirmChangeBook"
-        app:layout_constraintTop_toBottomOf="@+id/bookCategoryAdd" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/confirmChangeBook"
+        app:layout_constraintEnd_toEndOf="@+id/frameLayout" />
 
 
     <TextView
@@ -99,19 +131,19 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:text="Title -"
         android:textColor="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:fontFamily="sans-serif"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bookImageAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/bookImageUpdate" />
 
     <ImageButton
-        android:id="@+id/bookImageAdd"
-        android:layout_width="157dp"
-        android:layout_height="157dp"
+        android:id="@+id/bookImageUpdate"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -184,8 +216,6 @@
         android:id="@+id/bookCategoryAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:backgroundTint="@color/colorPrimary"
         android:ellipsize="start"
         android:ems="10"
@@ -200,7 +230,7 @@
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/categoryText"
-        app:layout_constraintStart_toEndOf="@+id/categoryText" />
+        app:layout_constraintStart_toStartOf="@+id/descriptionAdd" />
 
 
     <FrameLayout

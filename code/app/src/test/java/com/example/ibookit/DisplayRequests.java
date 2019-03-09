@@ -1,7 +1,6 @@
 package com.example.ibookit;
 
-import com.example.ibookit.Functionality.RequestsList;
-import com.example.ibookit.Model.Book;
+import com.example.ibookit.Functionality.SortedRequestsList;
 import com.example.ibookit.Model.User;
 
 import org.junit.Test;
@@ -19,7 +18,7 @@ public class DisplayRequests {
 
 
 
-    RequestsList Req = new RequestsList();
+    SortedRequestsList Req = new SortedRequestsList();
 
 
     @Test

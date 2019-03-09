@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.ibookit.Functionality.CreateRequestHandler;
@@ -40,6 +42,8 @@ public class EditSearchActivity extends AppCompatActivity {
     private ArrayList<Book> bookResult;
     private ArrayList<User> uerResult;
     private String type, searchValue;
+    private SearchView sv;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +51,22 @@ public class EditSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_book);
         searchResultListView = findViewById(R.id.search_result_list);
 
-        Intent intent = getIntent();
+        intent = getIntent();
         type = intent.getStringExtra("type");
         searchValue = intent.getStringExtra("SearchValue");
 
+        sv = findViewById(R.id.search_bar);
+//        sv.setQueryHint(searchValue);
+
+        configure_SearchButtonsAndSearchBar();
+        load_resultList();
+        ListViewClickHandler();
+        setBottomNavigationView();
+
+    }
+
+
+    private void load_resultList(){
         if (type.equals("SearchUser")) {
             Log.d(TAG, "onCreate: " + searchValue);
             SearchForUser userSearch = new SearchForUser();
@@ -60,9 +76,8 @@ public class EditSearchActivity extends AppCompatActivity {
 
             userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
             searchResultListView.setAdapter(userArrayAdapter);
-            searchResultListView.setClickable(true);
+//            searchResultListView.setClickable(true);  //this will be activated if need to show more info about user
             userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
-            // same way as below
 
 
 
@@ -98,22 +113,93 @@ public class EditSearchActivity extends AppCompatActivity {
         }
 
 
-
-        ListViewClickHandler();
-        setBottomNavigationView();
-
     }
+
     private void ListViewClickHandler () {
         final ListView finalList = searchResultListView;
-        searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Book book = (Book) finalList.getItemAtPosition(position);
+        if (this.type.equals("SearchCategory" ) || this.type.equals("SearchTitle")) {
+            searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Book book = (Book) finalList.getItemAtPosition(position);
 
-                setDialog(book);
+                    setDialog(book);
+                }
+            });
+        }
+        else if (this.type.equals("SearchUser")){
+            searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    User user = (User) finalList.getItemAtPosition(position);
+
+                    Intent resultProfile = new Intent(EditSearchActivity.this, UserProfileActivity.class);
+//                    resultProfile.putExtra("type", "showSearchUserResult");
+                    Gson gson = new Gson();
+                    String userResult = gson.toJson(user);
+                    resultProfile.putExtra("UserResult", userResult);
+                    resultProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(resultProfile);
+                }
+            });
+        }
+    }
+
+    private void configure_SearchButtonsAndSearchBar(){
+        Button searchUser = findViewById(R.id.re_search_user);
+        Button viewCategory = findViewById(R.id.re_search_category);
+        Button searchBook = findViewById(R.id.re_search_book);
+        sv = findViewById(R.id.re_search_bar);
+
+        //todo:this works, but not really sure if it is the best solution
+        //did this started a intent from this activity to this activity or homeSearchActivity to
+        //this activity?
+        searchUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                intent.putExtra("type", "SearchUser");
+//                intent.putExtra("SearchValue", sv.getQuery().toString());
+//
+//                finish(); //should I do this? If i don't then user will go back to previous search, but this might consume memory?
+//                startActivity(intent);
+                type = "SearchUser";
+                searchValue = sv.getQuery().toString();
+                load_resultList();
+                sv.clearFocus();
+
+
             }
         });
+        viewCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+               setCategoryDialog();
+
+            }
+        });
+        searchBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                intent.putExtra("type", "SearchTitle");
+//                intent.putExtra("SearchValue", sv.getQuery().toString());
+//
+//                finish();
+//                startActivity(intent);
+                type = "SearchTitle";
+                searchValue = sv.getQuery().toString();
+                load_resultList();
+                sv.clearFocus();
+            }
+        });
+
     }
+
+
+
+
 
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -183,6 +269,34 @@ public class EditSearchActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+    }
+    private void setCategoryDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //some of these options will be changed later, this is just for test
+        final CharSequence[] options  = {"fine", "fivestar", "KKK", "Westeast", "thrilling"};
+        builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+//                intent.putExtra("type", "SearchCategory");
+//                intent.putExtra("SearchValue", options[which]);
+//                finish();
+//                startActivity(intent);
+                type = "SearchCategory";
+                searchValue = options[which].toString();
+                load_resultList();
+                sv.clearFocus();
+
+            }
+        });
+
+
+
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

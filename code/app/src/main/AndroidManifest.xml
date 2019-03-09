@@ -21,6 +21,7 @@
         <activity android:name=".View.ContactInformationActivity" />
         <activity android:name=".View.UserProfileActivity" />
         <activity android:name=".View.SignUpActivity" />
+        <activity android:name=".View.RequestListForEachBookActivity" />
         <activity
             android:name=".View.MainActivity">
             <intent-filter>

@@ -8,35 +8,14 @@
     tools:context=".View.ContactInformationActivity">
 
     <EditText
-        android:id="@+id/name_contact"
+        android:id="@+id/email_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:background="@drawable/back"
+        android:editable="false"
         android:ems="10"
         android:gravity="center"
-        android:hint="Full Name"
-        android:inputType="textPersonName"
-        android:textColor="@color/colorPrimaryDark"
-        android:textColorHint="@color/colorPrimary"
-        android:textColorLink="@color/colorPrimary"
-        android:textCursorDrawable="@color/colorPrimary"
-        android:textSize="24sp"
-        android:typeface="sans"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_contact_Edit" />
-
-    <EditText
-        android:id="@+id/email_contact"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/back"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Email"
         android:inputType="textEmailAddress"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimary"
@@ -46,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_contact" />
+        app:layout_constraintTop_toBottomOf="@+id/image_contact_Edit" />
 
     <EditText
         android:id="@+id/phone_contact"
@@ -56,7 +35,6 @@
         android:background="@drawable/back"
         android:ems="10"
         android:gravity="center"
-        android:hint="Phone"
         android:inputType="phone"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimary"
@@ -74,10 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/back"
+        android:editable="false"
         android:ems="10"
         android:gravity="center"
-        android:hint="Username"
-        android:inputType="textPersonName"
+        android:inputType="none"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"

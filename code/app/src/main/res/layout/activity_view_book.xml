@@ -7,17 +7,31 @@
     android:background="@drawable/graidentbackground"
     tools:context=".Model.Book">
 
+
     <TextView
-        android:id="@+id/borrowerAdd"
+        android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/borrowerText"
+        android:layout_marginTop="12dp"
+        android:text="Description -"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:fontFamily="sans-serif"
+        app:layout_constraintTop_toBottomOf="@+id/borrowerText"
+        tools:layout_editor_absoluteX="9dp" />
+
+    <EditText
+        android:id="@+id/descriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
         android:ellipsize="start"
+        android:ems="10"
         android:gravity="center"
+        android:inputType="textMultiLine"
         android:shadowColor="@color/colorPrimary"
-        android:clickable="false"
         android:textColor="@color/homeSearch"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
@@ -25,6 +39,27 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="20sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/descriptionTextView"
+        app:layout_constraintStart_toEndOf="@+id/descriptionTextView" />
+
+    <TextView
+        android:id="@+id/borrowerAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:ellipsize="start"
+        android:ems="10"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:shadowColor="@color/colorPrimary"
+        android:textColor="@color/homeSearch"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textCursorDrawable="@color/colorPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/borrowerText"
         app:layout_constraintStart_toStartOf="@+id/statusAdd" />
 
     <TextView
@@ -47,10 +82,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorPrimary"
+        android:clickable="false"
         android:ellipsize="start"
         android:ems="10"
         android:gravity="center"
-        android:clickable="false"
         android:inputType="textPersonName"
         android:shadowColor="@color/colorPrimary"
         android:textColor="@color/homeSearch"
@@ -127,7 +162,8 @@
         android:id="@+id/confirmChangeBook"
         android:layout_width="169dp"
         android:layout_height="55dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"
         android:adjustViewBounds="false"
         android:background="@drawable/buttonshape"
         android:cropToPadding="false"
@@ -136,10 +172,11 @@
         android:textColor="@color/orangeText"
         android:textColorLink="@color/backgroundMaiActivity"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/frameLayout"
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/borrowerAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionView" />
 
 
     <TextView
@@ -155,10 +192,10 @@
         android:textStyle="bold|italic"
         app:fontFamily="sans-serif"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
-        app:layout_constraintTop_toBottomOf="@+id/bookImageAdd" />
+        app:layout_constraintTop_toBottomOf="@+id/bookImageUpdate" />
 
     <ImageButton
-        android:id="@+id/bookImageAdd"
+        android:id="@+id/bookImageUpdate"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="16dp"
@@ -233,8 +270,6 @@
         android:id="@+id/bookCategoryAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:backgroundTint="@color/colorPrimary"
         android:ellipsize="start"
         android:ems="10"
@@ -249,7 +284,7 @@
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/categoryText"
-        app:layout_constraintStart_toEndOf="@+id/categoryText" />
+        app:layout_constraintStart_toStartOf="@+id/descriptionView" />
 
 
     <FrameLayout

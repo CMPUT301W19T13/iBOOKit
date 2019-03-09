@@ -19,9 +19,16 @@ public class LoadRequests {
     private DatabaseReference mDatabase;
     private String CurrentUser;
     private Map<String, Request> RequestPerBook;
+    public final ArrayList<Request> Request_list = new ArrayList<Request>();
 
 
-    public LoadRequests(String user) {
+    public void LoadRequests(){
+
+    }
+
+    public ArrayList<Request> return_request() {
+
+
 
         CurrentUser = "masiwei";
 
@@ -38,16 +45,16 @@ public class LoadRequests {
                 System.out.println(dataSnapshot);
 
                 RequestPerBook = (Map<String,Request>) dataSnapshot.getValue();
-                System.out.println("************************************");
+                System.out.println("************************************1");
 
-                ArrayList<Request> here = new ArrayList<Request>();
+
 
                 for (String key: RequestPerBook.keySet()){
-                    here.add( RequestPerBook.get(key));
+                    Request_list.add( RequestPerBook.get(key));
 
                 }
 
-                System.out.println(here);
+                System.out.println(Request_list);
 
 
 
@@ -62,7 +69,29 @@ public class LoadRequests {
         DatabaseReference allRequests = mDatabase.child("users").child("masiwei").child("requestReceived");
         mDatabase.addValueEventListener(requestListener);
 
+
+
+
+        //
+        //if (semaphore == 1){
+        //    semaphore += 1;
+
+       //     LoadRequests load = new LoadRequests("somename");
+        //    ArrayList<Request> Rreceived = load.getlist();
+        //    System.out.println(Rreceived);
+       //     semaphore = 1;
+        //}
+
+
+
+
+
+
+
+        return Request_list;
     }
+
+
 
    // public ArrayList<ArrayList<String>> loadRequests (){
 

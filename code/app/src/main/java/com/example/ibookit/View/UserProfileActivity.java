@@ -10,16 +10,27 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
+import com.squareup.picasso.Picasso;
 
 public class UserProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "UserProfileActivity";
     private TextView mUsername, mEmail;
+    private Button email,edit,signout;
+    private ImageView imageView;
 
 
 
@@ -31,11 +42,29 @@ public class UserProfileActivity extends AppCompatActivity {
 
         setBottomNavigationView();
         setInformation();
+        configure_buttons();
+
+        //this used for show user search result
+        Intent intent = getIntent();
+        String objStr = intent.getStringExtra("UserResult");
+        if (objStr != null){
+            Gson gson = new Gson();
+            User sUser = gson.fromJson(objStr, User.class);
+            setOtherUserInformation(sUser);
+            edit.setVisibility(View.GONE);
+            signout.setVisibility(View.GONE);
+        }
 
 
-        Button check = (Button) findViewById(R.id.contactInfo_user);
+    }
 
-        check.setOnClickListener(new View.OnClickListener() {
+
+    private void configure_buttons(){
+        email = (Button) findViewById(R.id.contactInfo_user);
+        edit =  findViewById(R.id.edit_profile);
+        signout = findViewById(R.id.signout_profile);
+
+        email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfileActivity.this, ContactInformationActivity.class);
@@ -44,9 +73,6 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
         //edit button added to allow edit on user profile
-
-        Button edit =  findViewById(R.id.edit_profile);
-
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,10 +80,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-        final Button signout = findViewById(R.id.signout_profile);
 
         signout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,17 +92,46 @@ public class UserProfileActivity extends AppCompatActivity {
         });
 
 
-
     }
 
     private void setInformation() {
         mUsername = findViewById(R.id.userName_userProfile);
         mEmail = findViewById(R.id.contactInfo_user);
+        imageView = findViewById(R.id.profilePic_userProfile);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         mUsername.setText(user.getDisplayName());
         mEmail.setText(user.getEmail());
 
+        setUserImage(user, imageView);
+
+    }
+
+    private void setUserImage(FirebaseUser user, final ImageView imageView) {
+        String username = user.getDisplayName();
+
+        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User userClass = dataSnapshot.getValue(User.class);
+
+                Picasso.get().load(userClass.getImageURL()).into(imageView);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setOtherUserInformation(User mUser){
+        mUsername = findViewById(R.id.userName_userProfile);
+        mEmail = findViewById(R.id.contactInfo_user);
+        mUsername.setText(mUser.getUsername());
+        mEmail.setText(mUser.getEmail());
     }
 
 

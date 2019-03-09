@@ -1,19 +1,24 @@
 package com.example.ibookit.View;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
+import android.widget.Toast;
 
+import com.example.ibookit.Functionality.CreateRequestHandler;
 import com.example.ibookit.Functionality.SearchForBook;
 import com.example.ibookit.Functionality.SearchForUser;
 import com.example.ibookit.Model.Book;
+import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
 import com.google.gson.Gson;
 
@@ -22,6 +27,7 @@ import java.util.ArrayList;
 public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
+    private SearchView sv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +35,24 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
+
+        configure_SearchButtonsAndSearchBar();
+        setBottomNavigationView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sv.setQuery("", false);
+        sv.clearFocus();
+    }
+
+
+    private void configure_SearchButtonsAndSearchBar(){
         Button searchUser = findViewById(R.id.search_user);
         Button viewCategory = findViewById(R.id.search_category);
-        Button searchTitle = findViewById(R.id.search_title);
-
-        final SearchView sv = findViewById(R.id.search_bar);
+        Button searchBook = findViewById(R.id.search_book);
+        sv = findViewById(R.id.search_bar);
 
 
         searchUser.setOnClickListener(new View.OnClickListener() {
@@ -47,20 +66,17 @@ public class HomeSearchActivity extends AppCompatActivity {
 
                 startActivity(request);
 
-
             }
         });
         viewCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-                request.putExtra("type", "SearchCategory");
-                request.putExtra("SearchValue", sv.getQuery().toString());
-                startActivity(request);
+
+                setCategoryDialog();
 
             }
         });
-        searchTitle.setOnClickListener(new View.OnClickListener() {
+        searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
@@ -71,8 +87,8 @@ public class HomeSearchActivity extends AppCompatActivity {
         });
 
 
-        setBottomNavigationView();
     }
+
 
 
     private void setBottomNavigationView() {
@@ -113,6 +129,29 @@ public class HomeSearchActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    private void setCategoryDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        //some of these options will be changed later, this is just for test
+        final CharSequence[] options  = {"fine", "fivestar", "KKK", "Westeast", "thrilling"};
+        builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                request.putExtra("type", "SearchCategory");
+                request.putExtra("SearchValue", options[which]);
+                startActivity(request);
+
+            }
+        });
+
+
+
+
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
     }
 
 }

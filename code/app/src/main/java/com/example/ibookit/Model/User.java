@@ -5,6 +5,7 @@ public class User {
     private String email;
     private String phoneNumber;
     private String id;
+    private String imageURL;
 
     public User(String id, String username, String email, String phoneNumber) {
         this.id = id;
@@ -50,5 +51,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getImageURL() {
+        return imageURL;
+    }
 
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
 }
