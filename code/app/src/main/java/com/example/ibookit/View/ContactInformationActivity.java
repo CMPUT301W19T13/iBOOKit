@@ -69,6 +69,9 @@ public class ContactInformationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mDatabase.child("phoneNumber").setValue(mPhone.getText().toString());
                 setUserImage(mDatabase);
+
+                Intent intent = new Intent(ContactInformationActivity.this, UserProfileActivity.class);
+                startActivity(intent);
             }
         });
 
