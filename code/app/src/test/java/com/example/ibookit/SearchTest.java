@@ -20,8 +20,22 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class SearchTest {
+<<<<<<< HEAD
     private ArrayAdapter<Book> bookArrayAdapter;
     private ArrayAdapter<User> userArrayAdapter;
+=======
+
+
+    Book book = new Book();
+
+    public ArrayList<User> resultsUser;
+    public ArrayList<User> testUser;
+    public ArrayList<Book> resultsBook;
+    public ArrayList<User> testBook;
+
+    // set testbook and testUser to the correct arraylist
+
+    //Search search = new Search();
 
 
     @Test
