@@ -56,7 +56,8 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
 
                                 requestReceived.accept_request(Rreceived,request);
                                 Userlist.setEnabled(false);
-                                dialogInterface.dismiss();
+                                //dialogInterface.dismiss();
+                                finish();
                             }
                         })
                         .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
@@ -64,8 +65,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Toast.makeText(RequestListForEachBookActivity.this,"NO"+item,Toast.LENGTH_SHORT).show();
                                 requestReceived.decline_request(request);
-                                view.setClickable(false);
-                                dialogInterface.dismiss();
+                                //dialogInterface.dismiss();
                             }
                         })
                         .show();
