@@ -27,8 +27,8 @@ public class UserReturn {
         user.setEmail("testemail");
         assertEquals("testemail",user.getEmail());
 
-        user.setPassword("testpass");
-        assertEquals("testpass", user.getPassword());
+        //user.setPassword("testpass");
+        ///assertEquals("testpass", user.getPassword());
 
         user.setUsername("test");
         assertEquals("test", user.getUsername());
