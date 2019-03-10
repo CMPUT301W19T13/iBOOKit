@@ -53,7 +53,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
         adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
         Received.setAdapter(adapterB);
-        requestReceived.RetriveBook(Rbook,adapterB);
+
 
         Received.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
@@ -111,6 +111,11 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
 
         setBottomNavigationView();
+    }
+
+    protected  void onResume() {
+        requestReceived.RetriveBook(Rbook,adapterB);
+        super.onResume();
     }
 
     public void openactivity(){
