@@ -32,6 +32,10 @@ import com.example.ibookit.R;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class EditSearchActivity extends AppCompatActivity {
 
@@ -40,8 +44,9 @@ public class EditSearchActivity extends AppCompatActivity {
     private ArrayAdapter<Book> bookArrayAdapter;
     private ArrayAdapter<User> userArrayAdapter;
     private ArrayList<Book> bookResult;
-    private ArrayList<User> uerResult;
+    private ArrayList<User> userResult;
     private String type, searchValue;
+
     private SearchView sv;
     private Intent intent;
 
@@ -76,7 +81,7 @@ public class EditSearchActivity extends AppCompatActivity {
 
             userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
             searchResultListView.setAdapter(userArrayAdapter);
-//            searchResultListView.setClickable(true);  //this will be activated if need to show more info about user
+            searchResultListView.setClickable(true);  //this will be activated if need to show more info about user
             userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
 
 
@@ -95,18 +100,20 @@ public class EditSearchActivity extends AppCompatActivity {
             bookSearch.searchByCategory(searchValue, searchResult, bookArrayAdapter);
 
 
-        } else if (type.equals("SearchTitle")) {
+        } else if (type.equals("SearchBook")) {
 
             Log.d(TAG, "onCreate: " + searchValue);
             SearchForBook bookSearch = new SearchForBook();
             ArrayList<Book> searchResult = new ArrayList<>();
-
             Log.d(TAG, "onCreate: " + searchResult);
 
             bookArrayAdapter = new BookListAdapter(this, R.layout.adapter_book, searchResult);
             searchResultListView.setAdapter(bookArrayAdapter);
             searchResultListView.setClickable(true);
-            bookSearch.searchByTitle(searchValue, searchResult, bookArrayAdapter);
+            //extra step for search book by keyword: prepare list of keyword
+            String[] searchValueList = searchValue.split("\\s+");
+
+            bookSearch.searchByKeyword(searchValueList, searchResult, bookArrayAdapter);
 
         } else {
             Log.d(TAG, "onCreate: Unexpected type: " + type);
@@ -157,12 +164,6 @@ public class EditSearchActivity extends AppCompatActivity {
         searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                intent.putExtra("type", "SearchUser");
-//                intent.putExtra("SearchValue", sv.getQuery().toString());
-//
-//                finish(); //should I do this? If i don't then user will go back to previous search, but this might consume memory?
-//                startActivity(intent);
                 type = "SearchUser";
                 searchValue = sv.getQuery().toString();
                 load_resultList();
@@ -182,13 +183,7 @@ public class EditSearchActivity extends AppCompatActivity {
         searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                intent.putExtra("type", "SearchTitle");
-//                intent.putExtra("SearchValue", sv.getQuery().toString());
-//
-//                finish();
-//                startActivity(intent);
-                type = "SearchTitle";
+                type = "SearchBook";
                 searchValue = sv.getQuery().toString();
                 load_resultList();
                 sv.clearFocus();
@@ -283,10 +278,6 @@ public class EditSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-//                intent.putExtra("type", "SearchCategory");
-//                intent.putExtra("SearchValue", options[which]);
-//                finish();
-//                startActivity(intent);
                 type = "SearchCategory";
                 searchValue = options[which].toString();
                 load_resultList();

@@ -80,7 +80,7 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-                request.putExtra("type", "SearchTitle");
+                request.putExtra("type", "SearchBook");
                 request.putExtra("SearchValue", sv.getQuery().toString());
                 startActivity(request);
             }

@@ -20,6 +20,7 @@ import com.squareup.picasso.Picasso;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Set;
 
 public class BookListAdapter extends ArrayAdapter<Book> {
 
