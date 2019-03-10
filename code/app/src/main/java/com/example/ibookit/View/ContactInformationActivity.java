@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
@@ -69,6 +70,12 @@ public class ContactInformationActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mDatabase.child("phoneNumber").setValue(mPhone.getText().toString());
                 setUserImage(mDatabase);
+
+                Toast.makeText(ContactInformationActivity.this, "Submitted",
+                        Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(ContactInformationActivity.this, UserProfileActivity.class);
+                startActivity(intent);
             }
         });
 
