@@ -18,8 +18,8 @@
         android:textSize="20sp"
         android:textStyle="bold|italic"
         app:fontFamily="sans-serif"
-        app:layout_constraintTop_toBottomOf="@+id/borrowerText"
-        tools:layout_editor_absoluteX="9dp" />
+        app:layout_constraintStart_toStartOf="@+id/borrowerText"
+        app:layout_constraintTop_toBottomOf="@+id/borrowerText" />
 
     <EditText
         android:id="@+id/descriptionView"

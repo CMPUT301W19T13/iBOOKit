@@ -1,12 +1,15 @@
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.View.HomeSearchActivity;
 import com.example.ibookit.View.MyShelfOwnerActivity;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,6 +18,9 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class SearchForBook implements Search {
     private String keyword;
@@ -31,36 +37,50 @@ public class SearchForBook implements Search {
 
 //    @Override
     //searchByKeyword is not updated until needed
-    public void searchByKeyword(final String mKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter)  {
+    public void searchByKeyword(final String[] mListKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter)  {
+        //set method and .contains method both did not work, duplicate still exist
+        final Set<String> nonDupID = new HashSet<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
         Query listBook = bookRef.orderByChild("status").equalTo(0);
 
         //todo: this is just a temporary solution, I will be looking for more advanced solution(like filtering),
         //I will use this solution just for demoing for part 4
+
         listBook.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    for (DataSnapshot d : dataSnapshot.getChildren()){
-                        if ((d.child("title").getValue().toString().contains
-                                (mKeyword.replaceAll("\\s+","")))){
-                            Book temp = d.getValue(Book.class);
-                            result.add(temp);
-                            adapter.notifyDataSetChanged();
-
-                        }else if ((d.child("author").getValue().toString().contains
-                                (mKeyword.replaceAll("\\s+","")))){
-                            Book temp = d.getValue(Book.class);
-                            result.add(temp);
-                            adapter.notifyDataSetChanged();
-                        }else if ((d.child("isbn").getValue().toString().contains
-                                (mKeyword.replaceAll("\\s+","")))){
-                            Book temp = d.getValue(Book.class);
-                            result.add(temp);
-                            adapter.notifyDataSetChanged();
+                    for (String mKeyword: mListKeyword ){
+                        for (DataSnapshot d : dataSnapshot.getChildren()){
+                            if (d.child("title").getValue().toString().toLowerCase().contains
+                                    (mKeyword)){
+//                                Book temp = d.getValue(Book.class);
+                                nonDupID.add(d.getKey());
+                            }else if (d.child("author").getValue().toString().toLowerCase().contains
+                                    (mKeyword)){
+//                                Book temp = d.getValue(Book.class);
+                                nonDupID.add(d.getKey());
+                            }else if (d.child("isbn").getValue().toString().toLowerCase().contains
+                                    (mKeyword)){
+//                                Book temp = d.getValue(Book.class);
+                                nonDupID.add(d.getKey());
+                            }
+                            else if (d.child("description").getValue().toString().toLowerCase().contains
+                                    (mKeyword)){
+//                                Book temp = d.getValue(Book.class);
+                                nonDupID.add(d.getKey());
+                            }
                         }
+
+
                     }
+                    for (String id: nonDupID){
+                       Book temp =  dataSnapshot.child(id).getValue(Book.class);
+                       result.add(temp);
+                    }
+//                    result.addAll(nonDupSet);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
