@@ -61,7 +61,6 @@ public class EditSearchActivity extends AppCompatActivity {
         searchValue = intent.getStringExtra("SearchValue");
 
         sv = findViewById(R.id.search_bar);
-//        sv.setQueryHint(searchValue);
 
         configure_SearchButtonsAndSearchBar();
         load_resultList();
@@ -81,7 +80,7 @@ public class EditSearchActivity extends AppCompatActivity {
 
             userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
             searchResultListView.setAdapter(userArrayAdapter);
-            searchResultListView.setClickable(true);  //this will be activated if need to show more info about user
+            searchResultListView.setClickable(true);
             userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
 
 
@@ -118,18 +117,18 @@ public class EditSearchActivity extends AppCompatActivity {
         } else {
             Log.d(TAG, "onCreate: Unexpected type: " + type);
         }
-
+        sv.setQuery("", false);
+        sv.clearFocus();
 
     }
 
     private void ListViewClickHandler () {
         final ListView finalList = searchResultListView;
-        if (this.type.equals("SearchCategory" ) || this.type.equals("SearchTitle")) {
+        if (this.type.equals("SearchCategory" ) || this.type.equals("SearchBook")) {
             searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Book book = (Book) finalList.getItemAtPosition(position);
-
                     setDialog(book);
                 }
             });
@@ -141,7 +140,6 @@ public class EditSearchActivity extends AppCompatActivity {
                     User user = (User) finalList.getItemAtPosition(position);
 
                     Intent resultProfile = new Intent(EditSearchActivity.this, UserProfileActivity.class);
-//                    resultProfile.putExtra("type", "showSearchUserResult");
                     Gson gson = new Gson();
                     String userResult = gson.toJson(user);
                     resultProfile.putExtra("UserResult", userResult);
@@ -158,9 +156,6 @@ public class EditSearchActivity extends AppCompatActivity {
         Button searchBook = findViewById(R.id.re_search_book);
         sv = findViewById(R.id.re_search_bar);
 
-        //todo:this works, but not really sure if it is the best solution
-        //did this started a intent from this activity to this activity or homeSearchActivity to
-        //this activity?
         searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -272,7 +267,6 @@ public class EditSearchActivity extends AppCompatActivity {
     private void setCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        //some of these options will be changed later, this is just for test
         final CharSequence[] options  = {"fine", "fivestar", "KKK", "Westeast", "thrilling"};
         builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
             @Override
