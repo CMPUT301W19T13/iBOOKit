@@ -96,8 +96,9 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
 
 
 
-                        }
 
+                        }
+                        ReqDatabase.child("books").child(Rid).child("status").setValue(1);
                         ReqDatabase.child("users").child(tempquest.getSender()).child("Replies").child(myname).child(bookname).setValue("Accepted");
                         Rreceived.clear();
 
