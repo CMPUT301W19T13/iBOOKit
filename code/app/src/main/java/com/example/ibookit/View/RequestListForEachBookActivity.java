@@ -39,8 +39,13 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
         requestReceived.RequestInBook(Rreceived,adapterR,bookname);
 
         Userlist.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 final Request request = (Request) Userlist.getItemAtPosition(position);
+                for(Request r:Rreceived){
+                    if(r.getIsAccept()==1){
+                        Userlist.setEnabled(false);
+                    }
+                }
                 final String item = request.getSender();
                 new AlertDialog.Builder(RequestListForEachBookActivity.this)
                         .setTitle("Accept Request?")
@@ -50,6 +55,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                                 //Toast.makeText(RequestListForEachBookActivity.this, "YES", Toast.LENGTH_LONG).show();
 
                                 requestReceived.accept_request(Rreceived,request);
+                                Userlist.setEnabled(false);
                                 dialogInterface.dismiss();
                             }
                         })
@@ -58,6 +64,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Toast.makeText(RequestListForEachBookActivity.this,"NO"+item,Toast.LENGTH_SHORT).show();
                                 requestReceived.decline_request(request);
+                                view.setClickable(false);
                                 dialogInterface.dismiss();
                             }
                         })
