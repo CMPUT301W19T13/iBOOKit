@@ -23,7 +23,7 @@ public class RequestSent {
         return requestSent;
     }
 
-    public ArrayList<Request> returnRequestsSent(){
+    public ArrayList<Request> sentRequests(){
         return requestSent;
     }
 
@@ -40,6 +40,8 @@ public class RequestSent {
     public RequestSent(ArrayList<Request> allRequest){
         this.requestSent = allRequest;
     }
+
+
 
     public void RetriveRequest(final ArrayList<Request> requestSent2, final ArrayAdapter<Request> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {

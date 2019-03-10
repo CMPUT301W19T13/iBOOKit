@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class RequestReceived {
     private static final String TAG = "RequestReceived";
     private ArrayList<Request> requestSent = new ArrayList<>();
+    private ArrayList<Request> requestReceived;
     private DatabaseReference mDatabase;
     private String username;
     private ArrayList<String> last = new ArrayList<>();
@@ -30,11 +31,7 @@ public class RequestReceived {
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
     }
 
-    public RequestReceived(String name){
-        this.username = name;
 
-
-    }
 
     public void RetriveBook(final ArrayList<String> bookList,final ArrayAdapter<String> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -167,6 +164,16 @@ public class RequestReceived {
 
     public static void setRequest1(Request request1) {
         RequestReceived.request1 = request1;
+    }
+
+    public RequestReceived(String name, ArrayList<Request> requested){
+        this.username = name;
+        this.requestReceived = requested;
+
+    }
+
+    public ArrayList<Request> requestReceiveList(){
+        return this.requestReceived;
     }
 
 

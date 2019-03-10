@@ -17,23 +17,19 @@ import static org.junit.Assert.assertEquals;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class RequestsObject {
-
-
-    /*private int isAccept;
-    private String sender;
-    private String receiver;
-    private String bookId;
-    private Location geolocation;*/
+public class RequestStatic {
 
 
 
 
-
-    RequestReceived Received = new RequestReceived("ownername");
     Request request = new Request();
+    ArrayList<Request> requestlist = new ArrayList<Request>();
+
+    RequestReceived Received = new RequestReceived("ownername", requestlist);
 
     Location location = new Location("test");
+
+
 
     // send request to user 1 for a specific book
 
