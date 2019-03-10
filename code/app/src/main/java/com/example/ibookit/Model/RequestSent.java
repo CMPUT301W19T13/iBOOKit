@@ -23,6 +23,10 @@ public class RequestSent {
         return requestSent;
     }
 
+    public ArrayList<Request> returnRequestsSent(){
+        return requestSent;
+    }
+
     public void setRequestSent(ArrayList<Request> requestSent) {
         this.requestSent = requestSent;
     }
@@ -31,6 +35,10 @@ public class RequestSent {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference("users").child(username).child("requestSent");
+    }
+
+    public RequestSent(ArrayList<Request> allRequest){
+        this.requestSent = allRequest;
     }
 
     public void RetriveRequest(final ArrayList<Request> requestSent2, final ArrayAdapter<Request> adapter) {
