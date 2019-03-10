@@ -1,3 +1,12 @@
+/**
+ * Class name: AddBookAsOwnerActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -19,6 +28,12 @@ import com.example.ibookit.R;
 
 import java.util.ArrayList;
 
+
+/**
+ * @author Jiazhen Li
+ *
+ * @version 1.0
+ */
 public class CheckRequestsActivity extends AppCompatActivity {
 
     private ListView Sent;
@@ -30,7 +45,10 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private RequestSent requestSent = new RequestSent();
     private RequestReceived requestReceived = new RequestReceived();
 
-
+    /**
+     * let user check requestSent and RequestReceived in UI
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,7 +71,6 @@ public class CheckRequestsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
 
-
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
                 intent.putExtra("bookname",item);
                 startActivity(intent);
@@ -61,19 +78,11 @@ public class CheckRequestsActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         setBottomNavigationView();
     }
 
-    public void openactivity(){
-        Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
-        startActivityForResult(intent, 0);
-    }
 
     protected void onResume() {
-
         super.onResume();
 
         Rbook.clear();
@@ -81,6 +90,9 @@ public class CheckRequestsActivity extends AppCompatActivity {
         requestReceived.RetriveBook(Rbook,adapterB);
     }
 
+    /**
+     * NavigationBar enabled
+     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

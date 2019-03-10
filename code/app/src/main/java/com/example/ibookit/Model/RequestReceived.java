@@ -1,9 +1,19 @@
+/**
+ *
+ * Class name: RequestReceived
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ *
+ */
 package com.example.ibookit.Model;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -14,6 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * @author Joe, Jiazhen Li
+ *
+ * @version 1.0
+ */
 public class RequestReceived {
     private static final String TAG = "RequestReceived";
     private ArrayList<Request> requestSent = new ArrayList<>();
@@ -23,14 +38,20 @@ public class RequestReceived {
     private String bookTitle;
     private static Request request1;
 
-
-
+    /**
+     * Constructor
+     */
     public RequestReceived(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
     }
 
+    /**
+     * Retrive Book from requestReceived
+     * @param bookList
+     * @param adapter
+     */
     public void RetriveBook(final ArrayList<String> bookList,final ArrayAdapter<String> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -70,6 +91,12 @@ public class RequestReceived {
 
     }
 
+    /**
+     * For a particular book, retrieve requests for this book
+     * @param users
+     * @param adapter
+     * @param bookname
+     */
     public void RequestInBook(final ArrayList<Request> users,final ArrayAdapter<Request> adapter,final String bookname){
 
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -99,12 +126,6 @@ public class RequestReceived {
 
                         }
                    });
-//                    if (bookname.equals(bookTitle)) {
-//                        users.add(request1.getSender());
-//                        adapter.notifyDataSetChanged();
-//                    }
-
-
 
                 }
             }
@@ -114,7 +135,6 @@ public class RequestReceived {
             }
         });
     }
-
 
 
 }
