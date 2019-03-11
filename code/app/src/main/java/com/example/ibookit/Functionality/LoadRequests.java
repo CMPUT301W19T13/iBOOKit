@@ -36,7 +36,6 @@ public class LoadRequests {
 
         // get all data from firebase
 
-
         ValueEventListener requestListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
