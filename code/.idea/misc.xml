@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/Desktop/未命名文件夹" />
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../Doc/JavaDoc" />
     <option name="LOCALE" value="en_US" />
   </component>
   <component name="NullableNotNullManager">
