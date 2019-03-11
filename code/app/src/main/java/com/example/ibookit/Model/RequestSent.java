@@ -76,5 +76,17 @@ public class RequestSent {
         });
 
     }
+    public ArrayList<Request> getRequestSent() {
+        return requestSent;
+    }
+
+    public ArrayList<Request> sentRequests(){
+        return requestSent;
+    }
+
+    public void setRequestSent(ArrayList<Request> requestSent) {
+        this.requestSent = requestSent;
+    }
+
 
 }
