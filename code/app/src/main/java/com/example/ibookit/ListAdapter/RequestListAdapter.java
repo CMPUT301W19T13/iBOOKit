@@ -11,6 +11,7 @@ package com.example.ibookit.ListAdapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
+import static android.support.constraint.Constraints.TAG;
 
 /**
  * @author joe
@@ -71,7 +74,12 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
         imageView = convertView.findViewById(R.id.imageRequest);
 
-        getBook(request.getBookId(), mTitle, imageView);
+        try {
+            getBook(request.getBookId(), mTitle, imageView);
+        } catch (Exception e) {
+            Log.d(TAG, "getView: Error");
+        }
+
 
         mReceiver.setText("Owner:  " + request.getReceiver());
 
