@@ -54,7 +54,7 @@ public class CreateRequestHandler {
 
         senderRequestSent.child(key).setValue(request);
 
-        mDatabase.child("user").child(sender).child("notification").setValue("1");
+        mDatabase.child("users").child(request.getReceiver()).child("send").setValue("1");
 
     }
 

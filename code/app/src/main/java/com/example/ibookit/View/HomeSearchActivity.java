@@ -28,8 +28,11 @@ import android.widget.SearchView;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * @author zisen
@@ -58,13 +61,31 @@ public class HomeSearchActivity extends AppCompatActivity {
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
 
-        if(mDatabase.child("notification").toString().equals("1")){
-
+//        mDatabase.child("notification").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                String post = dataSnapshot.getKey();
+//
+//                if(post.equals("1")){
+//
+//                    sendNotification(1);
+//                    //mDatabase.child("notification").setValue("");
+//                }else if(post.equals("2")){
+//                    sendNotification(2);
+//                    //mDatabase.child("notification").setValue("");
+//                }
+//            }
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                System.out.println("The read failed: " + databaseError.getCode());
+//            }
+//        });
+        if(!mDatabase.child("send").toString().isEmpty()){
             sendNotification(1);
-            mDatabase.child("notification").setValue("");
-        }else if(mDatabase.child("notification").toString().equals("2")){
+            mDatabase.child("send").removeValue();
+        }else if(!mDatabase.child("accept").toString().isEmpty()){
             sendNotification(2);
-            mDatabase.child("notification").setValue("");
+            mDatabase.child("accept").removeValue();
         }
 
         configure_SearchButtonsAndSearchBar();
