@@ -18,9 +18,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
+ * @author Joe Xu
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * @versi
  */
 public class RequestFunc {
 

@@ -5,11 +5,10 @@ import com.example.ibookit.Functionality.Recommendation;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-
 /**
- * Example local unit test, which will execute on the development machine (host).
+ * @author Joe Xu
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * @versi
  */
 public class ReccomendationTest {
     private double Classics;

@@ -11,9 +11,9 @@ import java.security.acl.Owner;
 import static org.junit.Assert.*;
 
 /**
- * Example local unit test, which will execute on the development machine (host).
+ * @author Joe Xu
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * @version 1.0
  */
 public class BookReturn {
 

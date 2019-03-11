@@ -28,6 +28,12 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
+/**
+ * @author zisen zhou
+ *
+ * @version 1.0
+ */
+
 @RunWith(AndroidJUnit4.class)
 public class SearchTests {
     private Context instrumentationCtx;
