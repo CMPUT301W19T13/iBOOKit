@@ -9,9 +9,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
+import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
@@ -23,8 +25,10 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
     private ListView Sent;
     private ListView Received;
+    private Button Accept_list;
     private ArrayList<Request> RSent = new ArrayList<>();
     private ArrayList<String> Rbook = new ArrayList<>();
+    private ArrayList<Book> Rsort = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<String> adapterB;
     private RequestSent requestSent = new RequestSent();
@@ -38,6 +42,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
         Sent = findViewById(R.id.sent_list);
         Received = findViewById(R.id.received_list);
+        //Accept_list = findViewById(R.id.accept_list);
 
 
         adapterS = new RequestListAdapter(this,R.layout.adapter_request,RSent);
@@ -63,9 +68,51 @@ public class CheckRequestsActivity extends AppCompatActivity {
         });
 
 
+//        Accept_list.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                AlertDialog.Builder builderSingle = new AlertDialog.Builder(CheckRequestsActivity.this);
+//                builderSingle.setTitle("Accepted Books:");
+//                final ArrayAdapter<Book> arrayAdapter = new BookListAdapter(CheckRequestsActivity.this,R.layout.adapter_book,Rbook);
+//
+//                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        Book book = arrayAdapter.getItem(which);
+//                        AlertDialog.Builder builderInner = new AlertDialog.Builder(DialogActivity.this);
+//                        builderInner.setMessage(strName);
+//                        builderInner.setTitle("Your Selected Item is");
+//                        builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                dialog.dismiss();
+//                            }
+//                        });
+//                        builderInner.show();
+//                    }
+//                });
+//                builderSingle.show();
+//
+//
+//            }
+//        });
+
+
 
 
         setBottomNavigationView();
+    }
+
+    protected  void onResume() {
+        requestReceived.RetriveBook(Rbook,adapterB);
+        super.onResume();
     }
 
     public void openactivity(){

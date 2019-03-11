@@ -2,6 +2,7 @@ package com.example.ibookit.View;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,8 +40,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
 
 
         Userlist = findViewById(R.id.userlist);
-        Bundle extras = getIntent().getExtras();
-        String bookname = extras.getString("bookname");
+        final String bookname = getIntent().getStringExtra("bookname");
         //Toast.makeText(RequestListForEachBookActivity.this,"You selected : "+ bookname,Toast.LENGTH_LONG).show();
         //String bookname= getIntent().getStringExtra("bookname");
         adapterR = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rreceived);
