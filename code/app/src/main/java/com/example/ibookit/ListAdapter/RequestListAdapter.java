@@ -103,4 +103,6 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         Picasso.get().load(path).fit().centerCrop().into(imageView);
     }
 
+
+
 }

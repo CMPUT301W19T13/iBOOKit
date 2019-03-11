@@ -40,7 +40,7 @@ public class RequestStatusHandler {
             return "Declined";
         } else {
             Log.d(TAG, "StatusString: Out of range");
-            return "";
+            return "StatusString: Out of range";
         }
     }
 }

@@ -32,6 +32,7 @@ import java.util.ArrayList;
 public class RequestReceived {
     private static final String TAG = "RequestReceived";
     private ArrayList<Request> requestSent = new ArrayList<>();
+    private ArrayList<Request> requestReceived;
     private DatabaseReference mDatabase;
     private String username;
     private ArrayList<String> last = new ArrayList<>();
@@ -135,6 +136,66 @@ public class RequestReceived {
             }
         });
     }
+
+
+    public ArrayList<Request> getRequestSent() {
+        return requestSent;
+    }
+
+    public void setRequestSent(ArrayList<Request> requestSent) {
+        this.requestSent = requestSent;
+    }
+
+    public DatabaseReference getmDatabase() {
+        return mDatabase;
+    }
+
+    public void setmDatabase(DatabaseReference mDatabase) {
+        this.mDatabase = mDatabase;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public ArrayList<String> getLast() {
+        return last;
+    }
+
+    public void setLast(ArrayList<String> last) {
+        this.last = last;
+    }
+
+    public String getBookTitle() {
+        return bookTitle;
+    }
+
+    public void setBookTitle(String bookTitle) {
+        this.bookTitle = bookTitle;
+    }
+
+    public static Request getRequest1() {
+        return request1;
+    }
+
+    public static void setRequest1(Request request1) {
+        RequestReceived.request1 = request1;
+    }
+
+    public RequestReceived(String name, ArrayList<Request> requested){
+        this.username = name;
+        this.requestReceived = requested;
+
+    }
+
+    public ArrayList<Request> requestReceiveList(){
+        return this.requestReceived;
+    }
+
 
 
 }

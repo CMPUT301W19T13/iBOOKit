@@ -44,12 +44,13 @@ public class RequestSent {
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference("users").child(username).child("requestSent");
     }
-
     /**
-     * Retrieve request user sent from fireBase
-     * @param requestSent2
-     * @param adapter
+     * Return all the requests user has sent
      */
+    public RequestSent(ArrayList<Request> allRequest){
+        this.requestSent = allRequest;
+    }
+
     public void RetriveRequest(final ArrayList<Request> requestSent2, final ArrayAdapter<Request> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
