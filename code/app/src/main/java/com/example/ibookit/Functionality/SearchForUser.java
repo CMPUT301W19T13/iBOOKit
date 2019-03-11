@@ -10,6 +10,7 @@
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.example.ibookit.Model.User;
@@ -27,7 +28,8 @@ import java.util.ArrayList;
  * @version 1.0
  */
 public class SearchForUser {
-    public ArrayList<User> mResult;
+    private ArrayList<User> mResult;
+
     public SearchForUser(){}
 
     /**
@@ -41,6 +43,7 @@ public class SearchForUser {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("users");
 
+
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -50,11 +53,14 @@ public class SearchForUser {
                                 (mKeyword.replaceAll("\\s+","").toLowerCase())){
                             User temp = d.getValue(User.class);
                             result.add(temp);
+                            setResult(result);
                             adapter.notifyDataSetChanged();
                         }
                     }
-                    mResult = result;
+
+
                 }
+
             }
 
             @Override
@@ -72,4 +78,8 @@ public class SearchForUser {
     public ArrayList<User> getResult() {
         return mResult;
     }
+    public void setResult(ArrayList<User> result) {
+        this.mResult = result;
+    }
+
 }

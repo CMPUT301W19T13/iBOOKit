@@ -101,8 +101,6 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             searchResultListView.setClickable(true);
             userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
 
-
-
         } else if (type.equals("SearchCategory")) {
 
             Log.d(TAG, "onCreate: " + searchValue);
@@ -226,6 +224,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_home:
+                        finish();
                         break;
 
                     case R.id.action_myshelf:
