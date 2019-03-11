@@ -80,10 +80,10 @@ public class HomeSearchActivity extends AppCompatActivity {
 //                System.out.println("The read failed: " + databaseError.getCode());
 //            }
 //        });
-        if(!mDatabase.child("send").toString().isEmpty()){
+        if(mDatabase.child("send").child("ss").getKey().equals("ss")){
             sendNotification(1);
             mDatabase.child("send").removeValue();
-        }else if(!mDatabase.child("accept").toString().isEmpty()){
+        }else if(mDatabase.child("accept").child("ss").getKey().equals("ss")){
             sendNotification(2);
             mDatabase.child("accept").removeValue();
         }
@@ -232,7 +232,7 @@ public class HomeSearchActivity extends AppCompatActivity {
                     new NotificationCompat.Builder(HomeSearchActivity.this)
                             .setSmallIcon(android.R.drawable.sym_def_app_icon)
                             .setContentTitle("New notification")
-                            .setContentText("You received a new Request!")
+                            .setContentText(mDatabase.child("send").child("ss").getKey())
                             .setChannelId(CHANNEL_ID);
 
             // Gets an instance of the NotificationManager service//

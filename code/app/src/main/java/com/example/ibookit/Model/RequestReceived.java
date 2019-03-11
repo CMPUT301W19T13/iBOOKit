@@ -148,7 +148,7 @@ public class RequestReceived {
         final DatabaseReference dDatabase = FirebaseDatabase.getInstance().getReference();
         dDatabase.child("books").child(request.getBookId()).child("status").setValue(2);
         dDatabase.child("users").child(request.getSender()).child("requestSent").child(request.getRid()).child("isAccept").setValue(1);
-        dDatabase.child("users").child(request.getSender()).child("accept").setValue("1");
+        dDatabase.child("users").child(request.getSender()).child("accept").child("ss").setValue("1");
         ArrayList<Request> newlist = Rlist;
         newlist.remove(request);
         for(Request r :newlist){
