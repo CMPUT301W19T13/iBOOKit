@@ -18,11 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
-import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
@@ -40,10 +38,8 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
     private ListView Sent;
     private ListView Received;
-    private Button Accept_list;
     private ArrayList<Request> RSent = new ArrayList<>();
     private ArrayList<String> Rbook = new ArrayList<>();
-    private ArrayList<Book> Rsort = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<String> adapterB;
     private RequestSent requestSent = new RequestSent();
@@ -60,7 +56,6 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
         Sent = findViewById(R.id.sent_list);
         Received = findViewById(R.id.received_list);
-        //Accept_list = findViewById(R.id.accept_list);
 
 
         adapterS = new RequestListAdapter(this,R.layout.adapter_request,RSent);
@@ -77,7 +72,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
                 String item = (String) Received.getItemAtPosition(position);
 
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
-                intent.putExtras(b);
+                intent.putExtra("bookname",item);
                 startActivity(intent);
 
             }

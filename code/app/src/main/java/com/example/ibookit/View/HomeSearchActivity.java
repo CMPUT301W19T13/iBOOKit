@@ -9,17 +9,14 @@
  */
 package com.example.ibookit.View;
 
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -37,9 +34,6 @@ public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
     private SearchView sv;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String username = user.getDisplayName();
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
 
     /**
      * The first screen when login
@@ -52,14 +46,6 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
-
-        if(mDatabase.child("notification").toString().equals("1")){
-
-            sendNotification(1);
-        }else{
-            sendNotification(2);
-        }
-
 
         configure_SearchButtonsAndSearchBar();
         setBottomNavigationView();
@@ -185,65 +171,4 @@ public class HomeSearchActivity extends AppCompatActivity {
 
     }
 
-    public void sendNotification(int situation) {
-
-        //Get an instance of NotificationManager//
-
-
-        String CHANNEL_ID = "my_channel_01";
-        CharSequence name = "my_channel";
-        String Description = "This is my channel";
-        int importance = NotificationManager.IMPORTANCE_HIGH;
-        NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
-        mChannel.setDescription(Description);
-        mChannel.enableLights(true);
-        mChannel.enableVibration(true);
-        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-        mChannel.setShowBadge(false);
-
-        if(situation ==1) {
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(HomeSearchActivity.this)
-                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle("New notification")
-                            .setContentText("You received a new Request!")
-                            .setChannelId(CHANNEL_ID);
-
-        // Gets an instance of the NotificationManager service//
-
-        NotificationManager mNotificationManager =
-
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // When you issue multiple notifications about the same type of event,
-        // it’s best practice for your app to try to update an existing notification
-        // with this new information, rather than immediately creating a new notification.
-        // If you want to update this notification at a later date, you need to assign it an ID.
-        // You can then use this ID whenever you issue a subsequent notification.
-        // If the previous notification is still visible, the system will update this existing notification,
-        // rather than create a new one. In this example, the notification’s ID is 001//
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.createNotificationChannel(mChannel);
-
-        //NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(001, mBuilder.build());}
-        else{
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(HomeSearchActivity.this)
-                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle("New notification")
-                            .setContentText("Your request has been accepted!")
-                            .setChannelId(CHANNEL_ID);
-
-
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            notificationManager.createNotificationChannel(mChannel);
-
-            //NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(001, mBuilder.build());
-        }
-    }
 }

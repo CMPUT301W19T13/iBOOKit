@@ -1,5 +1,5 @@
 /**
- * Class name: RequestListAdapter
+ * Class name: RequestForEachBookListAdapter
  *
  * version 1.0
  *
@@ -32,20 +32,19 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 /**
- * @author joe
+ * @author Jiazhen Li
  *
  * @version 1.0
  */
-public class RequestListAdapter extends ArrayAdapter<Request> {
-    private Context mContext;
+public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { private Context mContext;
 
     private int mResource;
     private DatabaseReference mDatabase;
-    private TextView mTitle, mReceiver, mIs_accpected;
+    private TextView mTitle, mSender, mIs_accpected;
     private Book mBook;
     private ImageView imageView;
 
-    public RequestListAdapter(Context context, int resource, ArrayList<Request> objects) {
+    public RequestForEachBookListAdapter(Context context, int resource, ArrayList<Request> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -59,13 +58,13 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         Request request = getItem(position);
 
         mTitle = convertView.findViewById(R.id.listTitle);
-        mReceiver = convertView.findViewById(R.id.listReceiver);
+        mSender = convertView.findViewById(R.id.listReceiver);
         mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
         imageView = convertView.findViewById(R.id.imageRequest);
 
         getBook(request.getBookId(), mTitle, imageView);
 
-        mReceiver.setText("Owner:  " + request.getReceiver());
+        mSender.setText("Sender:  " + request.getSender());
 
         RequestStatusHandler handler = new RequestStatusHandler();
 
@@ -92,6 +91,7 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
             }
         });
 
+
     }
 
     /**
@@ -103,6 +103,5 @@ public class RequestListAdapter extends ArrayAdapter<Request> {
         Picasso.get().load(path).fit().centerCrop().into(imageView);
     }
 
-
-
 }
+

@@ -11,7 +11,6 @@ package com.example.ibookit.View;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,6 +18,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.ibookit.ListAdapter.RequestForEachBookListAdapter;
+import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,8 +36,8 @@ import java.util.ArrayList;
  */
 public class RequestListForEachBookActivity extends AppCompatActivity {
 
-    private ArrayList<String> Rreceived = new ArrayList<>();
-    private ArrayAdapter<String> adapterR;
+    private ArrayList<Request> Rreceived = new ArrayList<>();
+    private ArrayAdapter<Request> adapterR;
     private RequestReceived requestReceived = new RequestReceived();
     private ListView Userlist;
     public int positionpoint;
@@ -59,13 +60,77 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
         Userlist = findViewById(R.id.userlist);
         final String bookname = getIntent().getStringExtra("bookname");
         //Toast.makeText(RequestListForEachBookActivity.this,"You selected : "+ bookname,Toast.LENGTH_LONG).show();
-        //String bookname= getIntent().getStringExtra("bookname");
-        adapterR = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rreceived);
+
+        adapterR = new RequestForEachBookListAdapter(this,R.layout.adapter_request,Rreceived);
         Userlist.setAdapter(adapterR);
         requestReceived.RequestInBook(Rreceived,adapterR,bookname);
+
+
+        ReqDatabase = FirebaseDatabase.getInstance().getReference();
+
+        Userlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                positionpoint = position;
+
+                android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(RequestListForEachBookActivity.this);
+                builder.setCancelable(true);
+                builder.setTitle("This user wants to borrow the book");
+
+
+
+                builder.setNegativeButton("Reject ", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        tempquest = Rreceived.get(positionpoint);
+
+                        ReqDatabase.child("users").child(tempquest.getSender()).child("requestSent").child(tempquest.getRid()).removeValue();
+                        ReqDatabase.child("users").child(myname).child("requestReceived").child(tempquest.getRid()).removeValue();
+                        ReqDatabase.child("users").child(tempquest.getSender()).child("Replies").child(myname).child(bookname).setValue("Rejected");
+
+
+                        Rreceived.remove(positionpoint);
+                        adapterR.notifyDataSetChanged();
+
+                    }
+                });
+
+
+                builder.setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        String Rid = Rreceived.get(positionpoint).getRid();
+                        tempquest = Rreceived.get(positionpoint);
+
+                        for(Request r : Rreceived){
+
+                            ReqDatabase.child("users").child(myname).child("requestReceived").child(r.getRid()).removeValue();
+                            ReqDatabase.child("users").child(r.getSender()).child("requestReceived").child(r.getRid()).removeValue();
+                            //adapterR.notifyDataSetChanged();
+
+                        }
+                        ReqDatabase.child("books").child(Rid).child("status").setValue(1);
+                        ReqDatabase.child("users").child(tempquest.getSender()).child("Replies").child(myname).child(bookname).setValue("Accepted");
+                        Rreceived.clear();
+
+
+                        finish();
+                    }
+                });
+
+                builder.show();
+
+
+            }
+        });
+
         if(Rreceived.isEmpty()){
             Toast.makeText(RequestListForEachBookActivity.this,"You selected : "+ bookname,Toast.LENGTH_LONG).show();
         }
 
     }
 }
+

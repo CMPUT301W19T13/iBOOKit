@@ -128,7 +128,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-            Picasso.get().load(mImageUri).into(imageButton);
+            Picasso.get().load(mImageUri).fit().centerCrop().into(imageButton);
 
         }
 

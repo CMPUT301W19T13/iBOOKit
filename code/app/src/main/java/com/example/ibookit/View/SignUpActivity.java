@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
     private TextView mEmail, mPassword, mPhone, mUsername;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+    private ProgressBar progressBar;
 
     /**
      * Let user to sign up in UI
@@ -62,6 +64,9 @@ public class SignUpActivity extends AppCompatActivity {
         mPassword = findViewById(R.id.password_SignUp);
         mPhone = findViewById(R.id.phone_SignUp);
         mUsername = findViewById(R.id.userName_SignUp);
+        progressBar = findViewById(R.id.progressBar_signUp);
+
+        progressBar.setVisibility(View.INVISIBLE);
 
 
         Button signUp = findViewById(R.id.signUp);
@@ -75,6 +80,14 @@ public class SignUpActivity extends AppCompatActivity {
                 final String phone = mPhone.getText().toString();
                 final String username = mUsername.getText().toString();
 
+                progressBar.setVisibility(View.VISIBLE);
+
+                if (email.isEmpty() || username.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "Cannot leave empty",
+                            Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    return;
+                }
 
                 // Create a account with email and password
                 mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -83,10 +96,6 @@ public class SignUpActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
 
                             Log.d(TAG, "createUserWithEmail:success");
-
-                            Toast.makeText(SignUpActivity.this, "SignUpActivity successful.",
-                                    Toast.LENGTH_SHORT).show();
-
 
                             FirebaseUser user = mAuth.getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
@@ -101,12 +110,18 @@ public class SignUpActivity extends AppCompatActivity {
 
                             setUserInfo(user.getUid(), username, email, phone);
 
+                            Toast.makeText(SignUpActivity.this, "SignUpActivity successful.",
+                                    Toast.LENGTH_SHORT).show();
+                            
+                            progressBar.setVisibility(View.INVISIBLE);
+
                             Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
                             startActivity(intent);
 
                         } else {
                             Toast.makeText(SignUpActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }
                 });

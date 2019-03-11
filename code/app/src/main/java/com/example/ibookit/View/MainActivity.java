@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.ibookit.R;
@@ -37,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText mEmail, mPassword;
+    private ProgressBar progressBar;
+    private Button logInButton;
 
     /**
      * Main page and let user for sign in
@@ -47,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressBar = findViewById(R.id.progressBar_login);
+        logInButton = findViewById(R.id.logInButton);
 
-        Button logInButton = (Button) findViewById(R.id.logInButton);
+        progressBar.setVisibility(View.INVISIBLE);
 
         logInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: " + mEmail.getText().toString());
                 Log.d(TAG, "onClick: " + mPassword.getText().toString());
 
+                progressBar.setVisibility(View.VISIBLE);
 
                 // get email and password and send it to fireBase Auth
                 if ((!mEmail.getText().toString().isEmpty()) && (!mPassword.getText().toString().isEmpty())) {
@@ -67,19 +73,24 @@ public class MainActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             Toast.makeText(MainActivity.this, "Login successful",
                                     Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(MainActivity.this, "Login fail",
                                     Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
                         }
                     });
+
 
                 } else {
                     Log.d(TAG, "onClick: Empty");
                     Toast.makeText(MainActivity.this, "Cannot leave empty",
                             Toast.LENGTH_SHORT).show();
+
+                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -131,8 +142,10 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "setupFirebaseAuth: Success");
                     Intent intent = new Intent(MainActivity.this, HomeSearchActivity.class);
                     startActivity(intent);
+//                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
                     Log.d(TAG, "setupFirebaseAuth: Fail");
+//                    progressBar.setVisibility(View.INVISIBLE);
                 }
             }
         };

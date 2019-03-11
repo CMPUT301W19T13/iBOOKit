@@ -34,10 +34,10 @@ public class RequestReceived {
     private ArrayList<Request> requestSent = new ArrayList<>();
     private ArrayList<Request> requestReceived;
     private DatabaseReference mDatabase;
-    private DatabaseReference bDatabase;
     private String username;
     private ArrayList<String> last = new ArrayList<>();
     private String bookTitle;
+    private static Request request1;
 
     /**
      * Constructor
@@ -46,7 +46,6 @@ public class RequestReceived {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
-        bDatabase = FirebaseDatabase.getInstance().getReference().child("books");
     }
 
     /**
@@ -106,20 +105,22 @@ public class RequestReceived {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 users.clear();
                 adapter.notifyDataSetChanged();
-                for (DataSnapshot d: dataSnapshot.getChildren()) {
-                    final Request request = d.getValue(Request.class);
-                    bDatabase.addValueEventListener(new ValueEventListener() {
+                for (final DataSnapshot d: dataSnapshot.getChildren()) {
+                    request1 = d.getValue(Request.class);
+                    final DatabaseReference cDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request1.getBookId());
+                    cDatabase.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                Book book1 = ds.getValue(Book.class);
+                                Book book1 = dataSnapshot.getValue(Book.class);
                                 bookTitle = book1.getTitle();
                                 if (bookTitle.equals(bookname)) {
-                                    users.add(request.getSender());
+                                    Request rew = d.getValue(Request.class);
+                                    users.add(rew);
                                     adapter.notifyDataSetChanged();
                                 }
-                            }
+
                         }
+
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -136,25 +137,6 @@ public class RequestReceived {
         });
     }
 
-    public void decline_request(final Request request){
-        mDatabase.child(request.getRid()).child("isAccept").setValue(2);
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("users")
-                .child(request.getSender()).child("requestSent");
-        database.child(request.getRid()).child("isAccept").setValue(2);
-
-    }
-    public void accept_request(final ArrayList<Request> Rlist, final Request request) {
-        mDatabase.child(request.getRid()).child("isAccept").setValue(1);
-        final DatabaseReference dDatabase = FirebaseDatabase.getInstance().getReference();
-        dDatabase.child("books").child(request.getBookId()).child("status").setValue(2);
-        dDatabase.child("users").child(request.getSender()).child("requestSent").child(request.getRid()).child("isAccept").setValue(1);
-        mDatabase.child(request.getRid()).child("notification").setValue("2");
-        ArrayList<Request> newlist = Rlist;
-        newlist.remove(request);
-        for(Request r :newlist){
-            decline_request(r);
-        }
-    }
 
     public ArrayList<Request> getRequestSent() {
         return requestSent;
