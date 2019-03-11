@@ -39,6 +39,14 @@ public class BookListAdapter extends ArrayAdapter<Book> {
     private TextView mTitle, mAuthor, mIsbn, mStatus;
     private ImageView imageView;
 
+
+    /**
+     * reference: https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
+     *
+     * @param context
+     * @param resource
+     * @param objects
+     */
     public BookListAdapter(Context context, int resource, ArrayList<Book> objects) {
         super(context, resource, objects);
         mContext = context;

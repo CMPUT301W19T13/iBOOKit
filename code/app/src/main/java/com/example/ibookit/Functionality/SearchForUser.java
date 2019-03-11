@@ -33,6 +33,9 @@ public class SearchForUser {
     /**
      * Search the user by keywords
      * and put the result into ListView
+     *
+     * reference: https://stackoverflow.com/questions/10827872/difference-between-string-replace-and-replaceall
+     *
      * @param mKeyword
      * @param result
      * @param adapter

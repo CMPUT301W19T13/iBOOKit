@@ -1,5 +1,18 @@
+/**
+ * Class name: Photo
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ *
+ */
 package com.example.ibookit.Model;
 
+/**
+ * @version 1.0
+ */
 public class photo {
     private String path;
     private Integer height;
@@ -28,7 +41,6 @@ public class photo {
     public void setWeight(Integer weight) {
         this.weight = weight;
     }
-
 
 
 }

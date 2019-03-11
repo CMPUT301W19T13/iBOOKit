@@ -50,6 +50,14 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
         mResource = resource;
     }
 
+    /**
+     * reference: https://stackoverflow.com/questions/8166497/custom-adapter-for-list-view
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         LayoutInflater inflater = LayoutInflater.from(mContext);

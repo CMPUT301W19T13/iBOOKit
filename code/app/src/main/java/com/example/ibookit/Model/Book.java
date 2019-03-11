@@ -28,6 +28,16 @@ public class Book {
     private String currentBorrower;
     private String imageURL;
 
+    /**
+     * Constructor
+     *
+     * @param isbn
+     * @param title
+     * @param author
+     * @param description
+     * @param category
+     * @param owner
+     */
     public Book(String isbn, String title, String author, String description, String category, String owner) {
         this.isbn = isbn;
         this.title = title;
@@ -39,6 +49,9 @@ public class Book {
         this.currentBorrower = "";
     }
 
+    /**
+     * Default constructor
+     */
     public Book() {}
 
 

@@ -1,5 +1,5 @@
 /**
- * Class name: BookShelf
+ * Class name: BookShelf Interface
  *
  * version 1.0
  *

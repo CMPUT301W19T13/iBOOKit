@@ -211,6 +211,13 @@ public class HomeSearchActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+    /**
+     * get all notification when user signIn
+     *
+     * @param situation
+     *
+     */
     public void sendNotification(int situation) {
 
         //Get an instance of NotificationManager//
