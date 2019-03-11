@@ -1,3 +1,12 @@
+/**
+ * Class name: HomeSearchActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Context;
@@ -14,16 +23,23 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 import com.example.ibookit.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+/**
+ * @author zisen
+ *
+ * @version 1.0
+ */
 
 public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
     private SearchView sv;
 
+    /**
+     * The first screen when login
+     * let user input something in search bar
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +58,9 @@ public class HomeSearchActivity extends AppCompatActivity {
         sv.clearFocus();
     }
 
-
+    /**
+     * handle the condition for different search type (user, book or category)
+     */
     private void configure_SearchButtonsAndSearchBar(){
         Button searchUser = findViewById(R.id.search_user);
         Button viewCategory = findViewById(R.id.search_category);
@@ -54,7 +72,7 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
 
                 request.putExtra("type", "SearchUser");
                 request.putExtra("SearchValue", sv.getQuery().toString());
@@ -74,8 +92,8 @@ public class HomeSearchActivity extends AppCompatActivity {
         searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-                request.putExtra("type", "SearchTitle");
+                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
+                request.putExtra("type", "SearchBook");
                 request.putExtra("SearchValue", sv.getQuery().toString());
                 startActivity(request);
             }
@@ -85,7 +103,9 @@ public class HomeSearchActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Navigation bar enabled
+     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -125,6 +145,11 @@ public class HomeSearchActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Show category of the book the system have
+     * let user choose the category in UI
+     */
     private void setCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -133,7 +158,7 @@ public class HomeSearchActivity extends AppCompatActivity {
         builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
                 request.putExtra("type", "SearchCategory");
                 request.putExtra("SearchValue", options[which]);
                 startActivity(request);
@@ -141,73 +166,9 @@ public class HomeSearchActivity extends AppCompatActivity {
             }
         });
 
-
-
-
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 
     }
 
-    public void sendNotification(int situation) {
-
-        //Get an instance of NotificationManager//
-
-
-        String CHANNEL_ID = "my_channel_01";
-        CharSequence name = "my_channel";
-        String Description = "This is my channel";
-        int importance = NotificationManager.IMPORTANCE_HIGH;
-        NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
-        mChannel.setDescription(Description);
-        mChannel.enableLights(true);
-        mChannel.enableVibration(true);
-        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-        mChannel.setShowBadge(false);
-
-        if(situation ==1) {
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(HomeSearchActivity.this)
-                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle("New notification")
-                            .setContentText("You received a new Request!")
-                            .setChannelId(CHANNEL_ID);
-
-        // Gets an instance of the NotificationManager service//
-
-        NotificationManager mNotificationManager =
-
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        // When you issue multiple notifications about the same type of event,
-        // it’s best practice for your app to try to update an existing notification
-        // with this new information, rather than immediately creating a new notification.
-        // If you want to update this notification at a later date, you need to assign it an ID.
-        // You can then use this ID whenever you issue a subsequent notification.
-        // If the previous notification is still visible, the system will update this existing notification,
-        // rather than create a new one. In this example, the notification’s ID is 001//
-
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        notificationManager.createNotificationChannel(mChannel);
-
-        //NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(001, mBuilder.build());}
-        else{
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(HomeSearchActivity.this)
-                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle("New notification")
-                            .setContentText("Your request has been accepted!")
-                            .setChannelId(CHANNEL_ID);
-
-
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            notificationManager.createNotificationChannel(mChannel);
-
-            //NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.notify(001, mBuilder.build());
-        }
-    }
 }
