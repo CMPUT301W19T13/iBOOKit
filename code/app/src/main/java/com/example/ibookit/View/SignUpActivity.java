@@ -48,6 +48,8 @@ public class SignUpActivity extends AppCompatActivity {
     /**
      * Let user to sign up in UI
      * @param savedInstanceState
+     *
+     * reference: https://firebase.google.com/docs/auth/android/start
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
