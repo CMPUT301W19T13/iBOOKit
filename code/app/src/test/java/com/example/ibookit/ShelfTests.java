@@ -1,3 +1,12 @@
+/**
+ * Class name: ShelfTests
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit;
 
 import com.example.ibookit.Model.Book;
@@ -14,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 /**
  * @author Joe Xu
  *
- * @versi
+ * @version 1.0
  */
 public class ShelfTests {
 

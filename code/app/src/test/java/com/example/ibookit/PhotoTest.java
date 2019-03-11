@@ -1,3 +1,12 @@
+/**
+ * Class name: PhotoTest
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit;
 import com.example.ibookit.Model.photo;
 
@@ -10,7 +19,7 @@ import static org.junit.Assert.assertNotEquals;
 /**
  * @author Joe Xu
  *
- * @versi
+ * @version 1.0
  */
 public class PhotoTest {
 

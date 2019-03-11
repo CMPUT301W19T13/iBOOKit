@@ -1,14 +1,18 @@
+/**
+ * Class name: RequestFuncTest
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit;
 
-import android.content.Context;
-import android.widget.ArrayAdapter;
-
 import com.example.ibookit.Functionality.RequestStatusHandler;
-import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
-import com.example.ibookit.Model.User;
 
 import org.junit.Test;
 
@@ -20,7 +24,7 @@ import static org.junit.Assert.assertNotEquals;
 /**
  * @author Joe Xu
  *
- * @versi
+ * @version 1.0
  */
 public class RequestFunc {
 
