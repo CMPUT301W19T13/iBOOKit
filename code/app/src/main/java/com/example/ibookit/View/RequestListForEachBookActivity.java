@@ -1,3 +1,12 @@
+/**
+ * Class name: RequestListForEachBookActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.DialogInterface;
@@ -20,6 +29,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/**
+ * @author Jiazhen Li
+ *
+ * @version 1.0
+ */
 public class RequestListForEachBookActivity extends AppCompatActivity {
 
     private ArrayList<Request> Rreceived = new ArrayList<>();
@@ -31,7 +45,10 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
     private Request tempquest;
     private String myname;
 
-
+    /**
+     * Showing user who request a particular book in UI
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_userlist);
@@ -94,9 +111,6 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                             ReqDatabase.child("users").child(r.getSender()).child("requestReceived").child(r.getRid()).removeValue();
                             //adapterR.notifyDataSetChanged();
 
-
-
-
                         }
                         ReqDatabase.child("books").child(Rid).child("status").setValue(1);
                         ReqDatabase.child("users").child(tempquest.getSender()).child("Replies").child(myname).child(bookname).setValue("Accepted");
@@ -109,24 +123,10 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
 
                 builder.show();
 
-                //System.out.println(Rreceived.get(position).getRid());
-                //Rreceived.remove(position);
-                //adapterR.notifyDataSetChanged();
-
-
-
-
 
             }
         });
 
-
-
-
-
-        //adapterR = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rreceived);
-        //Userlist.setAdapter(adapterR);
-        //requestReceived.RequestInBook(Rreceived,adapterR,bookname);
         if(Rreceived.isEmpty()){
             Toast.makeText(RequestListForEachBookActivity.this,"You selected : "+ bookname,Toast.LENGTH_LONG).show();
         }

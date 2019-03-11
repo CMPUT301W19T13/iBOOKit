@@ -1,3 +1,12 @@
+/**
+ * Class name: MyShelfBorrowerActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -20,6 +29,11 @@ import com.example.ibookit.R;
 
 import java.util.ArrayList;
 
+/**
+ * @author zijun wu
+ *
+ * @version 1.0
+ */
 public class MyShelfBorrowerActivity extends AppCompatActivity {
 
     private ListView mListView;
@@ -27,6 +41,10 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
     private ArrayList<Book> mBooks = new ArrayList<>();
     private BorrowerShelf borrowerShelf = new BorrowerShelf();
 
+    /**
+     * Showing the borrower shelf in a listView
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +69,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
 
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -62,6 +81,9 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Handle user clicking item on the list
+     */
     private void ListViewClickHandler () {
         final ListView finalList = mListView;
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -74,7 +96,9 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * Navigation bar enabled
+     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

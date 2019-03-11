@@ -1,3 +1,12 @@
+/**
+ * Class name: SearchForUser
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
@@ -10,13 +19,24 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+/**
+ * @author zisen
+ *
+ * @version 1.0
+ */
 public class SearchForUser {
     public ArrayList<User> mResult;
     public SearchForUser(){}
 
+    /**
+     * Search the user by keywords
+     * and put the result into ListView
+     * @param mKeyword
+     * @param result
+     * @param adapter
+     */
     public void searchByKeyword(final String mKeyword, final ArrayList<User> result, final ArrayAdapter<User> adapter) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("users");
@@ -45,6 +65,10 @@ public class SearchForUser {
 
     }
 
+    /**
+     * Get search result
+     * @return
+     */
     public ArrayList<User> getResult() {
         return mResult;
     }
