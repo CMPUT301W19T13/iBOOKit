@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -35,8 +34,7 @@
         app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/frameLayout"
-        app:layout_constraintTop_toTopOf="parent"/>
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/received_list"
@@ -88,12 +86,6 @@
         tools:layout_editor_absoluteY="410dp">
 
         <include layout="@layout/activity_navigation" />
-
-        <!--<Button-->
-            <!--android:id="@+id/accept_list"-->
-            <!--android:layout_width="89dp"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Accept List" />-->
 
     </FrameLayout>
 
