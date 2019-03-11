@@ -117,6 +117,25 @@ public class RequestReceived {
         });
     }
 
+    public void decline_request(final Request request){
+        mDatabase.child(request.getRid()).child("isAccept").setValue(2);
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("users")
+                .child(request.getSender()).child("requestSent");
+        database.child(request.getRid()).child("isAccept").setValue(2);
+
+    }
+    public void accept_request(final ArrayList<Request> Rlist, final Request request) {
+        mDatabase.child(request.getRid()).child("isAccept").setValue(1);
+        final DatabaseReference dDatabase = FirebaseDatabase.getInstance().getReference();
+        dDatabase.child("books").child(request.getBookId()).child("status").setValue(2);
+        dDatabase.child("users").child(request.getSender()).child("requestSent").child(request.getRid()).child("isAccept").setValue(1);
+        mDatabase.child(request.getRid()).child("notification").setValue("2");
+        ArrayList<Request> newlist = Rlist;
+        newlist.remove(request);
+        for(Request r :newlist){
+            decline_request(r);
+        }
+    }
 
 
 }
