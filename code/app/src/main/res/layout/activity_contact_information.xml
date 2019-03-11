@@ -7,25 +7,25 @@
     android:background="@drawable/graidentbackground"
     tools:context=".View.ContactInformationActivity">
 
-    <TextView
+    <EditText
         android:id="@+id/email_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/back"
+        android:editable="false"
         android:ems="10"
         android:gravity="center"
         android:inputType="textEmailAddress"
-        android:textColor="@color/redText"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="24sp"
-        android:textStyle="bold|italic"
-        app:fontFamily="@font/audiowide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/username_contact" />
+        app:layout_constraintTop_toBottomOf="@+id/image_contact_Edit" />
 
     <EditText
         android:id="@+id/phone_contact"
@@ -46,25 +46,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email_contact" />
 
-    <TextView
+    <EditText
         android:id="@+id/username_contact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="@drawable/back"
+        android:editable="false"
         android:ems="10"
         android:gravity="center"
         android:inputType="none"
-        android:textColor="@color/redText"
+        android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="24sp"
-        android:textStyle="italic"
-        app:fontFamily="@font/audiowide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_contact_Edit" />
+        app:layout_constraintTop_toBottomOf="@+id/phone_contact" />
 
     <ImageButton
         android:id="@+id/image_contact_Edit"
@@ -81,7 +81,7 @@
         android:id="@+id/saveChanges_userProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/buttonshape"
         android:text="Save Changes"
         android:textColor="@android:color/white"
@@ -90,6 +90,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone_contact" />
+        app:layout_constraintTop_toBottomOf="@+id/username_contact" />
 
 </android.support.constraint.ConstraintLayout>

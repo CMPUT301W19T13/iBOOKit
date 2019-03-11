@@ -1,23 +1,9 @@
-/**
- * Class name: BookShelf
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- */
 package com.example.ibookit.Model;
 
 import android.widget.ArrayAdapter;
 
 import java.util.ArrayList;
 
-/**
- * @author zijun wu
- *
- * @version 1.0
- */
 public interface BookShelf {
 
     public ArrayList<Book> All_books();

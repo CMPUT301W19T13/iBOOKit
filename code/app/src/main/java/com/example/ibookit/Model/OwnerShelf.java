@@ -1,12 +1,3 @@
-/**
- * Class name: OwnerShelf
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- */
 package com.example.ibookit.Model;
 
 import android.net.Uri;
@@ -16,6 +7,7 @@ import android.widget.ArrayAdapter;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,13 +22,7 @@ import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 
-
-/**
- * @author zijun wu
- *
- * @version 1.0
- */
-public class OwnerShelf implements BookShelf {
+public class OwnerShelf implements BookShelf{
 
     private static final String TAG = "OwnerShelf";
     private DatabaseReference mDatabase;
@@ -59,13 +45,6 @@ public class OwnerShelf implements BookShelf {
         return myBooks;
     }
 
-    /**
-     * Sync Owner bookshelf with the FireBase
-     *
-     * @param books
-     * @param adapter
-     * @param status
-     */
     @Override
     public void SyncBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter, final Integer status) {
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -95,11 +74,6 @@ public class OwnerShelf implements BookShelf {
 
     }
 
-    /**
-     * Owner add a book with book image (image can be empty)
-     * @param book
-     * @param mImageUri
-     */
     public void add_book_with_image(final Book book, Uri mImageUri) {
         key = createBookKey();
 
@@ -145,10 +119,6 @@ public class OwnerShelf implements BookShelf {
 
     }
 
-    /**
-     * Owner remove a book on FireBase
-     * @param book
-     */
     @Override
     public void remove_book(Book book) {
         String key = book.getId();
@@ -158,11 +128,8 @@ public class OwnerShelf implements BookShelf {
         FirebaseDatabase.getInstance().getReference().child("books").child(key).removeValue();
     }
 
-    /**
-     * Owner update a book information
-     *
-     * @param book
-     */
+
+
     public void update_book(Book book) {
 
         mDatabase.child(book.getId()).setValue(book);
@@ -172,10 +139,7 @@ public class OwnerShelf implements BookShelf {
     }
 
 
-    /**
-     * create a unique key for a book
-     * @return
-     */
+
     private String createBookKey() {
         return mDatabase.push().getKey();
     }

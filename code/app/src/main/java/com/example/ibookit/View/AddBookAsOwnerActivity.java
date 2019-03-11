@@ -1,12 +1,3 @@
-/**
- * Class name: AddBookAsOwnerActivity
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -30,11 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
-/**
- * @author zijun wu
- *
- * @version 1.0
- */
+
 public class AddBookAsOwnerActivity extends AppCompatActivity {
 
     private TextView mTitle, mAuthor, mIsbn, mCategory, mDescription;
@@ -42,14 +29,9 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private Uri mImageUri;
 
+
     private static final int PICK_IMAGE_REQUEST = 1;
 
-
-    /**
-     * This activity let owner add a book in UI
-     *
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,11 +84,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * pick a image for the book in system
-     *
-     * reference: https://codinginflow.com/tutorials/android/firebase-storage-upload-and-retrieve-images/part-2-image-chooser
-     */
+    // reference: https://codinginflow.com/tutorials/android/firebase-storage-upload-and-retrieve-images/part-2-image-chooser
     private void fileChooser () {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -114,12 +92,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
-    /**
-     * Put image selected to imageButton
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -128,15 +101,12 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-            Picasso.get().load(mImageUri).into(imageButton);
+            Picasso.get().load(mImageUri).fit().centerCrop().into(imageButton);
 
         }
 
     }
 
-    /**
-     * NavigationBar enabled
-     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

@@ -1,10 +1,5 @@
 package com.example.ibookit;
 
-import android.util.Log;
-import android.widget.ArrayAdapter;
-
-import com.example.ibookit.Functionality.SearchForUser;
-import com.example.ibookit.ListAdapter.UserListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.User;
 
@@ -20,9 +15,6 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class SearchTest {
-    private ArrayAdapter<Book> bookArrayAdapter;
-    private ArrayAdapter<User> userArrayAdapter;
-
 
 
     Book book = new Book();
@@ -34,20 +26,19 @@ public class SearchTest {
 
     // set testbook and testUser to the correct arraylist
 
-    //Search search = new Search();
+    Search search = new Search();
+
 
 
     @Test
     public void testSearch(){
-        //user search test
-        SearchForUser userSearch = new SearchForUser();
-        ArrayList<User> searchResult= new ArrayList<>();
+         String test = "testID";
+        resultsUser = search.getUserId(test);
+        assertEquals(resultsUser, testUser);
 
-//        userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
-        //userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
-        ArrayList<User> testResult = userSearch.getResult();
+        resultsBook = search.getBooks(test);
+        assertEquals(resultsBook, testBook);
 
-       // assertEquals(testResult, owner.getId());
 
 
     }

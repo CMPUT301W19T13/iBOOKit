@@ -1,12 +1,3 @@
-/**
- * Class name: ViewBookInfoAsOwnerActivity
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -30,19 +21,12 @@ import com.example.ibookit.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
-/**
- * @author zijun wu
- *
- * @version 1.0
- */
 
 public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
 
@@ -55,12 +39,6 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
     private ImageButton imageButton;
     private Uri mImageUri;
 
-    /**
-     * View book information for a particular book
-     * get the book from owner bookShelf
-     *
-     * @param savedInstanceState
-     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,11 +65,11 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: no objStr");
         }
 
+        // load image once
+        setImage(book.getImageURL(), imageButton);
+
     }
 
-    /**
-     * OnStart: Set info for book into TextView
-     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -116,8 +94,8 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // update a book only if it is available
-                if (book.getStatus() != 0) {
+                // cannot update a book if it is borrowed
+                if (book.getStatus() == 3) {
                     Toast.makeText(ViewBookInfoAsOwnerActivity.this, "View Only",
                             Toast.LENGTH_SHORT).show();
 
@@ -157,11 +135,6 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * update the image for book if user change image
-     *
-     * @param book
-     */
     private void updateImage (final Book book) {
         if (mImageUri != null) {
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -196,11 +169,6 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * pick a image for the book in system
-     *
-     * reference: https://codinginflow.com/tutorials/android/firebase-storage-upload-and-retrieve-images/part-2-image-chooser
-     */
     private void fileChooser () {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -208,12 +176,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
-    /**
-     *
-     * @param requestCode
-     * @param resultCode
-     * @param data
-     */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -222,18 +185,12 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
                 && data != null && data.getData() != null) {
             mImageUri = data.getData();
 
-            Picasso.get().load(mImageUri).into(imageButton);
+            Picasso.get().load(mImageUri).fit().centerCrop().into(imageButton);
 
         }
 
     }
 
-    /**
-     * Set image into imageButton
-     *
-     * @param path
-     * @param image
-     */
     private void setImage(String path, ImageButton image) {
         Picasso.get().load(path).fit().centerCrop().into(image);
     }

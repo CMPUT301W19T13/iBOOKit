@@ -1,20 +1,7 @@
-/**
- * Class name: Recommendation
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- */
 package com.example.ibookit.Functionality;
 
-/**
- * @author joe
- *
- * @version 1.0
- */
 public class Recommendation {
+
 
     private double Classics;
     private double SciFi;
@@ -26,9 +13,6 @@ public class Recommendation {
     private double Buisness;
     private double other;
 
-    /**
-     * Getter and Setter
-     */
     public double getClassics() {
         return Classics;
     }

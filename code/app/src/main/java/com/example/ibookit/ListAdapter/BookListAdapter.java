@@ -1,34 +1,26 @@
-/**
- * Class name: BookListAdapter
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- */
 package com.example.ibookit.ListAdapter;
 
 import android.content.Context;
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import java.net.URL;
 import java.util.ArrayList;
 
-/**
- * @author zijun wu
- *
- * @version 1.0
- */
 public class BookListAdapter extends ArrayAdapter<Book> {
 
     private static final String TAG = "BookListAdapter";
@@ -72,11 +64,6 @@ public class BookListAdapter extends ArrayAdapter<Book> {
         return convertView;
     }
 
-    /**
-     * set image for book in custom listView
-     * @param path
-     * @param imageView
-     */
     private void setImage(String path, final ImageView imageView) {
         Picasso.get().load(path).fit().centerCrop().into(imageView);
     }

@@ -1,20 +1,5 @@
-/**
- * Class name: User
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- *
- */
 package com.example.ibookit.Model;
 
-/**
- * @author zijunwu
- *
- * @version 1.0
- */
 public class User {
     private String username;
     private String email;
@@ -22,13 +7,6 @@ public class User {
     private String id;
     private String imageURL;
 
-    /**
-     * Constructor
-     * @param id
-     * @param username
-     * @param email
-     * @param phoneNumber
-     */
     public User(String id, String username, String email, String phoneNumber) {
         this.id = id;
         this.username = username;
@@ -36,22 +14,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    /**
-     * Constructor
-     * @param name
-     */
+    public User() {}
     public User(String name){
         this.username = name;
     }
 
-    /**
-     * Default constructor
-     */
-    public User() {}
-
-    /**
-     * Getter and Setter
-     */
     public String getId() {
         return id;
     }

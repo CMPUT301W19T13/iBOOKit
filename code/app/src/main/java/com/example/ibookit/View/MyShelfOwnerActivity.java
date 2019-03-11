@@ -1,12 +1,3 @@
-/**
- * Class name: MyShelfOwnerActivity
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- */
 package com.example.ibookit.View;
 
 import android.content.Context;
@@ -37,12 +28,6 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-
-/**
- * @author zijun wu
- *
- * @version 1.0
- */
 public class MyShelfOwnerActivity extends AppCompatActivity {
     public static Context sContext;
 
@@ -54,10 +39,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
     private OwnerShelf ownerShelf = new OwnerShelf();
     private Integer status;
 
-    /**
-     * Showing owner shelf in a listView
-     * @param savedInstanceState
-     */
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +62,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             }
         });
 
-        // Book status selector
         chooseAvailable.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,9 +120,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     }
 
-    /**
-     * Navigation bar enabled
-     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -183,9 +161,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * Handle user clicking item on the list
-     */
+
     private void ListViewClickHandler () {
         final ListView finalList = mListView;
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -202,11 +178,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         });
     }
 
-    /**
-     * set a dialog when clicking item
-     * choosing if user want to cancel or view book information
-     * @param book
-     */
     private void setDialog(final Book book) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("View or delete?");
@@ -229,7 +200,8 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                if (book.getStatus() == 0) {
+                //if book is not borrowed
+                if (book.getStatus() != 3 ) {
                     ownerShelf.remove_book(book);
                     Toast.makeText(MyShelfOwnerActivity.this, "Book deleted",
                             Toast.LENGTH_SHORT).show();

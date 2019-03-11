@@ -1,34 +1,20 @@
-/**
- * Class name: Request
- *
- * version 1.0
- *
- * Date: March 9, 2019
- *
- * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
- *
- */
 package com.example.ibookit.Model;
+
 import android.location.Location;
 
-/**
- * @author joe
- *
- * @version 1.0
- */
+
+// If a request is declined then delete the corresponding request object
+
 public class Request {
 
     private String rid;
-    // 0: not accepted;   1: accepted
+    // 0: not decided;   1: accepted;    2:declined
     private int isAccept;
     private String sender;
     private String receiver;
     private String bookId;
     private Location geolocation;
 
-    /**
-     * Constructor
-     */
     public Request () {}
 
     public Request(Book book) {
@@ -38,9 +24,7 @@ public class Request {
 
     }
 
-    /**
-     * Getter and Setter
-     */
+
     public String getRid() {
         return rid;
     }

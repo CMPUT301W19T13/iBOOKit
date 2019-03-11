@@ -15,10 +15,7 @@ import static org.junit.Assert.assertEquals;
 public class UserReturn {
 
 
-    /*
 
-    private String id;
-    private String imageURL;*/
 
     User user = new User();
 
@@ -30,11 +27,8 @@ public class UserReturn {
         user.setEmail("testemail");
         assertEquals("testemail",user.getEmail());
 
-        user.setId("testid");
-        assertEquals(user.getId(), "testid");
-
-        user.setImageURL("imagetest");
-        assertEquals(user.getImageURL(),"imagetest");
+        user.setPassword("testpass");
+        assertEquals("testpass", user.getPassword());
 
         user.setUsername("test");
         assertEquals("test", user.getUsername());
