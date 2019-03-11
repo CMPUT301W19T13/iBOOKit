@@ -9,11 +9,14 @@
  */
 package com.example.ibookit.View;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +26,10 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 import com.example.ibookit.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * @author zisen
@@ -34,6 +41,10 @@ public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
     private SearchView sv;
+    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String username = user.getDisplayName();
+    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
+
 
     /**
      * The first screen when login
@@ -46,6 +57,15 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
+
+        if(mDatabase.child("notification").toString().equals("1")){
+
+            sendNotification(1);
+            mDatabase.child("notification").setValue("");
+        }else if(mDatabase.child("notification").toString().equals("2")){
+            sendNotification(2);
+            mDatabase.child("notification").setValue("");
+        }
 
         configure_SearchButtonsAndSearchBar();
         setBottomNavigationView();
@@ -170,5 +190,56 @@ public class HomeSearchActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+    public void sendNotification(int situation) {
 
+        //Get an instance of NotificationManager//
+
+
+        String CHANNEL_ID = "my_channel_01";
+        CharSequence name = "my_channel";
+        String Description = "This is my channel";
+        int importance = NotificationManager.IMPORTANCE_HIGH;
+        NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
+        mChannel.setDescription(Description);
+        mChannel.enableLights(true);
+        mChannel.enableVibration(true);
+        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+        mChannel.setShowBadge(false);
+
+        if(situation ==1) {
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(HomeSearchActivity.this)
+                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                            .setContentTitle("New notification")
+                            .setContentText("You received a new Request!")
+                            .setChannelId(CHANNEL_ID);
+
+            // Gets an instance of the NotificationManager service//
+
+            NotificationManager mNotificationManager =
+
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.createNotificationChannel(mChannel);
+
+            notificationManager.notify(1, mBuilder.build());}
+        else{
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(HomeSearchActivity.this)
+                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                            .setContentTitle("New notification")
+                            .setContentText("Your request has been accepted!")
+                            .setChannelId(CHANNEL_ID);
+
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+            notificationManager.createNotificationChannel(mChannel);
+
+            notificationManager.notify(1, mBuilder.build());
+        }
+    }
 }
