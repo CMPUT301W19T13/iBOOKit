@@ -27,7 +27,7 @@ public class RequestStatusHandler {
     }
 
     /**
-     * transfer status int to string
+     * transfer book status from int to string
      * @param status
      * @return
      */

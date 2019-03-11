@@ -137,7 +137,40 @@ public class RequestReceived {
         });
     }
 
+    /**
+     * Owner decline request from sender
+     * @param request
+     */
+    public void decline_request(final Request request){
+        mDatabase.child(request.getRid()).child("isAccept").setValue(2);
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("users")
+                .child(request.getSender()).child("requestSent");
+        database.child(request.getRid()).child("isAccept").setValue(2);
 
+    }
+
+    /**
+     * Owner accept request from sender
+     * @param Rlist
+     * @param request
+     */
+    public void accept_request(final ArrayList<Request> Rlist, final Request request) {
+        mDatabase.child(request.getRid()).child("isAccept").setValue(1);
+        final DatabaseReference dDatabase = FirebaseDatabase.getInstance().getReference();
+        dDatabase.child("books").child(request.getBookId()).child("status").setValue(2);
+        dDatabase.child("users").child(request.getSender()).child("requestSent").child(request.getRid()).child("isAccept").setValue(1);
+        dDatabase.child("users").child(request.getSender()).child("accept").child("ss").setValue("1");
+        ArrayList<Request> newlist = Rlist;
+        newlist.remove(request);
+        for(Request r :newlist){
+            decline_request(r);
+        }
+    }
+
+    /**
+     * Methods below are for testing
+     * @return
+     */
     public ArrayList<Request> getRequestSent() {
         return requestSent;
     }

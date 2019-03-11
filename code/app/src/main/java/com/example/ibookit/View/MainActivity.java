@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Main page and let user for sign in
      * @param savedInstanceState
+     *
+     * https://firebase.google.com/docs/auth/android/start
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

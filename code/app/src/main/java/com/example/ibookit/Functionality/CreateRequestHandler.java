@@ -54,6 +54,8 @@ public class CreateRequestHandler {
 
         senderRequestSent.child(key).setValue(request);
 
+        mDatabase.child("users").child(request.getReceiver()).child("send").child("ss").setValue("1");
+
     }
 
     /**

@@ -44,13 +44,19 @@ public class RequestSent {
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference("users").child(username).child("requestSent");
     }
+
     /**
-     * Return all the requests user has sent
+     * Get all the requests user has sent
      */
     public RequestSent(ArrayList<Request> allRequest){
         this.requestSent = allRequest;
     }
 
+    /**
+     * Set and sync requestSent to ListView
+     * @param requestSent2
+     * @param adapter
+     */
     public void RetriveRequest(final ArrayList<Request> requestSent2, final ArrayAdapter<Request> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -74,8 +80,12 @@ public class RequestSent {
                 Log.d(TAG, "onCancelled: ");
             }
         });
-
     }
+
+    /**
+     * methods below are for testing
+     * @return
+     */
     public ArrayList<Request> getRequestSent() {
         return requestSent;
     }

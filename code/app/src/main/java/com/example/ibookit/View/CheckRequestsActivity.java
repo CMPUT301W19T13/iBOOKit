@@ -83,12 +83,10 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
 
     protected void onResume() {
-        super.onResume();
-
-        Rbook.clear();
-        adapterB.notifyDataSetChanged();
         requestReceived.RetriveBook(Rbook,adapterB);
+        super.onResume();
     }
+
 
     /**
      * NavigationBar enabled

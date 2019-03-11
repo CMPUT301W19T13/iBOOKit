@@ -28,6 +28,7 @@ import java.util.Set;
  * @author zisen
  *
  * @version 1.0
+ *
  */
 public class SearchForBook {
     public ArrayList<Book> mResult;
@@ -36,6 +37,8 @@ public class SearchForBook {
     /**
      * Search the book by keywords
      * and put the result into ListView
+     *
+     * reference: https://firebase.google.com/docs/database/admin/retrieve-data
      *
      * @param mListKeyword
      * @param result
@@ -90,6 +93,7 @@ public class SearchForBook {
     /**
      * Search the book by categories
      * and put the result into ListView
+     *
      * @param mCategory
      * @param result
      * @param adapter
