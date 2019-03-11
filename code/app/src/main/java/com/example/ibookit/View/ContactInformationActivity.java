@@ -1,3 +1,12 @@
+/**
+ * Class name: AddBookAsOwnerActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -29,6 +38,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+/**
+ * @author zijun wu
+ *
+ * @version 1.0
+ */
 public class ContactInformationActivity extends AppCompatActivity {
 
     private ImageButton imageButton;
@@ -39,6 +53,11 @@ public class ContactInformationActivity extends AppCompatActivity {
     private FirebaseUser user;
     private DatabaseReference mDatabase;
 
+    /**
+     *let User View or edit user profile in UI
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +73,6 @@ public class ContactInformationActivity extends AppCompatActivity {
         String username = user.getDisplayName();
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
-
 
         getUserInfo(mUsername, mEmail, mPhone, imageButton);
 
@@ -82,6 +100,11 @@ public class ContactInformationActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * pick a image for the book in system
+     *
+     * reference: https://codinginflow.com/tutorials/android/firebase-storage-upload-and-retrieve-images/part-2-image-chooser
+     */
     private void fileChooser () {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -103,6 +126,14 @@ public class ContactInformationActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Get login user information from FireBase
+     *
+     * @param mUsername
+     * @param mEmail
+     * @param mPhone
+     * @param imageButton
+     */
     private void getUserInfo (final TextView mUsername, final TextView mEmail, final TextView mPhone, final ImageButton imageButton) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -123,6 +154,11 @@ public class ContactInformationActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Set User image in user profile
+     *
+     * @param mDatabase
+     */
     private void setUserImage(final DatabaseReference mDatabase) {
         if (mImageUri != null) {
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference();

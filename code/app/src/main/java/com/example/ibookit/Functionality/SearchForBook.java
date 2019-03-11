@@ -1,3 +1,12 @@
+/**
+ * Class name: SearchForBook
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
@@ -15,10 +24,23 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @author zisen
+ *
+ * @version 1.0
+ */
 public class SearchForBook {
     public ArrayList<Book> mResult;
     public SearchForBook(){}
 
+    /**
+     * Search the book by keywords
+     * and put the result into ListView
+     *
+     * @param mListKeyword
+     * @param result
+     * @param adapter
+     */
     public void searchByKeyword(final String[] mListKeyword, final ArrayList<Book> result, final ArrayAdapter<Book> adapter)  {
         final Set<String> nonDupID = new HashSet<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -65,6 +87,13 @@ public class SearchForBook {
 
     }
 
+    /**
+     * Search the book by categories
+     * and put the result into ListView
+     * @param mCategory
+     * @param result
+     * @param adapter
+     */
     public void searchByCategory(final String mCategory, final ArrayList<Book> result, final ArrayAdapter<Book> adapter){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
@@ -89,9 +118,6 @@ public class SearchForBook {
             }
         });
 
-    }
-    public ArrayList<Book> getKeyword() {
-        return mResult;
     }
 
 }

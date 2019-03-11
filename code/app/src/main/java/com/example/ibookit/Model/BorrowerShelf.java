@@ -1,3 +1,12 @@
+/**
+ * Class name: BorrowerShelf
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.Model;
 
 import android.util.Log;
@@ -11,9 +20,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 import java.util.ArrayList;
 
+
+/**
+ * @author zijun wu
+ *
+ * @version 1.0
+ */
 public class BorrowerShelf implements BookShelf{
 
     private static final String TAG = "BorrowerShelf";
@@ -27,12 +41,23 @@ public class BorrowerShelf implements BookShelf{
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("borrowerShelf");
     }
 
-
+    /**
+     * Return All book on the shelf
+     *
+     * @return ArrayList<Book>
+     */
     @Override
     public ArrayList<Book> All_books() {
         return borrowBooks;
     }
 
+    /**
+     * Sync Borrowed bookshelf with the FireBase
+     *
+     * @param books
+     * @param adapter
+     * @param status
+     */
     @Override
     public void SyncBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter, final Integer status) {
         mDatabase.addValueEventListener(new ValueEventListener() {
@@ -57,6 +82,11 @@ public class BorrowerShelf implements BookShelf{
         });
     }
 
+    /**
+     * Borrower add a book to the bookshelf on FireBase
+     *
+     * @param book
+     */
     @Override
     public void add_book(Book book) {
 
@@ -76,6 +106,11 @@ public class BorrowerShelf implements BookShelf{
 
     }
 
+    /**
+     * Borrower delete a book on FireBase
+     *
+     * @param book
+     */
     @Override
     public void remove_book(Book book) {
 
@@ -95,7 +130,4 @@ public class BorrowerShelf implements BookShelf{
 
     }
 
-    private Boolean checkRequestIsAccept(){
-        return false;
-    }
 }

@@ -3,8 +3,12 @@ package com.example.ibookit;
 import android.location.Location;
 
 import com.example.ibookit.Model.Request;
+import com.example.ibookit.Model.RequestReceived;
+import com.google.firebase.database.DatabaseReference;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,19 +17,19 @@ import static org.junit.Assert.assertEquals;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class Requests {
+public class RequestStatic {
 
 
-    /*private int isAccept;
-    private String sender;
-    private String receiver;
-    private String bookId;
-    private Location geolocation;*/
+
 
     Request request = new Request();
+    ArrayList<Request> requestlist = new ArrayList<Request>();
 
+    RequestReceived Received = new RequestReceived("ownername", requestlist);
 
     Location location = new Location("test");
+
+
 
     // send request to user 1 for a specific book
 
@@ -45,9 +49,26 @@ public class Requests {
 
         request.setGeolocation(location);
         assertEquals(location,request.getGeolocation());
-        
+
 
     }
+
+    @Test
+    public void ReceiveRequest(){
+        Received.setBookTitle("test");
+        assertEquals(Received.getBookTitle(), "test");
+
+        ArrayList<Request> ArrayRequest = new ArrayList<Request>();
+
+        Received.setRequestSent(ArrayRequest);
+        assertEquals(Received.getRequestSent(), ArrayRequest);
+
+        assertEquals(Received.getUsername(),"ownername");
+
+
+
+    }
+
 
 
 

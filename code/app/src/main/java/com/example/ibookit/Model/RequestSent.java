@@ -1,3 +1,14 @@
+/**
+ *
+ * Class name: RequestSent
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ *
+ */
 package com.example.ibookit.Model;
 
 import android.util.Log;
@@ -13,24 +24,31 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+/**
+ * @author Joe, Jiazhen Li
+ *
+ * @version 1.0
+ */
+
 public class RequestSent {
     private static final String TAG = "RequestSent";
     private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
     private String username;
 
-    public ArrayList<Request> getRequestSent() {
-        return requestSent;
-    }
-
-    public void setRequestSent(ArrayList<Request> requestSent) {
-        this.requestSent = requestSent;
-    }
-
+    /**
+     * Constructor
+     */
     public RequestSent(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference("users").child(username).child("requestSent");
+    }
+    /**
+     * Return all the requests user has sent
+     */
+    public RequestSent(ArrayList<Request> allRequest){
+        this.requestSent = allRequest;
     }
 
     public void RetriveRequest(final ArrayList<Request> requestSent2, final ArrayAdapter<Request> adapter) {
@@ -58,13 +76,5 @@ public class RequestSent {
         });
 
     }
-//    public void Show(DataSnapshot dataSnapshot){
-//        for (DataSnapshot d: dataSnapshot.getChildren()) {
-//            Request request;
-//            request = d.getValue(Request.class);
-//            requestSent.add(request);
-//    }
-
-    //Query query = FirebaseDatabase.getInstance().getReference().child("requests").orderByChild("sender").equalTo(username);
 
 }

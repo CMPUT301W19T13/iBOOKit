@@ -1,3 +1,12 @@
+/**
+ * Class name: RequestForEachBookListAdapter
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.ListAdapter;
 
 import android.content.Context;
@@ -22,6 +31,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+/**
+ * @author Jiazhen Li
+ *
+ * @version 1.0
+ */
 public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { private Context mContext;
 
     private int mResource;
@@ -80,6 +94,11 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
 
     }
 
+    /**
+     * set image for request in custom listView
+     * @param path
+     * @param imageView
+     */
     private void setImage(String path, ImageView imageView) {
         Picasso.get().load(path).fit().centerCrop().into(imageView);
     }
