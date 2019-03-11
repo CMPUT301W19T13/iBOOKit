@@ -61,32 +61,33 @@ public class HomeSearchActivity extends AppCompatActivity {
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
 
-//        mDatabase.child("notification").addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                String post = dataSnapshot.getKey();
-//
-//                if(post.equals("1")){
-//
-//                    sendNotification(1);
-//                    //mDatabase.child("notification").setValue("");
-//                }else if(post.equals("2")){
-//                    sendNotification(2);
-//                    //mDatabase.child("notification").setValue("");
-//                }
-//            }
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                System.out.println("The read failed: " + databaseError.getCode());
-//            }
-//        });
-        if(mDatabase.child("send").child("ss").getKey().equals("ss")){
-            sendNotification(1);
-            mDatabase.child("send").removeValue();
-        }else if(mDatabase.child("accept").child("ss").getKey().equals("ss")){
-            sendNotification(2);
-            mDatabase.child("accept").removeValue();
-        }
+        mDatabase.child("send").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot d:dataSnapshot.getChildren()){
+                String post = d.getValue(String.class);
+
+                if(post.equals("1")){
+
+                    sendNotification(1);
+                    mDatabase.child("send").child("ss").setValue("");
+                }else if(post.equals("2")){
+                    sendNotification(2);
+                    mDatabase.child("send").child("ss").setValue("");
+                }
+            }}
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+//        if(mDatabase.child("send").child("ss").getKey().equals("ss")){
+//            sendNotification(1);
+//            mDatabase.child("send").removeValue();
+//        }else if(mDatabase.child("accept").child("ss").getKey().equals("ss")){
+//            sendNotification(2);
+//            mDatabase.child("accept").removeValue();
+//        }
 
         configure_SearchButtonsAndSearchBar();
         setBottomNavigationView();

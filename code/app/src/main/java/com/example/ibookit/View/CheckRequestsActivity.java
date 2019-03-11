@@ -83,8 +83,8 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
 
     protected void onResume() {
-        requestReceived.RetriveBook(Rbook,adapterB);
         super.onResume();
+        requestReceived.RetriveBook(Rbook,adapterB);
     }
 
 
