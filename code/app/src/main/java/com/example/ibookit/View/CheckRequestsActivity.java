@@ -1,3 +1,12 @@
+/**
+ * Class name: AddBookAsOwnerActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -21,6 +30,12 @@ import com.example.ibookit.R;
 
 import java.util.ArrayList;
 
+
+/**
+ * @author Jiazhen Li
+ *
+ * @version 1.0
+ */
 public class CheckRequestsActivity extends AppCompatActivity {
 
     private ListView Sent;
@@ -34,7 +49,10 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private RequestSent requestSent = new RequestSent();
     private RequestReceived requestReceived = new RequestReceived();
 
-
+    /**
+     * let user check requestSent and RequestReceived in UI
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,9 +75,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
-                //Toast.makeText(CheckRequestsActivity.this,"You selected : "+ item,Toast.LENGTH_LONG).show();
-                Bundle b = new Bundle();
-                b.putString("bookname",item);
+
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
                 intent.putExtras(b);
                 startActivity(intent);
@@ -67,61 +83,11 @@ public class CheckRequestsActivity extends AppCompatActivity {
             }
         });
 
-
-//        Accept_list.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                AlertDialog.Builder builderSingle = new AlertDialog.Builder(CheckRequestsActivity.this);
-//                builderSingle.setTitle("Accepted Books:");
-//                final ArrayAdapter<Book> arrayAdapter = new BookListAdapter(CheckRequestsActivity.this,R.layout.adapter_book,Rbook);
-//
-//                builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//                builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        Book book = arrayAdapter.getItem(which);
-//                        AlertDialog.Builder builderInner = new AlertDialog.Builder(DialogActivity.this);
-//                        builderInner.setMessage(strName);
-//                        builderInner.setTitle("Your Selected Item is");
-//                        builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//                            @Override
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                dialog.dismiss();
-//                            }
-//                        });
-//                        builderInner.show();
-//                    }
-//                });
-//                builderSingle.show();
-//
-//
-//            }
-//        });
-
-
-
-
         setBottomNavigationView();
     }
 
-    protected  void onResume() {
-        requestReceived.RetriveBook(Rbook,adapterB);
-        super.onResume();
-    }
-
-    public void openactivity(){
-        Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
-        startActivityForResult(intent, 0);
-    }
 
     protected void onResume() {
-
         super.onResume();
 
         Rbook.clear();
@@ -129,6 +95,9 @@ public class CheckRequestsActivity extends AppCompatActivity {
         requestReceived.RetriveBook(Rbook,adapterB);
     }
 
+    /**
+     * NavigationBar enabled
+     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

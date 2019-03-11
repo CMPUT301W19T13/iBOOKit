@@ -1,3 +1,12 @@
+/**
+ * Class name: MainActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -18,15 +27,22 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * @author zijun wu
+ *
+ * @version 1.0
+ */
 public class MainActivity extends AppCompatActivity {
-
 
     private static final String TAG = "MainActivity";
     private FirebaseAuth.AuthStateListener mAuthListener;
     private EditText mEmail, mPassword;
 
+    /**
+     * Main page and let user for sign in
+     * @param savedInstanceState
+     */
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -44,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "onClick: " + mPassword.getText().toString());
 
 
+                // get email and password and send it to fireBase Auth
                 if ((!mEmail.getText().toString().isEmpty()) && (!mPassword.getText().toString().isEmpty())) {
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
@@ -69,7 +86,6 @@ public class MainActivity extends AppCompatActivity {
 
         setupFirebaseAuth();
 
-
         Button signUpButton = (Button) findViewById(R.id.signUp_Main);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+    /**
+     * AddAuthStateListener when activity starts
+     */
     @Override
     public void onStart() {
         super.onStart();
@@ -90,6 +108,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * RemoveAuthStateListener when activity ends
+     */
     @Override
     public void onStop() {
         super.onStop();
@@ -98,6 +119,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Set up AuthStateListener
+     */
     private void setupFirebaseAuth() {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override

@@ -1,3 +1,12 @@
+/**
+ * Class name: ShowSearchResultActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.DialogInterface;
@@ -33,18 +42,30 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-public class EditSearchActivity extends AppCompatActivity {
+/**
+ * @author zisen
+ *
+ * @version 1.0
+ */
 
-    private static final String TAG = "EditSearchActivity";
+public class ShowSearchResultActivity extends AppCompatActivity {
+
+    private static final String TAG = "ShowSearchResult";
     private ListView searchResultListView;
     private ArrayAdapter<Book> bookArrayAdapter;
     private ArrayAdapter<User> userArrayAdapter;
     private ArrayList<Book> bookResult;
-    private ArrayList<User> uerResult;
+    private ArrayList<User> userResult;
     private String type, searchValue;
+
     private SearchView sv;
     private Intent intent;
 
+    /**
+     * Show search result after user typed keywords for user or book in search bar
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +77,6 @@ public class EditSearchActivity extends AppCompatActivity {
         searchValue = intent.getStringExtra("SearchValue");
 
         sv = findViewById(R.id.search_bar);
-//        sv.setQueryHint(searchValue);
 
         configure_SearchButtonsAndSearchBar();
         load_resultList();
@@ -65,7 +85,9 @@ public class EditSearchActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * load search result
+     */
     private void load_resultList(){
         if (type.equals("SearchUser")) {
             Log.d(TAG, "onCreate: " + searchValue);
@@ -76,7 +98,7 @@ public class EditSearchActivity extends AppCompatActivity {
 
             userArrayAdapter = new UserListAdapter(this, R.layout.adapter_user, searchResult);
             searchResultListView.setAdapter(userArrayAdapter);
-//            searchResultListView.setClickable(true);  //this will be activated if need to show more info about user
+            searchResultListView.setClickable(true);
             userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
 
 
@@ -95,34 +117,39 @@ public class EditSearchActivity extends AppCompatActivity {
             bookSearch.searchByCategory(searchValue, searchResult, bookArrayAdapter);
 
 
-        } else if (type.equals("SearchTitle")) {
+        } else if (type.equals("SearchBook")) {
 
             Log.d(TAG, "onCreate: " + searchValue);
             SearchForBook bookSearch = new SearchForBook();
             ArrayList<Book> searchResult = new ArrayList<>();
-
             Log.d(TAG, "onCreate: " + searchResult);
 
             bookArrayAdapter = new BookListAdapter(this, R.layout.adapter_book, searchResult);
             searchResultListView.setAdapter(bookArrayAdapter);
             searchResultListView.setClickable(true);
-            bookSearch.searchByTitle(searchValue, searchResult, bookArrayAdapter);
+            //extra step for search book by keyword: prepare list of keyword
+            String[] searchValueList = searchValue.split("\\s+");
+
+            bookSearch.searchByKeyword(searchValueList, searchResult, bookArrayAdapter);
 
         } else {
             Log.d(TAG, "onCreate: Unexpected type: " + type);
         }
-
+        sv.setQuery("", false);
+        sv.clearFocus();
 
     }
 
+    /**
+     * Handle user click item on listView
+     */
     private void ListViewClickHandler () {
         final ListView finalList = searchResultListView;
-        if (this.type.equals("SearchCategory" ) || this.type.equals("SearchTitle")) {
+        if (this.type.equals("SearchCategory" ) || this.type.equals("SearchBook")) {
             searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Book book = (Book) finalList.getItemAtPosition(position);
-
                     setDialog(book);
                 }
             });
@@ -133,8 +160,7 @@ public class EditSearchActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     User user = (User) finalList.getItemAtPosition(position);
 
-                    Intent resultProfile = new Intent(EditSearchActivity.this, UserProfileActivity.class);
-//                    resultProfile.putExtra("type", "showSearchUserResult");
+                    Intent resultProfile = new Intent(ShowSearchResultActivity.this, UserProfileActivity.class);
                     Gson gson = new Gson();
                     String userResult = gson.toJson(user);
                     resultProfile.putExtra("UserResult", userResult);
@@ -145,29 +171,22 @@ public class EditSearchActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * handle the condition for different search type (user, book or category)
+     */
     private void configure_SearchButtonsAndSearchBar(){
         Button searchUser = findViewById(R.id.re_search_user);
         Button viewCategory = findViewById(R.id.re_search_category);
         Button searchBook = findViewById(R.id.re_search_book);
         sv = findViewById(R.id.re_search_bar);
 
-        //todo:this works, but not really sure if it is the best solution
-        //did this started a intent from this activity to this activity or homeSearchActivity to
-        //this activity?
         searchUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                intent.putExtra("type", "SearchUser");
-//                intent.putExtra("SearchValue", sv.getQuery().toString());
-//
-//                finish(); //should I do this? If i don't then user will go back to previous search, but this might consume memory?
-//                startActivity(intent);
                 type = "SearchUser";
                 searchValue = sv.getQuery().toString();
                 load_resultList();
                 sv.clearFocus();
-
 
             }
         });
@@ -182,13 +201,7 @@ public class EditSearchActivity extends AppCompatActivity {
         searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-//                intent.putExtra("type", "SearchTitle");
-//                intent.putExtra("SearchValue", sv.getQuery().toString());
-//
-//                finish();
-//                startActivity(intent);
-                type = "SearchTitle";
+                type = "SearchBook";
                 searchValue = sv.getQuery().toString();
                 load_resultList();
                 sv.clearFocus();
@@ -197,10 +210,9 @@ public class EditSearchActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
+    /**
+     * NavigationBar enabled
+     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -208,7 +220,7 @@ public class EditSearchActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(EditSearchActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(ShowSearchResultActivity.this, AddBookAsOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
@@ -217,19 +229,19 @@ public class EditSearchActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_myshelf:
-                        Intent myshelf = new Intent(EditSearchActivity.this, MyShelfOwnerActivity.class);
+                        Intent myshelf = new Intent(ShowSearchResultActivity.this, MyShelfOwnerActivity.class);
                         myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent profile = new Intent(EditSearchActivity.this, UserProfileActivity.class);
+                        Intent profile = new Intent(ShowSearchResultActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(EditSearchActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(ShowSearchResultActivity.this, CheckRequestsActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 
@@ -242,7 +254,10 @@ public class EditSearchActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Show a dialog when user click the item.
+     * @param book
+     */
     private void setDialog(final Book book) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Send request to owner?");
@@ -256,7 +271,7 @@ public class EditSearchActivity extends AppCompatActivity {
                 CreateRequestHandler createRequest = new CreateRequestHandler();
                 createRequest.SendRequestToOwner(request);
 
-                Toast.makeText(EditSearchActivity.this, "send request successful",
+                Toast.makeText(ShowSearchResultActivity.this, "send request successful",
                         Toast.LENGTH_SHORT).show();
 
             }
@@ -274,19 +289,19 @@ public class EditSearchActivity extends AppCompatActivity {
         alertDialog.show();
 
     }
+
+    /**
+     * Show category of the book the system have
+     * let user choose the category in UI
+     */
     private void setCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        //some of these options will be changed later, this is just for test
         final CharSequence[] options  = {"fine", "fivestar", "KKK", "Westeast", "thrilling"};
         builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-//                intent.putExtra("type", "SearchCategory");
-//                intent.putExtra("SearchValue", options[which]);
-//                finish();
-//                startActivity(intent);
                 type = "SearchCategory";
                 searchValue = options[which].toString();
                 load_resultList();
@@ -294,9 +309,6 @@ public class EditSearchActivity extends AppCompatActivity {
 
             }
         });
-
-
-
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

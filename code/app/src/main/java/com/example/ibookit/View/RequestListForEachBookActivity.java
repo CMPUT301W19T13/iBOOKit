@@ -1,3 +1,12 @@
+/**
+ * Class name: RequestListForEachBookActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.DialogInterface;
@@ -19,6 +28,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
+/**
+ * @author Jiazhen Li
+ *
+ * @version 1.0
+ */
 public class RequestListForEachBookActivity extends AppCompatActivity {
 
     private ArrayList<String> Rreceived = new ArrayList<>();
@@ -30,7 +44,10 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
     private Request tempquest;
     private String myname;
 
-
+    /**
+     * Showing user who request a particular book in UI
+     * @param savedInstanceState
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_userlist);

@@ -1,3 +1,12 @@
+/**
+ * Class name: HomeSearchActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.app.NotificationChannel;
@@ -17,10 +26,12 @@ import android.widget.Button;
 import android.widget.SearchView;
 
 import com.example.ibookit.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
+/**
+ * @author zisen
+ *
+ * @version 1.0
+ */
 
 public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomeSearchActivity";
@@ -30,6 +41,11 @@ public class HomeSearchActivity extends AppCompatActivity {
     String username = user.getDisplayName();
     DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
 
+    /**
+     * The first screen when login
+     * let user input something in search bar
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +72,9 @@ public class HomeSearchActivity extends AppCompatActivity {
         sv.clearFocus();
     }
 
-
+    /**
+     * handle the condition for different search type (user, book or category)
+     */
     private void configure_SearchButtonsAndSearchBar(){
         Button searchUser = findViewById(R.id.search_user);
         Button viewCategory = findViewById(R.id.search_category);
@@ -68,7 +86,7 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
 
                 request.putExtra("type", "SearchUser");
                 request.putExtra("SearchValue", sv.getQuery().toString());
@@ -88,8 +106,8 @@ public class HomeSearchActivity extends AppCompatActivity {
         searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
-                request.putExtra("type", "SearchTitle");
+                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
+                request.putExtra("type", "SearchBook");
                 request.putExtra("SearchValue", sv.getQuery().toString());
                 startActivity(request);
             }
@@ -99,7 +117,9 @@ public class HomeSearchActivity extends AppCompatActivity {
     }
 
 
-
+    /**
+     * Navigation bar enabled
+     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -139,6 +159,11 @@ public class HomeSearchActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * Show category of the book the system have
+     * let user choose the category in UI
+     */
     private void setCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -147,16 +172,13 @@ public class HomeSearchActivity extends AppCompatActivity {
         builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent request = new Intent(HomeSearchActivity.this, EditSearchActivity.class);
+                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
                 request.putExtra("type", "SearchCategory");
                 request.putExtra("SearchValue", options[which]);
                 startActivity(request);
 
             }
         });
-
-
-
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();

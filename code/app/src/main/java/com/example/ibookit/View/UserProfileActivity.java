@@ -1,3 +1,12 @@
+/**
+ * Class name: UserProfileActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -25,6 +34,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+/**
+ * @author zijun wu && zisen
+ *
+ * @version 1.0
+ */
 public class UserProfileActivity extends AppCompatActivity {
 
     private static final String TAG = "UserProfileActivity";
@@ -33,7 +47,12 @@ public class UserProfileActivity extends AppCompatActivity {
     private ImageView imageView;
 
 
-
+    /**
+     * show other user profile if getIntent() is not null
+     * else show profile of login user which allows change profile and sign out
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -58,7 +77,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * configure buttons will be used
+     */
     private void configure_buttons(){
         email = (Button) findViewById(R.id.contactInfo_user);
         edit =  findViewById(R.id.edit_profile);
@@ -91,9 +112,11 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
+    /**
+     * Set user info into the textView
+     */
     private void setInformation() {
         mUsername = findViewById(R.id.userName_userProfile);
         mEmail = findViewById(R.id.contactInfo_user);
@@ -107,6 +130,12 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Set user image into imageView
+     *
+     * @param user
+     * @param imageView
+     */
     private void setUserImage(FirebaseUser user, final ImageView imageView) {
         String username = user.getDisplayName();
 
@@ -127,6 +156,10 @@ public class UserProfileActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Set user info for another user
+     * @param mUser
+     */
     private void setOtherUserInformation(User mUser){
         mUsername = findViewById(R.id.userName_userProfile);
         mEmail = findViewById(R.id.contactInfo_user);
@@ -134,15 +167,18 @@ public class UserProfileActivity extends AppCompatActivity {
         mEmail.setText(mUser.getEmail());
     }
 
-
-
+    /**
+     * let Login user to sign out
+     */
     private void signout() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.d(TAG, "signout: " + user.getDisplayName());
         FirebaseAuth.getInstance().signOut();
     }
 
-
+    /**
+     * Navigation bar enabled
+     */
     private void setBottomNavigationView() {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -183,7 +219,5 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
     }
-
-
 
 }
