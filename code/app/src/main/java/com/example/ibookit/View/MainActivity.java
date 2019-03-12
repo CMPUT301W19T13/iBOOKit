@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -73,8 +74,13 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-//                            Toast.makeText(MainActivity.this, "Login successful",
-//                                    Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.INVISIBLE);
+                        }
+                    }).addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                        @Override
+                        public void onSuccess(AuthResult authResult) {
+                            Toast.makeText(MainActivity.this, "Login successful",
+                                    Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -141,8 +147,6 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    Toast.makeText(MainActivity.this, "Login successful",
-                            Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, HomeSearchActivity.class);
                     startActivity(intent);
                 } else {
