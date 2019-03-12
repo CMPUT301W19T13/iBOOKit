@@ -156,10 +156,18 @@ public class RequestReceived {
      */
     public void accept_request(final ArrayList<Request> Rlist, final Request request) {
         mDatabase.child(request.getRid()).child("isAccept").setValue(1);
+
+        // Update book info
         final DatabaseReference dDatabase = FirebaseDatabase.getInstance().getReference();
         dDatabase.child("books").child(request.getBookId()).child("status").setValue(2);
+        dDatabase.child("users").child(username).child("ownerShelf").child(request.getBookId()).child("status").setValue(2);
+
+        // Update requestSent
         dDatabase.child("users").child(request.getSender()).child("requestSent").child(request.getRid()).child("isAccept").setValue(1);
+
+        // Update message
         dDatabase.child("users").child(request.getSender()).child("send").child("ss").setValue("2");
+
         ArrayList<Request> newlist = Rlist;
         newlist.remove(request);
         for(Request r :newlist){
