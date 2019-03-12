@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(mEmail.getText().toString(), mPassword.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            Toast.makeText(MainActivity.this, "Login successful",
-                                    Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "Login successful",
+//                                    Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.INVISIBLE);
                         }
                     }).addOnFailureListener(new OnFailureListener() {
@@ -141,13 +141,12 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
-                    Log.d(TAG, "setupFirebaseAuth: Success");
+                    Toast.makeText(MainActivity.this, "Login successful",
+                            Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this, HomeSearchActivity.class);
                     startActivity(intent);
-//                    progressBar.setVisibility(View.INVISIBLE);
                 } else {
-                    Log.d(TAG, "setupFirebaseAuth: Fail");
-//                    progressBar.setVisibility(View.INVISIBLE);
+                    Log.d(TAG, "onAuthStateChanged: Fail");
                 }
             }
         };
