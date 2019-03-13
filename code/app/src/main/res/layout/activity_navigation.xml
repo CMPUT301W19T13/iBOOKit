@@ -5,7 +5,7 @@
     android:layout_height="56dp"
     android:layout_gravity="bottom|end"
     android:layout_marginBottom="0dp"
-    app:itemBackground="@color/colorPrimary"
+    app:itemBackground="@color/schemeDarkest"
     app:itemHorizontalTranslationEnabled="false"
     app:itemIconTint="@android:color/white"
     app:itemTextColor="@android:color/white"
