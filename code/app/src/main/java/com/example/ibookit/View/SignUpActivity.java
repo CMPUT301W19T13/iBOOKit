@@ -28,8 +28,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * @author zijun wu
@@ -58,8 +61,10 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        // Initialize Firebase Auth
+        // Initialize FireBase Auth
         mAuth = FirebaseAuth.getInstance();
+        // Initialize Database
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         //get R.id
         mEmail = findViewById(R.id.email_SignUp);
@@ -91,42 +96,7 @@ public class SignUpActivity extends AppCompatActivity {
                     return;
                 }
 
-                // Create a account with email and password
-                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-                            Log.d(TAG, "createUserWithEmail:success");
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
-                            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Log.d(TAG, "onComplete: Username updated.");
-                                    }
-                                }
-                            });
-
-                            setUserInfo(user.getUid(), username, email, phone);
-
-                            Toast.makeText(SignUpActivity.this, "SignUpActivity successful.",
-                                    Toast.LENGTH_SHORT).show();
-                            
-                            progressBar.setVisibility(View.INVISIBLE);
-
-                            Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
-                            startActivity(intent);
-
-                        } else {
-                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.INVISIBLE);
-                        }
-                    }
-                });
+                checkUserExist(username, email, password, phone);
 
             }
         });
@@ -144,9 +114,75 @@ public class SignUpActivity extends AppCompatActivity {
     private void setUserInfo(String id, String username, String email, String phone) {
         User user = new User(id, username, email, phone);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
         mDatabase.child("users").child(username).setValue(user);
+    }
+
+    /**
+     * check if the username already exists in database
+     *
+     * reference: https://stackoverflow.com/questions/39053248/how-to-search-if-a-username-exist-in-the-given-firebase-database
+     *
+     * @param username
+     * @return
+     */
+    private void checkUserExist(final String username, final String email, final String password, final String phone){
+        mDatabase.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast.makeText(SignUpActivity.this, "Username already exists",
+                            Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                } else {
+                    createAccount(username, email, password, phone);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    private void createAccount(final String username, final String email, final String password, final String phone) {
+        mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+
+                    Log.d(TAG, "createUserWithEmail:success");
+
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
+                    user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d(TAG, "onComplete: Username updated.");
+                            }
+                        }
+                    });
+
+                    setUserInfo(user.getUid(), username, email, phone);
+
+                    Toast.makeText(SignUpActivity.this, "Sign up successful",
+                            Toast.LENGTH_SHORT).show();
+
+                    progressBar.setVisibility(View.INVISIBLE);
+
+                    Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(SignUpActivity.this, "Email already exists",
+                            Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
     }
 
 }
