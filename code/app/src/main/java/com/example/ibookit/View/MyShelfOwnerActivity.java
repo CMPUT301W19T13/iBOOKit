@@ -18,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +34,8 @@ import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.OwnerShelf;
 
 import com.example.ibookit.R;
+import com.google.android.gms.vision.barcode.Barcode;
+import com.google.android.gms.vision.barcode.BarcodeDetector;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -209,7 +212,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
      */
     private void setDialog(final Book book) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("View or delete?");
+        builder.setMessage("Choose an action");
         builder.setCancelable(true);
 
         builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
@@ -222,6 +225,22 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
                 intent.putExtra("book", out);
                 startActivity(intent);
+            }
+        });
+
+        builder.setNeutralButton("lend", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //get book information and compare it with isbn scanned
+                // if not match, return "this isn't the book"
+                Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
+                startActivity(scan);
+//                finish();
+
+//                if(!detector.isOperational()){
+//                    Log.d("scan","Could not set up the detector!");
+//                    return;
+//                }
             }
         });
 
