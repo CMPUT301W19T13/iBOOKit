@@ -10,8 +10,7 @@
     <TextView
         android:id="@+id/searchBy_home"
         android:layout_width="90dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
@@ -30,7 +29,7 @@
 
     <SearchView
         android:id="@+id/search_bar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
@@ -44,8 +43,7 @@
     <Button
         android:id="@+id/search_book"
         android:layout_width="65dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="35dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
@@ -65,8 +63,7 @@
     <Button
         android:id="@+id/search_user"
         android:layout_width="65dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
+        android:layout_height="35dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
@@ -86,9 +83,7 @@
     <Button
         android:id="@+id/search_category"
         android:layout_width="110dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_height="35dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
@@ -109,10 +104,10 @@
         android:id="@+id/recommendationText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Recommendations for you"
         android:layout_marginTop="16dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Recommendations For You"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="20sp"
         android:textStyle="italic"
@@ -132,15 +127,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recommendationText" />
-
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <include layout="@layout/activity_navigation" />
 
     </FrameLayout>
+
+
 </android.support.constraint.ConstraintLayout>
