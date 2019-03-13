@@ -37,7 +37,7 @@ import com.google.firebase.database.ValueEventListener;
 /**
  * @author zijun wu
  *
- * @version 1.0
+ * @version 1.1
  */
 
 public class SignUpActivity extends AppCompatActivity {
@@ -143,10 +143,16 @@ public class SignUpActivity extends AppCompatActivity {
 
             }
         });
-
-
     }
 
+    /**
+     * Create an account with email and password
+     *
+     * @param username
+     * @param email
+     * @param password
+     * @param phone
+     */
     private void createAccount(final String username, final String email, final String password, final String phone) {
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
