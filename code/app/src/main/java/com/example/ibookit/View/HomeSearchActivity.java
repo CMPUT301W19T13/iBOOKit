@@ -44,9 +44,7 @@ public class HomeSearchActivity extends AppCompatActivity {
     private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
     private SearchView sv;
-    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    String username = user.getDisplayName();
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
+    private DatabaseReference mDatabase;
 
 
     /**
@@ -60,6 +58,12 @@ public class HomeSearchActivity extends AppCompatActivity {
 
         sContext = HomeSearchActivity.this;
         setContentView(R.layout.activity_home_search);
+
+        // get user info
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String username = user.getDisplayName();
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
+
 
         mDatabase.child("send").addValueEventListener(new ValueEventListener() {
             @Override
