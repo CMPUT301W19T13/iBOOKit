@@ -56,6 +56,8 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
     private ArrayList<Book> mBooks = new ArrayList<>();
     private OwnerShelf ownerShelf = new OwnerShelf();
     private Integer status;
+    private final Integer scanRequestCode = 1000;
+    private Book CurrentProcessLending;
 
     /**
      * Showing owner shelf in a listView
@@ -234,13 +236,10 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                 //get book information and compare it with isbn scanned
                 // if not match, return "this isn't the book"
                 Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
-                startActivity(scan);
-//                finish();
+                CurrentProcessLending = book;
+                startActivityForResult(scan, scanRequestCode);
 
-//                if(!detector.isOperational()){
-//                    Log.d("scan","Could not set up the detector!");
-//                    return;
-//                }
+
             }
         });
 
@@ -264,6 +263,26 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == scanRequestCode && resultCode == RESULT_OK ){
+            String scannedISBN = data.getStringExtra("scanned_ISBN");
+            if (scannedISBN.equals(CurrentProcessLending.getIsbn())){
+                Toast.makeText(MyShelfOwnerActivity.this, "Book lend out",
+                        Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(MyShelfOwnerActivity.this, "Un-matching Book",
+                        Toast.LENGTH_SHORT).show();
+            }
+
+
+        }else{
+            Toast.makeText(MyShelfOwnerActivity.this, "Unexpected error occurred",
+                    Toast.LENGTH_SHORT).show();
+        }
 
     }
 }

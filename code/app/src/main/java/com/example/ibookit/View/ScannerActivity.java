@@ -36,6 +36,7 @@ public class ScannerActivity extends AppCompatActivity {
     private BarcodeDetector detector;
     private TextView txtView;
     private ImageView myImageView;
+//    private final int myShelfOwnerReturnCode = 1000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,19 +50,8 @@ public class ScannerActivity extends AppCompatActivity {
         txtView = findViewById(R.id.scan_decrypted_info);
 
 
-//        myImageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                fileChooser();
-//            }
-//        });
-//        final Bitmap myBitmap = BitmapFactory.decodeResource(
-//                getApplicationContext().getResources(),
-//                Picasso.get().load(mImageUri));
-//        myImageView.setImageBitmap(myBitmap);
-
         detector = new BarcodeDetector.Builder(getApplicationContext())
-                        .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
+                        .setBarcodeFormats(Barcode.ALL_FORMATS)
                         .build();
         if(!detector.isOperational()){
             txtView.setText("Could not set up the detector!");
@@ -76,11 +66,6 @@ public class ScannerActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
             fileChooser();
-
-
-
-
-
             }
         });
 
@@ -109,27 +94,14 @@ public class ScannerActivity extends AppCompatActivity {
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
                 && data != null && data.getData() != null) {
+
             mImageUri = data.getData();
-//            String picturePath = getpath(mImageUri);
             try{
                 Bitmap mBitmap = BitmapFactory.decodeStream(getContentResolver().openInputStream(mImageUri));
                 processData(mBitmap);
             } catch (IOException ie){
                 txtView.setText("error");
             }
-//            String[] filePathColumn = {MediaStore.Images.Media.DATA};
-//            Cursor cursor = getContentResolver().query(mImageUri, filePathColumn, null, null, null);
-//            cursor.moveToFirst();
-//            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-//            String picturePath = cursor.getString(columnIndex);
-//            cursor.close();
-//
-//            Bitmap mBitmap = BitmapFactory.decodeFile(picturePath);
-//            myImageView.setImageBitmap(mBitmap);
-
-
-
-//            Picasso.get().load(mImageUri).fit().centerCrop().into(imageButton);
 
         }
 
@@ -141,6 +113,17 @@ public class ScannerActivity extends AppCompatActivity {
 
         Barcode thisCode = barcodes.valueAt(0);
         txtView.setText(thisCode.rawValue);
+        myImageView.setImageBitmap(myBitmap);
+        returnData(thisCode);
+    }
+
+    private void returnData(Barcode myBarcode){
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("scanned_ISBN", myBarcode.rawValue);
+        setResult(RESULT_OK, returnIntent);
+        finish();
+
+
     }
 
 
