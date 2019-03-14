@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupFirebaseAuth();
 
-        Button signUpButton = (Button) findViewById(R.id.signUp_Main);
+        final Button signUpButton = (Button) findViewById(R.id.signUp_Main);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +123,6 @@ public class MainActivity extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
-
 
     }
 
@@ -147,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
+                    Log.d(TAG, "onAuthStateChanged: " + user);
                     Intent intent = new Intent(MainActivity.this, HomeSearchActivity.class);
                     startActivity(intent);
                 } else {

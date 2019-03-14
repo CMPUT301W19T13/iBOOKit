@@ -20,6 +20,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -62,6 +63,7 @@ public class HomeSearchActivity extends AppCompatActivity {
         // get user info
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String username = user.getDisplayName();
+        Log.d(TAG, "onCreate: " + username);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
 
 
@@ -85,13 +87,6 @@ public class HomeSearchActivity extends AppCompatActivity {
                 System.out.println("The read failed: " + databaseError.getCode());
             }
         });
-//        if(mDatabase.child("send").child("ss").getKey().equals("ss")){
-//            sendNotification(1);
-//            mDatabase.child("send").removeValue();
-//        }else if(mDatabase.child("accept").child("ss").getKey().equals("ss")){
-//            sendNotification(2);
-//            mDatabase.child("accept").removeValue();
-//        }
 
         configure_SearchButtonsAndSearchBar();
         setBottomNavigationView();
