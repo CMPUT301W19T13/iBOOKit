@@ -6,8 +6,8 @@ android:orientation="horizontal">
 
     <ImageView
         android:id="@+id/imageUser"
-        android:layout_width="83dp"
-        android:layout_height="81dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:scaleType="fitXY" />
 
 
@@ -19,34 +19,48 @@ android:orientation="horizontal">
     <TextView
         android:id="@+id/listUsername"
         android:layout_width="match_parent"
-        android:layout_height="27dp"
-        android:shadowColor="@color/colorPrimary"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:layout_height="25dp"
+        android:fontFamily="sans-serif-light"
+        android:shadowColor="@android:color/black"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        />
 
 
     <TextView
         android:id="@+id/listEmail"
         android:layout_width="match_parent"
-        android:layout_height="27dp"
+        android:layout_height="25dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:fontFamily="sans-serif-light"
+        android:shadowColor="@android:color/black"
+        android:textColor="@android:color/black"
+        android:textColorHighlight="@android:color/black"
+        android:textStyle="italic"
+        android:textColorHint="@android:color/black"
+        android:textSize="16sp"
+        />
 
     <TextView
         android:id="@+id/listPhoneNumber"
         android:layout_width="match_parent"
-        android:layout_height="27dp"
-        android:shadowColor="@color/colorPrimary"
-        android:textColor="@color/colorPrimary"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:layout_height="25dp"
+        android:fontFamily="sans-serif-light"
+        android:shadowColor="@android:color/black"
+        android:textColor="@android:color/black"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:textColorHighlight="@android:color/black"
+        android:textColorHint="@android:color/black"
+        android:textStyle="italic"
+        android:textSize="16sp"
+        />
 
 
 </LinearLayout>

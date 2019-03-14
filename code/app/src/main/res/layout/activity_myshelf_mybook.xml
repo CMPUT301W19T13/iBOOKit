@@ -8,15 +8,15 @@
 
     <Button
         android:id="@+id/borrowed"
-        android:layout_width="175dp"
+        android:layout_width="154dp"
         android:layout_height="45dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/schemeDarkest"
         android:gravity="center"
         android:text="Books I Borrowed"
         android:textAllCaps="false"
         android:textColor="@color/schemeLightGreen"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintBaseline_toBaselineOf="@+id/my_book"
@@ -26,15 +26,16 @@
 
     <Button
         android:id="@+id/my_book"
-        android:layout_width="175dp"
+        android:layout_width="154dp"
         android:layout_height="45dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/schemeDarkest"
         android:gravity="center"
         android:text="All Books"
         android:textAllCaps="false"
         android:textColor="@color/schemeLightGreen"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintEnd_toStartOf="@+id/borrowed"
@@ -44,24 +45,29 @@
 
     <Button
         android:id="@+id/myshlf_available"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="35dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
         android:background="@color/schemeLightGreen"
         android:text="Available"
+        android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="14sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
+        app:layout_constraintEnd_toStartOf="@+id/myshlf_requested"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/my_book"
         app:layout_constraintTop_toBottomOf="@+id/my_book" />
 
     <Button
         android:id="@+id/myshlf_requested"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="35dp"
         android:background="@color/schemeLightGreen"
         android:text="Requested"
+        android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="14sp"
         android:textStyle="italic"
@@ -71,22 +77,27 @@
 
     <Button
         android:id="@+id/myshelf_borrowed"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="35dp"
+        android:layout_marginEnd="14dp"
         android:background="@color/schemeLightGreen"
         android:text="Borrowed"
+        android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="14sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintBaseline_toBaselineOf="@+id/myshlf_requested"
+        app:layout_constraintEnd_toStartOf="@+id/myshelf_accepted"
         app:layout_constraintStart_toStartOf="@+id/borrowed" />
 
     <ListView
         android:id="@+id/bookListView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="64dp"
         android:background="@color/schemeListColor"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,10 +108,11 @@
 
     <Button
         android:id="@+id/myshelf_accepted"
-        android:layout_width="80dp"
+        android:layout_width="70dp"
         android:layout_height="35dp"
         android:background="@color/schemeLightGreen"
         android:text="Accepted"
+        android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="14sp"
         android:textStyle="italic"
@@ -112,11 +124,9 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
         <include layout="@layout/activity_navigation" />
-
     </FrameLayout>
-
 </android.support.constraint.ConstraintLayout>

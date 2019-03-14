@@ -6,8 +6,8 @@
 
     <ImageView
         android:id="@+id/imageRequest"
-        android:layout_width="83dp"
-        android:layout_height="81dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:scaleType="fitXY" />
 
 
@@ -19,13 +19,14 @@
         <TextView
             android:id="@+id/listTitle"
             android:layout_width="match_parent"
-            android:layout_height="27dp"
-            android:fontFamily="sans-serif-medium"
+            android:layout_height="25dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="sans-serif-light"
             android:shadowColor="@android:color/black"
             android:textColor="@android:color/black"
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
-            android:textColorLink="@android:color/black"
             android:textSize="16sp"
             android:textStyle="italic" />
 
@@ -33,30 +34,30 @@
         <TextView
             android:id="@+id/listReceiver"
             android:layout_width="match_parent"
-            android:layout_height="27dp"
+            android:layout_height="25dp"
             android:layout_marginStart="1dp"
             android:layout_marginLeft="1dp"
-            android:fontFamily="sans-serif-medium"
+            android:fontFamily="sans-serif-light"
             android:shadowColor="@android:color/black"
             android:textColor="@android:color/black"
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
-            android:textColorLink="@android:color/black"
             android:textSize="16sp"
-            android:textStyle="italic"  />
+            android:textStyle="italic"/>
 
         <TextView
             android:id="@+id/listIs_accepted"
             android:layout_width="match_parent"
-            android:layout_height="27dp"
-            android:fontFamily="sans-serif-medium"
+            android:layout_height="25dp"
+            android:layout_marginStart="1dp"
+            android:layout_marginLeft="1dp"
+            android:fontFamily="sans-serif-light"
             android:shadowColor="@android:color/black"
             android:textColor="@android:color/black"
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
-            android:textColorLink="@android:color/black"
             android:textSize="16sp"
-            android:textStyle="italic"  />
+            android:textStyle="italic" />
 
 
     </LinearLayout>
