@@ -6,42 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".View.UserProfileActivity">
 
-    <!--<FrameLayout-->
-    <!--android:id="@+id/frameLayout"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:layout_editor_absoluteX="0dp"-->
-    <!--tools:layout_editor_absoluteY="410dp">-->
-
-    <!--<include layout="@layout/activity_navigation" />-->
-
-    <!--</FrameLayout>-->
-
     <TextView
         android:id="@+id/searchBy_home"
-        android:layout_width="98dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="32dp"
+        android:layout_width="90dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/schemeLightGreen"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         android:text="Search By:"
         android:textColor="@color/colorPrimary"
         android:textColorHighlight="@color/colorPrimary"
         android:textColorHint="@color/colorPrimary"
         android:textColorLink="@color/colorPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold|italic"
-        app:layout_constraintStart_toStartOf="@+id/re_search_bar"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/re_search_book"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/re_search_bar" />
 
     <SearchView
         android:id="@+id/re_search_bar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:background="@android:color/holo_blue_bright"
+        android:background="@color/schemeDarkest"
+        android:textCursorDrawable="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,62 +42,76 @@
 
     <Button
         android:id="@+id/re_search_book"
-        android:layout_width="59dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/back"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:background="@color/schemeLightGreen"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="Book"
-        android:textColor="@color/homeSearch"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/searchBy_home"
+        app:layout_constraintEnd_toStartOf="@+id/re_search_user"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/searchBy_home" />
 
     <Button
         android:id="@+id/re_search_user"
-        android:layout_width="59dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/back"
+        android:layout_width="65dp"
+        android:layout_height="35dp"
+        android:background="@color/schemeLightGreen"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="User"
-        android:textColor="@color/homeSearch"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/re_search_book"
+        app:layout_constraintEnd_toStartOf="@+id/re_search_category"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/re_search_book" />
 
     <Button
         android:id="@+id/re_search_category"
-        android:layout_width="104dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="@drawable/back"
+        android:layout_width="110dp"
+        android:layout_height="35dp"
+        android:background="@color/schemeLightGreen"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="Category"
-        android:textColor="@color/homeSearch"
-        android:textSize="18sp"
-        android:textStyle="bold|italic"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textColorHighlight="@color/colorPrimary"
+        android:textColorHint="@color/colorPrimary"
+        android:textColorLink="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/re_search_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/re_search_user" />
 
     <ListView
         android:id="@+id/search_result_list"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
+        android:background="@color/schemeListColor"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/re_search_user" />
 
@@ -118,5 +125,6 @@
         <include layout="@layout/activity_navigation" />
 
     </FrameLayout>
+
 
 </android.support.constraint.ConstraintLayout>
