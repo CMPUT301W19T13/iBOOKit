@@ -103,6 +103,11 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
     /**
      * Create new user into FireBase
      *
@@ -161,26 +166,28 @@ public class SignUpActivity extends AppCompatActivity {
 
                     Log.d(TAG, "createUserWithEmail:success");
 
-                    FirebaseUser user = mAuth.getCurrentUser();
+                    final FirebaseUser user = mAuth.getCurrentUser();
+
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(username).build();
                     user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
                                 Log.d(TAG, "onComplete: Username updated.");
+
+                                setUserInfo(user.getUid(), username, email, phone);
+
+                                Toast.makeText(SignUpActivity.this, "Sign up successful",
+                                        Toast.LENGTH_SHORT).show();
+
+                                progressBar.setVisibility(View.INVISIBLE);
+
+                                Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
+                                startActivity(intent);
                             }
                         }
                     });
 
-                    setUserInfo(user.getUid(), username, email, phone);
-
-                    Toast.makeText(SignUpActivity.this, "Sign up successful",
-                            Toast.LENGTH_SHORT).show();
-
-                    progressBar.setVisibility(View.INVISIBLE);
-
-                    Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
-                    startActivity(intent);
 
                 } else {
                     Toast.makeText(SignUpActivity.this, "Email already exists",
