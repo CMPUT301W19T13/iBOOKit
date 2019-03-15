@@ -23,9 +23,11 @@
 
     <EditText
         android:id="@+id/descriptionView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/schemeMediumTurqoise"
         android:ellipsize="start"
         android:ems="10"
         android:fontFamily="sans-serif-light"
@@ -39,14 +41,15 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
-        android:background="@color/schemeMediumTurqoise"
         app:layout_constraintBaseline_toBaselineOf="@+id/descriptionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/descriptionTextView" />
 
     <TextView
         android:id="@+id/borrowerAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="16dp"
         android:clickable="false"
         android:ellipsize="start"
         android:ems="10"
@@ -63,6 +66,7 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/borrowerText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/statusAdd" />
 
     <TextView
@@ -81,8 +85,9 @@
 
     <TextView
         android:id="@+id/statusAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="16dp"
         android:clickable="false"
         android:ellipsize="start"
         android:ems="10"
@@ -99,7 +104,8 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/statusText"
-        app:layout_constraintStart_toStartOf="@+id/bookCategoryAdd" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/descriptionView" />
 
     <TextView
         android:id="@+id/statusText"
@@ -210,8 +216,10 @@
 
     <EditText
         android:id="@+id/bookTitleAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/schemeMediumTurqoise"
         android:ellipsize="start"
         android:ems="10"
         android:fontFamily="sans-serif-light"
@@ -225,14 +233,16 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
-        android:background="@color/schemeMediumTurqoise"
         app:layout_constraintBaseline_toBaselineOf="@+id/titleText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bookAuthorAdd" />
 
     <EditText
         android:id="@+id/bookAuthorAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/schemeMediumTurqoise"
         android:ellipsize="start"
         android:ems="10"
         android:fontFamily="sans-serif-light"
@@ -246,14 +256,16 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
-        android:background="@color/schemeMediumTurqoise"
         app:layout_constraintBaseline_toBaselineOf="@+id/authorText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/bookISBNAdd" />
 
     <EditText
         android:id="@+id/bookISBNAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/schemeMediumTurqoise"
         android:ellipsize="start"
         android:ems="10"
         android:fontFamily="sans-serif-light"
@@ -267,30 +279,22 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
-        android:background="@color/schemeMediumTurqoise"
         app:layout_constraintBaseline_toBaselineOf="@+id/isbnText"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/descriptionView" />
 
-    <EditText
-        android:id="@+id/bookCategoryAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ellipsize="start"
-        android:ems="10"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:shadowColor="@color/schemeMediumTurqoise"
-        android:textColor="@color/schemeDarkGreen"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColorHint="@color/colorPrimary"
-        android:textColorLink="@color/colorPrimary"
-        android:textCursorDrawable="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="italic"
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="@color/schemeMediumTurqoise"
-        app:layout_constraintBaseline_toBaselineOf="@+id/categoryText"
-        app:layout_constraintStart_toStartOf="@+id/descriptionView" />
+        android:spinnerMode="dropdown"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/descriptionView"
+        app:layout_constraintTop_toBottomOf="@+id/bookISBNAdd" />
 
 
 </android.support.constraint.ConstraintLayout>
