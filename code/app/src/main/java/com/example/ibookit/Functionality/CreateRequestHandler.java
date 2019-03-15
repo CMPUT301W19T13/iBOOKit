@@ -11,6 +11,7 @@ package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
 
+import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.MessageIBOOKit;
 import com.example.ibookit.Model.Request;
 import com.google.firebase.auth.FirebaseAuth;

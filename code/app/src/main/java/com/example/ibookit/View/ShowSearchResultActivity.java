@@ -29,6 +29,7 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Functionality.CreateRequestHandler;
 import com.example.ibookit.Functionality.SearchForBook;
 import com.example.ibookit.Functionality.SearchForUser;
@@ -272,7 +273,6 @@ public class ShowSearchResultActivity extends AppCompatActivity {
         builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final Request request = new Request(book);
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -290,10 +290,15 @@ public class ShowSearchResultActivity extends AppCompatActivity {
                         }
 
                         // Not requested yet
+                        Request request = new Request(book);
                         CreateRequestHandler createRequest = new CreateRequestHandler();
                         if (createRequest.SendRequestToOwner(request)) {
                             // send notification to owner
                             createRequest.setNotificationToOwner(book.getTitle());
+                            // change status to 1
+                            new BookStatusHandler().setBookStatusFirebase(book, 1);
+
+                            // make toast
                             Toast.makeText(ShowSearchResultActivity.this, "send request successful",
                                     Toast.LENGTH_SHORT).show();
                         } else {
@@ -309,7 +314,6 @@ public class ShowSearchResultActivity extends AppCompatActivity {
 
                     }
                 });
-
 
             }
         });
