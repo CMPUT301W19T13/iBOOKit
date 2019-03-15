@@ -73,7 +73,7 @@
         android:layout_marginTop="16dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
-        android:text="Sign In"
+        android:text="Log In"
         android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="20sp"
@@ -88,6 +88,7 @@
         android:id="@+id/noAccountText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="98dp"
         android:layout_marginBottom="32dp"
         android:text="Don't have an account? "
         android:textColor="@color/colorPrimaryDark"
@@ -95,15 +96,14 @@
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/signUp_Main"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/signUp_Main"
+        android:id="@+id/SignUp_Main"
         android:layout_width="55dp"
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
+        android:layout_marginEnd="98dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
         android:text="Sign Up"
@@ -114,7 +114,6 @@
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/noAccountText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/noAccountText" />
 
     <ProgressBar

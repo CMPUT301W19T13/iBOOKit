@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupFirebaseAuth();
 
-        final Button signUpButton = (Button) findViewById(R.id.signUp_Main);
+        final Button signUpButton = (Button) findViewById(R.id.SignUp_Main);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
