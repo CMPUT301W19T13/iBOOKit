@@ -48,7 +48,7 @@ public class SearchForBook {
         final Set<String> nonDupID = new HashSet<>();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
-        Query listBook = bookRef.orderByChild("status").equalTo(0);
+        Query listBook = bookRef.orderByChild("status").startAt(0).endAt(1);
 
         listBook.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,9 +71,9 @@ public class SearchForBook {
                                 nonDupID.add(d.getKey());
                             }
                         }
-
-
                     }
+                    result.clear();
+                    adapter.notifyDataSetChanged();
                     for (String id: nonDupID){
                        Book temp =  dataSnapshot.child(id).getValue(Book.class);
                        result.add(temp);
@@ -106,6 +106,8 @@ public class SearchForBook {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+                    result.clear();
+                    adapter.notifyDataSetChanged();
                     for (DataSnapshot d : dataSnapshot.getChildren()){
                         if (d.child("status").getValue().toString().equals("0")){
                             Book temp = d.getValue(Book.class);
