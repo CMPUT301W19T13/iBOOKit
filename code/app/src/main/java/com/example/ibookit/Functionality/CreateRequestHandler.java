@@ -38,11 +38,15 @@ public class CreateRequestHandler {
      * Send request to owner
      * @param request
      */
-    public void SendRequestToOwner(Request request){
+    public Boolean SendRequestToOwner(Request request){
         String key = createKey();
 
         request.setRid(key);
         request.setSender(sender);
+
+        if (sender.equals(request.getReceiver())) {
+            return false;
+        }
 
         mDatabase.child("requests").child(key).setValue(request);
 
@@ -55,6 +59,8 @@ public class CreateRequestHandler {
         senderRequestSent.child(key).setValue(request);
 
         mDatabase.child("users").child(request.getReceiver()).child("send").child("ss").setValue("1");
+
+        return true;
 
     }
 

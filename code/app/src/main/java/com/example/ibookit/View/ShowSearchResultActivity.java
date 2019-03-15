@@ -268,10 +268,14 @@ public class ShowSearchResultActivity extends AppCompatActivity {
                 Request request = new Request(book);
 
                 CreateRequestHandler createRequest = new CreateRequestHandler();
-                createRequest.SendRequestToOwner(request);
+                if (createRequest.SendRequestToOwner(request)) {
+                    Toast.makeText(ShowSearchResultActivity.this, "send request successful",
+                            Toast.LENGTH_SHORT).show();
+                } else {
 
-                Toast.makeText(ShowSearchResultActivity.this, "send request successful",
-                        Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ShowSearchResultActivity.this, "Cannot request your own book",
+                            Toast.LENGTH_SHORT).show();
+                }
 
             }
         });
