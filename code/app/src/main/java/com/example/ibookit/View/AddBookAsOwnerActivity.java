@@ -19,8 +19,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,9 +50,11 @@ import javax.net.ssl.HttpsURLConnection;
  *
  * @version 1.0
  */
-public class AddBookAsOwnerActivity extends AppCompatActivity {
+public class AddBookAsOwnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public static TextView mTitle, mAuthor, mIsbn, mCategory, mDescription;
+    public static TextView mTitle, mAuthor, mIsbn,  mDescription;
+    public Spinner mCategory;
+    private String category;
     private Button confirm;
     private ImageButton imageButton;
     private Uri mImageUri;
@@ -72,7 +77,10 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         mTitle = findViewById(R.id.bookTitleAdd);
         mAuthor = findViewById(R.id.bookAuthorAdd);
         mIsbn = findViewById(R.id.bookISBNAdd);
-        mCategory = findViewById(R.id.bookCategoryAdd);
+
+        mCategory = (Spinner) findViewById(R.id.spinner_add_book);
+        categorySelector();
+
         mDescription = findViewById(R.id.descriptionAdd);
 
         confirm = findViewById(R.id.confirmChangeBook);
@@ -86,11 +94,17 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
                 String title = mTitle.getText().toString();
                 String author = mAuthor.getText().toString();
                 String isbn = mIsbn.getText().toString();
-                String category = mCategory.getText().toString();
+
                 String description = mDescription.getText().toString();
 
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String username = user.getDisplayName();
+
+                if (category.length() == 0){
+                    Toast.makeText(AddBookAsOwnerActivity.this, "Select a category",
+                            Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 Book book = new Book(isbn, title, author, description ,category, username);
 
@@ -138,6 +152,25 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         setBottomNavigationView();
 
     }
+
+    private void categorySelector(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddBookAsOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mCategory.setAdapter(adapter);
+        mCategory.setOnItemSelectedListener(AddBookAsOwnerActivity.this);
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        category = parent.getItemAtPosition(position).toString();
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
 
     /**
      * pick a image for the book in system
@@ -257,4 +290,5 @@ public class AddBookAsOwnerActivity extends AppCompatActivity {
         }
         return null;
     }
+
 }

@@ -18,6 +18,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -42,7 +44,7 @@ import com.squareup.picasso.Picasso;
  * @version 1.0
  */
 
-public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
+public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "ViewBookInfoActivity";
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -158,6 +160,24 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
 
     }
 
+//    private void categorySelector(){
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ViewBookInfoAsOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        mCategory.setAdapter(adapter);
+//        mCategory.setOnItemSelectedListener(AddBookAsOwnerActivity.this);
+//
+//    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
+
     /**
      * update the image for book if user change image
      *
@@ -238,6 +258,5 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity {
     private void setImage(String path, ImageButton image) {
         Picasso.get().load(path).fit().centerCrop().into(image);
     }
-
 
 }

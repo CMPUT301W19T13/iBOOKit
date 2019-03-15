@@ -1,4 +1,15 @@
 <resources>
     <string name="app_name">iBOOKit</string>
     <string name="title_activity_scanner">ScannerActivity</string>
+    <string-array name="category">
+        <item>Classics</item>
+        <item>SciFi</item>
+        <item>Horror</item>
+        <item>Thriller</item>
+        <item>Sports</item>
+        <item>Comics</item>
+        <item>Romance</item>
+        <item>Business</item>
+        <item>Other</item>
+    </string-array>
 </resources>

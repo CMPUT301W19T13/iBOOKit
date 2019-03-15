@@ -230,15 +230,14 @@
         app:layout_constraintStart_toStartOf="@+id/descriptionAdd" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinner_add_book"
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_marginTop="16dp"
         android:background="@color/schemeLightGreen"
         android:dropDownWidth="wrap_content"
-        android:spinnerMode="dropdown"
-        android:visibility="visible"
         android:shadowColor="@android:color/black"
+        android:spinnerMode="dropdown"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textColorHighlight="@android:color/black"
@@ -247,6 +246,7 @@
         android:textCursorDrawable="@android:color/black"
         android:textSize="18sp"
         android:textStyle="italic"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/bookISBNAdd"
         app:layout_constraintStart_toStartOf="@+id/descriptionAdd"
         app:layout_constraintTop_toBottomOf="@+id/bookISBNAdd" />
