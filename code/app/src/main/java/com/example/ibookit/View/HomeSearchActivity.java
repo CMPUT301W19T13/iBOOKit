@@ -14,6 +14,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.NotificationCompat;
@@ -26,6 +27,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SearchView;
 
+import com.example.ibookit.Model.MessageIBOOKit;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -66,21 +68,21 @@ public class HomeSearchActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate: " + username);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
 
-
+        // Getting Notification
         mDatabase.child("send").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()){
-                String post = d.getValue(String.class);
+                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
 
-                if(post.equals("1")){
-
-                    sendNotification(1);
-                    mDatabase.child("send").child("ss").setValue("");
-                }else if(post.equals("2")){
-                    sendNotification(2);
-                    mDatabase.child("send").child("ss").setValue("");
-                }
+                    if (message != null)
+                        if(message.getStatus().equals("1")){
+                            sendNotification(1, message);
+                            mDatabase.child("send").child(message.getMid()).removeValue();
+                        }else if(message.getStatus().equals("2")){
+                            sendNotification(2, message);
+                            mDatabase.child("send").child(message.getMid()).removeValue();
+                        }
             }}
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -218,7 +220,7 @@ public class HomeSearchActivity extends AppCompatActivity {
      * @param situation
      *
      */
-    public void sendNotification(int situation) {
+    public void sendNotification(int situation, MessageIBOOKit message) {
 
         //Get an instance of NotificationManager//
 
@@ -238,8 +240,8 @@ public class HomeSearchActivity extends AppCompatActivity {
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(HomeSearchActivity.this)
                             .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle("New notification")
-                            .setContentText(mDatabase.child("send").child("ss").getKey())
+                            .setContentTitle(message.getTile())
+                            .setContentText(message.getContent())
                             .setChannelId(CHANNEL_ID);
 
             // Gets an instance of the NotificationManager service//
@@ -258,8 +260,8 @@ public class HomeSearchActivity extends AppCompatActivity {
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(HomeSearchActivity.this)
                             .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle("New notification")
-                            .setContentText("Your request has been accepted!")
+                            .setContentTitle(message.getTile())
+                            .setContentText(message.getContent())
                             .setChannelId(CHANNEL_ID);
 
 

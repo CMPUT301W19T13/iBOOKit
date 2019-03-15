@@ -38,6 +38,13 @@ import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -45,7 +52,7 @@ import java.util.ArrayList;
 /**
  * @author zisen
  *
- * @version 1.0
+ * @version 1.1
  */
 
 public class ShowSearchResultActivity extends AppCompatActivity {
@@ -265,17 +272,44 @@ public class ShowSearchResultActivity extends AppCompatActivity {
         builder.setPositiveButton("Send", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Request request = new Request(book);
+                final Request request = new Request(book);
 
-                CreateRequestHandler createRequest = new CreateRequestHandler();
-                if (createRequest.SendRequestToOwner(request)) {
-                    Toast.makeText(ShowSearchResultActivity.this, "send request successful",
-                            Toast.LENGTH_SHORT).show();
-                } else {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-                    Toast.makeText(ShowSearchResultActivity.this, "Cannot request your own book",
-                            Toast.LENGTH_SHORT).show();
-                }
+                DatabaseReference allRequestSent = FirebaseDatabase.getInstance().getReference().child("users").child(user.getDisplayName()).child("requestSent");
+                allRequestSent.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot d:dataSnapshot.getChildren()) {
+                            Request r = d.getValue(Request.class);
+                            if (r.getBookId().equals(book.getId())) {
+                                Toast.makeText(ShowSearchResultActivity.this, "Already requested",
+                                        Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }
+
+                        // Not requested yet
+                        CreateRequestHandler createRequest = new CreateRequestHandler();
+                        if (createRequest.SendRequestToOwner(request)) {
+                            // send notification to owner
+                            createRequest.setNotificationToOwner(book.getTitle());
+                            Toast.makeText(ShowSearchResultActivity.this, "send request successful",
+                                    Toast.LENGTH_SHORT).show();
+                        } else {
+
+                            Toast.makeText(ShowSearchResultActivity.this, "Cannot request your own book",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+
 
             }
         });
