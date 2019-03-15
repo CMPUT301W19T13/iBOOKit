@@ -22,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,7 +49,9 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
 
     private static final String TAG = "ViewBookInfoActivity";
     private static final int PICK_IMAGE_REQUEST = 1;
-    private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower, mCategory, mDescription;
+    private TextView mTitle, mAuthor, mIsbn, mStatus, mBorrower, mDescription;
+    private Spinner mCategory;
+    private String category;
     private Button submit;
     private OwnerShelf ownerShelf = new OwnerShelf();
     private Book book;
@@ -69,7 +72,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
         mTitle = findViewById(R.id.bookTitleAdd);
         mAuthor = findViewById(R.id.bookAuthorAdd);
         mIsbn = findViewById(R.id.bookISBNAdd);
-        mCategory = findViewById(R.id.bookCategoryAdd);
+        mCategory = findViewById(R.id.spinner_view_book);
         mStatus = findViewById(R.id.statusAdd);
         mBorrower = findViewById(R.id.borrowerAdd);
         mDescription = findViewById(R.id.descriptionView);
@@ -102,7 +105,10 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
         mTitle.setText(book.getTitle());
         mAuthor.setText(book.getAuthor());
         mIsbn.setText(book.getIsbn());
-        mCategory.setText(book.getCategory());
+
+        category = book.getCategory();
+        categorySelector();
+
         mDescription.setText(book.getDescription());
 
         BookStatusHandler handler = new BookStatusHandler();
@@ -129,7 +135,6 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
                     String title = mTitle.getText().toString();
                     String author = mAuthor.getText().toString();
                     String isbn = mIsbn.getText().toString();
-                    String category = mCategory.getText().toString();
                     String description = mDescription.getText().toString();
 
                     book.setTitle(title);
@@ -160,17 +165,18 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
 
     }
 
-//    private void categorySelector(){
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ViewBookInfoAsOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        mCategory.setAdapter(adapter);
-//        mCategory.setOnItemSelectedListener(AddBookAsOwnerActivity.this);
-//
-//    }
+    private void categorySelector(){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ViewBookInfoAsOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        mCategory.setAdapter(adapter);
+        mCategory.setOnItemSelectedListener(ViewBookInfoAsOwnerActivity.this);
+        mCategory.setSelection(adapter.getPosition(category));
+
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+        category = parent.getItemAtPosition(position).toString();
     }
 
     @Override

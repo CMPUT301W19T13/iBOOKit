@@ -55,27 +55,32 @@ public class BookListAdapter extends ArrayAdapter<Book> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent, false);
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            convertView = inflater.inflate(mResource, parent, false);
+        }
+
 
         Book book = getItem(position);
 
+        if (book != null) {
 
-        mTitle = convertView.findViewById(R.id.listName);
-        mAuthor = convertView.findViewById(R.id.listAuthor);
-        mIsbn = convertView.findViewById(R.id.listISBN);
-        mStatus = convertView.findViewById(R.id.listStatus);
-        imageView = convertView.findViewById(R.id.imageBook);
+            mTitle = convertView.findViewById(R.id.listName);
+            mAuthor = convertView.findViewById(R.id.listAuthor);
+            mIsbn = convertView.findViewById(R.id.listISBN);
+            mStatus = convertView.findViewById(R.id.listStatus);
+            imageView = convertView.findViewById(R.id.imageBook);
 
-        mTitle.setText("Title:  " + book.getTitle());
-        mAuthor.setText("Author:  " + book.getAuthor());
-        mIsbn.setText("Isbn:  " + book.getIsbn());
+            mTitle.setText("Title:  " + book.getTitle());
+            mAuthor.setText("Author:  " + book.getAuthor());
+            mIsbn.setText("Isbn:  " + book.getIsbn());
 
-        BookStatusHandler handler = new BookStatusHandler();
+            BookStatusHandler handler = new BookStatusHandler();
 
-        mStatus.setText("Status:  " + handler.StatusString(book));
+            mStatus.setText("Status:  " + handler.StatusString(book));
 
-        setImage(book.getImageURL(), imageView);
+            setImage(book.getImageURL(), imageView);
+        }
 
         return convertView;
     }

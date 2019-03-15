@@ -46,11 +46,12 @@ public class SearchForUser {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference("users");
 
-
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+                    result.clear();
+                    adapter.notifyDataSetChanged();
                     for (DataSnapshot d : dataSnapshot.getChildren()) {
                         if (d.getKey().toLowerCase().contains
                                 (mKeyword.replaceAll("\\s+","").toLowerCase())){

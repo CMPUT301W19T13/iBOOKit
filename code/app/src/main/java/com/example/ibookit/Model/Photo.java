@@ -13,7 +13,7 @@ package com.example.ibookit.Model;
 /**
  * @version 1.0
  */
-public class photo {
+public class Photo {
     private String path;
     private Integer height;
     private Integer weight;

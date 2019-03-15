@@ -63,29 +63,32 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent, false);
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            convertView = inflater.inflate(mResource, parent, false);
+        }
 
         Request request = getItem(position);
 
-        mTitle = convertView.findViewById(R.id.listTitle);
-        mSender = convertView.findViewById(R.id.listReceiver);
-        mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
-        imageView = convertView.findViewById(R.id.imageRequest);
+        if (request != null) {
+            mTitle = convertView.findViewById(R.id.listTitle);
+            mSender = convertView.findViewById(R.id.listReceiver);
+            mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
+            imageView = convertView.findViewById(R.id.imageRequest);
 
-        try {
-            getBook(request.getBookId(), mTitle, imageView);
-        } catch (Exception e) {
-            Log.d(TAG, "getView: Error");
+            try {
+                getBook(request.getBookId(), mTitle, imageView);
+            } catch (Exception e) {
+                Log.d(TAG, "getView: Error");
+            }
+
+
+            mSender.setText("Sender:  " + request.getSender());
+
+            RequestStatusHandler handler = new RequestStatusHandler();
+
+            mIs_accpected.setText("Status:  " + handler.StatusIntegerToString(request.getIsAccept()));
         }
-
-
-        mSender.setText("Sender:  " + request.getSender());
-
-        RequestStatusHandler handler = new RequestStatusHandler();
-
-        mIs_accpected.setText("Status:  " + handler.StatusIntegerToString(request.getIsAccept()));
-
 
         return convertView;
     }

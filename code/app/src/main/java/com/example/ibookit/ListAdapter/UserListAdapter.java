@@ -51,21 +51,25 @@ public class UserListAdapter extends ArrayAdapter<User> {
      */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LayoutInflater inflater = LayoutInflater.from(mContext);
-        convertView = inflater.inflate(mResource, parent, false);
+        if (convertView == null) {
+            LayoutInflater inflater = LayoutInflater.from(mContext);
+            convertView = inflater.inflate(mResource, parent, false);
+        }
 
         User user = getItem(position);
 
-        mUsername = convertView.findViewById(R.id.listUsername);
-        mEmail = convertView.findViewById(R.id.listEmail);
-        mPhone = convertView.findViewById(R.id.listPhoneNumber);
-        imageView = convertView.findViewById(R.id.imageUser);
+        if (user != null) {
+            mUsername = convertView.findViewById(R.id.listUsername);
+            mEmail = convertView.findViewById(R.id.listEmail);
+            mPhone = convertView.findViewById(R.id.listPhoneNumber);
+            imageView = convertView.findViewById(R.id.imageUser);
 
-        mUsername.setText(user.getUsername());
-        mEmail.setText(user.getEmail());
-        mPhone.setText(user.getPhoneNumber());
+            mUsername.setText(user.getUsername());
+            mEmail.setText(user.getEmail());
+            mPhone.setText(user.getPhoneNumber());
 
-        setImage(user.getImageURL(), imageView);
+            setImage(user.getImageURL(), imageView);
+        }
 
         return convertView;
     }

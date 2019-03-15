@@ -118,6 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/search_book" />
 
     <ListView
+        android:id="@+id/recommandationListView"
         android:layout_width="395dp"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"

@@ -8,7 +8,7 @@
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
 package com.example.ibookit;
-import com.example.ibookit.Model.photo;
+import com.example.ibookit.Model.Photo;
 
 
 import org.junit.Test;
@@ -28,7 +28,7 @@ public class PhotoTest {
     private Integer weight;*/
 
 
-   photo picture = new photo();
+   Photo picture = new Photo();
 
     @Test
     public void Phototest(){
