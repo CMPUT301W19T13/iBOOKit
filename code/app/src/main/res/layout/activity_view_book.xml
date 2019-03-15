@@ -284,13 +284,14 @@
         app:layout_constraintStart_toStartOf="@+id/descriptionView" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinner_view_book"
         android:layout_width="0dp"
         android:layout_height="25dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/schemeMediumTurqoise"
         android:spinnerMode="dropdown"
+        android:textAlignment="center"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/descriptionView"

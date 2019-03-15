@@ -296,7 +296,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
     private void setCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        final CharSequence[] options  = {"fine", "fivestar", "KKK", "Westeast", "thrilling"};
+        final CharSequence[] options  = getResources().getStringArray(R.array.category);
         builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
