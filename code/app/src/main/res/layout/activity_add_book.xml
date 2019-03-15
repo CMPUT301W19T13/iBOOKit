@@ -22,7 +22,7 @@
     <EditText
         android:id="@+id/descriptionAdd"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/schemeLightGreen"
@@ -159,8 +159,7 @@
     <EditText
         android:id="@+id/bookTitleAdd"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_height="25dp"
         android:background="@color/schemeLightGreen"
         android:ellipsize="start"
         android:ems="10"
@@ -178,14 +177,13 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/titleText"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bookAuthorAdd"
         app:layout_constraintStart_toStartOf="@+id/bookISBNAdd" />
 
     <EditText
         android:id="@+id/bookAuthorAdd"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_height="25dp"
         android:background="@color/schemeLightGreen"
         android:ellipsize="start"
         android:ems="10"
@@ -203,13 +201,13 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/authorText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/bookCategoryAdd" />
+        app:layout_constraintEnd_toEndOf="@+id/bookISBNAdd"
+        app:layout_constraintStart_toStartOf="@+id/bookISBNAdd" />
 
     <EditText
         android:id="@+id/bookISBNAdd"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="25dp"
         android:layout_marginEnd="16dp"
         android:background="@color/schemeLightGreen"
         android:ellipsize="start"
@@ -234,15 +232,12 @@
     <EditText
         android:id="@+id/bookCategoryAdd"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="16dp"
         android:background="@color/schemeLightGreen"
-        android:ellipsize="start"
-        android:ems="10"
-        android:fontFamily="sans-serif-light"
-        android:gravity="center"
-        android:hint="Category"
-        android:inputType="textPersonName"
+        android:dropDownWidth="wrap_content"
+        android:spinnerMode="dropdown"
+        android:visibility="visible"
         android:shadowColor="@android:color/black"
         android:textAlignment="center"
         android:textColor="@android:color/black"
@@ -252,9 +247,9 @@
         android:textCursorDrawable="@android:color/black"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/categoryText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/descriptionAdd" />
+        app:layout_constraintEnd_toEndOf="@+id/bookISBNAdd"
+        app:layout_constraintStart_toStartOf="@+id/descriptionAdd"
+        app:layout_constraintTop_toBottomOf="@+id/bookISBNAdd" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
