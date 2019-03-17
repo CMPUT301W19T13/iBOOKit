@@ -6,6 +6,7 @@ import android.util.Log;
 import com.example.ibookit.Model.Page;
 import com.example.ibookit.View.AddBookAsOwnerActivity;
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,7 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
     private String data = "";
     private String description = "";
     private String title = "";
+    private String author = "";
     @Override
     protected Void doInBackground(String... urlString) {
         BufferedReader reader = null;
@@ -49,41 +51,25 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
 
             while(line != null){
                 line = reader.readLine();
-//                buffer.append(chars, 0, read);
                 data = data + line;
             }
 
-//            JSONArray JA = new JSONArray(data);
             JSONObject JO = new JSONObject(data);
             JSONArray items = JO.getJSONArray("items");
-
-
-//            JSONObject JO2 = (JSONObject) JA.get(4);
-            JSONObject volumeInfo = items.getJSONObject(5);
+            JSONObject basicInfos = (JSONObject) items.get(0);
+            JSONObject volumeInfo = basicInfos.getJSONObject("volumeInfo");
+            JSONArray authors = volumeInfo.getJSONArray("authors");
             title = volumeInfo.getString("title");
-            description = items.getString(11);
+            description = volumeInfo.getString("description");
+            for (int i =0; i < authors.length();i++){
+                author = author+authors.get(i);
 
-//            dataParsed += singleParsed;
-
-
-
-
+            }
 
 
-//            reader = new BufferedReader(new InputStreamReader(url.openStream()));
-//            Log.d("myshelf-readUrl", "connection established");
-//            StringBuffer buffer = new StringBuffer();
-//            int read;
-//            char[] chars = new char[1024];
-//            while ((read = reader.read(chars)) != -1)
-//                buffer.append(chars, 0, read);
-//
-////            return buffer.toString();
         } catch (MalformedURLException ex) {
-//            Log.d("myshelf-readUrl", "MalformedURLException");
             ex.printStackTrace();
         } catch (IOException ex) {
-//            Log.d("myshelf-readUrl", "IOException");
             ex.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
@@ -96,7 +82,6 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
                 }
             }
         }
-//        return null;
         return null;
     }
 
@@ -104,17 +89,9 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid){
         super.onPostExecute(aVoid);
-//        try {
-////            Gson gson = new Gson();
-////            Page bookPage = gson.fromJson(data, Page.class);
-////            AddBookAsOwnerActivity.mDescription.setText(bookPage.getTitle());
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-
         AddBookAsOwnerActivity.mDescription.setText(this.description);
         AddBookAsOwnerActivity.mTitle.setText(this.title);
+        AddBookAsOwnerActivity.mAuthor.setText(this.author);
 
     }
 
