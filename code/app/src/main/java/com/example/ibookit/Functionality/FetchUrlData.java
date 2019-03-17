@@ -22,18 +22,19 @@ import javax.net.ssl.HttpsURLConnection;
 
 //https://www.youtube.com/watch?v=Vcn4OuV4Ixg
 
-public class FetchUrlData extends AsyncTask<Void, Void, Void> {
+public class FetchUrlData extends AsyncTask<String, Void, Void> {
     private String data = "";
-    private String dataParsed = "";
-    private String singleParsed = "";
+    private String description = "";
+    private String title = "";
     @Override
-    protected Void doInBackground(Void... voids) {
+    protected Void doInBackground(String... urlString) {
         BufferedReader reader = null;
         HttpsURLConnection con = null;
 
         try {
+
             Log.d("myslelf-readUrl", "reading url started");
-            URL url = new URL("https://www.googleapis.com/books/v1/volumes?q=isbn:0735619670");
+            URL url = new URL(urlString[0]);
             //https://stackoverflow.com/questions/43079460/how-to-read-json-data-from-url-in-android
             con = (HttpsURLConnection) url.openConnection();
             Log.d("myslelf-readUrl", "connection created");
@@ -52,9 +53,16 @@ public class FetchUrlData extends AsyncTask<Void, Void, Void> {
                 data = data + line;
             }
 
-            JSONArray JA = new JSONArray(data);
-            JSONObject JO = (JSONObject) JA.get(0);
-            singleParsed = "title:"+JO.get("kind");
+//            JSONArray JA = new JSONArray(data);
+            JSONObject JO = new JSONObject(data);
+            JSONArray items = JO.getJSONArray("items");
+
+
+//            JSONObject JO2 = (JSONObject) JA.get(4);
+            JSONObject volumeInfo = items.getJSONObject(5);
+            title = volumeInfo.getString("title");
+            description = items.getString(11);
+
 //            dataParsed += singleParsed;
 
 
@@ -105,8 +113,8 @@ public class FetchUrlData extends AsyncTask<Void, Void, Void> {
 //            e.printStackTrace();
 //        }
 
-        AddBookAsOwnerActivity.mDescription.setText(this.data);
-        AddBookAsOwnerActivity.mTitle.setText(this.singleParsed);
+        AddBookAsOwnerActivity.mDescription.setText(this.description);
+        AddBookAsOwnerActivity.mTitle.setText(this.title);
 
     }
 

@@ -59,6 +59,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
     private ImageButton imageButton;
     private Uri mImageUri;
     private Button scanButton;
+    private String googleBookAPIURL = "https://www.googleapis.com/books/v1/volumes?q=isbn:";
 
     private static final int PICK_IMAGE_REQUEST = 1;
     public static String ScanBookJson;
@@ -124,8 +125,11 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
             @Override
             public void onClick(View v) {
                 Gson gson= new Gson();
-                FetchUrlData BookPageData = new FetchUrlData();
-                BookPageData.execute();
+
+                String resultIsbn = "9781554810642";
+                String myUrl = googleBookAPIURL+resultIsbn;
+                FetchUrlData fetchBook = new FetchUrlData();
+                fetchBook.execute(myUrl);
 
 //                try {
 //                    String resultPage = readUrl("https://www.googleapis.com/books/v1/volumes?q=isbn:0735619670");
