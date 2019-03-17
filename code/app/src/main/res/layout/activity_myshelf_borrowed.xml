@@ -9,12 +9,64 @@
 
     <Button
         android:id="@+id/my_book"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_marginBottom="64dp"
+        android:layout_width="185dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="8dp"
         android:background="@color/schemeLightGreen"
         android:gravity="center"
         android:text="Back to all my books"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/borrowed"
+        app:layout_constraintStart_toEndOf="@+id/borrowed" />
+
+    <TextView
+        android:id="@+id/borrowed"
+        android:layout_width="185dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Books I Borrowed"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toStartOf="@+id/BorrowerShelfListView"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/BorrowerShelfListView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/schemeListColor"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/borrowed" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="64dp"
+        android:adjustViewBounds="false"
+        android:background="@color/schemeLightGreen"
+        android:cropToPadding="false"
+        android:drawableTop="@drawable/cameranew"
+        android:drawableTint="@color/schemeDarkGreen"
+        android:text="Receive Book"
+        android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="20sp"
@@ -25,39 +77,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:id="@+id/borrowed"
-        android:layout_width="190dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="8dp"
-        android:clickable="false"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:text="Books I Borrowed"
-        android:textAllCaps="false"
-        android:textColor="@color/schemeDarkGreen"
-        android:textSize="22sp"
-        android:textStyle="italic"
-        app:fontFamily="sans-serif-medium"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ListView
-        android:id="@+id/BorrowerShelfListView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/schemeListColor"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/my_book"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/borrowed" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -69,7 +88,6 @@
         <include layout="@layout/activity_navigation" />
 
     </FrameLayout>
-
 
 
 </android.support.constraint.ConstraintLayout>
