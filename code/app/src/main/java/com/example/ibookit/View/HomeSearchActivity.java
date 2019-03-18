@@ -37,6 +37,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 /**
  * @author zisen
  *
@@ -48,6 +50,7 @@ public class HomeSearchActivity extends AppCompatActivity {
     public static Context sContext;
     private SearchView sv;
     private DatabaseReference mDatabase;
+    private ValueEventListener valueEventListener;
 
 
     /**
@@ -66,24 +69,25 @@ public class HomeSearchActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String username = user.getDisplayName();
         Log.d(TAG, "onCreate: " + username);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("send");
 
         // Getting Notification
-        mDatabase.child("send").addValueEventListener(new ValueEventListener() {
+        valueEventListener = mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()){
                     MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
 
-                    if (message != null)
-                        if(message.getStatus().equals("1")){
+                    if (message != null) {
+                        if (message.getStatus().equals("1")) {
                             sendNotification(1, message);
-                            mDatabase.child("send").child(message.getMid()).removeValue();
-                        }else if(message.getStatus().equals("2")){
+                        } else if (message.getStatus().equals("2")) {
                             sendNotification(2, message);
-                            mDatabase.child("send").child(message.getMid()).removeValue();
                         }
-            }}
+                    }
+                }
+                mDatabase.removeValue();
+            }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
@@ -236,6 +240,9 @@ public class HomeSearchActivity extends AppCompatActivity {
         mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
         mChannel.setShowBadge(false);
 
+        // Allow multiple notifications
+        int m = (int) ((new Date().getTime() / 1000L) % Integer.MAX_VALUE);
+
         if(situation ==1) {
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(HomeSearchActivity.this)
@@ -255,7 +262,7 @@ public class HomeSearchActivity extends AppCompatActivity {
 
             notificationManager.createNotificationChannel(mChannel);
 
-            notificationManager.notify(1, mBuilder.build());}
+            notificationManager.notify(m, mBuilder.build());}
         else{
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(HomeSearchActivity.this)
@@ -269,7 +276,14 @@ public class HomeSearchActivity extends AppCompatActivity {
 
             notificationManager.createNotificationChannel(mChannel);
 
-            notificationManager.notify(1, mBuilder.build());
+            notificationManager.notify(m, mBuilder.build());
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDatabase.removeEventListener(valueEventListener);
+        Log.d(TAG, "onDestroy: remove event listener");
     }
 }
