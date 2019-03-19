@@ -93,6 +93,7 @@ public class BorrowerShelf implements BookShelf{
         book.setCurrentBorrower(username);
         // set book status be borrowed
         book.setStatus(3);
+        book.setTransitStatus(0);
 
         // put this book to login user's borrower shelf
         mDatabase.child(book.getId()).setValue(book);

@@ -27,7 +27,8 @@ public class Book {
     private String owner;
     private String currentBorrower;
     private String imageURL;
-    private int borrowingStatus;
+    // 2 status: not in transit -> 0, pending transit -> 1
+    private int transitStatus;
 
 
 
@@ -50,7 +51,7 @@ public class Book {
         this.owner = owner;
         this.status = 0;
         this.currentBorrower = "";
-        this.borrowingStatus = 0;
+        this.transitStatus = 0;
     }
 
     /**
@@ -144,12 +145,12 @@ public class Book {
         this.imageURL = imageURL;
     }
 
-    public int getBorrowingStatus() {
-        return borrowingStatus;
+    public int getTransitStatus() {
+        return transitStatus;
     }
 
-    public void setBorrowingStatus(int borrowingStatus) {
-        this.borrowingStatus = borrowingStatus;
+    public void setTransitStatus(int transitStatus) {
+        this.transitStatus = transitStatus;
     }
 }
 

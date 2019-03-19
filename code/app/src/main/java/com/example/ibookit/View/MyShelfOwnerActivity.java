@@ -291,18 +291,13 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         if (requestCode == scanRequestCode && resultCode == RESULT_OK ){
 
             final String scannedISBN = data.getStringExtra("scanned_ISBN");
-            final String bookID = "";
-
-
-
-
-
+//            final String bookID = "";
 
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             final String username = user.getDisplayName();
             final DatabaseReference ownShelfRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("ownerShelf");
-            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
-
+//            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
+            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("requests");
 
 
             ownShelfRef.addValueEventListener(new ValueEventListener() {
@@ -312,23 +307,34 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                         // else the book does not exit in owner shelf or request is not accepted
                         // book status of 2 stands for accepted
                         if (d.child("isbn").getValue().toString().equals(scannedISBN)
-                        && d.child("status").getValue().toString().equals("2")){
+                            && d.child("status").getValue().toString().equals("2")
+                            && d.child("transitStatus").getValue().toString().equals("0")){
 
                             //todo: what if user have two different book with same isbn, and both of
                             //them are requested and accepted, this will set both of them to lend pending
+
+
+                                // will implement this if necessary, I already added transit status to every book on every shelf
+                                // or location online
+//                            if (!d.hasChild("transitStatus")){
+//                                d.child("transitStatus").
+//                            }
+
                             final String bookID = d.getKey();
+                            final Book targetBook = d.getValue(Book.class);
                             requestRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot d:dataSnapshot.getChildren()){
-                                        if (d.child("bookId").getValue().toString().equals(bookID)){
+                                        if (d.child("bookId").getValue().toString().equals(bookID)
+                                            && d.child("receiver").getValue().toString().equals(username)){
 //                                            Toast.makeText(MyShelfOwnerActivity.this, "request found",
 //                                                Toast.LENGTH_SHORT).show();
-                                            // update book status on book directory and on owner shelf directory
-                                            DatabaseReference shelfBookRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("ownerShelf").child(bookID);
-                                            DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference().child("books").child("ownerShelf").child(bookID);
-                                            shelfBookRef.child("status").setValue(3);
-                                            bookRef.child("status").setValue(3);
+
+                                            // set transit status
+                                            targetBook.setTransitStatus(1);
+                                            // update book in corresponding directories
+                                            ownerShelf.update_book(targetBook);
                                             ownerShelf.SyncBookShelf(mBooks, adapter, status);
                                         }
                                     }
@@ -350,14 +356,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
                 }
             });
-//            if (scannedISBN.equals(CurrentProcessLending.getIsbn())){
-//                Toast.makeText(MyShelfOwnerActivity.this, "Book lend out",
-//                        Toast.LENGTH_SHORT).show();
-//            }else{
-//                Toast.makeText(MyShelfOwnerActivity.this, "Un-matching Book",
-//                        Toast.LENGTH_SHORT).show();
-//            }
-
 
         }
         else{
