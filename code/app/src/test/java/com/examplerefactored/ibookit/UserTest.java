@@ -1,7 +1,6 @@
-package com.example.ibookit;
+package com.examplerefactored.ibookit;
 
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.User;
+import com.examplerefactored.ibookit.Model.User;
 
 import org.junit.Test;
 

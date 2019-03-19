@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ibookit">
+    package="com.examplerefactored.ibookit">
 
     <application
         android:allowBackup="true"
@@ -9,11 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".View.contactInformation" />
-        <activity android:name=".View.userProfile" />
-        <activity android:name=".View.SignUp" />
-        <activity android:name=".View.SignIn" />
-        <activity android:name=".View.MainActivity">
+        <activity android:name="com.examplerefactored.ibookit.View.contactInformation" />
+        <activity android:name="com.examplerefactored.ibookit.View.userProfile" />
+        <activity android:name="com.examplerefactored.ibookit.View.SignUp" />
+        <activity android:name="com.examplerefactored.ibookit.View.SignIn" />
+        <activity android:name="com.examplerefactored.ibookit.View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

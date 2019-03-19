@@ -1,4 +1,4 @@
-package com.example.ibookit.View;
+package com.examplerefactored.ibookit.View;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.ibookit.R;
+import com.examplerefactored.ibookit.R;
 
 public class SignIn extends AppCompatActivity {
 

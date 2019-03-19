@@ -1,4 +1,4 @@
-package com.example.ibookit.Model;
+package com.examplerefactored.ibookit.Model;
 
 public class User {
     private String username;
@@ -36,5 +36,9 @@ public class User {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void Stuff(){
+        System.out.println("test");
     }
 }

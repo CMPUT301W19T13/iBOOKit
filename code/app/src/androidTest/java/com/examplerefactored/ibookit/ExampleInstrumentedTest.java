@@ -1,4 +1,4 @@
-package com.example.ibookit;
+package com.examplerefactored.ibookit;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

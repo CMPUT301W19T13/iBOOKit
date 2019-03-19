@@ -1,9 +1,9 @@
-package com.example.ibookit.View;
+package com.examplerefactored.ibookit.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.example.ibookit.R;
+import com.examplerefactored.ibookit.R;
 
 public class contactInformation extends AppCompatActivity {
 

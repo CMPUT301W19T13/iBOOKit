@@ -1,4 +1,4 @@
-package com.example.ibookit.Functionality;
+package com.examplerefactored.ibookit.Functionality;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

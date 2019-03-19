@@ -1,6 +1,4 @@
-package com.example.ibookit.Model;
-
-import com.example.ibookit.Model.User;
+package com.examplerefactored.ibookit.Model;
 
 public class Book {
     private String isbn;

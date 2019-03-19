@@ -1,12 +1,8 @@
-package com.example.ibookit;
+package com.examplerefactored.ibookit;
 
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.User;
+import com.examplerefactored.ibookit.Model.Book;
 
 import org.junit.Test;
-import org.junit.Before;
-
-import java.security.acl.Owner;
 
 import static org.junit.Assert.*;
 
