@@ -27,6 +27,9 @@ public class Book {
     private String owner;
     private String currentBorrower;
     private String imageURL;
+    private int borrowingStatus;
+
+
 
     /**
      * Constructor
@@ -47,6 +50,7 @@ public class Book {
         this.owner = owner;
         this.status = 0;
         this.currentBorrower = "";
+        this.borrowingStatus = 0;
     }
 
     /**
@@ -138,6 +142,14 @@ public class Book {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public int getBorrowingStatus() {
+        return borrowingStatus;
+    }
+
+    public void setBorrowingStatus(int borrowingStatus) {
+        this.borrowingStatus = borrowingStatus;
     }
 }
 
