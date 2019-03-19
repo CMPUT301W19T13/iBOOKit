@@ -17,6 +17,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.example.ibookit.Mockobject.TestObj;
+import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +41,8 @@ import static org.junit.Assert.assertEquals;
 @RunWith(AndroidJUnit4.class)
 public class FirebaseTest {
 
-
+    private int semaphore = 1;
+    private int guard = 1;
     private Context instrumentationCtx;
     private Set<String> testResult = new HashSet<>();
     private Set<String> expectedResult = new HashSet<>();
@@ -54,31 +56,89 @@ public class FirebaseTest {
         DatabaseReference mref;
         mref = FirebaseDatabase.getInstance().getReference();
 
-        DatabaseReference compare = mref.child("users").child("zijun");
+        DatabaseReference compare = mref.child("users");
 
         ArrayList<String> longlist = new ArrayList<String>();
 
 
-        compare.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot d : dataSnapshot.getChildren()){
+//        if (longlist.isEmpty()){
+//            System.out.println("Notexist");
+//        }
+//
+//        longlist.add("1");
+//
+//        if (longlist.isEmpty()){
+//            System.out.println("Notexist");
+//        }
+//        else{
+//            System.out.println("exist");
+//        }
 
-                }
+
+        while (longlist.isEmpty()) {
+
+            if (++guard == 2) {
+                longlist = searchDatabase(compare);
 
             }
+            System.out.println("Notexist");
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+        }
 
 
-        String TAG = "ffff";
-        System.out.println("sssss");
-       Log.d(TAG, "StatusString: Out of range");
+
+
 
 
     }
+
+
+
+
+//    mDatabase.addValueEventListener(new ValueEventListener() {
+//        @Override
+//        public void onDataChange(DataSnapshot dataSnapshot) {
+//            last.clear();
+//            bookList.clear();
+//            adapter.notifyDataSetChanged();
+//            for (DataSnapshot d: dataSnapshot.getChildren()) {
+//
+//                Request request = d.getValue(Request.class);
+
+
+    public ArrayList<String> searchDatabase(DatabaseReference compare){
+        final String TAG = "ffff";
+        System.out.println("dsssss");
+        final ArrayList<String> list = new ArrayList<String>();
+
+        compare.addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                System.out.println("Notexist");
+
+                for (DataSnapshot d : dataSnapshot.getChildren()){
+
+                    System.out.println("sssss");
+                    Log.d(TAG, d.getValue().toString());
+
+
+                }
+                list.add("1");
+
+            }
+
+            @Override
+            public void onCancelled( DatabaseError databaseError) {
+                System.out.println("Notexist");
+            }
+        });
+
+        return list;
+    }
+
+
+
 }
