@@ -1,15 +1,15 @@
-package com.examplerefactored.ibookit.View;
+package com.packagefactoed.ibookit.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.examplerefactored.ibookit.R;
+import com.packagefactoed.ibookit.R;
 
-public class SignUp extends AppCompatActivity {
+public class contactInformation extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+        setContentView(R.layout.activity_contact_information);
     }
 }

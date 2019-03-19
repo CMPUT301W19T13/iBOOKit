@@ -1,4 +1,4 @@
-package com.examplerefactored.ibookit.Model;
+package com.packagefactoed.ibookit.Model;
 
 public abstract class User {
     private String username;
