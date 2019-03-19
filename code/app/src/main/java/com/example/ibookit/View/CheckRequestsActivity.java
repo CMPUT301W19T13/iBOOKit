@@ -65,6 +65,15 @@ public class CheckRequestsActivity extends AppCompatActivity {
         adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
         Received.setAdapter(adapterB);
 
+        Sent.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Request item = (Request) Sent.getItemAtPosition(position);
+                
+
+
+            }
+        });
 
         Received.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
