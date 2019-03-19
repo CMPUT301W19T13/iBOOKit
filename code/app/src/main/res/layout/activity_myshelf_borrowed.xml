@@ -49,14 +49,14 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/schemeListColor"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/borrowOrReturn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borrowed" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/borrowOrReturn"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_marginBottom="64dp"
@@ -65,7 +65,7 @@
         android:cropToPadding="false"
         android:drawableTop="@drawable/cameranew"
         android:drawableTint="@color/schemeDarkGreen"
-        android:text="Receive Book"
+        android:text="borrow/return"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
