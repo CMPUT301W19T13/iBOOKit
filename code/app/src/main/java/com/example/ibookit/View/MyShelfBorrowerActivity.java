@@ -21,11 +21,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.BorrowerShelf;
 import com.example.ibookit.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -40,6 +48,8 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
     private ArrayAdapter<Book> adapter;
     private ArrayList<Book> mBooks = new ArrayList<>();
     private BorrowerShelf borrowerShelf = new BorrowerShelf();
+    private Button scanButton, changeShelf;
+    private final Integer scanRequestCode = 1000;
 
     /**
      * Showing the borrower shelf in a listView
@@ -52,14 +62,25 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
 
         mListView = findViewById(R.id.BorrowerShelfListView);
 
+        scanButton = findViewById(R.id.borrowOrReturn);
 
-        Button changeShelf = findViewById(R.id.my_book);
+        changeShelf = findViewById(R.id.my_book);
+
+
         changeShelf.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MyShelfBorrowerActivity.this, MyShelfOwnerActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(intent);
+            }
+        });
+
+        scanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent scan = new Intent(MyShelfBorrowerActivity.this, ScannerActivity.class);
+                startActivityForResult(scan, scanRequestCode);
             }
         });
 
@@ -139,5 +160,81 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
+        if (requestCode == scanRequestCode && resultCode == RESULT_OK ){
+
+            final String scannedISBN = data.getStringExtra("scanned_ISBN");
+//            final String bookID = "";
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            final String username = user.getDisplayName();
+//            final DatabaseReference ownShelfRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("ownerShelf");
+
+//            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestSent");
+            //todo: accesing requestRef than request sent under user make structure clearer, but increased check clause on if statement might slow down the app
+            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("requests");
+            final DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference().child("books");
+
+            bookRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot d: dataSnapshot.getChildren()){
+                        // will activate if really needed, database is already updated
+//                        if (d.child("isbn").getValue().toString().equals(scannedISBN)
+//                            && d.hasChild("transitStatus")){
+//                            if (d.child("transitStatus").getValue().toString().equals("1")){
+//
+//                            }
+                            if (d.child("isbn").getValue().toString().equals(scannedISBN)
+                                && d.hasChild("transitStatus")
+                                && d.child("transitStatus").getValue().toString().equals("1")){
+                                final String bookID = d.getKey();
+                                final Book targetBook = d.getValue(Book.class);
+                                requestRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot d:dataSnapshot.getChildren()){
+                                        if (d.child("bookId").getValue().toString().equals(bookID)
+                                                && d.child("sender").getValue().toString().equals(username)){
+
+                                            // add book to borrower shelf, add book method updates
+                                            // the directories that needs to be updated
+                                            borrowerShelf.add_book(targetBook);
+                                            borrowerShelf.SyncBookShelf(mBooks, adapter, 3);
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+
+                        }
+
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
+
+
+
+        }
+        else{
+            Toast.makeText(MyShelfBorrowerActivity.this, "Unexpected error occurred",
+                    Toast.LENGTH_SHORT).show();
+        }
+
     }
 }

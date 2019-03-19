@@ -37,6 +37,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 /**
  * @author zisen
  *
@@ -48,6 +50,8 @@ public class HomeSearchActivity extends AppCompatActivity {
     public static Context sContext;
     private SearchView sv;
     private DatabaseReference mDatabase;
+    private ValueEventListener valueEventListener;
+    private Integer notificationCount = 0;
 
 
     /**
@@ -66,24 +70,21 @@ public class HomeSearchActivity extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String username = user.getDisplayName();
         Log.d(TAG, "onCreate: " + username);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("send");
 
         // Getting Notification
-        mDatabase.child("send").addValueEventListener(new ValueEventListener() {
+        valueEventListener = mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()){
-                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
+//                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
 
-                    if (message != null)
-                        if(message.getStatus().equals("1")){
-                            sendNotification(1, message);
-                            mDatabase.child("send").child(message.getMid()).removeValue();
-                        }else if(message.getStatus().equals("2")){
-                            sendNotification(2, message);
-                            mDatabase.child("send").child(message.getMid()).removeValue();
-                        }
-            }}
+//                    if (message != null) {
+//                        sendNotification(message);
+//                    }
+                }
+                mDatabase.removeValue();
+            }
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
@@ -217,13 +218,11 @@ public class HomeSearchActivity extends AppCompatActivity {
     /**
      * get all notification when user signIn
      *
-     * @param situation
-     *
+     * @param message
      */
-    public void sendNotification(int situation, MessageIBOOKit message) {
+    public void sendNotification(MessageIBOOKit message) {
 
         //Get an instance of NotificationManager//
-
 
         String CHANNEL_ID = "my_channel_01";
         CharSequence name = "my_channel";
@@ -236,40 +235,26 @@ public class HomeSearchActivity extends AppCompatActivity {
         mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
         mChannel.setShowBadge(false);
 
-        if(situation ==1) {
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(HomeSearchActivity.this)
-                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle(message.getTile())
-                            .setContentText(message.getContent())
-                            .setChannelId(CHANNEL_ID);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(HomeSearchActivity.this, CHANNEL_ID)
+                .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                .setContentTitle(message.getTile())
+                .setContentText(message.getContent());
 
-            // Gets an instance of the NotificationManager service//
+        // Gets an instance of the NotificationManager service//
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            NotificationManager mNotificationManager =
+        notificationManager.createNotificationChannel(mChannel);
 
-                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        notificationManager.notify(++notificationCount, mBuilder.build());
 
-
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-            notificationManager.createNotificationChannel(mChannel);
-
-            notificationManager.notify(1, mBuilder.build());}
-        else{
-            NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(HomeSearchActivity.this)
-                            .setSmallIcon(android.R.drawable.sym_def_app_icon)
-                            .setContentTitle(message.getTile())
-                            .setContentText(message.getContent())
-                            .setChannelId(CHANNEL_ID);
+    }
 
 
-            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-            notificationManager.createNotificationChannel(mChannel);
-
-            notificationManager.notify(1, mBuilder.build());
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDatabase.removeEventListener(valueEventListener);
+        Log.d(TAG, "onDestroy: remove event listener");
     }
 }

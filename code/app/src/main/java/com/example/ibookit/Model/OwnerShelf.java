@@ -165,9 +165,13 @@ public class OwnerShelf implements BookShelf {
      */
     public void update_book(Book book) {
 
+
+        // update book info in owner's shelf
         mDatabase.child(book.getId()).setValue(book);
 
+        // update book info in books
         FirebaseDatabase.getInstance().getReference().child("books").child(book.getId()).setValue(book);
+
 
     }
 

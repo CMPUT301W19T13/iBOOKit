@@ -235,6 +235,8 @@
         android:layout_height="25dp"
         android:layout_marginTop="16dp"
         android:background="@color/schemeLightGreen"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
         android:dropDownWidth="wrap_content"
         android:shadowColor="@android:color/black"
         android:spinnerMode="dropdown"
