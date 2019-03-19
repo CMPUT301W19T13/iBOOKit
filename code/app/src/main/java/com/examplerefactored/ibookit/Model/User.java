@@ -1,6 +1,6 @@
 package com.examplerefactored.ibookit.Model;
 
-public class User {
+public abstract class User {
     private String username;
     private String password;
     private String email;
@@ -41,4 +41,6 @@ public class User {
     public void Stuff(){
         System.out.println("test");
     }
+
+    abstract void stuff();
 }
