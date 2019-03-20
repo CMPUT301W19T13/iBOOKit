@@ -112,9 +112,11 @@ public class ScannerActivity extends AppCompatActivity {
         SparseArray<Barcode> barcodes = detector.detect(frame);
 
         Barcode thisCode = barcodes.valueAt(0);
-        txtView.setText(thisCode.rawValue);
-        myImageView.setImageBitmap(myBitmap);
-        returnData(thisCode);
+        if (thisCode != null) {
+            txtView.setText(thisCode.rawValue);
+            myImageView.setImageBitmap(myBitmap);
+            returnData(thisCode);
+        }
     }
 
     private void returnData(Barcode myBarcode){
@@ -122,9 +124,6 @@ public class ScannerActivity extends AppCompatActivity {
         returnIntent.putExtra("scanned_ISBN", myBarcode.rawValue);
         setResult(RESULT_OK, returnIntent);
         finish();
-
-
     }
-
 
 }
