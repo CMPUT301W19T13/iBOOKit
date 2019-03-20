@@ -23,8 +23,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
@@ -114,14 +112,9 @@ public class ScannerActivity extends AppCompatActivity {
         SparseArray<Barcode> barcodes = detector.detect(frame);
 
         Barcode thisCode = barcodes.valueAt(0);
-        if (thisCode != null) {
-            txtView.setText(thisCode.rawValue);
-            myImageView.setImageBitmap(myBitmap);
-            returnData(thisCode);
-        } else {
-            Toast.makeText(ScannerActivity.this, "No book found", Toast.LENGTH_SHORT).show();
-            finish();
-        }
+        txtView.setText(thisCode.rawValue);
+        myImageView.setImageBitmap(myBitmap);
+        returnData(thisCode);
     }
 
     private void returnData(Barcode myBarcode){
