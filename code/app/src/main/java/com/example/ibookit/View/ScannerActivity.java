@@ -121,7 +121,7 @@ public class ScannerActivity extends AppCompatActivity {
         Intent returnIntent = new Intent();
         returnIntent.putExtra("scanned_ISBN", myBarcode.rawValue);
         setResult(RESULT_OK, returnIntent);
-        finish();
+            finish();
 
 
     }
