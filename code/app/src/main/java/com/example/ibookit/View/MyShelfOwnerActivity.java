@@ -63,7 +63,8 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
     private ArrayList<Book> mBooks = new ArrayList<>();
     private OwnerShelf ownerShelf = new OwnerShelf();
     private Integer status;
-    private final Integer scanRequestCode = 1000;
+    private final Integer LendScanRequestCode = 1000;
+    private final Integer ReceiveScanRequestCode = 1001;
     private Book CurrentProcessLending;
 
     /**
@@ -140,8 +141,8 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                   //get book information and compare it with isbn scanned
                   // if not match, return "this isn't the book"
                 status = -1;
-                Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
-                startActivityForResult(scan, scanRequestCode);
+                setScanDialog();
+
 
             }
         });
@@ -250,18 +251,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             }
         });
 
-//        builder.setNeutralButton("lend", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                //get book information and compare it with isbn scanned
-//                // if not match, return "this isn't the book"
-//                Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
-//                CurrentProcessLending = book;
-//                startActivityForResult(scan, scanRequestCode);
-//
-//
-//            }
-//        });
 
         builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
             @Override
@@ -288,15 +277,13 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
-        if (requestCode == scanRequestCode && resultCode == RESULT_OK ){
+        if (requestCode == LendScanRequestCode && resultCode == RESULT_OK ){
 
             final String scannedISBN = data.getStringExtra("scanned_ISBN");
-//            final String bookID = "";
-
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             final String username = user.getDisplayName();
+
             final DatabaseReference ownShelfRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("ownerShelf");
-//            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
             final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("requests");
 
 
@@ -328,9 +315,9 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                                     for (DataSnapshot d:dataSnapshot.getChildren()){
                                         if (d.child("bookId").getValue().toString().equals(bookID)
                                             && d.child("receiver").getValue().toString().equals(username)){
-//                                            Toast.makeText(MyShelfOwnerActivity.this, "request found",
-//                                                Toast.LENGTH_SHORT).show();
 
+                                            Toast.makeText(MyShelfOwnerActivity.this, "book lend out",
+                                                Toast.LENGTH_SHORT).show();
                                             // set transit status
                                             targetBook.setTransitStatus(1);
                                             // update book in corresponding directories
@@ -357,12 +344,66 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                 }
             });
 
+        } else if (requestCode == ReceiveScanRequestCode && resultCode == RESULT_OK ){
+
+            final String scannedISBN = data.getStringExtra("scanned_ISBN");
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            final String username = user.getDisplayName();
+
+            final DatabaseReference booksRef = FirebaseDatabase.getInstance().getReference().child("books");
+
+            booksRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot d: dataSnapshot.getChildren()){
+                        if (d.child("isbn").getValue().toString().equals(scannedISBN)
+                            && d.child("owner").getValue().toString().equals(username)
+                            && d.child("transitStatus").getValue().toString().equals("2")){
+                            Book targetBook = d.getValue(Book.class);
+                            targetBook.setTransitStatus(0);
+                            targetBook.setCurrentBorrower("");
+                            ownerShelf.update_book(targetBook);
+                            ownerShelf.SyncBookShelf(mBooks, adapter, status);
+
+                            Toast.makeText(MyShelfOwnerActivity.this, "Book Received",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+
         }
         else{
             Toast.makeText(MyShelfOwnerActivity.this, "Unexpected error occurred",
                     Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    private void setScanDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        final CharSequence[] options  = {"Lend a book", "Receive a return"};
+        builder.setItems(options, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (options[which].toString().equals("Lend a book")){
+                    Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
+                    startActivityForResult(scan, LendScanRequestCode);
+                }else if (options[which].toString().equals("Receive a return")){
+                    Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
+                    startActivityForResult(scan, ReceiveScanRequestCode);
+                }
+            }
+        });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 }

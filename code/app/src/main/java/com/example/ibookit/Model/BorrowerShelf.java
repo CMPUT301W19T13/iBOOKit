@@ -93,6 +93,7 @@ public class BorrowerShelf implements BookShelf{
         book.setCurrentBorrower(username);
         // set book status be borrowed
         book.setStatus(3);
+        // ser book transit status to "owner to borrower"
         book.setTransitStatus(0);
 
         // put this book to login user's borrower shelf
@@ -114,10 +115,14 @@ public class BorrowerShelf implements BookShelf{
     @Override
     public void remove_book(Book book) {
 
-        // remove current borrower
-        book.setCurrentBorrower("");
+        // set borrower to borrower returning
+        String borrowerReturning = book.getCurrentBorrower() + " returning";
+        book.setCurrentBorrower(borrowerReturning);
         // set book status available
         book.setStatus(0);
+
+        // ser book transit status to "borrower to owner"
+        book.setTransitStatus(2);
 
         // remove this book from borrower shelf
         mDatabase.child(book.getId()).removeValue();
