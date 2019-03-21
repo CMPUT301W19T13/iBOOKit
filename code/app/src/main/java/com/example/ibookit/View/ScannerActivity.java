@@ -23,6 +23,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
@@ -101,7 +103,11 @@ public class ScannerActivity extends AppCompatActivity {
                 processData(mBitmap);
             } catch (IOException ie){
                 txtView.setText("error");
-            }
+            }catch (RuntimeException e){
+            e.printStackTrace();
+            Toast.makeText(ScannerActivity.this, "process data failed",
+                    Toast.LENGTH_SHORT).show();
+        }
 
         }
 
@@ -115,6 +121,7 @@ public class ScannerActivity extends AppCompatActivity {
         txtView.setText(thisCode.rawValue);
         myImageView.setImageBitmap(myBitmap);
         returnData(thisCode);
+
     }
 
     private void returnData(Barcode myBarcode){
@@ -122,7 +129,6 @@ public class ScannerActivity extends AppCompatActivity {
         returnIntent.putExtra("scanned_ISBN", myBarcode.rawValue);
         setResult(RESULT_OK, returnIntent);
             finish();
-
 
     }
 

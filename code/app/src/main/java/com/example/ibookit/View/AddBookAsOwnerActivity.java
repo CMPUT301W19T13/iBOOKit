@@ -193,14 +193,17 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
         else if (requestCode == scanRequestCode && resultCode == RESULT_OK ){
             String scannedISBN = data.getStringExtra("scanned_ISBN");
 
-            String myUrl = googleBookAPIURL + scannedISBN;
+            if (scannedISBN.length()<=13){
+                String myUrl = googleBookAPIURL + scannedISBN;
 
-            FetchUrlData fetchBook = new FetchUrlData();
-            fetchBook.execute(myUrl);
+                FetchUrlData fetchBook = new FetchUrlData();
+                fetchBook.execute(myUrl);
 
-            mIsbn.setText(scannedISBN);
-
-
+                mIsbn.setText(scannedISBN);
+            }else{
+                Toast.makeText(AddBookAsOwnerActivity.this, "scan code type inappropriate",
+                        Toast.LENGTH_SHORT).show();
+            }
 
         }else{
             Toast.makeText(AddBookAsOwnerActivity.this, "Unexpected error occurred",
