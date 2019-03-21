@@ -18,32 +18,60 @@ import java.util.HashMap;
  */
 public class Recommendation {
 
-    private HashMap<String, Double> category = new HashMap<>();
+    private String username;
+    private HashMap<String, Double> categoryPoint = new HashMap<>();
+    private HashMap<String, Integer> categoryCount = new HashMap<>();
 
     public Recommendation(String username){
-        category.put("Classics", 100.00);
-        category.put("SciFi", 100.00);
-        category.put("Horror", 100.00);
-        category.put("Thriller", 100.00);
-        category.put("Sports", 100.00);
-        category.put("Comics", 100.00);
-        category.put("Romance", 100.00);
-        category.put("Business", 100.00);
-        category.put("Others", 100.00);
+        this.username = username;
+        categoryPoint.put("Classics", 100.00);
+        categoryPoint.put("SciFi", 100.00);
+        categoryPoint.put("Horror", 100.00);
+        categoryPoint.put("Thriller", 100.00);
+        categoryPoint.put("Sports", 100.00);
+        categoryPoint.put("Comics", 100.00);
+        categoryPoint.put("Romance", 100.00);
+        categoryPoint.put("Business", 100.00);
+        categoryPoint.put("Others", 100.00);
 
+        categoryCount.put("Classics", 0);
+        categoryCount.put("SciFi", 0);
+        categoryCount.put("Horror", 0);
+        categoryCount.put("Thriller", 0);
+        categoryCount.put("Sports", 0);
+        categoryCount.put("Comics", 0);
+        categoryCount.put("Romance", 0);
+        categoryCount.put("Business", 0);
+        categoryCount.put("Others", 0);
     }
 
     public Recommendation(){}
 
+
     /**
      * Getter and Setter
      */
-
-    public HashMap<String, Double> getCategory() {
-        return category;
+    public String getUsername() {
+        return username;
     }
 
-    public void setCategory(HashMap<String, Double> category) {
-        this.category = category;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public HashMap<String, Double> getCategoryPoint() {
+        return categoryPoint;
+    }
+
+    public void setCategoryPoint(HashMap<String, Double> categoryPoint) {
+        this.categoryPoint = categoryPoint;
+    }
+
+    public HashMap<String, Integer> getCategoryCount() {
+        return categoryCount;
+    }
+
+    public void setCategoryCount(HashMap<String, Integer> categoryCount) {
+        this.categoryCount = categoryCount;
     }
 }

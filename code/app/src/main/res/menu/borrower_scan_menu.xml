@@ -3,17 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/scan_as_owner"
-        android:title="Scan as owner"
+        android:id="@+id/Borrower_borrow"
+        android:title="Borrow a book"
         app:showAsAction="never" />
 
     <item
-        android:id="@+id/scan_as_borrower"
-        android:title="Scan as owner"
+        android:id="@+id/Borrower_return"
+        android:title="Return a book"
         app:showAsAction="never" />
-
-
-
-
 
 </menu>

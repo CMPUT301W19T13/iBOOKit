@@ -17,6 +17,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -102,6 +104,36 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
         borrowerShelf.SyncBookShelf(mBooks, adapter, 3);
         mListView.setClickable(true);
 
+    }
+
+    /**
+     * scan code on menu bar
+     *
+     * @param menu
+     * @return
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.borrower_scan_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Borrower_borrow:
+                Intent scan1 = new Intent(MyShelfBorrowerActivity.this, ScannerActivity.class);
+                startActivityForResult(scan1, BorrowScanRequestCode);
+                return true;
+
+            case R.id.Borrower_return:
+                Intent scan2 = new Intent(MyShelfBorrowerActivity.this, ScannerActivity.class);
+                startActivityForResult(scan2, ReturnScanRequestCode);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
