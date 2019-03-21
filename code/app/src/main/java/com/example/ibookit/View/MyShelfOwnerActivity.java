@@ -286,7 +286,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 //if book is not borrowed
-                if (book.getStatus() != 3 ) {
+                if (book.getStatus() == 0 ) {
                     ownerShelf.remove_book(book);
                     Toast.makeText(MyShelfOwnerActivity.this, "Book deleted",
                             Toast.LENGTH_SHORT).show();
