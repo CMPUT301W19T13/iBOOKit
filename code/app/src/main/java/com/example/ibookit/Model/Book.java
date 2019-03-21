@@ -27,6 +27,10 @@ public class Book {
     private String owner;
     private String currentBorrower;
     private String imageURL;
+    // 3 status: not in transit -> 0, owner to borrower -> 1, borrower to owner -> 2
+    private int transitStatus;
+
+
 
     /**
      * Constructor
@@ -47,6 +51,7 @@ public class Book {
         this.owner = owner;
         this.status = 0;
         this.currentBorrower = "";
+        this.transitStatus = 0;
     }
 
     /**
@@ -138,6 +143,14 @@ public class Book {
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public int getTransitStatus() {
+        return transitStatus;
+    }
+
+    public void setTransitStatus(int transitStatus) {
+        this.transitStatus = transitStatus;
     }
 }
 

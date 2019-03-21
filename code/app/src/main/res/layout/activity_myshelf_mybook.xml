@@ -100,7 +100,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/schemeListColor"
-        app:layout_constraintBottom_toTopOf="@+id/lend_scanbook"
+        app:layout_constraintBottom_toTopOf="@+id/lendOrReceiveReturn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -121,7 +121,7 @@
         app:layout_constraintEnd_toEndOf="@+id/borrowed" />
 
     <Button
-        android:id="@+id/lend_scanbook"
+        android:id="@+id/lendOrReceiveReturn"
         android:layout_width="130dp"
         android:layout_height="50dp"
         android:layout_marginBottom="64dp"
@@ -130,7 +130,7 @@
         android:cropToPadding="false"
         android:drawableTop="@drawable/cameranew"
         android:drawableTint="@color/schemeDarkGreen"
-        android:text="Lend Book"
+        android:text="Lend/receive"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"

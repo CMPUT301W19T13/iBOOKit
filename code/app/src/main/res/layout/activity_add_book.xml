@@ -10,21 +10,25 @@
         android:id="@+id/descriptionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Description"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
+        app:layout_constraintBottom_toTopOf="@+id/scan_add_book"
         app:layout_constraintStart_toStartOf="@+id/categoryText"
         app:layout_constraintTop_toBottomOf="@+id/categoryText" />
 
     <EditText
         android:id="@+id/descriptionAdd"
         android:layout_width="0dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"
         android:background="@color/schemeLightGreen"
         android:ellipsize="start"
         android:ems="10"
@@ -41,9 +45,10 @@
         android:textCursorDrawable="@android:color/black"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/descriptionText"
+        app:layout_constraintBottom_toTopOf="@+id/confirmChangeBook"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/descriptionText" />
+        app:layout_constraintStart_toEndOf="@+id/descriptionText"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_add_book" />
 
     <TextView
         android:id="@+id/categoryText"
@@ -86,37 +91,38 @@
 
     <Button
         android:id="@+id/confirmChangeBook"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginEnd="8dp"
         android:adjustViewBounds="false"
         android:background="@color/schemeLightGreen"
         android:cropToPadding="false"
         android:drawableTop="@drawable/manualadd_icon"
+        android:drawableTint="@color/schemeDarkGreen"
         android:text="Submit"
         android:textAlignment="center"
-        android:drawableTint="@color/schemeDarkGreen"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBaseline_toBaselineOf="@+id/scan_add_book"
+        app:layout_constraintEnd_toStartOf="@+id/frameLayout"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/scan_add_book" />
 
     <Button
         android:id="@+id/scan_add_book"
-        android:layout_width="170dp"
+        android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="64dp"
         android:adjustViewBounds="false"
         android:background="@color/schemeLightGreen"
         android:cropToPadding="false"
         android:drawableTop="@drawable/cameranew"
-        android:text="Scan To Add"
         android:drawableTint="@color/schemeDarkGreen"
+        android:text="Scan To Add"
         android:textAlignment="center"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="18sp"
@@ -125,7 +131,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/confirmChangeBook"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/frameLayout" />
 
 
     <TextView
@@ -236,6 +242,8 @@
         android:layout_marginTop="16dp"
         android:background="@color/schemeLightGreen"
         android:dropDownWidth="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
         android:shadowColor="@android:color/black"
         android:spinnerMode="dropdown"
         android:textAlignment="center"
