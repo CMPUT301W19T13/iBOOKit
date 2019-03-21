@@ -77,11 +77,11 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()){
-                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
+//                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
 
-                    if (message != null) {
-                        sendNotification(message);
-                    }
+//                    if (message != null) {
+//                        sendNotification(message);
+//                    }
                 }
                 mDatabase.removeValue();
             }
