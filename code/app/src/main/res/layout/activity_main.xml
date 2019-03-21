@@ -28,7 +28,9 @@
         android:id="@+id/emailEnter"
         android:layout_width="320dp"
         android:layout_height="69dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/schemeMediumTurqoise"
         android:ellipsize="start"
         android:ems="10"
@@ -50,7 +52,9 @@
         android:id="@+id/password_enter"
         android:layout_width="320dp"
         android:layout_height="70dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/schemeMediumTurqoise"
         android:ems="10"
         android:gravity="center"
@@ -88,9 +92,9 @@
 
     <TextView
         android:id="@+id/noAccountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
+        android:layout_width="152dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="56dp"
         android:layout_marginBottom="32dp"
         android:text="Don't have an account? "
         android:textColor="@color/colorPrimaryDark"
@@ -98,13 +102,13 @@
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/logInButton" />
 
     <Button
         android:id="@+id/SignUp_Main"
-        android:layout_width="55dp"
+        android:layout_width="56dp"
         android:layout_height="20dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="56dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
         android:text="Sign Up"
@@ -114,6 +118,7 @@
         android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/noAccountText"
+        app:layout_constraintEnd_toEndOf="@+id/logInButton"
         app:layout_constraintStart_toEndOf="@+id/noAccountText" />
 
     <ProgressBar
