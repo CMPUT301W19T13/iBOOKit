@@ -39,11 +39,19 @@ public class RecommendationHandler {
                 HashMap<String, Double> points = recommendation.getCategoryPoint();
                 HashMap<String, Integer> counts = recommendation.getCategoryCount();
 
-                PointCountContainer pointCountContainer = UpdatePoints(points, counts, categories);
+                if (is_signup) {
+                    PointCountContainer pointCountContainer =  UpdateSignUpPoints(points, counts, categories);
+                    Recommendation newR = new Recommendation(username, pointCountContainer.getPoints(), pointCountContainer.getCounts());
 
-                Recommendation newR = new Recommendation(username, pointCountContainer.getPoints(), pointCountContainer.getCounts());
+                    mDatabase.child("recommendation").setValue(newR);
+                } else {
 
-                mDatabase.child("recommendation").setValue(newR);
+                    PointCountContainer pointCountContainer = UpdatePoints(points, counts, categories);
+                    Recommendation newR = new Recommendation(username, pointCountContainer.getPoints(), pointCountContainer.getCounts());
+
+                    mDatabase.child("recommendation").setValue(newR);
+                }
+
             }
 
             @Override
@@ -51,6 +59,19 @@ public class RecommendationHandler {
 
             }
         });
+    }
+
+
+    private PointCountContainer UpdateSignUpPoints(HashMap<String, Double> points, HashMap<String, Integer> counts, String[] categories) {
+        for (Map.Entry<String, Double> kv: points.entrySet()) {
+            String key = kv.getKey();
+            if (Arrays.asList(categories).contains(key)) {
+                Double value = kv.getValue();
+                points.put(key, value + 5);
+                counts.put(key, 1);
+            }
+        }
+        return new PointCountContainer(points, counts);
     }
 
     private PointCountContainer UpdatePoints(HashMap<String, Double> points, HashMap<String, Integer> counts, String[] categories) {
