@@ -128,7 +128,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recommendationText" />
-    <include layout="@layout/activity_navigation" />
+
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"

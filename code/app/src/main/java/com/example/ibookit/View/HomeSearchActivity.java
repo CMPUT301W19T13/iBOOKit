@@ -97,12 +97,12 @@ public class HomeSearchActivity extends AppCompatActivity {
         setBottomNavigationView();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.top_scan,menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.top_scan,menu);
+//        return true;
+//    }
 
     @Override
     protected void onResume() {
