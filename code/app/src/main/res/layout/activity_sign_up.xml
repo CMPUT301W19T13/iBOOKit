@@ -9,9 +9,11 @@
     <EditText
 
         android:id="@+id/userName_SignUp"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/schemeMediumTurqoise"
         android:ellipsize="start"
         android:ems="10"
@@ -33,7 +35,7 @@
 
     <EditText
         android:id="@+id/email_SignUp"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:background="@color/schemeMediumTurqoise"
@@ -55,7 +57,7 @@
 
     <EditText
         android:id="@+id/password_SignUp"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:background="@color/schemeMediumTurqoise"
@@ -77,7 +79,7 @@
 
     <EditText
         android:id="@+id/phone_SignUp"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
         android:layout_marginTop="16dp"
         android:background="@color/schemeMediumTurqoise"
@@ -99,9 +101,9 @@
 
     <TextView
         android:id="@+id/noAccountText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="113dp"
+        android:layout_width="112dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="76dp"
         android:layout_marginBottom="32dp"
         android:text="Have an account?"
         android:textColor="@color/colorPrimaryDark"
@@ -109,14 +111,14 @@
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/signUp" />
 
     <Button
         android:id="@+id/signUp_SignIn"
-        android:layout_width="55dp"
+        android:layout_width="48dp"
         android:layout_height="20dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="113dp"
+        android:layout_marginEnd="76dp"
         android:background="@color/schemeLightGreen"
         android:fontFamily="sans-serif-medium"
         android:text="Log In"
@@ -126,14 +128,16 @@
         android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/noAccountText"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/signUp"
         app:layout_constraintStart_toEndOf="@+id/noAccountText" />
 
     <Button
         android:id="@+id/signUp"
-        android:layout_width="300dp"
+        android:layout_width="320dp"
         android:layout_height="35dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:background="@color/schemeLightGreen"
         android:text="Sign Up"
         android:textAllCaps="false"
