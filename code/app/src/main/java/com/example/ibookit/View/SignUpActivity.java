@@ -1,7 +1,7 @@
 /**
  * Class name: SignUpActivity
  *
- * version 1.0
+ * version 1.1
  *
  * Date: March 9, 2019
  *
@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ibookit.Functionality.RecommendationHandler;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -131,6 +132,8 @@ public class SignUpActivity extends AppCompatActivity {
         User user = new User(id, username, email, phone);
 
         mDatabase.child("users").child(username).setValue(user);
+
+        new RecommendationHandler(username).CreateNewRecommendation();
     }
 
     /**

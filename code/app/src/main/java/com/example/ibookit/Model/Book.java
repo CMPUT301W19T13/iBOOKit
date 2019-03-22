@@ -27,7 +27,7 @@ public class Book {
     private String owner;
     private String currentBorrower;
     private String imageURL;
-    // 2 status: not in transit -> 0, pending transit -> 1
+    // 3 status: not in transit -> 0, owner to borrower -> 1, borrower to owner -> 2
     private int transitStatus;
 
 

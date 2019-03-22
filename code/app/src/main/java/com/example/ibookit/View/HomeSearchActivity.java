@@ -22,6 +22,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -77,11 +79,11 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()){
-//                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
+                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
 
-//                    if (message != null) {
-//                        sendNotification(message);
-//                    }
+                    if (message != null) {
+                        sendNotification(message);
+                    }
                 }
                 mDatabase.removeValue();
             }
@@ -94,6 +96,7 @@ public class HomeSearchActivity extends AppCompatActivity {
         configure_SearchButtonsAndSearchBar();
         setBottomNavigationView();
     }
+
 
     @Override
     protected void onResume() {
@@ -248,7 +251,6 @@ public class HomeSearchActivity extends AppCompatActivity {
         notificationManager.notify(++notificationCount, mBuilder.build());
 
     }
-
 
 
     @Override

@@ -146,7 +146,9 @@ public class UserProfileActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User userClass = dataSnapshot.getValue(User.class);
 
-                Picasso.get().load(userClass.getImageURL()).into(imageView);
+                if (userClass != null) {
+                    Picasso.get().load(userClass.getImageURL()).into(imageView);
+                }
             }
 
             @Override
