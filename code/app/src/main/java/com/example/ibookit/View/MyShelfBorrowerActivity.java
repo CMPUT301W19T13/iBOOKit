@@ -52,7 +52,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
     private ArrayAdapter<Book> adapter;
     private ArrayList<Book> mBooks = new ArrayList<>();
     private BorrowerShelf borrowerShelf = new BorrowerShelf();
-    private Button scanButton, changeShelf;
+    private Button changeShelf;
     private final Integer BorrowScanRequestCode = 1000;
     private final Integer ReturnScanRequestCode = 1001;
 
@@ -67,8 +67,6 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
 
         mListView = findViewById(R.id.BorrowerShelfListView);
 
-        scanButton = findViewById(R.id.borrowOrReturn);
-
         changeShelf = findViewById(R.id.my_book);
 
 
@@ -81,12 +79,6 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             }
         });
 
-        scanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setScanDialog();
-            }
-        });
 
         ListViewClickHandler();
 
@@ -294,23 +286,5 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
         }
 
     }
-    private void setScanDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        final CharSequence[] options  = {"Borrow a book", "Return a book"};
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (options[which].toString().equals("Borrow a book")){
-                    Intent scan = new Intent(MyShelfBorrowerActivity.this, ScannerActivity.class);
-                    startActivityForResult(scan, BorrowScanRequestCode);
-                }else if (options[which].toString().equals("Return a book")){
-                    Intent scan = new Intent(MyShelfBorrowerActivity.this, ScannerActivity.class);
-                    startActivityForResult(scan, ReturnScanRequestCode);
-                }
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
+
 }
