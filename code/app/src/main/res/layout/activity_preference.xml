@@ -195,11 +195,10 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
         android:background="@color/schemeLightGreen"
-        android:background="@drawable/trophy"
         android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
-        tools:src="@drawable/trophy"
+        tools:src="@drawable/podium"
         tools:srcCompat="@drawable/trophy" />
 
     <ImageButton
