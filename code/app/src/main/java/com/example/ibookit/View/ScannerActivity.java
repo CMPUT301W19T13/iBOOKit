@@ -103,11 +103,11 @@ public class ScannerActivity extends AppCompatActivity {
                 processData(mBitmap);
             } catch (IOException ie){
                 txtView.setText("error");
-            }catch (RuntimeException e){
-            e.printStackTrace();
-            Toast.makeText(ScannerActivity.this, "process data failed",
-                    Toast.LENGTH_SHORT).show();
-        }
+            } catch (RuntimeException e){
+                e.printStackTrace();
+                Toast.makeText(ScannerActivity.this, "process data failed",
+                        Toast.LENGTH_SHORT).show();
+            }
 
         }
 
