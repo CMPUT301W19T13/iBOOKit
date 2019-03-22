@@ -134,12 +134,14 @@
         app:layout_constraintStart_toStartOf="@+id/sportsImage"
         app:layout_constraintTop_toBottomOf="@+id/sportsImage" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/businessImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:scaleType="fitXY"
+        android:background="@color/schemeLightGreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comicText"
         tools:srcCompat="@drawable/bank" />
@@ -160,81 +162,94 @@
         app:layout_constraintStart_toStartOf="@+id/businessImage"
         app:layout_constraintTop_toBottomOf="@+id/businessImage" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/sciFiImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:scaleType="fitXY"
+        android:background="@color/schemeLightGreen"
         app:layout_constraintEnd_toStartOf="@+id/businessImage"
         app:layout_constraintStart_toEndOf="@+id/romanceImage"
         app:layout_constraintTop_toBottomOf="@+id/horrorText"
         tools:srcCompat="@drawable/brain" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/classicsImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:background="@color/schemeLightGreen"
+        android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/romanceText"
         tools:srcCompat="@drawable/tambourine" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/sportsImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="32dp"
+        android:background="@color/schemeLightGreen"
         android:background="@drawable/trophy"
-        android:scaleType="fitXY"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
+        tools:src="@drawable/trophy"
         tools:srcCompat="@drawable/trophy" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/horrorImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/schemeLightGreen"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toStartOf="@+id/comicsImage"
         app:layout_constraintStart_toEndOf="@+id/sportsImage"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:srcCompat="@drawable/horror" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/comicsImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginTop="32dp"
+        android:background="@color/schemeLightGreen"
         android:layout_marginEnd="24dp"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:srcCompat="@drawable/superhero" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/thrilerImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/schemeLightGreen"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toStartOf="@+id/otherImage"
         app:layout_constraintStart_toEndOf="@+id/classicsImage"
         app:layout_constraintTop_toBottomOf="@+id/scifiText"
         tools:srcCompat="@drawable/film" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/otherImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
+        android:background="@color/schemeLightGreen"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/businessText"
         tools:srcCompat="@drawable/question" />
@@ -320,12 +335,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <ImageView
+    <ImageButton
         android:id="@+id/romanceImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:scaleType="fitXY"
+        android:background="@color/schemeLightGreen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sportsText"
         tools:srcCompat="@drawable/heart" />
