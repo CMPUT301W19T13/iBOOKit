@@ -1,3 +1,10 @@
 for preferences image put on description
 1) Sports - Icon made by Vectors Market from www.flaticon.com 
 2) Horror - Icon made by Darius Dan from www.flaticon.com 
+3) Comic - Icon made by Darius Dan from www.flaticon.com 
+4) Romance - Icon made by Smashicons from www.flaticon.com
+5) SciFi - Icon made by Darius Dan from www.flaticon.com
+6) Business - Icon made by monkik from www.flaticon.com
+7) Classics - Icon made by Freepik from www.flaticon.com
+8) Thriller - Icon made by Nikita Golubev from www.flaticon.com
+9) Others - Icon made by Twitter from www.flaticon.com
