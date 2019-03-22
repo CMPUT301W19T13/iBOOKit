@@ -57,7 +57,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     private static final String TAG = "MyShelfOwnerActivity";
     private ListView mListView;
-    private Button chooseAvailable, chooseRequested, chooseAccepted, chooseBorrowed, myshelf, scanButton;
+    private Button chooseAvailable, chooseRequested, chooseAccepted, chooseBorrowed, myshelf;
     private ArrayAdapter<Book> adapter;
     private ArrayList<Book> mBooks = new ArrayList<>();
     private OwnerShelf ownerShelf = new OwnerShelf();
@@ -80,7 +80,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         chooseAccepted = findViewById(R.id.myshelf_accepted);
         chooseBorrowed = findViewById(R.id.myshelf_borrowed);
         myshelf = findViewById(R.id.my_book);
-        scanButton = findViewById(R.id.lendOrReceiveReturn);
 
         mListView = findViewById(R.id.bookListView);
         Button changeShelf = findViewById(R.id.borrowed);
@@ -132,17 +131,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 status = -1;
                 ownerShelf.SyncBookShelf(mBooks, adapter, status);
-            }
-        });
-        scanButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                  //get book information and compare it with isbn scanned
-                  // if not match, return "this isn't the book"
-                status = -1;
-                setScanDialog();
-
-
             }
         });
 
@@ -415,25 +403,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     }
 
-    private void setScanDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        final CharSequence[] options  = {"Lend a book", "Receive a return"};
-        builder.setItems(options, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                if (options[which].toString().equals("Lend a book")){
-                    Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
-                    startActivityForResult(scan, LendScanRequestCode);
-                }else if (options[which].toString().equals("Receive a return")){
-                    Intent scan = new Intent(MyShelfOwnerActivity.this, ScannerActivity.class);
-                    startActivityForResult(scan, ReceiveScanRequestCode);
-                }
-            }
-        });
-        AlertDialog alertDialog = builder.create();
-        alertDialog.show();
-    }
 
 
 }

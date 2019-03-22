@@ -105,8 +105,6 @@ public class FirebaseBookSeachTest {
             fail = 1;
 
             for ( int num2 =0; num2 < lookUpString.size(); num2++) {
-
-
                 if (result.get(num).getTitle().toLowerCase().equals(lookUpString.get(num2))) {
                     System.out.println("Reach");
                     fail = 0;
@@ -128,12 +126,7 @@ public class FirebaseBookSeachTest {
                     break;
                 }
             }
-
-
-
-
             assertEquals(0,fail);
-
         }
 
 
