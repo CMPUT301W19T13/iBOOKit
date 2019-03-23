@@ -28,7 +28,7 @@
         android:clickable="false"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Sports"
+        android:text="Thriller"
         android:textAllCaps="false"
         android:textColor="@color/schemeDarkGreen"
         android:textSize="14sp"
