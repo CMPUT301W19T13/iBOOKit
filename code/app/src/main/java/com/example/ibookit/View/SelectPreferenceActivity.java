@@ -20,6 +20,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
     private ImageButton sportsButton, horrorButton, comicButton, romanceButton, sciFiButton, businessButton, classicButton, thrillerButton, otherButton;
     private Button skip, confirm;
     private Boolean[] selected = new Boolean[9];
+    int count = 0;
     private String[] categories = {"Sports", "Horror", "Comics", "Romance", "SciFi", "Business", "Classics", "Thriller", "Others"};
 
     @Override
@@ -45,14 +46,32 @@ public class SelectPreferenceActivity extends AppCompatActivity {
         sportsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(selected[0]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected sports", Toast.LENGTH_SHORT).show();
-                    selected[0]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected sports", Toast.LENGTH_SHORT).show();
+                        selected[0]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[0]==true){
+                else if (selected[0]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected sports", Toast.LENGTH_SHORT).show();
                     selected[0] = false;
+                    count = count - 1;
+
+
                 }
+
             }
         });
 
@@ -60,12 +79,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(selected[1]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected horror", Toast.LENGTH_SHORT).show();
-                    selected[1]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected horror", Toast.LENGTH_SHORT).show();
+                        selected[1]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[1]==true){
+                else if (selected[1]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected horror", Toast.LENGTH_SHORT).show();
                     selected[1] = false;
+                    count = count - 1;
+
+
                 }
             }
         });
@@ -74,12 +109,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(selected[2]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected comics", Toast.LENGTH_SHORT).show();
-                    selected[2]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected comics", Toast.LENGTH_SHORT).show();
+                        selected[2]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[2]==true){
+                else if (selected[2]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected comics", Toast.LENGTH_SHORT).show();
                     selected[2] = false;
+                    count = count - 1;
+
+
                 }
             }
         });
@@ -88,12 +139,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(selected[3]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected romance", Toast.LENGTH_SHORT).show();
-                    selected[3]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected romance", Toast.LENGTH_SHORT).show();
+                        selected[3]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[3]==true){
+                else if (selected[3]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected romance", Toast.LENGTH_SHORT).show();
                     selected[3] = false;
+                    count = count - 1;
+
+
                 }
             }
         });
@@ -103,12 +170,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(selected[4]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected Sci-Fi", Toast.LENGTH_SHORT).show();
-                    selected[4]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected Sci-Fi", Toast.LENGTH_SHORT).show();
+                        selected[4]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[4]==true){
+                else if (selected[4]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected Sci-Fi", Toast.LENGTH_SHORT).show();
                     selected[4] = false;
+                    count = count - 1;
+
+
                 }
             }
         });
@@ -117,12 +200,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(selected[5]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected business", Toast.LENGTH_SHORT).show();
-                    selected[5]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected business", Toast.LENGTH_SHORT).show();
+                        selected[5]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[5]==true){
+                else if (selected[5]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected business", Toast.LENGTH_SHORT).show();
                     selected[5] = false;
+                    count = count - 1;
+
+
                 }
             }
         });
@@ -131,12 +230,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(selected[6]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected classics", Toast.LENGTH_SHORT).show();
-                    selected[6]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected classics", Toast.LENGTH_SHORT).show();
+                        selected[6]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[6]==true){
+                else if (selected[6]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected classics", Toast.LENGTH_SHORT).show();
                     selected[6] = false;
+                    count = count - 1;
+
+
                 }
             }
         });
@@ -146,12 +261,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(selected[7]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected thrillers", Toast.LENGTH_SHORT).show();
-                    selected[7]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected thrillers", Toast.LENGTH_SHORT).show();
+                        selected[7]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[7]==true){
+                else if (selected[7]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected thrillers", Toast.LENGTH_SHORT).show();
                     selected[7] = false;
+                    count = count - 1;
+
+
                 }
             }
         });
@@ -161,12 +292,28 @@ public class SelectPreferenceActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(selected[8]==false){
-                    Toast.makeText(SelectPreferenceActivity.this, "You selected others", Toast.LENGTH_SHORT).show();
-                    selected[8]=true;
+
+                    if (count<3){
+
+                        Toast.makeText(SelectPreferenceActivity.this, "You selected others", Toast.LENGTH_SHORT).show();
+                        selected[8]=true;
+                        count = count + 1;
+
+                    }
+                    else {
+
+                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+
+                    }
+
                 }
-                else if(selected[8]==true){
+                else if (selected[8]==true){
+
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected others", Toast.LENGTH_SHORT).show();
                     selected[8] = false;
+                    count = count - 1;
+
+
                 }
 
             }
