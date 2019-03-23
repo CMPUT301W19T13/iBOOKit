@@ -141,11 +141,11 @@ public class ScannerActivity extends AppCompatActivity {
                     txtView.post(new Runnable() {
                         @Override
                         public void run() {
-                            txtView.setText(barcodes.valueAt(0).displayValue);
+                            txtView.setText(barcodes.valueAt(0).rawValue);
                             cameraSource.stop();
 
                             Intent returnIntent = new Intent();
-                            returnIntent.putExtra("scanned_ISBN", barcodes.valueAt(0).displayValue);
+                            returnIntent.putExtra("scanned_ISBN", barcodes.valueAt(0).rawValue);
                             setResult(RESULT_OK, returnIntent);
                             finish();
 
