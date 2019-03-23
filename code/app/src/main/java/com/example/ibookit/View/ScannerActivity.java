@@ -36,7 +36,6 @@ public class ScannerActivity extends AppCompatActivity {
     private Uri mImageUri;
     private BarcodeDetector detector;
     private TextView txtView;
-    private ImageView myImageView;
     private CameraSource cameraSource;
     private final int requestCameraPermissionID = 1001;
     private SurfaceView cameraPreview;
@@ -67,10 +66,7 @@ public class ScannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
 
         cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
-
-        myImageView = (ImageView) findViewById(R.id.Scanner_imageView);
         txtView = findViewById(R.id.scan_decrypted_info);
-
 
         detector = new BarcodeDetector.Builder(getApplicationContext())
                         .setBarcodeFormats(Barcode.EAN_13)
@@ -80,7 +76,6 @@ public class ScannerActivity extends AppCompatActivity {
             txtView.setText("Could not set up the detector!");
             return;
         }
-
 
         cameraSource = new CameraSource
                 .Builder(this, detector)
@@ -144,11 +139,7 @@ public class ScannerActivity extends AppCompatActivity {
                             txtView.setText(barcodes.valueAt(0).rawValue);
                             cameraSource.stop();
 
-                            Intent returnIntent = new Intent();
-                            returnIntent.putExtra("scanned_ISBN", barcodes.valueAt(0).rawValue);
-                            setResult(RESULT_OK, returnIntent);
-                            finish();
-
+                            returnData(barcodes.valueAt(0));
                         }
                     });
                 }
@@ -207,7 +198,6 @@ public class ScannerActivity extends AppCompatActivity {
 
         Barcode thisCode = barcodes.valueAt(0);
         txtView.setText(thisCode.rawValue);
-        myImageView.setImageBitmap(myBitmap);
         returnData(thisCode);
 
     }
