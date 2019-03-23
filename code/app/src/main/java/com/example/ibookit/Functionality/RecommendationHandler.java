@@ -19,6 +19,13 @@ public class RecommendationHandler {
     private String username;
     private DatabaseReference mDatabase;
     private Double maxPoint = 125.00;
+    private Singleton singleton;
+
+    public RecommendationHandler() {
+        singleton = new Singleton();
+        this.username = singleton.getUsername();
+        mDatabase = singleton.getUserDatabase();
+    }
 
     public RecommendationHandler(String username) {
         this.username = username;

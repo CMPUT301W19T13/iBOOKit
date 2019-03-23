@@ -196,7 +196,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 progressBar.setVisibility(View.INVISIBLE);
 
-                                Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
+                                Intent intent = new Intent(SignUpActivity.this, SelectPreferenceActivity.class);
                                 startActivity(intent);
                             }
                         }
