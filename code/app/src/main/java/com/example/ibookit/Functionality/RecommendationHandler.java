@@ -1,7 +1,9 @@
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
+import android.widget.ArrayAdapter;
 
+import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Recommendation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -9,6 +11,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -35,6 +38,23 @@ public class RecommendationHandler {
     public void CreateNewRecommendation() {
         Recommendation recommendation = new Recommendation(username);
         mDatabase.child("recommendation").setValue(recommendation);
+    }
+
+    public void syncRecommendationBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter){
+        mDatabase.child("recommendation").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 
