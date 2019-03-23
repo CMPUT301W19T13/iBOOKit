@@ -45,72 +45,130 @@ public class SelectPreferenceActivity extends AppCompatActivity {
         sportsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[0] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select sports", Toast.LENGTH_SHORT).show();
+                if(selected[0]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected sports", Toast.LENGTH_SHORT).show();
+                    selected[0]=true;
+                }
+                else if(selected[0]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected sports", Toast.LENGTH_SHORT).show();
+                    selected[0] = false;
+                }
             }
         });
 
         horrorButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[1] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select horror", Toast.LENGTH_SHORT).show();
+                if(selected[1]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected horror", Toast.LENGTH_SHORT).show();
+                    selected[1]=true;
+                }
+                else if(selected[1]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected horror", Toast.LENGTH_SHORT).show();
+                    selected[1] = false;
+                }
             }
         });
 
         comicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[2] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select comic", Toast.LENGTH_SHORT).show();
+                if(selected[2]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected comics", Toast.LENGTH_SHORT).show();
+                    selected[2]=true;
+                }
+                else if(selected[2]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected comics", Toast.LENGTH_SHORT).show();
+                    selected[2] = false;
+                }
             }
         });
 
         romanceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[3] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select romance", Toast.LENGTH_SHORT).show();
+                if(selected[3]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected romance", Toast.LENGTH_SHORT).show();
+                    selected[3]=true;
+                }
+                else if(selected[3]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected romance", Toast.LENGTH_SHORT).show();
+                    selected[3] = false;
+                }
             }
         });
 
         sciFiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[4] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select sci-fi", Toast.LENGTH_SHORT).show();
+
+                if(selected[4]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected Sci-Fi", Toast.LENGTH_SHORT).show();
+                    selected[4]=true;
+                }
+                else if(selected[4]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected Sci-Fi", Toast.LENGTH_SHORT).show();
+                    selected[4] = false;
+                }
             }
         });
 
         businessButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[5] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select business", Toast.LENGTH_SHORT).show();
+                if(selected[5]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected business", Toast.LENGTH_SHORT).show();
+                    selected[5]=true;
+                }
+                else if(selected[5]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected business", Toast.LENGTH_SHORT).show();
+                    selected[5] = false;
+                }
             }
         });
 
         classicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[6] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select classic", Toast.LENGTH_SHORT).show();
+                if(selected[6]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected classics", Toast.LENGTH_SHORT).show();
+                    selected[6]=true;
+                }
+                else if(selected[6]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected classics", Toast.LENGTH_SHORT).show();
+                    selected[6] = false;
+                }
             }
         });
 
         thrillerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[7] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select thriller", Toast.LENGTH_SHORT).show();
+
+                if(selected[7]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected thrillers", Toast.LENGTH_SHORT).show();
+                    selected[7]=true;
+                }
+                else if(selected[7]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected thrillers", Toast.LENGTH_SHORT).show();
+                    selected[7] = false;
+                }
             }
         });
 
         otherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selected[8] = true;
-                Toast.makeText(SelectPreferenceActivity.this, "You select others", Toast.LENGTH_SHORT).show();
+
+                if(selected[8]==false){
+                    Toast.makeText(SelectPreferenceActivity.this, "You selected others", Toast.LENGTH_SHORT).show();
+                    selected[8]=true;
+                }
+                else if(selected[8]==true){
+                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected others", Toast.LENGTH_SHORT).show();
+                    selected[8] = false;
+                }
+
             }
         });
 
