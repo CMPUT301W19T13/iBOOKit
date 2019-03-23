@@ -30,7 +30,9 @@ android:orientation="horizontal">
         android:textColorHint="@android:color/black"
         android:textStyle="italic"
         android:textSize="16sp"
-        />
+        android:lines="1"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"/>
 
 
     <TextView
@@ -46,7 +48,9 @@ android:orientation="horizontal">
         android:textStyle="italic"
         android:textColorHint="@android:color/black"
         android:textSize="16sp"
-        />
+        android:lines="1"
+        android:scrollHorizontally="true"
+        android:ellipsize="end" />
 
     <TextView
         android:id="@+id/listPhoneNumber"
@@ -61,7 +65,9 @@ android:orientation="horizontal">
         android:textColorHint="@android:color/black"
         android:textStyle="italic"
         android:textSize="16sp"
-        />
+        android:lines="1"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"/>
 
 
 </LinearLayout>

@@ -199,6 +199,7 @@ public class HomeSearchActivity extends AppCompatActivity {
      */
     private void setCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
 
         //some of these options will be changed later, this is just for test
         final CharSequence[] options  = getResources().getStringArray(R.array.category);

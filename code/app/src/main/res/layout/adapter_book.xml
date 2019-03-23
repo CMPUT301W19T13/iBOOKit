@@ -29,7 +29,10 @@
             android:textColorHighlight="@android:color/black"
             android:textStyle="italic"
             android:textColorHint="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/listAuthor"
@@ -43,7 +46,10 @@
             android:textColorHighlight="@android:color/black"
             android:textStyle="italic"
             android:textColorHint="@android:color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/listISBN"
@@ -57,7 +63,10 @@
             android:textColorHighlight="@android:color/black"
             android:textStyle="italic"
             android:textColorHint="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/listStatus"
@@ -71,7 +80,10 @@
             android:textColorHighlight="@android:color/black"
             android:textStyle="italic"
             android:textColorHint="@android:color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"/>
 
 
     </LinearLayout>
