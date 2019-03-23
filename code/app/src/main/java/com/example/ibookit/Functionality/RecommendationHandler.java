@@ -1,6 +1,7 @@
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.example.ibookit.Model.Book;
@@ -15,12 +16,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RecommendationHandler {
 
+    private static final String TAG = "RecommendationHandler";
     private String username;
     private DatabaseReference mDatabase;
+    private DatabaseReference aDatabase;
     private Double maxPoint = 125.00;
     private Singleton singleton;
 
@@ -28,6 +32,7 @@ public class RecommendationHandler {
         singleton = new Singleton();
         this.username = singleton.getUsername();
         mDatabase = singleton.getUserDatabase();
+        aDatabase = singleton.getAllDatabase();
     }
 
     public RecommendationHandler(String username) {
@@ -41,12 +46,37 @@ public class RecommendationHandler {
     }
 
     public void syncRecommendationBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter){
-        mDatabase.child("recommendation").addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("recommendation").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Recommendation recommendation = dataSnapshot.getValue(Recommendation.class);
 
+                if (recommendation != null) {
+                    HashMap<String, Double> points = recommendation.getCategoryPoint();
 
+                    final ArrayList<String> category = getTopThreeCategory(points);
+                    Log.d(TAG, "onDataChange: top 3 category: " + category);
 
+                    aDatabase.child("books").addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            books.clear();
+                            adapter.notifyDataSetChanged();
+                            for (DataSnapshot d : dataSnapshot.getChildren()) {
+                                Book book = d.getValue(Book.class);
+                                if (category.contains(book.getCategory())) {
+                                    books.add(book);
+                                    adapter.notifyDataSetChanged();
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
 
             }
 
@@ -55,6 +85,23 @@ public class RecommendationHandler {
 
             }
         });
+    }
+
+    private ArrayList<String> getTopThreeCategory(HashMap<String, Double> points) {
+        List<String> mapKey = new ArrayList<>(points.keySet());
+        List<Double> mapValue = new ArrayList<>(points.values());
+        ArrayList<String> result = new ArrayList<>();
+
+        Collections.sort(mapValue);
+
+        mapValue = mapValue.subList(0, 3);
+
+        for (double value : mapValue) {
+            result.add(mapKey.get(mapValue.indexOf(value)));
+        }
+
+        return result;
+
     }
 
 
