@@ -71,7 +71,8 @@ public class CreateRequestHandler {
      */
     public void setNotificationToOwner(String title){
         // Set Message to receiver
-        new SetNotification(sender, receiver).sendNewMessage("New request", title);
+        SetNotificationHandler setNotificationHandler = new SetNotificationHandler(sender, receiver);
+        setNotificationHandler.sendNewMessage("New request", title);
     }
 
     /**

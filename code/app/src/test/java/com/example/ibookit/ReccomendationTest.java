@@ -9,7 +9,7 @@
  */
 package com.example.ibookit;
 
-import com.example.ibookit.Functionality.Recommendation;
+import com.example.ibookit.Model.Recommendation;
 
 import org.junit.Test;
 

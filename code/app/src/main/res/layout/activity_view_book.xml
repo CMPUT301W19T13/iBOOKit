@@ -11,28 +11,32 @@
         android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Description -"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
+        app:layout_constraintBottom_toTopOf="@+id/statusText"
         app:layout_constraintStart_toStartOf="@+id/categoryText"
         app:layout_constraintTop_toBottomOf="@+id/categoryText" />
 
     <EditText
         android:id="@+id/descriptionView"
         android:layout_width="0dp"
-        android:layout_height="25dp"
+        android:layout_height="0dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:background="@color/schemeMediumTurqoise"
         android:ellipsize="start"
         android:ems="10"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine"
         android:shadowColor="@color/schemeMediumTurqoise"
         android:textColor="@color/schemeDarkGreen"
         android:textColorHighlight="@color/colorPrimary"
@@ -41,15 +45,15 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/descriptionTextView"
+        app:layout_constraintBottom_toTopOf="@+id/statusAdd"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/descriptionTextView" />
+        app:layout_constraintStart_toEndOf="@+id/descriptionTextView"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_view_book" />
 
     <TextView
         android:id="@+id/borrowerAdd"
-        android:layout_width="0dp"
+        android:layout_width="272dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
         android:clickable="false"
         android:ellipsize="start"
         android:ems="10"
@@ -66,28 +70,26 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/borrowerText"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/statusAdd" />
 
     <TextView
         android:id="@+id/borrowerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:text="Borrower -"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
-        app:layout_constraintStart_toStartOf="@+id/statusText"
-        app:layout_constraintTop_toBottomOf="@+id/statusText" />
+        app:layout_constraintBottom_toTopOf="@+id/confirmChangeBook"
+        app:layout_constraintStart_toStartOf="@+id/statusText" />
 
     <TextView
         android:id="@+id/statusAdd"
-        android:layout_width="0dp"
+        android:layout_width="272dp"
         android:layout_height="25dp"
-        android:layout_marginEnd="16dp"
         android:clickable="false"
         android:ellipsize="start"
         android:ems="10"
@@ -104,22 +106,21 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/statusText"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/descriptionView" />
 
     <TextView
         android:id="@+id/statusText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="Status -"
         android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
-        app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+        app:layout_constraintBottom_toTopOf="@+id/borrowerText"
+        app:layout_constraintStart_toStartOf="@+id/descriptionTextView" />
 
     <TextView
         android:id="@+id/categoryText"
@@ -169,7 +170,7 @@
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="32dp"
         android:adjustViewBounds="false"
         android:background="@color/schemeLightGreen"
         android:cropToPadding="false"

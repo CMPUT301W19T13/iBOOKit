@@ -22,11 +22,19 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SearchView;
 
+import com.example.ibookit.Functionality.RecommendationHandler;
+import com.example.ibookit.Functionality.Singleton;
+import com.example.ibookit.ListAdapter.BookListAdapter;
+import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.MessageIBOOKit;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +45,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -46,12 +55,18 @@ import java.util.Date;
  */
 
 public class HomeSearchActivity extends AppCompatActivity {
+
     private static final String TAG = "HomeSearchActivity";
     public static Context sContext;
     private SearchView sv;
     private DatabaseReference mDatabase;
     private ValueEventListener valueEventListener;
     private Integer notificationCount = 0;
+
+    // books for recommendation
+    private ListView recommendationShelf;
+    private ArrayAdapter<Book> adapter;
+    private ArrayList<Book> mBooks = new ArrayList<>();
 
 
     /**
@@ -67,9 +82,12 @@ public class HomeSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_search);
 
         // get user info
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String username = user.getDisplayName();
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        String username = user.getDisplayName();
+        Singleton singleton = new Singleton();
+        String username = singleton.getUsername();
         Log.d(TAG, "onCreate: " + username);
+
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("send");
 
         // Getting Notification
@@ -77,11 +95,11 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot d:dataSnapshot.getChildren()){
-//                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
+                    MessageIBOOKit message = d.getValue(MessageIBOOKit.class);
 
-//                    if (message != null) {
-//                        sendNotification(message);
-//                    }
+                    if (message != null) {
+                        sendNotification(message);
+                    }
                 }
                 mDatabase.removeValue();
             }
@@ -94,6 +112,20 @@ public class HomeSearchActivity extends AppCompatActivity {
         configure_SearchButtonsAndSearchBar();
         setBottomNavigationView();
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        recommendationShelf = findViewById(R.id.recommandationListView);
+
+        adapter = new BookListAdapter(this, R.layout.adapter_book, mBooks);
+        recommendationShelf.setAdapter(adapter);
+        recommendationShelf.setClickable(true);
+        new RecommendationHandler().syncRecommendationBookShelf(mBooks, adapter);
+
+    }
+
 
     @Override
     protected void onResume() {
@@ -196,6 +228,7 @@ public class HomeSearchActivity extends AppCompatActivity {
      */
     private void setCategoryDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
 
         //some of these options will be changed later, this is just for test
         final CharSequence[] options  = getResources().getStringArray(R.array.category);
@@ -248,7 +281,6 @@ public class HomeSearchActivity extends AppCompatActivity {
         notificationManager.notify(++notificationCount, mBuilder.build());
 
     }
-
 
 
     @Override

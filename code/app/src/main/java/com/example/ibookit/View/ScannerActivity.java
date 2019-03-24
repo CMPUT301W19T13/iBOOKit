@@ -1,64 +1,86 @@
 package com.example.ibookit.View;
 
+import android.Manifest;
 import android.content.Intent;
-import android.database.Cursor;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
 
 import com.example.ibookit.R;
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Bundle;
 import android.util.SparseArray;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gms.vision.CameraSource;
+import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 
 public class ScannerActivity extends AppCompatActivity {
+
+    private static final String TAG = "ScannerActivity";
     private static final int PICK_IMAGE_REQUEST = 2;
     private Uri mImageUri;
     private BarcodeDetector detector;
     private TextView txtView;
-    private ImageView myImageView;
+    private CameraSource cameraSource;
+    private final int requestCameraPermissionID = 1001;
+    private SurfaceView cameraPreview;
 //    private final int myShelfOwnerReturnCode = 1000;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case requestCameraPermissionID: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // If permission has been granted
+                    try {
+                        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        cameraSource.start(cameraPreview.getHolder());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
-//        Toolbar toolbar = findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
-
-        myImageView = (ImageView) findViewById(R.id.Scanner_imageView);
+        cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
         txtView = findViewById(R.id.scan_decrypted_info);
 
-
         detector = new BarcodeDetector.Builder(getApplicationContext())
-                        .setBarcodeFormats(Barcode.ALL_FORMATS)
+                        .setBarcodeFormats(Barcode.EAN_13)
                         .build();
+
         if(!detector.isOperational()){
             txtView.setText("Could not set up the detector!");
             return;
         }
 
-
+        cameraSource = new CameraSource
+                .Builder(this, detector)
+                .setRequestedPreviewSize(640, 480)
+                .build();
 
 
         Button btn = (Button) findViewById(R.id.scan_button);
@@ -69,7 +91,66 @@ public class ScannerActivity extends AppCompatActivity {
             }
         });
 
+        // reference: https://www.youtube.com/watch?v=o69UqAKi47I&t=22s
+        cameraPreview.getHolder().addCallback(new SurfaceHolder.Callback() {
+
+            @Override
+            public void surfaceCreated(SurfaceHolder surfaceHolder) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
+                        Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                    // Request permission from the user
+                    ActivityCompat.requestPermissions(ScannerActivity.this,
+                            new String[]{Manifest.permission.CAMERA}, requestCameraPermissionID);
+                    return;
+                }
+                try {
+                    cameraSource.start(cameraPreview.getHolder());
+                }catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+            }
+
+            // Stop the camera once the surface holder is destroyed
+            @Override
+            public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+                cameraSource.stop();
+            }
+        });
+
+
+        detector.setProcessor(new Detector.Processor<Barcode>() {
+            @Override
+            public void release() {
+
+            }
+
+            @Override
+            public void receiveDetections(Detector.Detections<Barcode> detections) {
+                final SparseArray<Barcode> barcodes = detections.getDetectedItems();
+                if(barcodes.size() != 0){
+                    txtView.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            txtView.setText(barcodes.valueAt(0).rawValue);
+                            cameraSource.stop();
+
+                            returnData(barcodes.valueAt(0));
+                        }
+                    });
+                }
+
+
+            }
+        });
+
     }
+
+
     /**
      * pick a image for the book in system
      *
@@ -101,6 +182,10 @@ public class ScannerActivity extends AppCompatActivity {
                 processData(mBitmap);
             } catch (IOException ie){
                 txtView.setText("error");
+            } catch (RuntimeException e){
+                e.printStackTrace();
+                Toast.makeText(ScannerActivity.this, "process data failed",
+                        Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -113,8 +198,8 @@ public class ScannerActivity extends AppCompatActivity {
 
         Barcode thisCode = barcodes.valueAt(0);
         txtView.setText(thisCode.rawValue);
-        myImageView.setImageBitmap(myBitmap);
         returnData(thisCode);
+
     }
 
     private void returnData(Barcode myBarcode){
@@ -122,7 +207,6 @@ public class ScannerActivity extends AppCompatActivity {
         returnIntent.putExtra("scanned_ISBN", myBarcode.rawValue);
         setResult(RESULT_OK, returnIntent);
         finish();
-
 
     }
 

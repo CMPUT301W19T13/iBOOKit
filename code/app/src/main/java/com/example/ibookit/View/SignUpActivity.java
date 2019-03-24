@@ -1,7 +1,7 @@
 /**
  * Class name: SignUpActivity
  *
- * version 1.0
+ * version 1.1
  *
  * Date: March 9, 2019
  *
@@ -16,10 +16,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.ibookit.Functionality.RecommendationHandler;
 import com.example.ibookit.Model.User;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -43,10 +45,12 @@ import com.google.firebase.database.ValueEventListener;
 public class SignUpActivity extends AppCompatActivity {
 
     private static final String TAG = "SignUpActivity";
-    private TextView mEmail, mPassword, mPhone, mUsername;
+    private EditText mEmail, mPassword, mPhone, mUsername;
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private ProgressBar progressBar;
+    private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+    private Boolean check_email = false;
 
     /**
      * Let user to sign up in UI
@@ -75,6 +79,20 @@ public class SignUpActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.INVISIBLE);
 
+        mEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (mEmail.getText().toString().trim().matches(emailPattern) && mEmail.getText().toString().trim().length() > 0){
+                    check_email = true;
+                }
+                else{
+                    mEmail.setError("Invalid Email Address");
+                    check_email = false;
+                }
+
+            }
+        });
+
 
         Button signUp = findViewById(R.id.signUp);
 
@@ -89,8 +107,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                if (email.isEmpty() || username.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "Cannot leave empty",
+                if (! check_email || username.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "Something wrong",
                             Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     return;
@@ -131,6 +149,8 @@ public class SignUpActivity extends AppCompatActivity {
         User user = new User(id, username, email, phone);
 
         mDatabase.child("users").child(username).setValue(user);
+
+        new RecommendationHandler(username).CreateNewRecommendation();
     }
 
     /**
@@ -193,7 +213,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 progressBar.setVisibility(View.INVISIBLE);
 
-                                Intent intent = new Intent(SignUpActivity.this, HomeSearchActivity.class);
+                                Intent intent = new Intent(SignUpActivity.this, SelectPreferenceActivity.class);
                                 startActivity(intent);
                             }
                         }
