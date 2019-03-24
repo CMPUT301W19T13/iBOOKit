@@ -11,10 +11,12 @@ package com.example.ibookit.View;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -212,12 +214,6 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot d: dataSnapshot.getChildren()){
-                        // will activate if really needed, database is already updated
-//                        if (d.child("isbn").getValue().toString().equals(scannedISBN)
-//                            && d.hasChild("transitStatus")){
-//                            if (d.child("transitStatus").getValue().toString().equals("1")){
-//
-//                            }
                             if (d.child("isbn").getValue().toString().equals(scannedISBN)
                                 && d.hasChild("transitStatus")
                                 && d.child("transitStatus").getValue().toString().equals("1")){
