@@ -3,6 +3,7 @@ package com.example.ibookit.Functionality;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Recommendation;
@@ -15,7 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -88,20 +91,28 @@ public class RecommendationHandler {
     }
 
     private ArrayList<String> getTopThreeCategory(HashMap<String, Double> points) {
-        List<String> mapKey = new ArrayList<>(points.keySet());
-        List<Double> mapValue = new ArrayList<>(points.values());
         ArrayList<String> result = new ArrayList<>();
 
-        Collections.sort(mapValue);
+        List<Map.Entry<String, Double>> list = new LinkedList<>(points.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<String, Double>>() {
+            @Override
+            public int compare(Map.Entry<String, Double> o1, Map.Entry<String, Double> o2) {
+                return o1.getValue().compareTo(o2.getValue());
+            }
+        });
 
-        mapValue = mapValue.subList(0, 3);
+        int count = 0;
 
-        for (double value : mapValue) {
-            result.add(mapKey.get(mapValue.indexOf(value)));
+        Log.d(TAG, "getTopThreeCategory: " + list);
+
+        for (Map.Entry<String, Double> item: list) {
+            if (count >= 6) {
+                result.add(item.getKey());
+            }
+            count++;
         }
 
         return result;
-
     }
 
 
