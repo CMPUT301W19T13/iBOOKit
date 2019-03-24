@@ -83,7 +83,7 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toTopOf="@+id/confirmChangeBook"
+        app:layout_constraintBottom_toTopOf="@+id/confirmSendRequest"
         app:layout_constraintStart_toStartOf="@+id/statusText" />
 
     <TextView
@@ -165,7 +165,7 @@
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
 
     <Button
-        android:id="@+id/confirmChangeBook"
+        android:id="@+id/confirmSendRequest"
         android:layout_width="169dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"
