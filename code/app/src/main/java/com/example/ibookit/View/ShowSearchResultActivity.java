@@ -339,6 +339,17 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             }
         });
 
+        builder.setNeutralButton("View", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(ShowSearchResultActivity.this, SendRequestActivity.class);
+                Gson gson = new Gson();
+                String out = gson.toJson(book);
+                intent.putExtra("book", out);
+                startActivity(intent);
+            }
+        });
+
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
 

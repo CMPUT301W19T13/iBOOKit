@@ -24,11 +24,7 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-/**
- * @author zisen zhou
- *
- * @version 1.0
- */
+
 
 @RunWith(AndroidJUnit4.class)
 public class BorrowerShelfTest {

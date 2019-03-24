@@ -16,7 +16,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,20 +29,10 @@ import android.widget.Toast;
 import com.example.ibookit.Functionality.FetchUrlData;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.OwnerShelf;
-import com.example.ibookit.Model.Page;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
 
 /**
  * @author zijun wu
@@ -85,7 +74,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
 
         mDescription = findViewById(R.id.descriptionAdd);
 
-        confirm = findViewById(R.id.confirmChangeBook);
+        confirm = findViewById(R.id.confirmSendRequest);
         imageButton = findViewById(R.id.bookImageUpdate);
 
         scanButton = findViewById(R.id.scan_add_book);

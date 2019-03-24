@@ -13,6 +13,8 @@ import com.example.ibookit.Model.Recommendation;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+
 import static org.junit.Assert.assertEquals;
 /**
  * @author Joe Xu
@@ -35,33 +37,50 @@ public class ReccomendationTest {
     @Test
     public void testGetAndSet(){
 
-        r.setClassics(1.0);
 
-        assertEquals(1.0 , r.getClassics());
+        HashMap<String, Integer> categoryCount = new HashMap<>();
 
-        r.setSciFi(1.0);
-        assertEquals(1.0, r.getSciFi());
 
-        r.setHorror(1.0);
-        assertEquals(1.0, r.getHorror());
+        categoryCount.put("Horror", 1);
+        r.setCategoryCount(categoryCount);
+        int place = r.getCategoryCount().get("Horror");
+        assertEquals(1 , place);
 
-        r.setThriller(1.0);
-        assertEquals(1.0, r.getThriller());
 
-        r.setSports(1.0);
-        assertEquals(1.0, r.getSports());
+        categoryCount.put("Classic", 1);
+        r.setCategoryCount(categoryCount);
+        place = r.getCategoryCount().get("Classic");
+        assertEquals(1 , place);
 
-        r.setComics(1.0);
-        assertEquals(1.0, r.getComics());
 
-        r.setRomance(1.0);
-        assertEquals(1.0, r.getRomance());
+        categoryCount.put("History", 1);
+        r.setCategoryCount(categoryCount);
+        place = r.getCategoryCount().get("History");
+        assertEquals(1 , place);
 
-        r.setBuisness(1.0);
-        assertEquals(1.0, r.getBuisness());
 
-        r.setOther(1.0);
-        assertEquals(1.0, r.getOther());
+
+        categoryCount.put("Sci-fi", 1);
+        r.setCategoryCount(categoryCount);
+        place = r.getCategoryCount().get("Sci-fi");
+        assertEquals(1 , place);
+
+        categoryCount.put("Thriller", 1);
+        r.setCategoryCount(categoryCount);
+        place = r.getCategoryCount().get("Thriller");
+        assertEquals(1 , place);
+
+        categoryCount.put("Sport", 1);
+        r.setCategoryCount(categoryCount);
+        place = r.getCategoryCount().get("Sport");
+        assertEquals(1 , place);
+
+
+
+
+
+
+
 
 
     }
