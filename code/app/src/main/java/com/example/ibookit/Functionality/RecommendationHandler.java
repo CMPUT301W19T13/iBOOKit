@@ -3,7 +3,6 @@ package com.example.ibookit.Functionality;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Recommendation;
@@ -180,7 +179,7 @@ public class RecommendationHandler {
 
 
     private PointCountContainer AddPointsByCount(Double point, Integer count) {
-        if (count >= 1 && count < 4) {
+        if (count >= 0 && count < 4) {
             if (point + 2 <= maxPoint) {
                 return new PointCountContainer(point + 2, count + 1);
             } else {

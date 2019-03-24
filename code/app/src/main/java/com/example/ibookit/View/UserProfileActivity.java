@@ -135,12 +135,17 @@ public class UserProfileActivity extends AppCompatActivity {
     private void setInformation() {
         mUsername = findViewById(R.id.userName_userProfile);
         mEmail = findViewById(R.id.contactInfo_user);
+
         imageView = findViewById(R.id.profilePic_userProfile);
 
         if (sUser != null) {
             mUsername.setText(sUser.getUsername());
             mEmail.setText(sUser.getEmail());
-            Picasso.get().load(sUser.getImageURL()).into(imageView);
+            if (sUser.getImageURL() != null) {
+                Picasso.get().load(sUser.getImageURL()).into(imageView);
+            } else {
+                imageView.setImageResource(R.drawable.users);
+            }
 
         } else {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -169,7 +174,11 @@ public class UserProfileActivity extends AppCompatActivity {
                 User userClass = dataSnapshot.getValue(User.class);
 
                 if (userClass != null) {
-                    Picasso.get().load(userClass.getImageURL()).into(imageView);
+                    if (userClass.getImageURL() != null) {
+                        Picasso.get().load(userClass.getImageURL()).into(imageView);
+                    } else {
+                        imageView.setImageResource(R.drawable.users);
+                    }
                 }
             }
 

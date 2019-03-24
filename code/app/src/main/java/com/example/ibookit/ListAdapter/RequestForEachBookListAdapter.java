@@ -119,7 +119,11 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
      * @param imageView
      */
     private void setImage(String path, ImageView imageView) {
-        Picasso.get().load(path).fit().centerCrop().into(imageView);
+        if (path != null) {
+            Picasso.get().load(path).fit().centerCrop().into(imageView);
+        } else {
+            imageView.setImageResource(R.drawable.agenda);
+        }
     }
 
 }
