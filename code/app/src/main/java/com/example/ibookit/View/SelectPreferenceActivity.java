@@ -1,12 +1,14 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ibookit.Functionality.RecommendationHandler;
@@ -20,9 +22,9 @@ public class SelectPreferenceActivity extends AppCompatActivity {
     private ImageButton sportsButton, horrorButton, comicButton, romanceButton, sciFiButton, businessButton, classicButton, thrillerButton, otherButton;
     private Button skip, confirm;
     private Boolean[] selected = new Boolean[9];
-    int count = 0;
+    private int count = 0;
     private String[] categories = {"Sports", "Horror", "Comics", "Romance", "SciFi", "Business", "Classics", "Thriller", "Others"};
-
+    private TextView sportsText, horrorText, comicText, romanceText, sciFiText, businessText, classicText, thrillerText, otherText;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,16 @@ public class SelectPreferenceActivity extends AppCompatActivity {
         thrillerButton = findViewById(R.id.thrilerImage);
         otherButton = findViewById(R.id.otherImage);
 
+        sportsText = findViewById(R.id.sportsText);
+        horrorText = findViewById(R.id.horrorText);
+        comicText = findViewById(R.id.comicText);
+        romanceText = findViewById(R.id.romanceText);
+        sciFiText = findViewById(R.id.scifiText);
+        businessText = findViewById(R.id.businessText);
+        classicText = findViewById(R.id.classicsText);
+        thrillerText = findViewById(R.id.thrillerText);
+        otherText = findViewById(R.id.otherText);
+
         skip = findViewById(R.id.skip_preferences);
         confirm = findViewById(R.id.confirm_preferences);
 
@@ -54,6 +66,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected sports", Toast.LENGTH_SHORT).show();
                         selected[0]=true;
                         count = count + 1;
+                        sportsText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -68,7 +81,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected sports", Toast.LENGTH_SHORT).show();
                     selected[0] = false;
                     count = count - 1;
-
+                    sportsText.setBackgroundColor(Color.TRANSPARENT);
 
                 }
 
@@ -85,6 +98,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected horror", Toast.LENGTH_SHORT).show();
                         selected[1]=true;
                         count = count + 1;
+                        horrorText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -99,6 +113,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected horror", Toast.LENGTH_SHORT).show();
                     selected[1] = false;
                     count = count - 1;
+                    horrorText.setBackgroundColor(Color.TRANSPARENT);
 
 
                 }
@@ -115,6 +130,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected comics", Toast.LENGTH_SHORT).show();
                         selected[2]=true;
                         count = count + 1;
+                        comicText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -129,6 +145,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected comics", Toast.LENGTH_SHORT).show();
                     selected[2] = false;
                     count = count - 1;
+                    comicText.setBackgroundColor(Color.TRANSPARENT);
 
 
                 }
@@ -145,6 +162,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected romance", Toast.LENGTH_SHORT).show();
                         selected[3]=true;
                         count = count + 1;
+                        romanceText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -159,6 +177,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected romance", Toast.LENGTH_SHORT).show();
                     selected[3] = false;
                     count = count - 1;
+                    romanceText.setBackgroundColor(Color.TRANSPARENT);
 
 
                 }
@@ -176,6 +195,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected Sci-Fi", Toast.LENGTH_SHORT).show();
                         selected[4]=true;
                         count = count + 1;
+                        sciFiText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -190,6 +210,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected Sci-Fi", Toast.LENGTH_SHORT).show();
                     selected[4] = false;
                     count = count - 1;
+                    sciFiText.setBackgroundColor(Color.TRANSPARENT);
 
 
                 }
@@ -206,6 +227,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected business", Toast.LENGTH_SHORT).show();
                         selected[5]=true;
                         count = count + 1;
+                        businessText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -220,6 +242,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected business", Toast.LENGTH_SHORT).show();
                     selected[5] = false;
                     count = count - 1;
+                    businessText.setBackgroundColor(Color.TRANSPARENT);
 
 
                 }
@@ -236,6 +259,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected classics", Toast.LENGTH_SHORT).show();
                         selected[6]=true;
                         count = count + 1;
+                        classicText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -250,6 +274,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected classics", Toast.LENGTH_SHORT).show();
                     selected[6] = false;
                     count = count - 1;
+                    classicText.setBackgroundColor(Color.TRANSPARENT);
 
 
                 }
@@ -267,6 +292,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected thrillers", Toast.LENGTH_SHORT).show();
                         selected[7]=true;
                         count = count + 1;
+                        thrillerText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -281,6 +307,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected thrillers", Toast.LENGTH_SHORT).show();
                     selected[7] = false;
                     count = count - 1;
+                    thrillerText.setBackgroundColor(Color.TRANSPARENT);
 
 
                 }
@@ -298,6 +325,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                         Toast.makeText(SelectPreferenceActivity.this, "You selected others", Toast.LENGTH_SHORT).show();
                         selected[8]=true;
                         count = count + 1;
+                        otherText.setBackgroundColor(getResources().getColor(R.color.blacktext));
 
                     }
                     else {
@@ -312,7 +340,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     Toast.makeText(SelectPreferenceActivity.this, "You de-selected others", Toast.LENGTH_SHORT).show();
                     selected[8] = false;
                     count = count - 1;
-
+                    otherText.setBackgroundColor(Color.TRANSPARENT);
 
                 }
 

@@ -80,7 +80,6 @@
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/users"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -13,7 +13,7 @@
     <color name="blueBackground">#FF22BBF2</color>
     <color name="button_pressed">#ff8a00</color>
     <color name="button_default">#1c76bb</color>
-
+    <color name="blacktext">#000000</color>
 
     <color name="schemeBackground">#FCFFFD</color>
     <color name="schemeLightGreen">#DAFFEF</color>

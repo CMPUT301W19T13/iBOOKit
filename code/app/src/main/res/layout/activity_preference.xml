@@ -204,12 +204,11 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/horror"
+        android:background="@drawable/punisher"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toStartOf="@+id/comicsImage"
         app:layout_constraintStart_toEndOf="@+id/sportsImage"
-        app:layout_constraintTop_toBottomOf="@+id/textView3"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <ImageButton
         android:id="@+id/comicsImage"
