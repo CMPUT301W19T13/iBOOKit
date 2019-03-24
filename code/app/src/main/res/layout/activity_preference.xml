@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/otherText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Misc."
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toStartOf="@+id/otherImage"
+        app:layout_constraintTop_toBottomOf="@+id/otherImage" />
+
+    <TextView
+        android:id="@+id/thrillerText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Thriller"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/otherText"
+        app:layout_constraintStart_toStartOf="@+id/thrilerImage" />
+
+    <TextView
+        android:id="@+id/classicsText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Classics"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/thrillerText"
+        app:layout_constraintStart_toStartOf="@+id/classicsImage" />
+
+    <TextView
+        android:id="@+id/scifiText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Sci-Fi"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/romanceText"
+        app:layout_constraintStart_toStartOf="@+id/sciFiImage" />
+
+    <TextView
+        android:id="@+id/comicText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Comics"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/horrorText"
+        app:layout_constraintStart_toStartOf="@+id/comicsImage" />
+
+    <TextView
+        android:id="@+id/romanceText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Romance"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toStartOf="@+id/romanceImage"
+        app:layout_constraintTop_toBottomOf="@+id/romanceImage" />
+
+    <TextView
+        android:id="@+id/horrorText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Horror"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/sportsText"
+        app:layout_constraintStart_toStartOf="@+id/horrorImage" />
+
+    <TextView
+        android:id="@+id/sportsText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Sports"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintStart_toStartOf="@+id/sportsImage"
+        app:layout_constraintTop_toBottomOf="@+id/sportsImage" />
+
+    <ImageButton
+        android:id="@+id/businessImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bank"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/comicText" />
+
+    <TextView
+        android:id="@+id/businessText"
+        android:layout_width="80dp"
+        android:layout_height="20dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Business"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/scifiText"
+        app:layout_constraintStart_toStartOf="@+id/businessImage" />
+
+    <ImageButton
+        android:id="@+id/sciFiImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/brain"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/businessImage"
+        app:layout_constraintStart_toEndOf="@+id/romanceImage"
+        app:layout_constraintTop_toBottomOf="@+id/horrorText"
+        />
+
+    <ImageButton
+        android:id="@+id/classicsImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/tambourine"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/romanceText" />
+
+    <ImageButton
+        android:id="@+id/sportsImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/award"
+        android:elevation="0dp"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageButton
+        android:id="@+id/horrorImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/punisher"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/comicsImage"
+        app:layout_constraintStart_toEndOf="@+id/sportsImage"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageButton
+        android:id="@+id/comicsImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/superhero"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <ImageButton
+        android:id="@+id/thrilerImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/film"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toStartOf="@+id/otherImage"
+        app:layout_constraintStart_toEndOf="@+id/classicsImage"
+        app:layout_constraintTop_toBottomOf="@+id/scifiText"
+        />
+
+    <ImageButton
+        android:id="@+id/otherImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/question"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/businessText" />
+
+    <Button
+        android:id="@+id/skip_preferences"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:adjustViewBounds="false"
+        android:background="@color/schemeLightGreen"
+        android:cropToPadding="false"
+        android:drawableTop="@drawable/baseline_navigate_next_24"
+        android:drawableTint="@color/schemeDarkGreen"
+
+        android:text="Skip"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/confirm_preferences"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/confirm_preferences"
+        android:layout_width="130dp"
+        android:layout_height="50dp"
+        android:background="@color/schemeLightGreen"
+        android:drawableTop="@drawable/baseline_check_24"
+        android:drawableTint="@color/schemeDarkGreen"
+        android:text="Confirm"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintBaseline_toBaselineOf="@+id/skip_preferences"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/skip_preferences" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Pick your preferences"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkest"
+        android:textSize="22sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:clickable="false"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="(upto 3)"
+        android:textAllCaps="false"
+        android:textColor="@color/schemeDarkest"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        app:fontFamily="sans-serif-medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <ImageButton
+        android:id="@+id/romanceImage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/heart"
+        android:scaleType="fitXY"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sportsText"
+        />
+</android.support.constraint.ConstraintLayout>

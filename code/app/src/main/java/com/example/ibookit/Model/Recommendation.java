@@ -45,8 +45,13 @@ public class Recommendation {
         categoryCount.put("Others", 0);
     }
 
-    public Recommendation(){}
+    public Recommendation(String username, HashMap<String, Double> categoryPoint, HashMap<String, Integer> categoryCount){
+        this.username = username;
+        this.categoryPoint = categoryPoint;
+        this.categoryCount = categoryCount;
+    }
 
+    public Recommendation(){}
 
     /**
      * Getter and Setter

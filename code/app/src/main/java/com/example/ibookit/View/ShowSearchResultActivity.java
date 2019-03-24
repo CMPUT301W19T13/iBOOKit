@@ -1,7 +1,7 @@
 /**
  * Class name: ShowSearchResultActivity
  *
- * version 1.0
+ * version 1.2
  *
  * Date: March 9, 2019
  *
@@ -53,7 +53,7 @@ import java.util.ArrayList;
 /**
  * @author zisen
  *
- * @version 1.1
+ * @version 1.2
  */
 
 public class ShowSearchResultActivity extends AppCompatActivity {
@@ -88,7 +88,6 @@ public class ShowSearchResultActivity extends AppCompatActivity {
 
         configure_SearchButtonsAndSearchBar();
         load_resultList();
-        ListViewClickHandler();
         setBottomNavigationView();
 
     }
@@ -98,6 +97,9 @@ public class ShowSearchResultActivity extends AppCompatActivity {
      */
     private void load_resultList(){
         if (type.equals("SearchUser")) {
+
+            ListViewClickHandler();
+
             Log.d(TAG, "onCreate: " + searchValue);
             SearchForUser userSearch = new SearchForUser();
             ArrayList<User> searchResult= new ArrayList<>();
@@ -110,6 +112,8 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             userSearch.searchByKeyword(searchValue, searchResult, userArrayAdapter);
 
         } else if (type.equals("SearchCategory")) {
+
+            ListViewClickHandler();
 
             Log.d(TAG, "onCreate: " + searchValue);
             SearchForBook bookSearch = new SearchForBook();
@@ -124,6 +128,8 @@ public class ShowSearchResultActivity extends AppCompatActivity {
 
 
         } else if (type.equals("SearchBook")) {
+
+            ListViewClickHandler();
 
             Log.d(TAG, "onCreate: " + searchValue);
             SearchForBook bookSearch = new SearchForBook();
@@ -155,8 +161,12 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Book book = (Book) finalList.getItemAtPosition(position);
-                    setDialog(book);
+                    try {
+                        Book book = (Book) finalList.getItemAtPosition(position);
+                        setDialog(book);
+                    } catch (Exception e){
+
+                    }
                 }
             });
         }
@@ -164,14 +174,17 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             searchResultListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    User user = (User) finalList.getItemAtPosition(position);
+                    try {
+                        User user = (User) finalList.getItemAtPosition(position);
 
-                    Intent resultProfile = new Intent(ShowSearchResultActivity.this, UserProfileActivity.class);
-                    Gson gson = new Gson();
-                    String userResult = gson.toJson(user);
-                    resultProfile.putExtra("UserResult", userResult);
-                    resultProfile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    startActivity(resultProfile);
+                        Intent resultProfile = new Intent(ShowSearchResultActivity.this, UserProfileActivity.class);
+                        Gson gson = new Gson();
+                        String userResult = gson.toJson(user);
+                        resultProfile.putExtra("UserResult", userResult);
+                        startActivity(resultProfile);
+                    } catch (Exception e) {
+
+                    }
                 }
             });
         }

@@ -3,6 +3,7 @@
     package="com.example.ibookit">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -15,6 +16,7 @@
             android:name=".View.ScannerActivity"
             android:label="@string/title_activity_scanner"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".View.SelectPreferenceActivity"/>
         <activity android:name=".View.ShowSearchResultActivity" />
         <activity android:name=".View.ViewBookInfoAsOwnerActivity" />
         <activity android:name=".View.HomeSearchActivity" />

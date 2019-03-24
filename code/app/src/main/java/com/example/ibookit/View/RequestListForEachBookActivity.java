@@ -13,6 +13,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,7 +38,8 @@ import java.util.ArrayList;
  */
 public class RequestListForEachBookActivity extends AppCompatActivity {
 
-    private ArrayList<Request> Rreceived = new ArrayList<>();
+    private static final String TAG = "RequestListForEachBook";
+    private ArrayList<Request> Received = new ArrayList<>();
     private ArrayAdapter<Request> adapterR;
     private RequestReceived requestReceived = new RequestReceived();
     private ListView Userlist;
@@ -51,35 +53,29 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_userlist);
 
-
-
         Userlist = findViewById(R.id.userlist);
         final String bookname = getIntent().getStringExtra("bookname");
-        //Toast.makeText(RequestListForEachBookActivity.this,"You selected : "+ bookname,Toast.LENGTH_LONG).show();
 
-        adapterR = new RequestForEachBookListAdapter(this,R.layout.adapter_request,Rreceived);
+        adapterR = new RequestForEachBookListAdapter(this,R.layout.adapter_request,Received);
         Userlist.setAdapter(adapterR);
-        requestReceived.RequestInBook(Rreceived,adapterR,bookname);
+        requestReceived.RequestInBook(Received, adapterR, bookname);
 
         Userlist.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 final Request request = (Request) Userlist.getItemAtPosition(position);
-                for(Request r:Rreceived){
-                    if(r.getIsAccept()==1){
-                        Userlist.setEnabled(false);
-                    }
-                }
-                final String item = request.getSender();
+
                 new AlertDialog.Builder(RequestListForEachBookActivity.this)
                         .setTitle("Accept Request?")
+                        .setCancelable(true)
                         .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //Toast.makeText(RequestListForEachBookActivity.this, "YES", Toast.LENGTH_LONG).show();
 
-                                requestReceived.accept_request(Rreceived,request);
-                                Userlist.setEnabled(false);
-                                //dialogInterface.dismiss();
+                                if (request.getIsAccept() == 0) {
+                                    requestReceived.accept_request(Received, request);
+                                } else {
+                                    Toast.makeText(RequestListForEachBookActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
+                                }
                                 finish();
                             }
                         })
@@ -87,38 +83,17 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //Toast.makeText(RequestListForEachBookActivity.this,"NO"+item,Toast.LENGTH_SHORT).show();
-                                requestReceived.decline_request(request);
-                                //dialogInterface.dismiss();
+                                if (request.getIsAccept() == 0) {
+                                    requestReceived.decline_request(request);
+                                } else {
+                                    Toast.makeText(RequestListForEachBookActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         })
                         .show();
 
             }
-
-
-//            public void onClick(View v) {
-//                new AlertDialog.Builder( RequestListForEachBookActivity.this )
-//                        .setTitle( "Cast Recording" )
-//                        .setMessage( "Now recording your message" )
-//                        .setPositiveButton( "Save", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                Log.d( "AlertDialog", "Positive" );
-//                            }
-//                        })
-//                        .setNegativeButton( "Cancel", new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int which) {
-//                                Log.d( "AlertDialog", "Negative" );
-//                            }
-//                        } )
-//                        .show();
-//            }
         });
-
-
-
-        if(Rreceived.isEmpty()){
-            Toast.makeText(RequestListForEachBookActivity.this,"You selected : "+ bookname,Toast.LENGTH_LONG).show();
-        }
 
     }
 }

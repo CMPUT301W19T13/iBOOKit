@@ -9,9 +9,9 @@
 
     <Button
         android:id="@+id/my_book"
-        android:layout_width="130dp"
+        android:layout_width="200dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginBottom="64dp"
         android:background="@color/schemeLightGreen"
         android:gravity="center"
         android:text="Back to all my books"
@@ -20,8 +20,8 @@
         android:textSize="20sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toBottomOf="@+id/button2"
-        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -55,34 +55,11 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:background="@color/schemeListColor"
-        app:layout_constraintBottom_toTopOf="@+id/borrowOrReturn"
+        app:layout_constraintBottom_toTopOf="@+id/my_book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/borrowed" />
-
-    <Button
-        android:id="@+id/borrowOrReturn"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="64dp"
-        android:adjustViewBounds="false"
-        android:background="@color/schemeLightGreen"
-        android:cropToPadding="false"
-        android:drawableTop="@drawable/cameranew"
-        android:drawableTint="@color/schemeDarkGreen"
-        android:text="borrow/return"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textColor="@color/schemeDarkGreen"
-        android:textSize="20sp"
-        android:textStyle="italic"
-        app:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/my_book" />
 
     <FrameLayout
         android:id="@+id/frameLayout"
@@ -94,5 +71,7 @@
         <include layout="@layout/activity_navigation" />
 
     </FrameLayout>
+
+
 
 </android.support.constraint.ConstraintLayout>

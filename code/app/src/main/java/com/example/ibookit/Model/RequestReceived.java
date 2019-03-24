@@ -15,7 +15,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
-import com.example.ibookit.Functionality.SetNotification;
+import com.example.ibookit.Functionality.SetNotificationHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -168,7 +168,7 @@ public class RequestReceived {
         dDatabase.child("users").child(request.getSender()).child("requestSent").child(request.getRid()).child("isAccept").setValue(1);
 
         // Update message
-        new SetNotification(username, request.getSender()).sendNewMessage("Your request has been accepted", "From " + username);
+        new SetNotificationHandler(username, request.getSender()).sendNewMessage("Your request has been accepted", "From " + username);
 
         ArrayList<Request> newlist = Rlist;
         newlist.remove(request);

@@ -29,7 +29,10 @@
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"/>
 
 
         <TextView
@@ -44,7 +47,10 @@
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"/>
 
         <TextView
             android:id="@+id/listIs_accepted"
@@ -58,7 +64,10 @@
             android:textColorHighlight="@android:color/black"
             android:textColorHint="@android:color/black"
             android:textSize="16sp"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            android:lines="1"
+            android:scrollHorizontally="true"
+            android:ellipsize="end"/>
 
 
     </LinearLayout>

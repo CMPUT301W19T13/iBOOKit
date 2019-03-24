@@ -89,6 +89,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
 
         confirm = findViewById(R.id.confirmChangeBook);
         imageButton = findViewById(R.id.bookImageUpdate);
+
         scanButton = findViewById(R.id.scan_add_book);
 
 
