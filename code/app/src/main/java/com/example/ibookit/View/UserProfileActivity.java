@@ -45,7 +45,9 @@ public class UserProfileActivity extends AppCompatActivity {
     private TextView mUsername, mEmail;
     private Button email,edit,signout;
     private ImageView imageView;
-
+    private User sUser;
+    private ValueEventListener valueEventListener;
+    private DatabaseReference mDatabase;
 
     /**
      * show other user profile if getIntent() is not null
@@ -60,7 +62,6 @@ public class UserProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_profile);
 
         setBottomNavigationView();
-        setInformation();
         configure_buttons();
 
         //this used for show user search result
@@ -68,13 +69,27 @@ public class UserProfileActivity extends AppCompatActivity {
         String objStr = intent.getStringExtra("UserResult");
         if (objStr != null){
             Gson gson = new Gson();
-            User sUser = gson.fromJson(objStr, User.class);
+            sUser = gson.fromJson(objStr, User.class);
             setOtherUserInformation(sUser);
             edit.setVisibility(View.GONE);
             signout.setVisibility(View.GONE);
         }
 
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setInformation();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mDatabase != null) {
+            mDatabase.removeEventListener(valueEventListener);
+        }
     }
 
     /**
@@ -120,13 +135,25 @@ public class UserProfileActivity extends AppCompatActivity {
     private void setInformation() {
         mUsername = findViewById(R.id.userName_userProfile);
         mEmail = findViewById(R.id.contactInfo_user);
+
         imageView = findViewById(R.id.profilePic_userProfile);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        mUsername.setText(user.getDisplayName());
-        mEmail.setText(user.getEmail());
+        if (sUser != null) {
+            mUsername.setText(sUser.getUsername());
+            mEmail.setText(sUser.getEmail());
+            if (sUser.getImageURL() != null) {
+                Picasso.get().load(sUser.getImageURL()).into(imageView);
+            } else {
+                imageView.setImageResource(R.drawable.users);
+            }
 
-        setUserImage(user, imageView);
+        } else {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            mUsername.setText(user.getDisplayName());
+            mEmail.setText(user.getEmail());
+
+            setUserImage(user, imageView);
+        }
 
     }
 
@@ -139,15 +166,19 @@ public class UserProfileActivity extends AppCompatActivity {
     private void setUserImage(FirebaseUser user, final ImageView imageView) {
         String username = user.getDisplayName();
 
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
 
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        valueEventListener = mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User userClass = dataSnapshot.getValue(User.class);
 
                 if (userClass != null) {
-                    Picasso.get().load(userClass.getImageURL()).into(imageView);
+                    if (userClass.getImageURL() != null) {
+                        Picasso.get().load(userClass.getImageURL()).into(imageView);
+                    } else {
+                        imageView.setImageResource(R.drawable.users);
+                    }
                 }
             }
 

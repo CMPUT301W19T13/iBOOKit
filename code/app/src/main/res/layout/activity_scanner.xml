@@ -6,26 +6,52 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
+    <SurfaceView
+        android:id="@+id/cameraPreview"
+        android:layout_width="350dp"
+        android:layout_height="330dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scan_decrypted_info" />
+
     <TextView
         android:id="@+id/scan_decrypted_info"
         android:layout_width="293dp"
-        android:layout_height="67dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/schemeLightGreen"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
         android:text=""
-        tools:layout_editor_absoluteX="29dp"
-        tools:layout_editor_absoluteY="29dp" />
+        android:textColor="@color/schemeDarkGreen"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="ISBN" />
 
     <Button
         android:id="@+id/scan_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Process"
-        tools:layout_editor_absoluteX="234dp"
-        tools:layout_editor_absoluteY="670dp" />
+        android:layout_width="120dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="156dp"
+        android:layout_marginTop="216dp"
+        android:layout_marginEnd="163dp"
+        android:background="@color/schemeLightGreen"
+        android:text="Add Manually"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimary"
+        android:textSize="16sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.392"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cameraPreview" />
 
-    <ImageView
-        android:id="@+id/Scanner_imageView"
-        android:layout_width="138dp"
-        android:layout_height="48dp"
-        tools:layout_editor_absoluteX="23dp"
-        tools:layout_editor_absoluteY="383dp" />
 </android.support.constraint.ConstraintLayout>
