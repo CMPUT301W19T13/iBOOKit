@@ -10,6 +10,7 @@
 package com.example.ibookit.View;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -78,6 +79,8 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                                 //Toast.makeText(RequestListForEachBookActivity.this, "YES", Toast.LENGTH_LONG).show();
 
                                 requestReceived.accept_request(Rreceived,request);
+                                Intent trt = new Intent(RequestListForEachBookActivity.this, ViewLocationActivity.class);
+                                startActivity(trt);
                                 Userlist.setEnabled(false);
                                 //dialogInterface.dismiss();
                                 finish();

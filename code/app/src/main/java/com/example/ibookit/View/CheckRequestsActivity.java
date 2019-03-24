@@ -69,7 +69,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Request item = (Request) Sent.getItemAtPosition(position);
-                
+
 
 
             }
