@@ -96,7 +96,7 @@ public class UserProfileActivity extends AppCompatActivity {
      * configure buttons will be used
      */
     private void configure_buttons(){
-        email = (Button) findViewById(R.id.contactInfo_user);
+        email = findViewById(R.id.contactInfo_user);
         edit =  findViewById(R.id.edit_profile);
         signout = findViewById(R.id.signout_profile);
 
