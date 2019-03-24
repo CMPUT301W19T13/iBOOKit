@@ -2,6 +2,7 @@ package com.example.ibookit.View;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -36,6 +37,10 @@ public class SetLocationActivity extends FragmentActivity implements OnMapReadyC
 
     private GoogleMap mMap;
     private DatabaseReference mDatabase;
+    private LocationManager locationManager;
+    private static final long MIN_TIME = 400;
+    private static final float MIN_DISTANCE = 1000;
+
 
 
 
@@ -49,37 +54,9 @@ public class SetLocationActivity extends FragmentActivity implements OnMapReadyC
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync( this);
 
-        mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener);
 
-            @Override
-            public void onMarkerDragStart(Marker marker) {
-                // TODO Auto-generated method stub
-                // Here your code
-                Toast.makeText(SetLocationActivity.this, "Dragging Start",
-                        Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onMarkerDragEnd(Marker marker) {
-                // TODO Auto-generated method stub
-                LatLng position = marker.getPosition();
-                Toast.makeText(
-                        SetLocationActivity.this,
-                        "Lat " + position.latitude + " "
-                                + "Long " + position.longitude,
-                        Toast.LENGTH_LONG).show();
-                System.out.println("yalla b2a "
-                        + mMap.getMyLocation().getLatitude());
-            }
-
-            @Override
-            public void onMarkerDrag(Marker marker) {
-                // TODO Auto-generated method stub
-                // Toast.makeText(MainActivity.this, "Dragging",
-                // Toast.LENGTH_SHORT).show();
-                System.out.println("Draagging");
-            }
-        });
 
     }
 
@@ -93,16 +70,6 @@ public class SetLocationActivity extends FragmentActivity implements OnMapReadyC
     }
 
     private void setUpMap() {
-        LatLng qwe = new LatLng(53.48328,-113.50672);
-        mMap.setMyLocationEnabled(true);
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.addMarker(new MarkerOptions()
-                .position(qwe)
-                .title("Place to fetch book")
-                .draggable(true)
-                .snippet("Here!")
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
         mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
 
             @Override
@@ -139,26 +106,38 @@ public class SetLocationActivity extends FragmentActivity implements OnMapReadyC
 
 
     }
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            //your code here
+            LatLng Your_Location = new LatLng(location.getLatitude(), location.getLongitude());
+            mMap.setMyLocationEnabled(true);
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+            mMap.addMarker(new MarkerOptions()
+                    .position(Your_Location)
+                    .title("Place to fetch book")
+                    .draggable(true)
+                    .snippet("Here!")
+                    .icon(BitmapDescriptorFactory
+                            .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Your_Location, 15));
+        }
 
-    public void onLocationChanged(Location location) {
-        // TODO Auto-generated method stub
+        @Override
+        public void onStatusChanged(String s, int i, Bundle bundle) {
 
-    }
+        }
 
-    public void onProviderDisabled(String provider) {
-        // TODO Auto-generated method stub
+        @Override
+        public void onProviderEnabled(String s) {
 
-    }
+        }
 
-    public void onProviderEnabled(String provider) {
-        // TODO Auto-generated method stub
+        @Override
+        public void onProviderDisabled(String s) {
 
-    }
+        }
 
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
-
-    }
-
+    };
 }

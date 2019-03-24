@@ -58,7 +58,6 @@ public class ViewLocationActivity extends FragmentActivity implements OnMapReady
 
     private void setUpMap() {
         LatLng qwe = new LatLng(lat, lon);
-        mMap.setMyLocationEnabled(true);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.addMarker(new MarkerOptions()
                 .position(qwe)
@@ -67,28 +66,8 @@ public class ViewLocationActivity extends FragmentActivity implements OnMapReady
                 .snippet("Here!")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
-
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(qwe, 15));
     }
 
-
-    public void onLocationChanged(Location location) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void onProviderDisabled(String provider) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void onProviderEnabled(String provider) {
-        // TODO Auto-generated method stub
-
-    }
-
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-        // TODO Auto-generated method stub
-
-    }
 }
 
