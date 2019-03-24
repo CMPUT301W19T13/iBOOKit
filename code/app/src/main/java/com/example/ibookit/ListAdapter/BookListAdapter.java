@@ -91,6 +91,10 @@ public class BookListAdapter extends ArrayAdapter<Book> {
      * @param imageView
      */
     private void setImage(String path, final ImageView imageView) {
-        Picasso.get().load(path).fit().centerCrop().into(imageView);
+        if (path != null) {
+            Picasso.get().load(path).fit().centerCrop().into(imageView);
+        } else {
+            imageView.setImageResource(R.drawable.agenda);
+        }
     }
 }

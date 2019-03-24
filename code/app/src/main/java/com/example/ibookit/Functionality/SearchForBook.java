@@ -9,6 +9,7 @@
  */
 package com.example.ibookit.Functionality;
 
+import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 
@@ -79,6 +80,10 @@ public class SearchForBook {
                        result.add(temp);
                     }
                     adapter.notifyDataSetChanged();
+
+                    // update recommendation
+                    UpdateRecommedationKeywords(result);
+
                 }
             }
 
@@ -99,6 +104,9 @@ public class SearchForBook {
      * @param adapter
      */
     public void searchByCategory(final String mCategory, final ArrayList<Book> result, final ArrayAdapter<Book> adapter){
+        // update recommendation
+        UpdateRecommendationCategory(mCategory);
+
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference bookRef = database.getReference("books");
         Query listBook = bookRef.orderByChild("category").equalTo(mCategory);
@@ -124,6 +132,23 @@ public class SearchForBook {
             }
         });
 
+    }
+
+    private void UpdateRecommedationKeywords(ArrayList<Book> books) {
+        ArrayList<String> categories = new ArrayList<>();
+        for (Book book: books) {
+            if (!categories.contains(book.getCategory())) {
+                categories.add(book.getCategory());
+            }
+        }
+
+        new RecommendationHandler().UpdateRecommendation(categories.toArray(new String[0]), false);
+    }
+
+    private void UpdateRecommendationCategory(String category) {
+        String[] categories = new String[1];
+        categories[0] = category;
+        new RecommendationHandler().UpdateRecommendation(categories, false);
     }
 
 }
