@@ -74,6 +74,9 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
 
                                 if (request.getIsAccept() == 0) {
                                     requestReceived.accept_request(Received, request);
+                                    Intent intent = new Intent(RequestListForEachBookActivity.this,SetLocationActivity.class);
+                                    intent.putExtra("rid",request.getRid());
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(RequestListForEachBookActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
                                 }
@@ -97,4 +100,10 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
         });
 
     }
+
+    protected void onResume() {
+        super.onResume();
+        finish();
+    }
+
 }
