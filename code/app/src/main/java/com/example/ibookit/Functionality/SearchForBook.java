@@ -137,8 +137,10 @@ public class SearchForBook {
     private void UpdateRecommedationKeywords(ArrayList<Book> books) {
         ArrayList<String> categories = new ArrayList<>();
         for (Book book: books) {
-            if (!categories.contains(book.getCategory())) {
-                categories.add(book.getCategory());
+            if (book != null) {
+                if (!categories.contains(book.getCategory())) {
+                    categories.add(book.getCategory());
+                }
             }
         }
 
