@@ -20,10 +20,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.ibookit.ListAdapter.RequestListAdapter;
-import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
-import com.example.ibookit.Model.RequestSent;
+import com.example.ibookit.AdapterList.RequestListAdapter;
+import com.example.ibookit.Database.Request;
+import com.example.ibookit.Database.RequestReceived;
+import com.example.ibookit.Database.RequestSent;
 import com.example.ibookit.R;
 
 import java.util.ArrayList;

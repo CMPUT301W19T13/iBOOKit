@@ -9,13 +9,9 @@
  */
 package com.example.ibookit;
 
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.User;
+import com.example.ibookit.Database.Book;
 
 import org.junit.Test;
-import org.junit.Before;
-
-import java.security.acl.Owner;
 
 import static org.junit.Assert.*;
 

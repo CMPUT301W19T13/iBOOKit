@@ -1,4 +1,4 @@
-package com.example.ibookit.Model;
+package com.example.ibookit.Database;
 
 public class MessageIBOOKit {
 

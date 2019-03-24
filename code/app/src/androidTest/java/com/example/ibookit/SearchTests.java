@@ -13,13 +13,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
-import android.util.Log;
-import android.widget.ArrayAdapter;
 
-import com.example.ibookit.Functionality.SearchForUser;
-import com.example.ibookit.ListAdapter.UserListAdapter;
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.User;
+import com.example.ibookit.Database.User;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,7 +26,6 @@ import com.google.firebase.database.ValueEventListener;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 

@@ -7,7 +7,7 @@
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
-package com.example.ibookit.ListAdapter;
+package com.example.ibookit.AdapterList;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -17,7 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.ibookit.Model.User;
+import com.example.ibookit.Database.User;
 import com.example.ibookit.R;
 import com.squareup.picasso.Picasso;
 

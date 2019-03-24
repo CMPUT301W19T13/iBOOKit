@@ -13,9 +13,8 @@ import android.content.Context;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.BorrowerShelf;
-import com.example.ibookit.Model.OwnerShelf;
+import com.example.ibookit.Database.Book;
+import com.example.ibookit.Database.BorrowerShelf;
 import com.google.firebase.FirebaseApp;
 
 import org.junit.Test;

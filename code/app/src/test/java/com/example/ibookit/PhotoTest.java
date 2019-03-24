@@ -8,7 +8,7 @@
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
 package com.example.ibookit;
-import com.example.ibookit.Model.Photo;
+import com.example.ibookit.Database.Photo;
 
 
 import org.junit.Test;

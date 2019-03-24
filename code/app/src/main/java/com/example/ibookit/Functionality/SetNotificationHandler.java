@@ -1,6 +1,6 @@
 package com.example.ibookit.Functionality;
 
-import com.example.ibookit.Model.MessageIBOOKit;
+import com.example.ibookit.Database.MessageIBOOKit;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 

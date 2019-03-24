@@ -1,5 +1,5 @@
 /**
- * Class name: RequestForEachBookListAdapter
+ * Class name: RequestListAdapter
  *
  * version 1.0
  *
@@ -7,7 +7,7 @@
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
-package com.example.ibookit.ListAdapter;
+package com.example.ibookit.AdapterList;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -20,8 +20,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ibookit.Functionality.RequestStatusHandler;
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.Request;
+import com.example.ibookit.Database.Book;
+import com.example.ibookit.Database.Request;
 import com.example.ibookit.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,19 +35,20 @@ import java.util.ArrayList;
 import static android.support.constraint.Constraints.TAG;
 
 /**
- * @author Jiazhen Li
+ * @author joe
  *
  * @version 1.0
  */
-public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { private Context mContext;
+public class RequestListAdapter extends ArrayAdapter<Request> {
+    private Context mContext;
 
     private int mResource;
     private DatabaseReference mDatabase;
-    private TextView mTitle, mSender, mIs_accpected;
+    private TextView mTitle, mReceiver, mIs_accpected;
     private Book mBook;
     private ImageView imageView;
 
-    public RequestForEachBookListAdapter(Context context, int resource, ArrayList<Request> objects) {
+    public RequestListAdapter(Context context, int resource, ArrayList<Request> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;
@@ -72,7 +73,7 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
 
         if (request != null) {
             mTitle = convertView.findViewById(R.id.listTitle);
-            mSender = convertView.findViewById(R.id.listReceiver);
+            mReceiver = convertView.findViewById(R.id.listReceiver);
             mIs_accpected = convertView.findViewById(R.id.listIs_accepted);
             imageView = convertView.findViewById(R.id.imageRequest);
 
@@ -83,11 +84,12 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
             }
 
 
-            mSender.setText("Sender:  " + request.getSender());
+            mReceiver.setText("Owner:  " + request.getReceiver());
 
             RequestStatusHandler handler = new RequestStatusHandler();
 
             mIs_accpected.setText("Status:  " + handler.StatusIntegerToString(request.getIsAccept()));
+
         }
 
         return convertView;
@@ -110,7 +112,6 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
             }
         });
 
-
     }
 
     /**
@@ -126,5 +127,6 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
         }
     }
 
-}
 
+
+}

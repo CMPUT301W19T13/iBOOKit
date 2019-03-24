@@ -30,9 +30,9 @@ import android.widget.Toast;
 
 import android.widget.ListView;
 
-import com.example.ibookit.ListAdapter.BookListAdapter;
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.OwnerShelf;
+import com.example.ibookit.AdapterList.BookListAdapter;
+import com.example.ibookit.Database.Book;
+import com.example.ibookit.Database.OwnerShelf;
 
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;

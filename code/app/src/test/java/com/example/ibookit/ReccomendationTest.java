@@ -9,7 +9,7 @@
  */
 package com.example.ibookit;
 
-import com.example.ibookit.Model.Recommendation;
+import com.example.ibookit.Database.Recommendation;
 
 import org.junit.Test;
 

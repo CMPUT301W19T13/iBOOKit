@@ -9,7 +9,7 @@
  */
 package com.example.ibookit.Functionality;
 
-import com.example.ibookit.Model.Request;
+import com.example.ibookit.Database.Request;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

@@ -9,7 +9,7 @@
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  *
  */
-package com.example.ibookit.Model;
+package com.example.ibookit.Database;
 
 import android.util.Log;
 import android.widget.ArrayAdapter;

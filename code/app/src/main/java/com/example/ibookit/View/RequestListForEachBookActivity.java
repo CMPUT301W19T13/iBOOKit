@@ -13,21 +13,16 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.ibookit.ListAdapter.RequestForEachBookListAdapter;
-import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
+import com.example.ibookit.AdapterList.RequestForEachBookListAdapter;
+import com.example.ibookit.Database.Request;
+import com.example.ibookit.Database.RequestReceived;
 import com.example.ibookit.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 

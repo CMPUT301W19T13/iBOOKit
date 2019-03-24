@@ -9,10 +9,9 @@
  */
 package com.example.ibookit;
 
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.BorrowerShelf;
-import com.example.ibookit.Model.OwnerShelf;
-import com.example.ibookit.Model.User;
+import com.example.ibookit.Database.Book;
+import com.example.ibookit.Database.BorrowerShelf;
+import com.example.ibookit.Database.OwnerShelf;
 
 import org.junit.Test;
 

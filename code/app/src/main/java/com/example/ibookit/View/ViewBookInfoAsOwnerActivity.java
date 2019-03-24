@@ -27,8 +27,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ibookit.Functionality.BookStatusHandler;
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.OwnerShelf;
+import com.example.ibookit.Database.Book;
+import com.example.ibookit.Database.OwnerShelf;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;

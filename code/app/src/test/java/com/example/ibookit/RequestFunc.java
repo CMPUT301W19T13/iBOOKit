@@ -10,9 +10,9 @@
 package com.example.ibookit;
 
 import com.example.ibookit.Functionality.RequestStatusHandler;
-import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
-import com.example.ibookit.Model.RequestSent;
+import com.example.ibookit.Database.Request;
+import com.example.ibookit.Database.RequestReceived;
+import com.example.ibookit.Database.RequestSent;
 
 import org.junit.Test;
 

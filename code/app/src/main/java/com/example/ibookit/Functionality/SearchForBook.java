@@ -9,11 +9,10 @@
  */
 package com.example.ibookit.Functionality;
 
-import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 
-import com.example.ibookit.Model.Book;
+import com.example.ibookit.Database.Book;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

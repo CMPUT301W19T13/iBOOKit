@@ -14,8 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.User;
+import com.example.ibookit.Database.Book;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -32,8 +31,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
-import java.util.Random;
-import java.util.UUID;
 
 
 @RunWith(AndroidJUnit4.class)

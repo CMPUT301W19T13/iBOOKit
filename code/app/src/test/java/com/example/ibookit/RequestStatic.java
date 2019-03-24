@@ -11,9 +11,8 @@ package com.example.ibookit;
 
 import android.location.Location;
 
-import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
-import com.google.firebase.database.DatabaseReference;
+import com.example.ibookit.Database.Request;
+import com.example.ibookit.Database.RequestReceived;
 
 import org.junit.Test;
 

@@ -4,8 +4,8 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.Recommendation;
+import com.example.ibookit.Database.Book;
+import com.example.ibookit.Database.Recommendation;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;

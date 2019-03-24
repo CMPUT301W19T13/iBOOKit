@@ -18,11 +18,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ibookit.Functionality.RecommendationHandler;
-import com.example.ibookit.Model.User;
+import com.example.ibookit.Database.User;
 import com.example.ibookit.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;

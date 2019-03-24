@@ -3,10 +3,7 @@ package com.example.ibookit.Functionality;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.ibookit.Model.Page;
 import com.example.ibookit.View.AddBookAsOwnerActivity;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -9,13 +9,11 @@
  */
 package com.example.ibookit.View;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,9 +25,9 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.ibookit.ListAdapter.BookListAdapter;
-import com.example.ibookit.Model.Book;
-import com.example.ibookit.Model.BorrowerShelf;
+import com.example.ibookit.AdapterList.BookListAdapter;
+import com.example.ibookit.Database.Book;
+import com.example.ibookit.Database.BorrowerShelf;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

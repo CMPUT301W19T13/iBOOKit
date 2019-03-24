@@ -11,7 +11,7 @@ package com.example.ibookit.Functionality;
 
 import android.util.Log;
 
-import com.example.ibookit.Model.Book;
+import com.example.ibookit.Database.Book;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
