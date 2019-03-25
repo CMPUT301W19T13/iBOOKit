@@ -52,48 +52,10 @@
         app:layout_constraintTop_toBottomOf="@+id/categoryRequest" />
 
     <TextView
-        android:id="@+id/borrowerRequest"
-        android:layout_width="272dp"
-        android:layout_height="25dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/schemeMediumTurqoise"
-        android:clickable="false"
-        android:ellipsize="start"
-        android:ems="10"
-        android:fontFamily="sans-serif-medium"
-        android:gravity="center"
-        android:inputType="textPersonName"
-        android:shadowColor="@color/colorPrimaryDark"
-        android:textAlignment="center"
-        android:textColor="@color/schemeDarkest"
-        android:textColorHighlight="@color/colorPrimaryDark"
-        android:textColorHint="@color/colorPrimaryDark"
-        android:textColorLink="@color/colorPrimaryDark"
-        android:textCursorDrawable="@color/schemeDarkest"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/confirmChangeBook"
-        app:layout_constraintStart_toStartOf="@+id/descriptionViewRequest" />
-
-    <TextView
-        android:id="@+id/borrowerText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Borrower -"
-        android:textAlignment="center"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:fontFamily="sans-serif-medium"
-        app:layout_constraintBaseline_toBaselineOf="@+id/borrowerRequest"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
         android:id="@+id/statusRequest"
         android:layout_width="272dp"
         android:layout_height="25dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:background="@color/schemeMediumTurqoise"
         android:clickable="false"
         android:ellipsize="start"
@@ -110,7 +72,7 @@
         android:textCursorDrawable="@color/schemeDarkest"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/borrowerRequest"
+        app:layout_constraintBottom_toTopOf="@+id/confirmSendRequest"
         app:layout_constraintStart_toStartOf="@+id/descriptionViewRequest" />
 
     <TextView
@@ -170,10 +132,10 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/confirmChangeBook"
+        android:id="@+id/confirmSendRequest"
         android:layout_width="170dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="48dp"
         android:adjustViewBounds="false"
         android:background="@color/schemeLightGreen"
         android:cropToPadding="false"
@@ -209,6 +171,7 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="8dp"
+        android:background="@drawable/agenda"
         android:clickable="false"
         android:contextClickable="false"
         android:longClickable="false"

@@ -92,8 +92,8 @@ public class ContactInformationActivity extends AppCompatActivity {
                 Toast.makeText(ContactInformationActivity.this, "Submitted",
                         Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(ContactInformationActivity.this, UserProfileActivity.class);
-                startActivity(intent);
+
+                finish();
             }
         });
 

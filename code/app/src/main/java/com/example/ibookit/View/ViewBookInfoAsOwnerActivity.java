@@ -78,7 +78,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
         mDescription = findViewById(R.id.descriptionView);
         imageButton = findViewById(R.id.bookImageUpdate);
 
-        submit = findViewById(R.id.confirmChangeBook);
+        submit = findViewById(R.id.confirmSendRequest);
 
         Intent intent = getIntent();
         String objStr = intent.getStringExtra("book");
@@ -149,8 +149,6 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
                             Toast.LENGTH_SHORT).show();
                 }
 
-                Intent intent = new Intent(ViewBookInfoAsOwnerActivity.this, MyShelfOwnerActivity.class);
-                startActivity(intent);
                 finish();
             }
         });
