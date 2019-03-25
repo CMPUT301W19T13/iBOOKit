@@ -13,5 +13,6 @@
         <item>Business</item>
         <item>Other</item>
     </string-array>
+    <string name="title_activity_set_location">Map</string>
     <string name="title_activity_view_location">Map</string>
 </resources>

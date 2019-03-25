@@ -38,7 +38,7 @@
             android:label="@string/title_activity_view_location"></activity>
         <activity
             android:name=".View.SetLocationActivity"
-            android:label="@string/title_activity_view_location" />
+            android:label="@string/title_activity_set_location" />
         <activity
             android:name=".View.ScannerActivity"
             android:label="@string/title_activity_scanner"

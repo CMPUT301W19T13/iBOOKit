@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,12 +29,18 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ViewLocationActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private static final String TAG = "ViewLocationActivity";
     private GoogleMap mMap;
-    Double lat = getIntent().getDoubleExtra("lat",0.00);
-    Double lon = getIntent().getDoubleExtra("lon",0.00);
+    private DatabaseReference mDatabase;
+    double lat,lon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,16 +64,34 @@ public class ViewLocationActivity extends FragmentActivity implements OnMapReady
     }
 
     private void setUpMap() {
-        LatLng qwe = new LatLng(lat, lon);
-        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        mMap.addMarker(new MarkerOptions()
-                .position(qwe)
-                .title("Place to fetch book")
-                //.draggable(true)
-                .snippet("Here!")
-                .icon(BitmapDescriptorFactory
-                        .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(qwe, 15));
+        String ridS = getIntent().getStringExtra("ridS");
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(ridS);
+        mDatabase.addValueEventListener(new ValueEventListener(){
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot!=null){
+                    lat = (double) dataSnapshot.child("lat").getValue();
+                    lon = (double) dataSnapshot.child("lon").getValue();
+                    LatLng qwe = new LatLng(lat, lon);
+                    mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                    mMap.addMarker(new MarkerOptions()
+                            .position(qwe)
+                            .title("Place to fetch book")
+                            //.draggable(true)
+                            .snippet("Here!")
+                            .icon(BitmapDescriptorFactory
+                                    .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(qwe, 15));
+
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: ");
+            }
+
+        });
+
     }
 
 }

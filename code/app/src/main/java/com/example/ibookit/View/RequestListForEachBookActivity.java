@@ -103,7 +103,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-        finish();
+        //finish();
     }
 
 }
