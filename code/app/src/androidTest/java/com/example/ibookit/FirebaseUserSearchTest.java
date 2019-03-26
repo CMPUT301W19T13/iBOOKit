@@ -32,6 +32,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 
+/**
+ * @author Joe Xu
+ *
+ * @version 1.0
+ */
 @RunWith(AndroidJUnit4.class)
 public class FirebaseUserSearchTest {
 
@@ -155,6 +160,7 @@ public class FirebaseUserSearchTest {
             @Override
             public void onCancelled( DatabaseError databaseError) {
                 System.out.println("Notexist");
+                semaphore = 2;
             }
         });
 

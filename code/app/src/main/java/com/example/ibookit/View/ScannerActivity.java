@@ -65,7 +65,7 @@ public class ScannerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
 
-        cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
+        cameraPreview = findViewById(R.id.cameraPreview);
         txtView = findViewById(R.id.scan_decrypted_info);
 
         detector = new BarcodeDetector.Builder(getApplicationContext())
@@ -83,7 +83,7 @@ public class ScannerActivity extends AppCompatActivity {
                 .build();
 
 
-        Button btn = (Button) findViewById(R.id.scan_button);
+        Button btn = findViewById(R.id.scan_button);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

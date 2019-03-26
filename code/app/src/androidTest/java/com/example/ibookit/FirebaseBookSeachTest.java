@@ -36,6 +36,11 @@ import java.util.Random;
 import java.util.UUID;
 
 
+/**
+ * @author Joe Xu
+ *
+ * @version 1.0
+ */
 @RunWith(AndroidJUnit4.class)
 public class FirebaseBookSeachTest {
 
@@ -97,8 +102,8 @@ public class FirebaseBookSeachTest {
         assertEquals(totalSize,result.size());
 
         // ENSURE THAT IF A BOOK EXISTS IN RESULTS IT WAS IN OUR SEARCHED STRING
-        String temp;
-        int counter;
+
+
         int fail;
 
         for ( int num =0; num < result.size(); num++){
@@ -187,7 +192,7 @@ public class FirebaseBookSeachTest {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                semaphore = 2;
             }
         });
 

@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Request;
@@ -65,11 +66,25 @@ public class CheckRequestsActivity extends AppCompatActivity {
         adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
         Received.setAdapter(adapterB);
 
+        Sent.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Request item = (Request) Sent.getItemAtPosition(position);
+                if(item.getIsAccept() == 1){
+                    Intent intent1 = new Intent(CheckRequestsActivity.this,ViewLocationActivity.class);
+                    intent1.putExtra("ridS",item.getRid());
+                    startActivity(intent1);
+                }
+
+
+            }
+        });
 
         Received.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String item = (String) Received.getItemAtPosition(position);
+                Toast.makeText(CheckRequestsActivity.this,"TEST"+item, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
                 intent.putExtra("bookname",item);
@@ -85,6 +100,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         requestReceived.RetriveBook(Rbook,adapterB);
+
     }
 
 

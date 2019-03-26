@@ -11,6 +11,8 @@
 package com.example.ibookit.Model;
 import android.location.Location;
 
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * @author joe
  *
@@ -24,7 +26,8 @@ public class Request {
     private String sender;
     private String receiver;
     private String bookId;
-    private Location geolocation;
+    private Double lat;
+    private Double lon;
 
     /**
      * Constructor
@@ -81,16 +84,19 @@ public class Request {
         this.bookId = bookId;
     }
 
-
-
-    public Location getGeolocation() {
-        return geolocation;
+    public Double getLat() {
+        return lat;
     }
 
-    public void setGeolocation(Location geolocation) {
-        this.geolocation = geolocation;
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
+    public Double getLon() {
+        return lon;
+    }
 
-
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
 }
