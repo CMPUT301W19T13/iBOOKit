@@ -69,7 +69,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
         mAuthor = findViewById(R.id.bookAuthorAdd);
         mIsbn = findViewById(R.id.bookISBNAdd);
 
-        mCategory = (Spinner) findViewById(R.id.spinner_add_book);
+        mCategory = findViewById(R.id.spinner_add_book);
         categorySelector();
 
         mDescription = findViewById(R.id.descriptionAdd);
