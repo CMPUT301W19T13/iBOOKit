@@ -89,9 +89,20 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid){
         super.onPostExecute(aVoid);
-        AddBookAsOwnerActivity.mDescription.setText(this.description);
-        AddBookAsOwnerActivity.mTitle.setText(this.title);
-        AddBookAsOwnerActivity.mAuthor.setText(this.author);
+        if (this.description != "") {
+            AddBookAsOwnerActivity.mDescription.setText(this.description);
+        }else{
+            AddBookAsOwnerActivity.mDescription.setText("Not Found");
+        }
+        if (this.title != "") {
+            AddBookAsOwnerActivity.mTitle.setText(this.title);
+        }else{
+            AddBookAsOwnerActivity.mTitle.setText("Not Found");
+        }if (this.author != "") {
+            AddBookAsOwnerActivity.mAuthor.setText(this.author);
+        }else{
+            AddBookAsOwnerActivity.mAuthor.setText("Not Found");
+        }
 
     }
 
