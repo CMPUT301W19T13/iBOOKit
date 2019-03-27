@@ -144,13 +144,13 @@ public class SearchForBook {
             }
         }
 
-        new RecommendationHandler().UpdateRecommendation(categories.toArray(new String[0]), false);
+        new RecommendationHandler().UpdateRecommendation(categories.toArray(new String[0]), false, false);
     }
 
     private void UpdateRecommendationCategory(String category) {
         String[] categories = new String[1];
         categories[0] = category;
-        new RecommendationHandler().UpdateRecommendation(categories, false);
+        new RecommendationHandler().UpdateRecommendation(categories, false, false);
     }
 
 }

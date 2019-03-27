@@ -367,7 +367,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                 }
 
                 Toast.makeText(SelectPreferenceActivity.this, "All set", Toast.LENGTH_SHORT).show();
-                new RecommendationHandler().UpdateRecommendation(choosen.toArray(new String[0]), true);
+                new RecommendationHandler().UpdateRecommendation(choosen.toArray(new String[0]), true, false);
 
                 Intent intent = new Intent(SelectPreferenceActivity.this, HomeSearchActivity.class);
                 startActivity(intent);
