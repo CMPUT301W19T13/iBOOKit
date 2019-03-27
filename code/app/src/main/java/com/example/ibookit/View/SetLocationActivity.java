@@ -3,6 +3,7 @@ package com.example.ibookit.View;
 import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -61,7 +62,10 @@ public class SetLocationActivity extends FragmentActivity implements OnMapReadyC
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
             return;
         }
-        locationManager.requestLocationUpdates(locationManager.GPS_PROVIDER, MIN_TIME, MIN_DISTANCE, mLocationListener);
+        Criteria crit = new Criteria();
+        crit.setAccuracy(Criteria.ACCURACY_FINE);
+        crit.setPowerRequirement(Criteria.POWER_LOW);
+        locationManager.requestLocationUpdates(locationManager.getBestProvider(crit,true), MIN_TIME, MIN_DISTANCE, mLocationListener);
 
 
     }
@@ -128,10 +132,14 @@ public class SetLocationActivity extends FragmentActivity implements OnMapReadyC
             public void onMarkerDragEnd(Marker marker) {
                 // TODO Auto-generated method stub
                 LatLng position = marker.getPosition();
+//                Toast.makeText(
+//                        SetLocationActivity.this,
+//                        "Lat " + position.latitude + " "
+//                                + "Long " + position.longitude,
+//                        Toast.LENGTH_LONG).show();
                 Toast.makeText(
                         SetLocationActivity.this,
-                        "Lat " + position.latitude + " "
-                                + "Long " + position.longitude,
+                        "You have set the location!",
                         Toast.LENGTH_LONG).show();
                 String rid = getIntent().getStringExtra("rid");
                 mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(rid);
@@ -166,6 +174,10 @@ public class SetLocationActivity extends FragmentActivity implements OnMapReadyC
                             .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
 
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Your_Location, 15));
+            Toast.makeText(
+                    SetLocationActivity.this,
+                    "Drag to the location you want! ",
+                    Toast.LENGTH_LONG).show();
         }
 
         @Override

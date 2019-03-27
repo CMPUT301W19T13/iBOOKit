@@ -21,11 +21,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.ListAdapter.RequestListAdapter;
+import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.Model.RequestSent;
 import com.example.ibookit.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -40,11 +47,12 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private ListView Sent;
     private ListView Received;
     private ArrayList<Request> RSent = new ArrayList<>();
-    private ArrayList<String> Rbook = new ArrayList<>();
+    private ArrayList<Book> Rbook = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
-    private ArrayAdapter<String> adapterB;
+    private ArrayAdapter<Book> adapterB;
     private RequestSent requestSent = new RequestSent();
     private RequestReceived requestReceived = new RequestReceived();
+    private DatabaseReference mDatabase;
 
     /**
      * let user check requestSent and RequestReceived in UI
@@ -63,17 +71,34 @@ public class CheckRequestsActivity extends AppCompatActivity {
         Sent.setAdapter(adapterS);
         requestSent.RetriveRequest(RSent,adapterS);
 
-        adapterB = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,Rbook);
+        adapterB = new BookListAdapter(this,R.layout.adapter_book,Rbook);
         Received.setAdapter(adapterB);
 
         Sent.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Request item = (Request) Sent.getItemAtPosition(position);
+                final Request item = (Request) Sent.getItemAtPosition(position);
                 if(item.getIsAccept() == 1){
-                    Intent intent1 = new Intent(CheckRequestsActivity.this,ViewLocationActivity.class);
-                    intent1.putExtra("ridS",item.getRid());
-                    startActivity(intent1);
+                    // if, check lat lon in request from databse
+                    //if no, toast and do nothing
+                    mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(item.getRid());
+                    mDatabase.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if (dataSnapshot.hasChild("lat")) {
+                                Intent intent1 = new Intent(CheckRequestsActivity.this, ViewLocationActivity.class);
+                                intent1.putExtra("ridS", item.getRid());
+                                startActivity(intent1);
+                            } else {
+                                Toast.makeText(CheckRequestsActivity.this, "No location has been set by owner", Toast.LENGTH_LONG).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
                 }
 
 
@@ -83,11 +108,11 @@ public class CheckRequestsActivity extends AppCompatActivity {
         Received.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String item = (String) Received.getItemAtPosition(position);
-                Toast.makeText(CheckRequestsActivity.this,"TEST"+item, Toast.LENGTH_LONG).show();
+                Book item = (Book) Received.getItemAtPosition(position);
+                //Toast.makeText(CheckRequestsActivity.this,"TEST"+item, Toast.LENGTH_LONG).show();
 
                 Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
-                intent.putExtra("bookname",item);
+                intent.putExtra("bookname",item.getTitle());
                 startActivity(intent);
 
             }

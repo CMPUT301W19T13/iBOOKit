@@ -12,6 +12,7 @@ package com.example.ibookit.View;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -27,8 +28,11 @@ import com.example.ibookit.Model.RequestReceived;
 import com.example.ibookit.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -44,6 +48,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
     private ArrayAdapter<Request> adapterR;
     private RequestReceived requestReceived = new RequestReceived();
     private ListView Userlist;
+    private DatabaseReference mDatabase;
 
 
     /**
@@ -73,10 +78,27 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 if (request.getIsAccept() == 0) {
-                                    requestReceived.accept_request(Received, request);
                                     Intent intent = new Intent(RequestListForEachBookActivity.this,SetLocationActivity.class);
                                     intent.putExtra("rid",request.getRid());
                                     startActivity(intent);
+
+                                    //if set lat lon accept
+                                    //if not, toast user and not change status
+                                    mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(request.getRid());
+                                    mDatabase.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.hasChild("lat")) {
+                                                requestReceived.accept_request(Received, request);
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+
                                 } else {
                                     Toast.makeText(RequestListForEachBookActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
                                 }

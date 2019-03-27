@@ -27,7 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 /**
- * @author Joe, Jiazhen Li
+ * @author Jiazhen Li
  *
  * @version 1.0
  */
@@ -55,7 +55,7 @@ public class RequestReceived {
      * @param bookList
      * @param adapter
      */
-    public void RetriveBook(final ArrayList<String> bookList,final ArrayAdapter<String> adapter) {
+    public void RetriveBook(final ArrayList<Book> bookList,final ArrayAdapter<Book> adapter) {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -72,7 +72,7 @@ public class RequestReceived {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Book book = dataSnapshot.getValue(Book.class);
-                                bookList.add(book.getTitle());
+                                bookList.add(book);
                                 adapter.notifyDataSetChanged();
                             }
 
