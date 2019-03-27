@@ -19,7 +19,7 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
-        app:layout_constraintBottom_toTopOf="@+id/statusText"
+        app:layout_constraintBottom_toTopOf="@+id/OwnerText"
         app:layout_constraintStart_toStartOf="@+id/categoryText"
         app:layout_constraintTop_toBottomOf="@+id/categoryText" />
 
@@ -84,7 +84,7 @@
         android:textStyle="italic"
         app:fontFamily="sans-serif-medium"
         app:layout_constraintBottom_toTopOf="@+id/confirmSendRequest"
-        app:layout_constraintStart_toStartOf="@+id/statusText" />
+        app:layout_constraintStart_toStartOf="@+id/OwnerText" />
 
     <TextView
         android:id="@+id/statusAdd"
@@ -105,11 +105,11 @@
         android:textCursorDrawable="@color/schemeDarkest"
         android:textSize="18sp"
         android:textStyle="italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/statusText"
+        app:layout_constraintBaseline_toBaselineOf="@+id/OwnerText"
         app:layout_constraintStart_toStartOf="@+id/descriptionView" />
 
     <TextView
-        android:id="@+id/statusText"
+        android:id="@+id/OwnerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
