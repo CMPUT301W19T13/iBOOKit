@@ -317,13 +317,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                             //todo: what if user have two different book with same isbn, and both of
                             //them are requested and accepted, this will set both of them to lend pending
 
-
-                                // will implement this if necessary, I already added transit status to every book on every shelf
-                                // or location online
-//                            if (!d.hasChild("transitStatus")){
-//                                d.child("transitStatus").
-//                            }
-
                             final String bookID = d.getKey();
                             final Book targetBook = d.getValue(Book.class);
                             requestRef.addValueEventListener(new ValueEventListener() {

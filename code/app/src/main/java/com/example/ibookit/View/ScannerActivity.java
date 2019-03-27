@@ -69,7 +69,7 @@ public class ScannerActivity extends AppCompatActivity {
         txtView = findViewById(R.id.scan_decrypted_info);
 
         detector = new BarcodeDetector.Builder(getApplicationContext())
-                        .setBarcodeFormats(Barcode.EAN_13)
+                        .setBarcodeFormats(Barcode.ALL_FORMATS)
                         .build();
 
         if(!detector.isOperational()){

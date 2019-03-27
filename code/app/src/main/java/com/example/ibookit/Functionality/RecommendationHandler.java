@@ -67,8 +67,10 @@ public class RecommendationHandler {
                             for (DataSnapshot d : dataSnapshot.getChildren()) {
                                 Book book = d.getValue(Book.class);
                                 if (category.contains(book.getCategory())) {
-                                    books.add(book);
-                                    adapter.notifyDataSetChanged();
+                                    if (!book.getOwner().equals(username)) {
+                                        books.add(book);
+                                        adapter.notifyDataSetChanged();
+                                    }
                                 }
                             }
                         }
@@ -115,7 +117,7 @@ public class RecommendationHandler {
     }
 
 
-    public void UpdateRecommendation(final String[] categories, final Boolean is_signup) {
+    public void UpdateRecommendation(final String[] categories, final Boolean is_signup, final Boolean is_borrow) {
         mDatabase.child("recommendation").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -125,6 +127,11 @@ public class RecommendationHandler {
 
                 if (is_signup) {
                     PointCountContainer pointCountContainer =  UpdateSignUpPoints(points, counts, categories);
+                    Recommendation newR = new Recommendation(username, pointCountContainer.getPoints(), pointCountContainer.getCounts());
+
+                    mDatabase.child("recommendation").setValue(newR);
+                } else if (is_borrow){
+                    PointCountContainer pointCountContainer = UpdateBorrowPoints(points, counts, categories);
                     Recommendation newR = new Recommendation(username, pointCountContainer.getPoints(), pointCountContainer.getCounts());
 
                     mDatabase.child("recommendation").setValue(newR);
@@ -143,6 +150,25 @@ public class RecommendationHandler {
 
             }
         });
+    }
+
+    private PointCountContainer UpdateBorrowPoints(HashMap<String, Double> points, HashMap<String, Integer> counts, String[] categories) {
+        for (Map.Entry<String, Double> kv : points.entrySet()) {
+            String key = kv.getKey();
+            if (Arrays.asList(categories).contains(key)) {
+                Double value = kv.getValue();
+                if (value + 0.75 > maxPoint) {
+                    points.put(key, maxPoint);
+                    return RefreshPoints(points, counts);
+                }
+                points.put(key, value + 0.75);
+
+                return new PointCountContainer(points, counts);
+            }
+
+        }
+
+        return new PointCountContainer(points, counts);
     }
 
 

@@ -12,6 +12,7 @@ package com.example.ibookit.Model;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
+import com.example.ibookit.Functionality.RecommendationHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -104,6 +105,12 @@ public class BorrowerShelf implements BookShelf{
 
         // update book info in owner's shelf
         FirebaseDatabase.getInstance().getReference().child("users").child(book.getOwner()).child("ownerShelf").child(book.getId()).setValue(book);
+
+        // update recommendation borrowing
+        String[] category = new String[0];
+        category[0] = book.getCategory();
+        RecommendationHandler recommendationHandler = new RecommendationHandler();
+        recommendationHandler.UpdateRecommendation(category, false, true);
 
     }
 
