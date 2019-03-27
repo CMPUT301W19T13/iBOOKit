@@ -7,7 +7,7 @@
     android:layout_marginBottom="0dp"
     app:itemBackground="@color/schemeDarkest"
     app:itemHorizontalTranslationEnabled="false"
-    app:itemIconTint="@android:color/white"
-    app:itemTextColor="@android:color/white"
+    app:itemIconTint="@color/nav_item_color_state"
+    app:itemTextColor="@color/nav_item_color_state"
     app:labelVisibilityMode="labeled"
     app:menu="@menu/bottom_navigation_main" />
