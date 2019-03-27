@@ -31,7 +31,7 @@ public class SendRequestActivity extends AppCompatActivity {
 
     private static final String TAG = "SendRequestActivity";
     private Book book;
-    private TextView mTitle, mAuthor, mIsbn, mStatus, mDescription, mCategory;
+    private TextView mTitle, mAuthor, mIsbn, mOwner, mDescription, mCategory;
     private ImageView imageView;
     private Button button;
 
@@ -43,7 +43,7 @@ public class SendRequestActivity extends AppCompatActivity {
         mTitle = findViewById(R.id.bookTitleRequest);
         mAuthor = findViewById(R.id.bookAuthorRequest);
         mIsbn = findViewById(R.id.bookISBNRequest);
-        mStatus = findViewById(R.id.statusRequest);
+        mOwner = findViewById(R.id.ownerRequest);
         mDescription = findViewById(R.id.descriptionViewRequest);
         mCategory = findViewById(R.id.categoryRequest);
         imageView = (ImageView) findViewById(R.id.bookImageRequest);
@@ -73,8 +73,7 @@ public class SendRequestActivity extends AppCompatActivity {
         mCategory.setText(book.getCategory());
         mDescription.setText(book.getDescription());
 
-        BookStatusHandler handler = new BookStatusHandler();
-        mStatus.setText(handler.StatusString(book));
+        mOwner.setText(book.getOwner());
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

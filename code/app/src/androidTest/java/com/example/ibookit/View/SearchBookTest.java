@@ -41,17 +41,6 @@ public class SearchBookTest {
         book = "harry potter";
     }
 
-    @Before
-    public void SetUpFirebase() {
-        FirebaseAuth.getInstance().signInWithEmailAndPassword("masiwei@qq.com", "123456").addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-
-            }
-        });
-
-        FirebaseAuth.getInstance().addAuthStateListener(mAuthListener);
-    }
 
 
     @Test

@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -44,6 +45,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -123,6 +125,20 @@ public class HomeSearchActivity extends AppCompatActivity {
         recommendationShelf.setAdapter(adapter);
         recommendationShelf.setClickable(true);
         new RecommendationHandler().syncRecommendationBookShelf(mBooks, adapter);
+
+        recommendationShelf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Book book = (Book) recommendationShelf.getItemAtPosition(position);
+
+                Intent intent = new Intent(HomeSearchActivity.this, SendRequestActivity.class);
+                Gson gson = new Gson();
+                String out = gson.toJson(book);
+                intent.putExtra("book", out);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
