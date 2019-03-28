@@ -1,5 +1,5 @@
 /**
- * Class name: CreateRequestHandler
+ * Class name: NewRequestHandler
  *
  * version 1.0
  *
@@ -20,7 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
  *
  * @version 1.1
  */
-public class CreateRequestHandler {
+public class NewRequestHandler {
 
     private String sender;
     private DatabaseReference mDatabase;
@@ -29,7 +29,7 @@ public class CreateRequestHandler {
     /**
      * Constructor: set login user
      */
-    public CreateRequestHandler () {
+    public NewRequestHandler() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         this.sender = user.getDisplayName();
@@ -71,8 +71,8 @@ public class CreateRequestHandler {
      */
     public void setNotificationToOwner(String title){
         // Set Message to receiver
-        SetNotificationHandler setNotificationHandler = new SetNotificationHandler(sender, receiver);
-        setNotificationHandler.sendNewMessage("New request", title);
+        NotificationHandler notificationHandler = new NotificationHandler(sender, receiver);
+        notificationHandler.sendNewMessage("New request", title);
     }
 
     /**

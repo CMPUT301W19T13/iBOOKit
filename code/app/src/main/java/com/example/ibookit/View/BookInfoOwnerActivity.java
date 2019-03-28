@@ -1,5 +1,5 @@
 /**
- * Class name: ViewBookInfoAsOwnerActivity
+ * Class name: BookInfoOwnerActivity
  *
  * version 1.0
  *
@@ -45,7 +45,7 @@ import com.squareup.picasso.Picasso;
  * @version 1.0
  */
 
-public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     private static final String TAG = "ViewBookInfoActivity";
     private static final int PICK_IMAGE_REQUEST = 1;
@@ -127,7 +127,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
 
                 // cannot update a book if it is borrowed
                 if (book.getStatus() == 3) {
-                    Toast.makeText(ViewBookInfoAsOwnerActivity.this, "View Only",
+                    Toast.makeText(BookInfoOwnerActivity.this, "View Only",
                             Toast.LENGTH_SHORT).show();
 
                 } else {
@@ -145,7 +145,7 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
 
                     updateImage(book);
 
-                    Toast.makeText(ViewBookInfoAsOwnerActivity.this, "Submitted",
+                    Toast.makeText(BookInfoOwnerActivity.this, "Submitted",
                             Toast.LENGTH_SHORT).show();
                 }
 
@@ -164,10 +164,10 @@ public class ViewBookInfoAsOwnerActivity extends AppCompatActivity implements Ad
     }
 
     private void categorySelector(){
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(ViewBookInfoAsOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BookInfoOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mCategory.setAdapter(adapter);
-        mCategory.setOnItemSelectedListener(ViewBookInfoAsOwnerActivity.this);
+        mCategory.setOnItemSelectedListener(BookInfoOwnerActivity.this);
         mCategory.setSelection(adapter.getPosition(category));
 
     }

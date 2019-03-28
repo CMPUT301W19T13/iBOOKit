@@ -1,5 +1,5 @@
 /**
- * Class name: ShowSearchResultActivity
+ * Class name: SearchResultActivity
  *
  * version 1.2
  *
@@ -30,10 +30,10 @@ import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.example.ibookit.Functionality.BookSearch;
 import com.example.ibookit.Functionality.BookStatusHandler;
-import com.example.ibookit.Functionality.CreateRequestHandler;
-import com.example.ibookit.Functionality.SearchForBook;
-import com.example.ibookit.Functionality.SearchForUser;
+import com.example.ibookit.Functionality.NewRequestHandler;
+import com.example.ibookit.Functionality.UserSearch;
 import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.ListAdapter.UserListAdapter;
 import com.example.ibookit.Model.Book;
@@ -57,7 +57,7 @@ import java.util.ArrayList;
  * @version 1.2
  */
 
-public class ShowSearchResultActivity extends AppCompatActivity {
+public class SearchResultActivity extends AppCompatActivity {
 
     private static final String TAG = "ShowSearchResult";
     private ListView searchResultListView;
@@ -102,7 +102,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             ListViewClickHandler();
 
             Log.d(TAG, "onCreate: " + searchValue);
-            SearchForUser userSearch = new SearchForUser();
+            UserSearch userSearch = new UserSearch();
             ArrayList<User> searchResult= new ArrayList<>();
 
             Log.d(TAG, "onCreate: " + searchResult);
@@ -117,7 +117,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             ListViewClickHandler();
 
             Log.d(TAG, "onCreate: " + searchValue);
-            SearchForBook bookSearch = new SearchForBook();
+            BookSearch bookSearch = new BookSearch();
             ArrayList<Book> searchResult = new ArrayList<>();
 
             Log.d(TAG, "onCreate: " + searchResult);
@@ -133,7 +133,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             ListViewClickHandler();
 
             Log.d(TAG, "onCreate: " + searchValue);
-            SearchForBook bookSearch = new SearchForBook();
+            BookSearch bookSearch = new BookSearch();
             ArrayList<Book> searchResult = new ArrayList<>();
             Log.d(TAG, "onCreate: " + searchResult);
 
@@ -178,7 +178,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
                     try {
                         User user = (User) finalList.getItemAtPosition(position);
 
-                        Intent resultProfile = new Intent(ShowSearchResultActivity.this, UserProfileActivity.class);
+                        Intent resultProfile = new Intent(SearchResultActivity.this, UserProfileActivity.class);
                         Gson gson = new Gson();
                         String userResult = gson.toJson(user);
                         resultProfile.putExtra("UserResult", userResult);
@@ -244,7 +244,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(ShowSearchResultActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(SearchResultActivity.this, AddBookOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
@@ -254,19 +254,19 @@ public class ShowSearchResultActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_myshelf:
-                        Intent myshelf = new Intent(ShowSearchResultActivity.this, MyShelfOwnerActivity.class);
+                        Intent myshelf = new Intent(SearchResultActivity.this, MyShelfOwnerActivity.class);
                         myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent profile = new Intent(ShowSearchResultActivity.this, UserProfileActivity.class);
+                        Intent profile = new Intent(SearchResultActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(ShowSearchResultActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(SearchResultActivity.this, RequestChActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 
@@ -301,7 +301,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
                         for(DataSnapshot d:dataSnapshot.getChildren()) {
                             Request r = d.getValue(Request.class);
                             if (r.getBookId().equals(book.getId())) {
-                                Toast.makeText(ShowSearchResultActivity.this, "Already requested",
+                                Toast.makeText(SearchResultActivity.this, "Already requested",
                                         Toast.LENGTH_SHORT).show();
                                 return;
                             }
@@ -309,7 +309,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
 
                         // Not requested yet
                         Request request = new Request(book);
-                        CreateRequestHandler createRequest = new CreateRequestHandler();
+                        NewRequestHandler createRequest = new NewRequestHandler();
                         if (createRequest.SendRequestToOwner(request)) {
                             // send notification to owner
                             createRequest.setNotificationToOwner(book.getTitle());
@@ -317,11 +317,11 @@ public class ShowSearchResultActivity extends AppCompatActivity {
                             new BookStatusHandler().setBookStatusFirebase(book, 1);
 
                             // make toast
-                            Toast.makeText(ShowSearchResultActivity.this, "send request successful",
+                            Toast.makeText(SearchResultActivity.this, "send request successful",
                                     Toast.LENGTH_SHORT).show();
                         } else {
 
-                            Toast.makeText(ShowSearchResultActivity.this, "Cannot request your own book",
+                            Toast.makeText(SearchResultActivity.this, "Cannot request your own book",
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -347,7 +347,7 @@ public class ShowSearchResultActivity extends AppCompatActivity {
         builder.setNeutralButton("View", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(ShowSearchResultActivity.this, SendRequestActivity.class);
+                Intent intent = new Intent(SearchResultActivity.this, SendRequestActivity.class);
                 Gson gson = new Gson();
                 String out = gson.toJson(book);
                 intent.putExtra("book", out);

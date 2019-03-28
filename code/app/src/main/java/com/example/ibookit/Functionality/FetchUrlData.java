@@ -3,10 +3,7 @@ package com.example.ibookit.Functionality;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import com.example.ibookit.Model.Page;
-import com.example.ibookit.View.AddBookAsOwnerActivity;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
+import com.example.ibookit.View.AddBookOwnerActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -90,18 +87,18 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
     protected void onPostExecute(Void aVoid){
         super.onPostExecute(aVoid);
         if (this.description != "") {
-            AddBookAsOwnerActivity.mDescription.setText(this.description);
+            AddBookOwnerActivity.mDescription.setText(this.description);
         }else{
-            AddBookAsOwnerActivity.mDescription.setText("Not Found");
+            AddBookOwnerActivity.mDescription.setText("Not Found");
         }
         if (this.title != "") {
-            AddBookAsOwnerActivity.mTitle.setText(this.title);
+            AddBookOwnerActivity.mTitle.setText(this.title);
         }else{
-            AddBookAsOwnerActivity.mTitle.setText("Not Found");
+            AddBookOwnerActivity.mTitle.setText("Not Found");
         }if (this.author != "") {
-            AddBookAsOwnerActivity.mAuthor.setText(this.author);
+            AddBookOwnerActivity.mAuthor.setText(this.author);
         }else{
-            AddBookAsOwnerActivity.mAuthor.setText("Not Found");
+            AddBookOwnerActivity.mAuthor.setText("Not Found");
         }
 
     }

@@ -1,5 +1,5 @@
 /**
- * Class name: RequestForEachBookListAdapter
+ * Class name: BookRequestListAdapter
  *
  * version 1.0
  *
@@ -39,7 +39,7 @@ import static android.support.constraint.Constraints.TAG;
  *
  * @version 1.0
  */
-public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { private Context mContext;
+public class BookRequestListAdapter extends ArrayAdapter<Request> { private Context mContext;
 
     private int mResource;
     private DatabaseReference mDatabase;
@@ -47,7 +47,7 @@ public class RequestForEachBookListAdapter extends ArrayAdapter<Request> { priva
     private Book mBook;
     private ImageView imageView;
 
-    public RequestForEachBookListAdapter(Context context, int resource, ArrayList<Request> objects) {
+    public BookRequestListAdapter(Context context, int resource, ArrayList<Request> objects) {
         super(context, resource, objects);
         mContext = context;
         mResource = resource;

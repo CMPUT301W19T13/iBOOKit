@@ -9,15 +9,11 @@
  */
 package com.example.ibookit.View;
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -159,7 +155,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(MyShelfBorrowerActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(MyShelfBorrowerActivity.this, AddBookOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
@@ -182,7 +178,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(MyShelfBorrowerActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(MyShelfBorrowerActivity.this, RequestChActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 

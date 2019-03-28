@@ -1,5 +1,5 @@
 /**
- * Class name: AddBookAsOwnerActivity
+ * Class name: AddBookOwnerActivity
  *
  * version 1.0
  *

@@ -28,8 +28,8 @@ public class AddBookTest {
 
 
     @Rule
-    public ActivityTestRule<AddBookAsOwnerActivity> activityRule
-            = new ActivityTestRule<>(AddBookAsOwnerActivity.class);
+    public ActivityTestRule<AddBookOwnerActivity> activityRule
+            = new ActivityTestRule<>(AddBookOwnerActivity.class);
 
     @Before
     public void initValidString() {

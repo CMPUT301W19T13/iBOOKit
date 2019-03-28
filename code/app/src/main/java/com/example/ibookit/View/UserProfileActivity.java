@@ -224,7 +224,7 @@ public class UserProfileActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(UserProfileActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(UserProfileActivity.this, AddBookOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
@@ -246,7 +246,7 @@ public class UserProfileActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(UserProfileActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(UserProfileActivity.this, RequestChActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 

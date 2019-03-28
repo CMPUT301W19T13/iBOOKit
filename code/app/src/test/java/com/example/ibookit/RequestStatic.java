@@ -12,8 +12,7 @@ package com.example.ibookit;
 import android.location.Location;
 
 import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
-import com.google.firebase.database.DatabaseReference;
+import com.example.ibookit.Model.RequestR;
 
 import org.junit.Test;
 
@@ -32,7 +31,7 @@ public class RequestStatic {
     Request request = new Request();
     ArrayList<Request> requestlist = new ArrayList<Request>();
 
-    RequestReceived Received = new RequestReceived("ownername", requestlist);
+    RequestR Received = new RequestR("ownername", requestlist);
 
     Location location = new Location("test");
 

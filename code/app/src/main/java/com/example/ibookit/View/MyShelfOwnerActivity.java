@@ -196,7 +196,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(MyShelfOwnerActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(MyShelfOwnerActivity.this, AddBookOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
@@ -218,7 +218,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(MyShelfOwnerActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(MyShelfOwnerActivity.this, RequestChActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 
@@ -262,7 +262,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
         builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(MyShelfOwnerActivity.this, ViewBookInfoAsOwnerActivity.class);
+                Intent intent = new Intent(MyShelfOwnerActivity.this, BookInfoOwnerActivity.class);
                 Gson gson = new Gson();
 
                 String out = gson.toJson(book);

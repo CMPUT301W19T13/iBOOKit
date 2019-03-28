@@ -11,8 +11,8 @@ package com.example.ibookit;
 
 import com.example.ibookit.Functionality.RequestStatusHandler;
 import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
-import com.example.ibookit.Model.RequestSent;
+import com.example.ibookit.Model.RequestR;
+import com.example.ibookit.Model.RequestS;
 
 import org.junit.Test;
 
@@ -39,11 +39,11 @@ public class RequestFunc {
     public void requestTest(){
         requestlist.add(request);
 
-        RequestReceived testRequestRecieve= new RequestReceived("testname", requestlist);
+        RequestR testRequestRecieve= new RequestR("testname", requestlist);
 
 
 
-        RequestSent requestsender = new RequestSent(requestlist);
+        RequestS requestsender = new RequestS(requestlist);
 
 
         assertNotEquals(requestsender, null);

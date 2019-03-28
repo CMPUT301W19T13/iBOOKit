@@ -17,7 +17,7 @@ import com.example.ibookit.R;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class SelectPreferenceActivity extends AppCompatActivity {
+public class PreferenceActivity extends AppCompatActivity {
 
     private ImageButton sportsButton, horrorButton, comicButton, romanceButton, sciFiButton, businessButton, classicButton, thrillerButton, otherButton;
     private Button skip, confirm;
@@ -63,7 +63,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected sports", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected sports", Toast.LENGTH_SHORT).show();
                         selected[0]=true;
                         count = count + 1;
                         sportsText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -71,14 +71,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[0]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected sports", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected sports", Toast.LENGTH_SHORT).show();
                     selected[0] = false;
                     count = count - 1;
                     sportsText.setBackgroundColor(Color.TRANSPARENT);
@@ -95,7 +95,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected horror", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected horror", Toast.LENGTH_SHORT).show();
                         selected[1]=true;
                         count = count + 1;
                         horrorText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -103,14 +103,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[1]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected horror", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected horror", Toast.LENGTH_SHORT).show();
                     selected[1] = false;
                     count = count - 1;
                     horrorText.setBackgroundColor(Color.TRANSPARENT);
@@ -127,7 +127,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected comics", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected comics", Toast.LENGTH_SHORT).show();
                         selected[2]=true;
                         count = count + 1;
                         comicText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -135,14 +135,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[2]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected comics", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected comics", Toast.LENGTH_SHORT).show();
                     selected[2] = false;
                     count = count - 1;
                     comicText.setBackgroundColor(Color.TRANSPARENT);
@@ -159,7 +159,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected romance", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected romance", Toast.LENGTH_SHORT).show();
                         selected[3]=true;
                         count = count + 1;
                         romanceText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -167,14 +167,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[3]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected romance", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected romance", Toast.LENGTH_SHORT).show();
                     selected[3] = false;
                     count = count - 1;
                     romanceText.setBackgroundColor(Color.TRANSPARENT);
@@ -192,7 +192,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected Sci-Fi", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected Sci-Fi", Toast.LENGTH_SHORT).show();
                         selected[4]=true;
                         count = count + 1;
                         sciFiText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -200,14 +200,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[4]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected Sci-Fi", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected Sci-Fi", Toast.LENGTH_SHORT).show();
                     selected[4] = false;
                     count = count - 1;
                     sciFiText.setBackgroundColor(Color.TRANSPARENT);
@@ -224,7 +224,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected business", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected business", Toast.LENGTH_SHORT).show();
                         selected[5]=true;
                         count = count + 1;
                         businessText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -232,14 +232,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[5]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected business", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected business", Toast.LENGTH_SHORT).show();
                     selected[5] = false;
                     count = count - 1;
                     businessText.setBackgroundColor(Color.TRANSPARENT);
@@ -256,7 +256,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected classics", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected classics", Toast.LENGTH_SHORT).show();
                         selected[6]=true;
                         count = count + 1;
                         classicText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -264,14 +264,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[6]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected classics", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected classics", Toast.LENGTH_SHORT).show();
                     selected[6] = false;
                     count = count - 1;
                     classicText.setBackgroundColor(Color.TRANSPARENT);
@@ -289,7 +289,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected thrillers", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected thrillers", Toast.LENGTH_SHORT).show();
                         selected[7]=true;
                         count = count + 1;
                         thrillerText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -297,14 +297,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[7]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected thrillers", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected thrillers", Toast.LENGTH_SHORT).show();
                     selected[7] = false;
                     count = count - 1;
                     thrillerText.setBackgroundColor(Color.TRANSPARENT);
@@ -322,7 +322,7 @@ public class SelectPreferenceActivity extends AppCompatActivity {
 
                     if (count<3){
 
-                        Toast.makeText(SelectPreferenceActivity.this, "You selected others", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "You selected others", Toast.LENGTH_SHORT).show();
                         selected[8]=true;
                         count = count + 1;
                         otherText.setBackgroundColor(getResources().getColor(R.color.blacktext));
@@ -330,14 +330,14 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                     else {
 
-                        Toast.makeText(SelectPreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PreferenceActivity.this, "Max 3 already selected (De-select first)", Toast.LENGTH_SHORT).show();
 
                     }
 
                 }
                 else if (selected[8]==true){
 
-                    Toast.makeText(SelectPreferenceActivity.this, "You de-selected others", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreferenceActivity.this, "You de-selected others", Toast.LENGTH_SHORT).show();
                     selected[8] = false;
                     count = count - 1;
                     otherText.setBackgroundColor(Color.TRANSPARENT);
@@ -350,8 +350,8 @@ public class SelectPreferenceActivity extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(SelectPreferenceActivity.this, "Skipped", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(SelectPreferenceActivity.this, HomeSearchActivity.class);
+                Toast.makeText(PreferenceActivity.this, "Skipped", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(PreferenceActivity.this, HomeSearchActivity.class);
                 startActivity(intent);
             }
         });
@@ -366,10 +366,10 @@ public class SelectPreferenceActivity extends AppCompatActivity {
                     }
                 }
 
-                Toast.makeText(SelectPreferenceActivity.this, "All set", Toast.LENGTH_SHORT).show();
+                Toast.makeText(PreferenceActivity.this, "All set", Toast.LENGTH_SHORT).show();
                 new RecommendationHandler().UpdateRecommendation(choosen.toArray(new String[0]), true, false);
 
-                Intent intent = new Intent(SelectPreferenceActivity.this, HomeSearchActivity.class);
+                Intent intent = new Intent(PreferenceActivity.this, HomeSearchActivity.class);
                 startActivity(intent);
             }
         });

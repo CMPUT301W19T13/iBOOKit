@@ -1,5 +1,5 @@
 /**
- * Class name: SearchForUser
+ * Class name: UserSearch
  *
  * version 1.0
  *
@@ -27,10 +27,10 @@ import java.util.ArrayList;
  *
  * @version 1.0
  */
-public class SearchForUser {
+public class UserSearch {
     private ArrayList<User> mResult;
 
-    public SearchForUser(){}
+    public UserSearch(){}
 
     /**
      * Search the user by keywords

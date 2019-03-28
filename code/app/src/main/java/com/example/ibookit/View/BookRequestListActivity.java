@@ -1,5 +1,5 @@
 /**
- * Class name: RequestListForEachBookActivity
+ * Class name: BookRequestListActivity
  *
  * version 1.0
  *
@@ -15,19 +15,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.ibookit.ListAdapter.RequestForEachBookListAdapter;
+import com.example.ibookit.ListAdapter.BookRequestListAdapter;
 import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
+import com.example.ibookit.Model.RequestR;
 import com.example.ibookit.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,12 +38,12 @@ import java.util.ArrayList;
  *
  * @version 1.0
  */
-public class RequestListForEachBookActivity extends AppCompatActivity {
+public class BookRequestListActivity extends AppCompatActivity {
 
     private static final String TAG = "RequestListForEachBook";
     private ArrayList<Request> Received = new ArrayList<>();
     private ArrayAdapter<Request> adapterR;
-    private RequestReceived requestReceived = new RequestReceived();
+    private RequestR requestR = new RequestR();
     private ListView Userlist;
     private DatabaseReference mDatabase;
 
@@ -62,15 +59,15 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
         Userlist = findViewById(R.id.userlist);
         final String bookname = getIntent().getStringExtra("bookname");
 
-        adapterR = new RequestForEachBookListAdapter(this,R.layout.adapter_request,Received);
+        adapterR = new BookRequestListAdapter(this,R.layout.adapter_request,Received);
         Userlist.setAdapter(adapterR);
-        requestReceived.RequestInBook(Received, adapterR, bookname);
+        requestR.RequestInBook(Received, adapterR, bookname);
 
         Userlist.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
                 final Request request = (Request) Userlist.getItemAtPosition(position);
 
-                new AlertDialog.Builder(RequestListForEachBookActivity.this)
+                new AlertDialog.Builder(BookRequestListActivity.this)
                         .setTitle("Accept Request?")
                         .setCancelable(true)
                         .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
@@ -78,7 +75,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialogInterface, int i) {
 
                                 if (request.getIsAccept() == 0) {
-                                    Intent intent = new Intent(RequestListForEachBookActivity.this,SetLocationActivity.class);
+                                    Intent intent = new Intent(BookRequestListActivity.this, LocationSActivity.class);
                                     intent.putExtra("rid",request.getRid());
                                     startActivity(intent);
 
@@ -89,7 +86,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.hasChild("lat")) {
-                                                requestReceived.accept_request(Received, request);
+                                                requestR.accept_request(Received, request);
                                             }
                                         }
 
@@ -100,7 +97,7 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                                     });
 
                                 } else {
-                                    Toast.makeText(RequestListForEachBookActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(BookRequestListActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
                                 }
                                 finish();
                             }
@@ -108,11 +105,11 @@ public class RequestListForEachBookActivity extends AppCompatActivity {
                         .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                //Toast.makeText(RequestListForEachBookActivity.this,"NO"+item,Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(BookRequestListActivity.this,"NO"+item,Toast.LENGTH_SHORT).show();
                                 if (request.getIsAccept() == 0) {
-                                    requestReceived.decline_request(request);
+                                    requestR.decline_request(request);
                                 } else {
-                                    Toast.makeText(RequestListForEachBookActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(BookRequestListActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         })

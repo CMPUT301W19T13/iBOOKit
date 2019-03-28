@@ -1,6 +1,6 @@
 /**
  *
- * Class name: RequestReceived
+ * Class name: RequestR
  *
  * version 1.0
  *
@@ -15,7 +15,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
-import com.example.ibookit.Functionality.SetNotificationHandler;
+import com.example.ibookit.Functionality.NotificationHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,8 +31,8 @@ import java.util.ArrayList;
  *
  * @version 1.0
  */
-public class RequestReceived {
-    private static final String TAG = "RequestReceived";
+public class RequestR {
+    private static final String TAG = "RequestR";
     private ArrayList<Request> requestSent = new ArrayList<>();
     private ArrayList<Request> requestReceived;
     private DatabaseReference mDatabase;
@@ -44,7 +44,7 @@ public class RequestReceived {
     /**
      * Constructor
      */
-    public RequestReceived(){
+    public RequestR(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
@@ -168,7 +168,7 @@ public class RequestReceived {
         dDatabase.child("users").child(request.getSender()).child("requestSent").child(request.getRid()).child("isAccept").setValue(1);
 
         // Update message
-        new SetNotificationHandler(username, request.getSender()).sendNewMessage("Your request has been accepted", "From " + username);
+        new NotificationHandler(username, request.getSender()).sendNewMessage("Your request has been accepted", "From " + username);
 
         ArrayList<Request> newlist = Rlist;
         newlist.remove(request);
@@ -226,10 +226,10 @@ public class RequestReceived {
     }
 
     public static void setRequest1(Request request1) {
-        RequestReceived.request1 = request1;
+        RequestR.request1 = request1;
     }
 
-    public RequestReceived(String name, ArrayList<Request> requested){
+    public RequestR(String name, ArrayList<Request> requested){
         this.username = name;
         this.requestReceived = requested;
 

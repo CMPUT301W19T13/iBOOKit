@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ibookit.Functionality.RecommendationHandler;
@@ -213,7 +212,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 progressBar.setVisibility(View.INVISIBLE);
 
-                                Intent intent = new Intent(SignUpActivity.this, SelectPreferenceActivity.class);
+                                Intent intent = new Intent(SignUpActivity.this, PreferenceActivity.class);
                                 startActivity(intent);
                             }
                         }

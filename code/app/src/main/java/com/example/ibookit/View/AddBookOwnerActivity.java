@@ -1,5 +1,5 @@
 /**
- * Class name: AddBookAsOwnerActivity
+ * Class name: AddBookOwnerActivity
  *
  * version 1.0
  *
@@ -10,13 +10,11 @@
 package com.example.ibookit.View;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -42,7 +40,7 @@ import com.squareup.picasso.Picasso;
  *
  * @version 1.0
  */
-public class AddBookAsOwnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class AddBookOwnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     public static TextView mTitle, mAuthor, mIsbn, mDescription;
     public Spinner mCategory;
@@ -96,7 +94,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
                 String username = user.getDisplayName();
 
                 if (category.length() == 0) {
-                    Toast.makeText(AddBookAsOwnerActivity.this, "Select a category",
+                    Toast.makeText(AddBookOwnerActivity.this, "Select a category",
                             Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -107,10 +105,10 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
                 ownerShelf.add_book_with_image(book, mImageUri);
 
 
-                Toast.makeText(AddBookAsOwnerActivity.this, "Add a book successful",
+                Toast.makeText(AddBookOwnerActivity.this, "Add a book successful",
                         Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                Intent intent = new Intent(AddBookOwnerActivity.this, MyShelfOwnerActivity.class);
                 startActivity(intent);
             }
         });
@@ -118,7 +116,7 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent scan = new Intent(AddBookAsOwnerActivity.this, ScannerActivity.class);
+                Intent scan = new Intent(AddBookOwnerActivity.this, ScannerActivity.class);
                 startActivityForResult(scan, scanRequestCode);
             }
         });
@@ -135,10 +133,10 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
     }
 
     private void categorySelector() {
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddBookAsOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddBookOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mCategory.setAdapter(adapter);
-        mCategory.setOnItemSelectedListener(AddBookAsOwnerActivity.this);
+        mCategory.setOnItemSelectedListener(AddBookOwnerActivity.this);
 
     }
 
@@ -194,12 +192,12 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
 
                 mIsbn.setText(scannedISBN);
             }else{
-                Toast.makeText(AddBookAsOwnerActivity.this, "scan code type inappropriate",
+                Toast.makeText(AddBookOwnerActivity.this, "scan code type inappropriate",
                         Toast.LENGTH_SHORT).show();
             }
 
         }else{
-            Toast.makeText(AddBookAsOwnerActivity.this, "Unexpected error occurred",
+            Toast.makeText(AddBookOwnerActivity.this, "Unexpected error occurred",
                     Toast.LENGTH_SHORT).show();
         }
 
@@ -224,26 +222,26 @@ public class AddBookAsOwnerActivity extends AppCompatActivity implements Adapter
                         break;
 
                     case R.id.action_home:
-                        Intent home = new Intent(AddBookAsOwnerActivity.this, HomeSearchActivity.class);
+                        Intent home = new Intent(AddBookOwnerActivity.this, HomeSearchActivity.class);
                         home.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(home);
 
                         break;
 
                     case R.id.action_myshelf:
-                        Intent myshelf = new Intent(AddBookAsOwnerActivity.this, MyShelfOwnerActivity.class);
+                        Intent myshelf = new Intent(AddBookOwnerActivity.this, MyShelfOwnerActivity.class);
                         myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent profile = new Intent(AddBookAsOwnerActivity.this, UserProfileActivity.class);
+                        Intent profile = new Intent(AddBookOwnerActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(AddBookAsOwnerActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(AddBookOwnerActivity.this, RequestChActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 

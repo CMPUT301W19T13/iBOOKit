@@ -1,5 +1,5 @@
 /**
- * Class name: AddBookAsOwnerActivity
+ * Class name: AddBookOwnerActivity
  *
  * version 1.0
  *
@@ -26,8 +26,8 @@ import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
-import com.example.ibookit.Model.RequestReceived;
-import com.example.ibookit.Model.RequestSent;
+import com.example.ibookit.Model.RequestR;
+import com.example.ibookit.Model.RequestS;
 import com.example.ibookit.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,7 +43,7 @@ import java.util.ArrayList;
  *
  * @version 1.0
  */
-public class CheckRequestsActivity extends AppCompatActivity {
+public class RequestChActivity extends AppCompatActivity {
 
     private ListView Sent;
     private ListView Received;
@@ -51,12 +51,12 @@ public class CheckRequestsActivity extends AppCompatActivity {
     private ArrayList<Book> Rbook = new ArrayList<>();
     private ArrayAdapter<Request> adapterS;
     private ArrayAdapter<Book> adapterB;
-    private RequestSent requestSent = new RequestSent();
-    private RequestReceived requestReceived = new RequestReceived();
+    private RequestS requestS = new RequestS();
+    private RequestR requestR = new RequestR();
     private DatabaseReference mDatabase;
 
     /**
-     * let user check requestSent and RequestReceived in UI
+     * let user check requestS and RequestR in UI
      * @param savedInstanceState
      */
     @Override
@@ -70,7 +70,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
         adapterS = new RequestListAdapter(this,R.layout.adapter_request,RSent);
         Sent.setAdapter(adapterS);
-        requestSent.RetriveRequest(RSent,adapterS);
+        requestS.RetriveRequest(RSent,adapterS);
 
         adapterB = new BookListAdapter(this,R.layout.adapter_book,Rbook);
         Received.setAdapter(adapterB);
@@ -87,11 +87,11 @@ public class CheckRequestsActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             if (dataSnapshot.hasChild("lat")) {
-                                Intent intent1 = new Intent(CheckRequestsActivity.this, ViewLocationActivity.class);
+                                Intent intent1 = new Intent(RequestChActivity.this, LocationVActivity.class);
                                 intent1.putExtra("ridS", item.getRid());
                                 startActivity(intent1);
                             } else {
-                                Toast.makeText(CheckRequestsActivity.this, "No location has been set by owner", Toast.LENGTH_LONG).show();
+                                Toast.makeText(RequestChActivity.this, "No location has been set by owner", Toast.LENGTH_LONG).show();
                             }
                         }
 
@@ -110,9 +110,9 @@ public class CheckRequestsActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Book item = (Book) Received.getItemAtPosition(position);
-                //Toast.makeText(CheckRequestsActivity.this,"TEST"+item, Toast.LENGTH_LONG).show();
+                //Toast.makeText(RequestChActivity.this,"TEST"+item, Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(CheckRequestsActivity.this,RequestListForEachBookActivity.class);
+                Intent intent = new Intent(RequestChActivity.this, BookRequestListActivity.class);
                 intent.putExtra("bookname",item.getTitle());
                 startActivity(intent);
 
@@ -125,7 +125,7 @@ public class CheckRequestsActivity extends AppCompatActivity {
 
     protected void onResume() {
         super.onResume();
-        requestReceived.RetriveBook(Rbook,adapterB);
+        requestR.RetriveBook(Rbook,adapterB);
 
     }
 
@@ -144,26 +144,26 @@ public class CheckRequestsActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_add:
-                        Intent add = new Intent(CheckRequestsActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(RequestChActivity.this, AddBookOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
 
                     case R.id.action_home:
-                        Intent home = new Intent(CheckRequestsActivity.this, HomeSearchActivity.class);
+                        Intent home = new Intent(RequestChActivity.this, HomeSearchActivity.class);
                         home.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(home);
 
                         break;
 
                     case R.id.action_myshelf:
-                        Intent myshelf = new Intent(CheckRequestsActivity.this, MyShelfOwnerActivity.class);
+                        Intent myshelf = new Intent(RequestChActivity.this, MyShelfOwnerActivity.class);
                         myshelf.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(myshelf);
                         break;
 
                     case R.id.action_profile:
-                        Intent profile = new Intent(CheckRequestsActivity.this, UserProfileActivity.class);
+                        Intent profile = new Intent(RequestChActivity.this, UserProfileActivity.class);
                         profile.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(profile);
                         break;

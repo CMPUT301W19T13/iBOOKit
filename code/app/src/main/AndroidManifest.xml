@@ -34,28 +34,28 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".View.ViewLocationActivity"
+            android:name=".View.LocationVActivity"
             android:label="@string/title_activity_view_location"></activity>
         <activity
-            android:name=".View.SetLocationActivity"
+            android:name=".View.LocationSActivity"
             android:label="@string/title_activity_set_location" />
         <activity
             android:name=".View.ScannerActivity"
             android:label="@string/title_activity_scanner"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".View.SendRequestActivity"/>
-        <activity android:name=".View.SelectPreferenceActivity"/>
-        <activity android:name=".View.ShowSearchResultActivity" />
-        <activity android:name=".View.ViewBookInfoAsOwnerActivity" />
+        <activity android:name=".View.PreferenceActivity"/>
+        <activity android:name=".View.SearchResultActivity" />
+        <activity android:name=".View.BookInfoOwnerActivity" />
         <activity android:name=".View.HomeSearchActivity" />
-        <activity android:name=".View.CheckRequestsActivity" />
+        <activity android:name=".View.RequestChActivity" />
         <activity android:name=".View.MyShelfBorrowerActivity" />
         <activity android:name=".View.MyShelfOwnerActivity" />
-        <activity android:name=".View.AddBookAsOwnerActivity" />
+        <activity android:name=".View.AddBookOwnerActivity" />
         <activity android:name=".View.ContactInformationActivity" />
         <activity android:name=".View.UserProfileActivity" />
         <activity android:name=".View.SignUpActivity" />
-        <activity android:name=".View.RequestListForEachBookActivity" />
+        <activity android:name=".View.BookRequestListActivity" />
         <activity android:name=".View.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

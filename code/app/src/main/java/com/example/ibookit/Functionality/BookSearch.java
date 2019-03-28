@@ -1,5 +1,5 @@
 /**
- * Class name: SearchForBook
+ * Class name: BookSearch
  *
  * version 1.0
  *
@@ -31,9 +31,9 @@ import java.util.Set;
  * @version 1.0
  *
  */
-public class SearchForBook {
+public class BookSearch {
     public ArrayList<Book> mResult;
-    public SearchForBook(){}
+    public BookSearch(){}
 
     /**
      * Search the book by keywords

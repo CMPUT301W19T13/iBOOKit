@@ -1,6 +1,6 @@
 /**
  *
- * Class name: RequestSent
+ * Class name: RequestS
  *
  * version 1.0
  *
@@ -30,8 +30,8 @@ import java.util.ArrayList;
  * @version 1.0
  */
 
-public class RequestSent {
-    private static final String TAG = "RequestSent";
+public class RequestS {
+    private static final String TAG = "RequestS";
     private ArrayList<Request> requestSent = new ArrayList<>();
     private DatabaseReference mDatabase;
     private String username;
@@ -39,7 +39,7 @@ public class RequestSent {
     /**
      * Constructor
      */
-    public RequestSent(){
+    public RequestS(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         username = user.getDisplayName();
         mDatabase = FirebaseDatabase.getInstance().getReference("users").child(username).child("requestSent");
@@ -48,7 +48,7 @@ public class RequestSent {
     /**
      * Get all the requests user has sent
      */
-    public RequestSent(ArrayList<Request> allRequest){
+    public RequestS(ArrayList<Request> allRequest){
         this.requestSent = allRequest;
     }
 

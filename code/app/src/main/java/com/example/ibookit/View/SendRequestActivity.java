@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ibookit.Functionality.BookStatusHandler;
-import com.example.ibookit.Functionality.CreateRequestHandler;
+import com.example.ibookit.Functionality.NewRequestHandler;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
@@ -95,7 +95,7 @@ public class SendRequestActivity extends AppCompatActivity {
 
                         // Not requested yet
                         Request request = new Request(book);
-                        CreateRequestHandler createRequest = new CreateRequestHandler();
+                        NewRequestHandler createRequest = new NewRequestHandler();
                         if (createRequest.SendRequestToOwner(request)) {
                             // send notification to owner
                             createRequest.setNotificationToOwner(book.getTitle());

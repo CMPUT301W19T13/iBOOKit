@@ -14,7 +14,6 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.NotificationCompat;
@@ -23,7 +22,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -38,8 +36,6 @@ import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.MessageIBOOKit;
 import com.example.ibookit.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -48,7 +44,6 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * @author zisen
@@ -164,7 +159,7 @@ public class HomeSearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
+                Intent request = new Intent(HomeSearchActivity.this, SearchResultActivity.class);
 
                 request.putExtra("type", "SearchUser");
                 request.putExtra("SearchValue", sv.getQuery().toString());
@@ -184,7 +179,7 @@ public class HomeSearchActivity extends AppCompatActivity {
         searchBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
+                Intent request = new Intent(HomeSearchActivity.this, SearchResultActivity.class);
                 request.putExtra("type", "SearchBook");
                 request.putExtra("SearchValue", sv.getQuery().toString());
                 startActivity(request);
@@ -209,7 +204,7 @@ public class HomeSearchActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.action_add:
-                        Intent add = new Intent(HomeSearchActivity.this, AddBookAsOwnerActivity.class);
+                        Intent add = new Intent(HomeSearchActivity.this, AddBookOwnerActivity.class);
                         add.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(add);
                         break;
@@ -230,7 +225,7 @@ public class HomeSearchActivity extends AppCompatActivity {
                         break;
 
                     case R.id.action_request:
-                        Intent request = new Intent(HomeSearchActivity.this, CheckRequestsActivity.class);
+                        Intent request = new Intent(HomeSearchActivity.this, RequestChActivity.class);
                         request.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(request);
 
@@ -255,7 +250,7 @@ public class HomeSearchActivity extends AppCompatActivity {
         builder.setTitle("Choose a category").setItems(options, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent request = new Intent(HomeSearchActivity.this, ShowSearchResultActivity.class);
+                Intent request = new Intent(HomeSearchActivity.this, SearchResultActivity.class);
                 request.putExtra("type", "SearchCategory");
                 request.putExtra("SearchValue", options[which]);
                 startActivity(request);
