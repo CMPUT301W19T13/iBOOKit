@@ -82,11 +82,11 @@ public class RequestChActivity extends AppCompatActivity {
                 if(item.getIsAccept() == 1){
                     // if, check lat lon in request from databse
                     //if no, toast and do nothing
-                    mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(item.getRid());
+                    mDatabase = FirebaseDatabase.getInstance().getReference().child("locations");
                     mDatabase.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.hasChild("lat")) {
+                            if (dataSnapshot.hasChild(item.getRid())) {
                                 Intent intent1 = new Intent(RequestChActivity.this, LocationVActivity.class);
                                 intent1.putExtra("ridS", item.getRid());
                                 startActivity(intent1);
@@ -122,7 +122,7 @@ public class RequestChActivity extends AppCompatActivity {
         setBottomNavigationView();
     }
 
-
+    @Override
     protected void onResume() {
         super.onResume();
         requestR.RetriveBook(Rbook,adapterB);

@@ -199,7 +199,8 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             final String username = user.getDisplayName();
 
             //todo: accesing requestRef than request sent under user make structure clearer, but increased check clause on if statement might slow down the app
-            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("requests");
+            // requestRef changed by zijun
+            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestSent");
             final DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference().child("books");
 
             bookRef.addValueEventListener(new ValueEventListener() {

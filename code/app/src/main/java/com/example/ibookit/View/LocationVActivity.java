@@ -18,6 +18,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.example.ibookit.Model.GeoLocation;
 import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -65,13 +66,14 @@ public class LocationVActivity extends FragmentActivity implements OnMapReadyCal
 
     private void setUpMap() {
         String ridS = getIntent().getStringExtra("ridS");
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(ridS);
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("locations").child(ridS);
         mDatabase.addValueEventListener(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
-                    lat = (double) dataSnapshot.child("lat").getValue();
-                    lon = (double) dataSnapshot.child("lon").getValue();
+                    GeoLocation geoLocation = dataSnapshot.getValue(GeoLocation.class);
+                    lat = geoLocation.getLatitude();
+                    lon = geoLocation.getLongitude();
                     LatLng qwe = new LatLng(lat, lon);
                     mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
                     mMap.addMarker(new MarkerOptions()

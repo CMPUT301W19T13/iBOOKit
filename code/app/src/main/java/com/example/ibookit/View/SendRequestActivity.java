@@ -105,6 +105,9 @@ public class SendRequestActivity extends AppCompatActivity {
                             // make toast
                             Toast.makeText(SendRequestActivity.this, "send request successful",
                                     Toast.LENGTH_SHORT).show();
+                        } else if (book.getStatus() == 2 || book.getStatus() == 3){
+                            Toast.makeText(SendRequestActivity.this, "Book not available for request",
+                                    Toast.LENGTH_SHORT).show();
                         } else {
 
                             Toast.makeText(SendRequestActivity.this, "Cannot request your own book",
