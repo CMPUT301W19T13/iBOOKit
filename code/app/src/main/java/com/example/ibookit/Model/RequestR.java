@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
+import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Functionality.NotificationHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -39,7 +40,7 @@ public class RequestR {
     private String username;
     private ArrayList<String> last = new ArrayList<>();
     private String bookTitle;
-    private static Request request1;
+//    private static Request request1;
 
     /**
      * Constructor
@@ -107,19 +108,20 @@ public class RequestR {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 users.clear();
                 adapter.notifyDataSetChanged();
-                for (final DataSnapshot d: dataSnapshot.getChildren()) {
-                    request1 = d.getValue(Request.class);
+                for (DataSnapshot d: dataSnapshot.getChildren()) {
+                    final Request request1 = d.getValue(Request.class);
                     final DatabaseReference cDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request1.getBookId());
-                    cDatabase.addValueEventListener(new ValueEventListener() {
+                    cDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                Book book1 = dataSnapshot.getValue(Book.class);
-                                bookTitle = book1.getTitle();
-                                if (bookTitle.equals(bookname)) {
-                                    Request rew = d.getValue(Request.class);
-                                    users.add(rew);
-                                    adapter.notifyDataSetChanged();
-                                }
+                            Book book1 = dataSnapshot.getValue(Book.class);
+                            bookTitle = book1.getTitle();
+                            if (bookTitle.equals(bookname)) {
+//                                Request rew = d.getValue(Request.class);
+//                                users.add(rew);
+                                users.add(request1);
+                                adapter.notifyDataSetChanged();
+                            }
 
                         }
 
@@ -145,10 +147,11 @@ public class RequestR {
      */
     public void decline_request(final Request request){
         mDatabase.child(request.getRid()).child("isAccept").setValue(2);
-        final DatabaseReference database = FirebaseDatabase.getInstance().getReference("users")
-                .child(request.getSender()).child("requestSent");
+        final DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("users").child(request.getSender()).child("requestSent");
         database.child(request.getRid()).child("isAccept").setValue(2);
 
+        // Update message
+        new NotificationHandler(username, request.getSender()).sendNewMessage("Your request has been declined", "From " + username);
     }
 
     /**
@@ -170,11 +173,30 @@ public class RequestR {
         // Update message
         new NotificationHandler(username, request.getSender()).sendNewMessage("Your request has been accepted", "From " + username);
 
-        ArrayList<Request> newlist = Rlist;
-        newlist.remove(request);
+        ArrayList<Request> newlist = new ArrayList<>(Rlist);
         for(Request r :newlist){
-            decline_request(r);
+            if (r.getRid() != request.getRid()) {
+                decline_request(r);
+            }
         }
+    }
+
+    public void reverse_accepted(final ArrayList<Request> Rlist, final Request request) {
+        // Update message
+        new NotificationHandler(username, request.getSender()).sendNewMessage("Accept for book has been withdraw", "From " + username);
+
+        final DatabaseReference dDatabase = FirebaseDatabase.getInstance().getReference();
+        // Update book info
+        dDatabase.child("books").child(request.getBookId()).child("status").setValue(0);
+        dDatabase.child("users").child(username).child("ownerShelf").child(request.getBookId()).child("status").setValue(0);
+
+        // remove all request for this book
+        for (Request r :Rlist) {
+            String sender = r.getSender();
+            dDatabase.child("users").child(sender).child("requestSent").child(r.getRid()).removeValue();
+            dDatabase.child("users").child(username).child("requestReceived").child(r.getRid()).removeValue();
+        }
+
     }
 
     /**
@@ -219,14 +241,6 @@ public class RequestR {
 
     public void setBookTitle(String bookTitle) {
         this.bookTitle = bookTitle;
-    }
-
-    public static Request getRequest1() {
-        return request1;
-    }
-
-    public static void setRequest1(Request request1) {
-        RequestR.request1 = request1;
     }
 
     public RequestR(String name, ArrayList<Request> requested){

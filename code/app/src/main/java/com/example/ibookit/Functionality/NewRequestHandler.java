@@ -50,8 +50,6 @@ public class NewRequestHandler {
             return false;
         }
 
-        mDatabase.child("requests").child(key).setValue(request);
-
         DatabaseReference receiverRequestReceived = mDatabase.child("users").child(request.getReceiver()).child("requestReceived");
 
         DatabaseReference senderRequestSent = mDatabase.child("users").child(sender).child("requestSent");

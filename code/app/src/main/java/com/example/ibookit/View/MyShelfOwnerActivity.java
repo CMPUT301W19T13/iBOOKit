@@ -305,7 +305,8 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             final String username = user.getDisplayName();
 
             final DatabaseReference ownShelfRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("ownerShelf");
-            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("requests");
+            // requestRef changed by zijun
+            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
 
 
             ownShelfRef.addValueEventListener(new ValueEventListener() {

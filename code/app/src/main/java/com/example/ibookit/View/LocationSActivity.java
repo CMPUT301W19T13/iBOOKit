@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.ibookit.Model.GeoLocation;
 import com.example.ibookit.R;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -50,7 +51,8 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -58,18 +60,18 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
             return;
         }
         Criteria crit = new Criteria();
         crit.setAccuracy(Criteria.ACCURACY_FINE);
         crit.setPowerRequirement(Criteria.POWER_LOW);
-        locationManager.requestLocationUpdates(locationManager.getBestProvider(crit,true), MIN_TIME, MIN_DISTANCE, mLocationListener);
+        locationManager.requestLocationUpdates(locationManager.getBestProvider(crit, true), MIN_TIME, MIN_DISTANCE, mLocationListener);
 
 
     }
 
-//    private void getLocationPermission(){
+    //    private void getLocationPermission(){
 //        String[]permissions ={Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION};
 //        if(ContextCompat.checkSelfPermission(this.getApplicationContext(),FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
 //            if(ContextCompat.checkSelfPermission(this.getApplicationContext(),COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
@@ -89,8 +91,8 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
             case 2: {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0) {
-                    for(int i=0; i<grantResults.length; i++){
-                        if(grantResults[i] != PackageManager.PERMISSION_GRANTED){
+                    for (int i = 0; i < grantResults.length; i++) {
+                        if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
                             mLocationPermissionsGranted = false;
                             return;
                         }
@@ -99,7 +101,7 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
                     SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                             .findFragmentById(R.id.map);
                     mapFragment.getMapAsync(this);
-                    }
+                }
             }
             // other 'case' lines to check for other
             // permissions this app might request
@@ -131,19 +133,15 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
             public void onMarkerDragEnd(Marker marker) {
                 // TODO Auto-generated method stub
                 LatLng position = marker.getPosition();
-//                Toast.makeText(
-//                        LocationSActivity.this,
-//                        "Lat " + position.latitude + " "
-//                                + "Long " + position.longitude,
-//                        Toast.LENGTH_LONG).show();
+
                 Toast.makeText(
                         LocationSActivity.this,
                         "You have set the location!",
                         Toast.LENGTH_LONG).show();
                 String rid = getIntent().getStringExtra("rid");
-                mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(rid);
-                mDatabase.child("lat").setValue(position.latitude);
-                mDatabase.child("lon").setValue(position.longitude);
+                GeoLocation geoLocation = new GeoLocation(position.latitude, position.longitude);
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.child("locations").child(rid).setValue(geoLocation);
             }
 
             @Override
@@ -157,11 +155,23 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
 
 
     }
+
     private final LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(final Location location) {
             //your code here
             LatLng Your_Location = new LatLng(location.getLatitude(), location.getLongitude());
+            if (ActivityCompat.checkSelfPermission(LocationSActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                    && ActivityCompat.checkSelfPermission(LocationSActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
             mMap.setMyLocationEnabled(true);
             mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mMap.addMarker(new MarkerOptions()

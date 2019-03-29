@@ -1,9 +1,9 @@
 /**
  * Class name: BookRequestListActivity
  *
- * version 1.0
+ * version 1.1
  *
- * Date: March 9, 2019
+ * Date: March 28, 2019
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
@@ -36,7 +36,7 @@ import java.util.ArrayList;
 /**
  * @author Jiazhen Li
  *
- * @version 1.0
+ * @version 1.1
  */
 public class BookRequestListActivity extends AppCompatActivity {
 
@@ -46,12 +46,14 @@ public class BookRequestListActivity extends AppCompatActivity {
     private RequestR requestR = new RequestR();
     private ListView Userlist;
     private DatabaseReference mDatabase;
+    private Request request;
 
 
     /**
      * Showing user who request a particular book in UI
      * @param savedInstanceState
      */
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_userlist);
@@ -65,64 +67,69 @@ public class BookRequestListActivity extends AppCompatActivity {
 
         Userlist.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, final View view, int position, long id) {
-                final Request request = (Request) Userlist.getItemAtPosition(position);
+                request = (Request) Userlist.getItemAtPosition(position);
 
-                new AlertDialog.Builder(BookRequestListActivity.this)
-                        .setTitle("Accept Request?")
-                        .setCancelable(true)
-                        .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-
-                                if (request.getIsAccept() == 0) {
+                if (request.getIsAccept() == 0) {
+                    new AlertDialog.Builder(BookRequestListActivity.this)
+                            .setTitle("Accept Request?")
+                            .setCancelable(true)
+                            .setPositiveButton("Accept", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     Intent intent = new Intent(BookRequestListActivity.this, LocationSActivity.class);
-                                    intent.putExtra("rid",request.getRid());
+                                    intent.putExtra("rid", request.getRid());
                                     startActivity(intent);
 
-                                    //if set lat lon accept
-                                    //if not, toast user and not change status
-                                    mDatabase = FirebaseDatabase.getInstance().getReference().child("requests").child(request.getRid());
-                                    mDatabase.addValueEventListener(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            if (dataSnapshot.hasChild("lat")) {
-                                                requestR.accept_request(Received, request);
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                        }
-                                    });
-
-                                } else {
-                                    Toast.makeText(BookRequestListActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
                                 }
-                                finish();
-                            }
-                        })
-                        .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                //Toast.makeText(BookRequestListActivity.this,"NO"+item,Toast.LENGTH_SHORT).show();
-                                if (request.getIsAccept() == 0) {
+                            })
+                            .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
                                     requestR.decline_request(request);
-                                } else {
-                                    Toast.makeText(BookRequestListActivity.this, "Already make decision", Toast.LENGTH_SHORT).show();
                                 }
-                            }
-                        })
-                        .show();
+                            }).show();
 
+                } else if (request.getIsAccept() == 1) {
+                    new AlertDialog.Builder(BookRequestListActivity.this)
+                            .setTitle("Withdraw your accept?")
+                            .setCancelable(true)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    requestR.reverse_accepted(Received, request);
+                                    Toast.makeText(BookRequestListActivity.this, "Book is available now", Toast.LENGTH_SHORT).show();
+                                    finish();
+                                }
+                            }).show();
+                }
             }
         });
 
     }
 
+    @Override
     protected void onResume() {
         super.onResume();
-        //finish();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference().child("locations");
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if (request != null) {
+                    if (dataSnapshot.hasChild(request.getRid())) {
+                        requestR.accept_request(Received, request);
+                        Toast.makeText(BookRequestListActivity.this, "Request accepted", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
 }
