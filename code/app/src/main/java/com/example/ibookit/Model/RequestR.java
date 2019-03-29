@@ -69,7 +69,7 @@ public class RequestR {
 
                     if (!last.contains(request.getBookId())){
                         final DatabaseReference bDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request.getBookId());
-                        bDatabase.addValueEventListener(new ValueEventListener() {
+                        bDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 Book book = dataSnapshot.getValue(Book.class);
@@ -103,7 +103,7 @@ public class RequestR {
      */
     public void RequestInBook(final ArrayList<Request> users,final ArrayAdapter<Request> adapter,final String bookname){
 
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 users.clear();
@@ -117,19 +117,16 @@ public class RequestR {
                             Book book1 = dataSnapshot.getValue(Book.class);
                             bookTitle = book1.getTitle();
                             if (bookTitle.equals(bookname)) {
-//                                Request rew = d.getValue(Request.class);
-//                                users.add(rew);
                                 users.add(request1);
                                 adapter.notifyDataSetChanged();
                             }
-
                         }
-
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
 
                         }
+
                    });
 
                 }
@@ -140,6 +137,7 @@ public class RequestR {
             }
         });
     }
+
 
     /**
      * Owner decline request from sender

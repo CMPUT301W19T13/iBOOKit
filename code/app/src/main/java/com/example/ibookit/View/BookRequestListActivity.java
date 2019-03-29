@@ -47,7 +47,7 @@ public class BookRequestListActivity extends AppCompatActivity {
     private ListView Userlist;
     private DatabaseReference mDatabase;
     private Request request;
-
+    private String bookname;
 
     /**
      * Showing user who request a particular book in UI
@@ -59,10 +59,11 @@ public class BookRequestListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_request_userlist);
 
         Userlist = findViewById(R.id.userlist);
-        final String bookname = getIntent().getStringExtra("bookname");
+        bookname = getIntent().getStringExtra("bookname");
 
         adapterR = new BookRequestListAdapter(this,R.layout.adapter_request,Received);
         Userlist.setAdapter(adapterR);
+        // refresh listView
         requestR.RequestInBook(Received, adapterR, bookname);
 
         Userlist.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
@@ -119,7 +120,9 @@ public class BookRequestListActivity extends AppCompatActivity {
                     if (dataSnapshot.hasChild(request.getRid())) {
                         requestR.accept_request(Received, request);
                         Toast.makeText(BookRequestListActivity.this, "Request accepted", Toast.LENGTH_SHORT).show();
-                        finish();
+
+                        // refresh listView
+                        requestR.RequestInBook(Received, adapterR, bookname);
                     }
                 }
             }
