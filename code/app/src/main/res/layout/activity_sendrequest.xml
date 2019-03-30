@@ -73,6 +73,7 @@
         android:textSize="18sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/confirmSendRequest"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionViewRequest"
         app:layout_constraintStart_toStartOf="@+id/descriptionViewRequest" />
 
     <TextView
@@ -201,6 +202,7 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionViewRequest"
         app:layout_constraintStart_toStartOf="@+id/bookAuthorRequest"
         app:layout_constraintTop_toBottomOf="@+id/bookImageRequest" />
 
@@ -223,6 +225,7 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionViewRequest"
         app:layout_constraintStart_toStartOf="@+id/bookISBNRequest"
         app:layout_constraintTop_toBottomOf="@+id/bookTitleRequest" />
 
@@ -245,6 +248,7 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionViewRequest"
         app:layout_constraintStart_toStartOf="@+id/descriptionViewRequest"
         app:layout_constraintTop_toBottomOf="@+id/bookAuthorRequest" />
 
@@ -267,6 +271,7 @@
         android:textCursorDrawable="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="@+id/descriptionViewRequest"
         app:layout_constraintStart_toStartOf="@+id/descriptionViewRequest"
         app:layout_constraintTop_toBottomOf="@+id/bookISBNRequest" />
 
