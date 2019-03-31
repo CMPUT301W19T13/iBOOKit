@@ -384,6 +384,14 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot d: dataSnapshot.getChildren()){
                                         if (d.child("bookId").getValue().toString().equals(targetBook.getId())){
+
+                                            // delete request sent from all sender
+                                            String senderName = d.child("sender").getValue().toString();
+                                            DatabaseReference senderRequestRef = FirebaseDatabase.getInstance().getReference().child(senderName).child("requestSent");
+                                            senderRequestRef.child(d.getKey()).removeValue();
+
+
+                                            //delete request received on book on owner's account
                                             requestRef.child(d.getKey()).removeValue();
                                         }
                                     }

@@ -9,12 +9,14 @@
  */
 package com.example.ibookit.View;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -161,6 +163,14 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
             }
         });
 
+        imageButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setDeleteImageDiag();
+                return true;
+            }
+        });
+
     }
 
     private void categorySelector(){
@@ -261,6 +271,24 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
      */
     private void setImage(String path, ImageButton image) {
         Picasso.get().load(path).fit().centerCrop().into(image);
+    }
+
+    private void setDeleteImageDiag() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Delete?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                imageButton.setImageResource(android.R.color.transparent);
+                dialog.dismiss();
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
 
 }

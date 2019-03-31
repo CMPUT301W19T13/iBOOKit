@@ -9,12 +9,14 @@
  */
 package com.example.ibookit.View;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -125,6 +127,14 @@ public class AddBookOwnerActivity extends AppCompatActivity implements AdapterVi
             @Override
             public void onClick(View v) {
                 fileChooser();
+            }
+        });
+
+        imageButton.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setDeleteImageDiag();
+                return true;
             }
         });
 
@@ -251,5 +261,23 @@ public class AddBookOwnerActivity extends AppCompatActivity implements AdapterVi
                 return false;
             }
         });
+    }
+
+    private void setDeleteImageDiag() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Delete?");
+        builder.setCancelable(true);
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                imageButton.setImageResource(android.R.color.transparent);
+                dialog.dismiss();
+            }
+        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).show();
     }
 }
