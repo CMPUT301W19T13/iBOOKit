@@ -87,7 +87,8 @@ public class BookRequestListActivity extends AppCompatActivity {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     requestR.decline_request(request);
-                                    finish();
+                                    requestR.RequestInBook(Received, adapterR, bookname);
+
                                 }
                             }).show();
 

@@ -57,7 +57,7 @@ public class RequestR {
      * @param adapter
      */
     public void RetriveBook(final ArrayList<Book> bookList,final ArrayAdapter<Book> adapter) {
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 last.clear();
