@@ -336,7 +336,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                                             targetBook.setTransitStatus(1);
                                             // update book in corresponding directories
                                             ownerShelf.update_book(targetBook);
-                                            ownerShelf.SyncBookShelf(mBooks, adapter, status);
+                                            ownerShelf.SyncBookShelf(mBooks, adapter, -1);
                                         }
                                     }
                                 }
@@ -378,7 +378,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                             targetBook.setTransitStatus(0);
                             targetBook.setCurrentBorrower("");
                             ownerShelf.update_book(targetBook);
-                            ownerShelf.SyncBookShelf(mBooks, adapter, status);
+                            ownerShelf.SyncBookShelf(mBooks, adapter, -1);
                             requestRef.addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
