@@ -309,7 +309,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
 
 
-            ownShelfRef.addValueEventListener(new ValueEventListener() {
+            ownShelfRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot d:dataSnapshot.getChildren()){
@@ -324,7 +324,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
                             final String bookID = d.getKey();
                             final Book targetBook = d.getValue(Book.class);
-                            requestRef.addValueEventListener(new ValueEventListener() {
+                            requestRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot d:dataSnapshot.getChildren()){
@@ -367,7 +367,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             final DatabaseReference booksRef = FirebaseDatabase.getInstance().getReference().child("books");
             final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
 
-            booksRef.addValueEventListener(new ValueEventListener() {
+            booksRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot d: dataSnapshot.getChildren()){
@@ -379,7 +379,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                             targetBook.setCurrentBorrower("");
                             ownerShelf.update_book(targetBook);
                             ownerShelf.SyncBookShelf(mBooks, adapter, -1);
-                            requestRef.addValueEventListener(new ValueEventListener() {
+                            requestRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot d: dataSnapshot.getChildren()){

@@ -204,7 +204,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestSent");
             final DatabaseReference bookRef = FirebaseDatabase.getInstance().getReference().child("books");
 
-            bookRef.addValueEventListener(new ValueEventListener() {
+            bookRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot d: dataSnapshot.getChildren()){
@@ -213,7 +213,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                                 && d.child("transitStatus").getValue().toString().equals("1")){
                                 final String bookID = d.getKey();
                                 final Book targetBook = d.getValue(Book.class);
-                                requestRef.addValueEventListener(new ValueEventListener() {
+                                requestRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot d:dataSnapshot.getChildren()){
@@ -255,7 +255,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             final DatabaseReference borrowerShelfRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("borrowerShelf");
             final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestSent");
 
-            borrowerShelfRef.addValueEventListener(new ValueEventListener() {
+            borrowerShelfRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot d: dataSnapshot.getChildren()){
