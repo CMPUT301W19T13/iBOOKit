@@ -118,7 +118,7 @@
 
     <ListView
         android:id="@+id/recommandationListView"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
