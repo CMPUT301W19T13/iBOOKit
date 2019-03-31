@@ -38,6 +38,7 @@ import java.util.ArrayList;
  */
 public class OwnerShelf implements BookShelf {
 
+
     private static final String TAG = "OwnerShelf";
     private DatabaseReference mDatabase;
     private ArrayList<Book> myBooks = new ArrayList<>();

@@ -30,9 +30,7 @@ public class RequestFunc {
 
     RequestStatusHandler ReqStat = new RequestStatusHandler();
     Request request = new Request();
-    ArrayList<Request> requestlist = new ArrayList<Request>();
-
-
+    ArrayList<Request> requestlist = new ArrayList<Request>(); //marcos
 
     //Context context, int resource, ArrayList<Request> objects)
     @Test
