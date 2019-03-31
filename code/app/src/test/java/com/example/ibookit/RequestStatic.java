@@ -53,8 +53,7 @@ public class RequestStatic {
         request.setBookId("test");
         assertEquals(request.getBookId(),"test");
 
-        request.setGeolocation(location);
-        assertEquals(location,request.getGeolocation());
+
 
 
     }
