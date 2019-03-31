@@ -37,17 +37,19 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:16.0.6'
     implementation 'com.google.firebase:firebase-database:16.0.6'
     implementation 'com.google.firebase:firebase-auth:16.1.0'
+//    implementation 'com.google.firebase:firebase-crash:9.2.1'
     implementation 'com.google.firebase:firebase-storage:16.0.5'
     implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    implementation 'com.google.android.gms:play-services-vision:15.0.2'
+    implementation 'com.google.android.gms:play-services-vision:15.0.1'
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
-    //implementation 'com.google.android.gms:play-services:12.0.1'
+//    implementation 'com.google.android.gms:play-services:12.0.1'
     //implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation "com.google.android.gms:play-services-base:15.0.1"
     androidTestImplementation 'com.android.support.test:rules:1.0.2'
 
+//    implementation 'com.google.android.gms:play-services:9.2.1'
 //    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
 //    androidTestImplementation 'androidx.test:runner:1.1.0'
 //    androidTestImplementation 'androidx.test:rules:1.1.0'
