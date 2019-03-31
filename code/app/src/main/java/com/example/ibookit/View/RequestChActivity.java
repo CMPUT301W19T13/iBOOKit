@@ -15,6 +15,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,6 +24,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.ibookit.ListAdapter.BookListAdapter;
+import com.example.ibookit.ListAdapter.RequestBookListAdapter;
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Book;
 import com.example.ibookit.Model.Request;
@@ -72,7 +74,7 @@ public class RequestChActivity extends AppCompatActivity {
         Sent.setAdapter(adapterS);
         requestS.RetriveRequest(RSent,adapterS);
 
-        adapterB = new BookListAdapter(this,R.layout.adapter_book,Rbook);
+        adapterB = new RequestBookListAdapter(this,R.layout.adapter_book,Rbook);
         Received.setAdapter(adapterB);
 
         Sent.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
@@ -128,6 +130,19 @@ public class RequestChActivity extends AppCompatActivity {
         requestR.RetriveBook(Rbook,adapterB);
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.refresh_request:
+                requestR.RetriveBook(Rbook,adapterB);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
 
     /**

@@ -132,14 +132,11 @@ public class FirebaseUserSearchTest {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-
                 if (dataSnapshot.exists()){
                     //list.clear();
                     //adapter.notifyDataSetChanged();
 
-
                     for (DataSnapshot d : dataSnapshot.getChildren()) {
-
 
                         if (d.getKey().toLowerCase().contains
                                 (mKeyword.replaceAll("\\s+","").toLowerCase())){
@@ -155,7 +152,6 @@ public class FirebaseUserSearchTest {
                     }
                     semaphore = 2;
                 }
-
             }
             @Override
             public void onCancelled( DatabaseError databaseError) {
@@ -165,7 +161,6 @@ public class FirebaseUserSearchTest {
         });
 
         System.out.println("TAG");
-
 
     }
     public void setResult(ArrayList<User> result) {

@@ -97,7 +97,6 @@ public class FirebaseBookSeachTest {
         }
 
 
-
         // ENSURE DUPLICATE BOOKS ARE NOT STORED MORE THAN ONCE
         assertEquals(totalSize,result.size());
 
@@ -134,12 +133,7 @@ public class FirebaseBookSeachTest {
             assertEquals(0,fail);
         }
 
-
-
-
-
     }
-
 
     ///  Same algorithm used for getting User objects
 
@@ -154,7 +148,6 @@ public class FirebaseBookSeachTest {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
                     for (String mKeyword: mListKeyword ){
-
 
                         for (DataSnapshot d : dataSnapshot.getChildren()){
 

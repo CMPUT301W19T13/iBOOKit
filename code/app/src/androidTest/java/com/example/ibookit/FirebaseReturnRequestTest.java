@@ -46,7 +46,6 @@ public class FirebaseReturnRequestTest {
     public ArrayList<Request> result = new ArrayList<Request>();
     public int totalSize;
 
-
     @Test
     public void test() {
 
@@ -91,9 +90,6 @@ public class FirebaseReturnRequestTest {
 
     }
 
-
-
-
     ///  Same algorithm used for getting User objects
 
     public void MockRequestReturnSearch(DatabaseReference reference, String user) {
@@ -110,20 +106,14 @@ public class FirebaseReturnRequestTest {
                     result.add(request);}
                     semaphore = 2;
 
-
             }
-
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-
                 semaphore = 2;
-
             }
         });
-
-
 
 
     }

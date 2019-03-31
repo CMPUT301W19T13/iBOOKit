@@ -19,6 +19,7 @@ import com.example.ibookit.Functionality.BookStatusHandler;
 import com.example.ibookit.Functionality.NotificationHandler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +58,7 @@ public class RequestR {
      * @param adapter
      */
     public void RetriveBook(final ArrayList<Book> bookList,final ArrayAdapter<Book> adapter) {
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 last.clear();
@@ -86,6 +87,44 @@ public class RequestR {
                     }
                 }
 
+                mDatabase.addChildEventListener(new ChildEventListener(){
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
+                        Request request = dataSnapshot.getValue(Request.class);
+
+                        if (!last.contains(request.getBookId())){
+                            final DatabaseReference bDatabase = FirebaseDatabase.getInstance().getReference().child("books").child(request.getBookId());
+                            bDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    Book book = dataSnapshot.getValue(Book.class);
+                                    bookList.add(book);
+                                    adapter.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+                            last.add(request.getBookId());
+                        }
+                    }
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {}
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String prevChildKey) {}
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {}
+
+
+
+                });
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
