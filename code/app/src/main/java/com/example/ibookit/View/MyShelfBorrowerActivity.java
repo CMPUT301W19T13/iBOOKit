@@ -264,21 +264,21 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                             final Book targetBook = d.getValue(Book.class);
                             borrowerShelf.remove_book(targetBook);
                             borrowerShelf.SyncBookShelf(mBooks, adapter, 3);
-                            requestRef.addValueEventListener(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                    for (DataSnapshot d: dataSnapshot.getChildren()){
-                                        if (d.child("bookId").getValue().toString().equals(targetBook.getId())){
-                                            requestRef.child(d.getKey()).removeValue();
-                                        }
-                                    }
-                                }
-
-                                @Override
-                                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                                }
-                            });
+//                            requestRef.addValueEventListener(new ValueEventListener() {
+//                                @Override
+//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                    for (DataSnapshot d: dataSnapshot.getChildren()){
+//                                        if (d.child("bookId").getValue().toString().equals(targetBook.getId())){
+//                                            requestRef.child(d.getKey()).removeValue();
+//                                        }
+//                                    }
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                }
+//                            });
                             Toast.makeText(MyShelfBorrowerActivity.this, "Book returned",
                                     Toast.LENGTH_SHORT).show();
                         }
