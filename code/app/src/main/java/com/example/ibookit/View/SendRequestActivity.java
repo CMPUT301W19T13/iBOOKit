@@ -5,10 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,10 +43,13 @@ public class SendRequestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sendrequest);
 
         mTitle = findViewById(R.id.bookTitleRequest);
+        mTitle.setSelected(true);
         mAuthor = findViewById(R.id.bookAuthorRequest);
+        mAuthor.setSelected(true);
         mIsbn = findViewById(R.id.bookISBNRequest);
         mOwner = findViewById(R.id.ownerRequest);
         mDescription = findViewById(R.id.descriptionViewRequest);
+        mDescription.setMovementMethod(new ScrollingMovementMethod());
         mCategory = findViewById(R.id.categoryRequest);
         imageView = (ImageView) findViewById(R.id.bookImageRequest);
         button = findViewById(R.id.confirmSendRequest);

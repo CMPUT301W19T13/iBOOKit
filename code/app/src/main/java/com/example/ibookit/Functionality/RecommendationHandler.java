@@ -69,9 +69,11 @@ public class RecommendationHandler {
                                 Book book = d.getValue(Book.class);
                                 if (category.contains(book.getCategory())) {
                                     if (!book.getOwner().equals(username)) {
-                                        if (books.size() < maxShown) {
-                                            books.add(book);
-                                            adapter.notifyDataSetChanged();
+                                        if (book.getStatus() == 0 || book.getStatus() == 1) {
+                                            if (books.size() < maxShown) {
+                                                books.add(book);
+                                                adapter.notifyDataSetChanged();
+                                            }
                                         }
                                     }
                                 }
