@@ -10,6 +10,7 @@
 package com.example.ibookit.ListAdapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,6 +79,19 @@ public class BookListAdapter extends ArrayAdapter<Book> {
             BookStatusHandler handler = new BookStatusHandler();
 
             mStatus.setText("Status:  " + handler.StatusString(book));
+
+            switch (book.getStatus()) {
+                case 0:
+                    convertView.setBackgroundResource(R.color.available);
+                    break;
+                case 1:
+                    convertView.setBackgroundResource(R.color.requested);
+                    break;
+                case 2: case 3:
+                    convertView.setBackgroundResource(R.color.taken);
+                    break;
+
+            }
 
             setImage(book.getImageURL(), imageView);
         }

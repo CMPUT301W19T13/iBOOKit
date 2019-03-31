@@ -118,6 +118,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                 return true;
 
             case R.id.Borrower_return:
+
                 Intent scan2 = new Intent(MyShelfBorrowerActivity.this, ScannerActivity.class);
                 startActivityForResult(scan2, ReturnScanRequestCode);
                 return true;

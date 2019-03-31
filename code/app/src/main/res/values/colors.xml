@@ -22,4 +22,8 @@
     <color name="schemeDarkest">#5D737E</color>
     <color name="schemeListColor">#FFEBEBEB</color>
 
+    <color name="available">#ebffe6</color>
+    <color name="requested">#ffffe6</color>
+    <color name="taken">#ffe6e6</color>
+
 </resources>

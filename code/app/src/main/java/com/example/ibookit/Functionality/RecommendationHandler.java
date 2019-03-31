@@ -29,6 +29,7 @@ public class RecommendationHandler {
     private DatabaseReference aDatabase;
     private Double maxPoint = 125.00;
     private Singleton singleton;
+    private Integer maxShown = 10;
 
     public RecommendationHandler() {
         singleton = new Singleton();
@@ -68,8 +69,10 @@ public class RecommendationHandler {
                                 Book book = d.getValue(Book.class);
                                 if (category.contains(book.getCategory())) {
                                     if (!book.getOwner().equals(username)) {
-                                        books.add(book);
-                                        adapter.notifyDataSetChanged();
+                                        if (books.size() < maxShown) {
+                                            books.add(book);
+                                            adapter.notifyDataSetChanged();
+                                        }
                                     }
                                 }
                             }

@@ -107,7 +107,7 @@ public class BorrowerShelf implements BookShelf{
         FirebaseDatabase.getInstance().getReference().child("users").child(book.getOwner()).child("ownerShelf").child(book.getId()).setValue(book);
 
         // update recommendation borrowing
-        String[] category = new String[0];
+        String[] category = new String[1];
         category[0] = book.getCategory();
         RecommendationHandler recommendationHandler = new RecommendationHandler();
         recommendationHandler.UpdateRecommendation(category, false, true);
