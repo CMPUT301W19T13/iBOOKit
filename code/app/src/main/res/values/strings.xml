@@ -11,7 +11,7 @@
         <item>Comics</item>
         <item>Romance</item>
         <item>Business</item>
-        <item>Other</item>
+        <item>Others</item>
     </string-array>
     <string name="title_activity_set_location">Map</string>
     <string name="title_activity_view_location">Map</string>

@@ -6,8 +6,7 @@
     android:layout_gravity="bottom|end"
     android:layout_marginBottom="0dp"
     app:itemBackground="@color/schemeDarkest"
-    app:itemHorizontalTranslationEnabled="false"
     app:itemIconTint="@color/nav_item_color_state"
     app:itemTextColor="@color/nav_item_color_state"
-    app:labelVisibilityMode="labeled"
+    app:labelVisibilityMode="auto"
     app:menu="@menu/bottom_navigation_main" />
