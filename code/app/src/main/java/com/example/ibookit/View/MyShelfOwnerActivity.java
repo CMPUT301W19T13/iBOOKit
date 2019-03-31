@@ -297,7 +297,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(final int requestCode, int resultCode, final Intent data) {
         if (requestCode == LendScanRequestCode && resultCode == RESULT_OK ){
 
             final String scannedISBN = data.getStringExtra("scanned_ISBN");
@@ -328,8 +328,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot d:dataSnapshot.getChildren()){
-                                        if (d.child("bookId").getValue().toString().equals(bookID)
-                                            && d.child("receiver").getValue().toString().equals(username)){
+                                        if (d.child("bookId").getValue().toString().equals(bookID)){
 
                                             Toast.makeText(MyShelfOwnerActivity.this, "book lend out",
                                                 Toast.LENGTH_SHORT).show();
@@ -366,6 +365,7 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             final String username = user.getDisplayName();
 
             final DatabaseReference booksRef = FirebaseDatabase.getInstance().getReference().child("books");
+            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestReceived");
 
             booksRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -374,11 +374,26 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
                         if (d.child("isbn").getValue().toString().equals(scannedISBN)
                             && d.child("owner").getValue().toString().equals(username)
                             && d.child("transitStatus").getValue().toString().equals("2")){
-                            Book targetBook = d.getValue(Book.class);
+                            final Book targetBook = d.getValue(Book.class);
                             targetBook.setTransitStatus(0);
                             targetBook.setCurrentBorrower("");
                             ownerShelf.update_book(targetBook);
                             ownerShelf.SyncBookShelf(mBooks, adapter, status);
+                            requestRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot d: dataSnapshot.getChildren()){
+                                        if (d.child("bookId").getValue().toString().equals(targetBook.getId())){
+                                            requestRef.child(d.getKey()).removeValue();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
 
                             Toast.makeText(MyShelfOwnerActivity.this, "Book Received",
                                     Toast.LENGTH_SHORT).show();
@@ -393,10 +408,6 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
             });
 
 
-        }
-        else{
-            Toast.makeText(MyShelfOwnerActivity.this, "Unexpected error occurred",
-                    Toast.LENGTH_SHORT).show();
         }
 
     }

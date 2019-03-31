@@ -216,8 +216,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     for (DataSnapshot d:dataSnapshot.getChildren()){
-                                        if (d.child("bookId").getValue().toString().equals(bookID)
-                                                && d.child("sender").getValue().toString().equals(username)){
+                                        if (d.child("bookId").getValue().toString().equals(bookID)){
 
                                             // add book to borrower shelf, add book method updates
                                             // the directories that needs to be updated
@@ -253,6 +252,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
             final String username = user.getDisplayName();
 
             final DatabaseReference borrowerShelfRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("borrowerShelf");
+            final DatabaseReference requestRef = FirebaseDatabase.getInstance().getReference().child("users").child(username).child("requestSent");
 
             borrowerShelfRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -260,9 +260,24 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                     for (DataSnapshot d: dataSnapshot.getChildren()){
                         if (d.child("isbn").getValue().toString().equals(scannedISBN)){
                             //todo: what if user have borrowed two book with same isbn
-                            Book targetBook = d.getValue(Book.class);
+                            final Book targetBook = d.getValue(Book.class);
                             borrowerShelf.remove_book(targetBook);
                             borrowerShelf.SyncBookShelf(mBooks, adapter, 3);
+                            requestRef.addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                    for (DataSnapshot d: dataSnapshot.getChildren()){
+                                        if (d.child("bookId").getValue().toString().equals(targetBook.getId())){
+                                            requestRef.child(d.getKey()).removeValue();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
                             Toast.makeText(MyShelfBorrowerActivity.this, "Book returned",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -277,10 +292,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
 
 
         }
-        else{
-            Toast.makeText(MyShelfBorrowerActivity.this, "Unexpected error occurred",
-                    Toast.LENGTH_SHORT).show();
-        }
+
 
     }
 
