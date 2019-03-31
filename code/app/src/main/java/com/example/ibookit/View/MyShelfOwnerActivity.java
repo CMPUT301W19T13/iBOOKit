@@ -387,8 +387,11 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
                                             // delete request sent from all sender
                                             String senderName = d.child("sender").getValue().toString();
-                                            DatabaseReference senderRequestRef = FirebaseDatabase.getInstance().getReference().child(senderName).child("requestSent");
+                                            DatabaseReference senderRequestRef = FirebaseDatabase.getInstance().getReference().child("users").child(senderName).child("requestSent");
                                             senderRequestRef.child(d.getKey()).removeValue();
+
+                                            DatabaseReference locationRef = FirebaseDatabase.getInstance().getReference().child("locations");
+                                            locationRef.child(d.getKey()).removeValue();
 
 
                                             //delete request received on book on owner's account
