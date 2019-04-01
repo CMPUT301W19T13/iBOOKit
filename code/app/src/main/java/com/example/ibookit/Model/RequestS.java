@@ -11,11 +11,13 @@
  */
 package com.example.ibookit.Model;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -61,7 +63,7 @@ public class RequestS {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                requestSent.clear();
+                requestSent2.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                    //Request request = new Request(d.getValue(Request.class).getBook());
@@ -73,6 +75,7 @@ public class RequestS {
                     adapter.notifyDataSetChanged();
                 //Show(dataSnapshot);
                 }
+
 
             }
             @Override
