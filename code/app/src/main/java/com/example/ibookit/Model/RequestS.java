@@ -27,7 +27,7 @@ import java.util.ArrayList;
 /**
  * @author Joe, Jiazhen Li
  *
- * @version 1.0
+ * @version 1.1
  */
 
 public class RequestS {

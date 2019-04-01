@@ -22,6 +22,7 @@ public class Recommendation {
     private HashMap<String, Double> categoryPoint = new HashMap<>();
     private HashMap<String, Integer> categoryCount = new HashMap<>();
 
+
     public Recommendation(String username){
         this.username = username;
         categoryPoint.put("Classics", 100.00);

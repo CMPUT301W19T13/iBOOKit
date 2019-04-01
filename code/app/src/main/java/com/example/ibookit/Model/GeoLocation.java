@@ -1,17 +1,34 @@
 package com.example.ibookit.Model;
 
+/**
+ * @author zijun wu
+ *
+ * @version 1.0
+ */
 public class GeoLocation {
 
     private Double latitude;
     private Double longitude;
 
-    public GeoLocation(Double latitude, double longitude) {
+    /**
+     * Constructor
+     *
+     * @param latitude
+     * @param longitude
+     */
+    public GeoLocation(Double latitude, Double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }
 
+    /**
+     * default Constructor
+     */
     public GeoLocation(){}
 
+    /**
+     * getter and setter
+     */
     public Double getLatitude() {
         return latitude;
     }

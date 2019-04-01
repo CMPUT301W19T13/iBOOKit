@@ -31,7 +31,7 @@ import java.util.ArrayList;
 /**
  * @author Jiazhen Li
  *
- * @version 1.0
+ * @version 1.1
  */
 public class RequestR {
     private static final String TAG = "RequestR";

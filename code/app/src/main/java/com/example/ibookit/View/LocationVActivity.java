@@ -74,6 +74,7 @@ public class LocationVActivity extends FragmentActivity implements OnMapReadyCal
     private void setUpMap() {
         String ridS = getIntent().getStringExtra("ridS");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("locations").child(ridS);
+        //given the lat and lon, set the marker on map with them
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
