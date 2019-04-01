@@ -1,3 +1,0 @@
-learn how to setup asycTask: //https://www.youtube.com/watch?v=Vcn4OuV4Ixg
-learn how to read json data from url: //https://stackoverflow.com/questions/43079460/how-to-read-json-data-from-url-in-android
-

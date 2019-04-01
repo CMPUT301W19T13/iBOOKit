@@ -10,7 +10,6 @@
 package com.example.ibookit.Functionality;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.example.ibookit.Model.User;

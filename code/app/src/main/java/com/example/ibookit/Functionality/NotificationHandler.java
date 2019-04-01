@@ -1,3 +1,12 @@
+/**
+ * Class name: NotificationHandler
+ *
+ * version 1.1
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.Functionality;
 
 import com.example.ibookit.Model.MessageIBOOKit;

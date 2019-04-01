@@ -1,3 +1,13 @@
+/**
+ * Class name: FetchUrlData
+ *
+ * version 1.1
+ *
+ * Date: March 30, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
+
 package com.example.ibookit.Functionality;
 
 import android.os.AsyncTask;
