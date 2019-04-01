@@ -18,6 +18,10 @@ public class Photo {
     private Integer height;
     private Integer weight;
 
+    /**
+     * getter and setter
+     *
+     */
     public String getPath() {
         return path;
     }

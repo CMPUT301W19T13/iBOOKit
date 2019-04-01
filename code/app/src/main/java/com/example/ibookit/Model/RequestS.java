@@ -27,7 +27,7 @@ import java.util.ArrayList;
 /**
  * @author Joe, Jiazhen Li
  *
- * @version 1.0
+ * @version 1.1
  */
 
 public class RequestS {
@@ -61,7 +61,7 @@ public class RequestS {
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                requestSent.clear();
+                requestSent2.clear();
                 adapter.notifyDataSetChanged();
                 for (DataSnapshot d: dataSnapshot.getChildren()) {
                    //Request request = new Request(d.getValue(Request.class).getBook());
@@ -73,6 +73,7 @@ public class RequestS {
                     adapter.notifyDataSetChanged();
                 //Show(dataSnapshot);
                 }
+
 
             }
             @Override

@@ -17,6 +17,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+/**
+ * @author Jiazhen Li
+ *
+ * @version 1.0
+ */
+
 public class RequestBookListAdapter extends ArrayAdapter<Book> {
 
     private static final String TAG = "RequestBookListAdapter";

@@ -1,7 +1,7 @@
 /**
- * Class name: AddBookOwnerActivity
+ * Class name: RequestChActivity
  *
- * version 1.0
+ * version 1.1
  *
  * Date: March 9, 2019
  *
@@ -15,7 +15,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,7 +22,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.ibookit.ListAdapter.BookListAdapter;
 import com.example.ibookit.ListAdapter.RequestBookListAdapter;
 import com.example.ibookit.ListAdapter.RequestListAdapter;
 import com.example.ibookit.Model.Book;
@@ -43,8 +41,9 @@ import java.util.ArrayList;
 /**
  * @author Jiazhen Li
  *
- * @version 1.0
+ * @version 1.1
  */
+
 public class RequestChActivity extends AppCompatActivity {
 
     private ListView Sent;
@@ -124,25 +123,15 @@ public class RequestChActivity extends AppCompatActivity {
         setBottomNavigationView();
     }
 
+    /**
+     * refresh list view
+     */
     @Override
     protected void onResume() {
         super.onResume();
         requestR.RetriveBook(Rbook,adapterB);
 
     }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.refresh_request:
-                requestR.RetriveBook(Rbook,adapterB);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 
 
     /**

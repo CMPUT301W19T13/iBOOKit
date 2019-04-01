@@ -173,6 +173,9 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
 
     }
 
+    /**
+     * select category
+     */
     private void categorySelector(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BookInfoOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -225,9 +228,11 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
 
             return;
 
+        } else {
+            book.setImageURL(null);
+            ownerShelf.update_book(book);
         }
 
-        ownerShelf.update_book(book);
 
     }
 
@@ -280,13 +285,18 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 imageButton.setImageResource(android.R.color.transparent);
+                mImageUri = null;
                 dialog.dismiss();
+
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 dialog.dismiss();
+
             }
         }).show();
     }

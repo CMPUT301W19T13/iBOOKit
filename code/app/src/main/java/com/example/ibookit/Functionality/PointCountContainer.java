@@ -1,6 +1,21 @@
+/**
+ * Class name: PointCountContainer
+ *
+ * version 1.1
+ *
+ * Date: March 20, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.Functionality;
 
 import java.util.HashMap;
+
+/**
+ * @author zijun wu
+ *
+ * @version 1.1
+ */
 
 public class PointCountContainer {
 
@@ -9,11 +24,21 @@ public class PointCountContainer {
     private HashMap<String, Double> points;
     private HashMap<String, Integer> counts;
 
+    /**
+     * Constructor
+     * @param point
+     * @param count
+     */
     public PointCountContainer(Double point, Integer count) {
         this.point = point;
         this.count = count;
     }
 
+    /**
+     * Constructor
+     * @param points
+     * @param counts
+     */
     public PointCountContainer(HashMap<String, Double> points, HashMap<String, Integer> counts) {
         this.points = points;
         this.counts = counts;

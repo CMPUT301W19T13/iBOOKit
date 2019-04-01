@@ -1,3 +1,12 @@
+/**
+ * Class name: PreferenceActivity
+ *
+ * version 1.0
+ *
+ * Date: March 25, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -16,6 +25,12 @@ import com.example.ibookit.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+
+/**
+ * @author zijun wu
+ *
+ * @version 1.0
+ */
 
 public class PreferenceActivity extends AppCompatActivity {
 

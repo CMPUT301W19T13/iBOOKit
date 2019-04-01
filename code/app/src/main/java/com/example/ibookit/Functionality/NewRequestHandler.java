@@ -1,7 +1,7 @@
 /**
  * Class name: NewRequestHandler
  *
- * version 1.0
+ * version 1.1
  *
  * Date: March 9, 2019
  *

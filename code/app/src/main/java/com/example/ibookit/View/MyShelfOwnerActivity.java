@@ -1,9 +1,9 @@
 /**
  * Class name: MyShelfOwnerActivity
  *
- * version 1.0
+ * version 1.2
  *
- * Date: March 9, 2019
+ * Date: March 30, 2019
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
@@ -50,7 +50,7 @@ import java.util.ArrayList;
 /**
  * @author zijun wu
  *
- * @version 1.0
+ * @version 1.2
  */
 public class MyShelfOwnerActivity extends AppCompatActivity {
     public static Context sContext;
@@ -296,6 +296,14 @@ public class MyShelfOwnerActivity extends AppCompatActivity {
 
     }
 
+
+    /**
+     * scanning for owner
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(final int requestCode, int resultCode, final Intent data) {
         if (requestCode == LendScanRequestCode && resultCode == RESULT_OK ){

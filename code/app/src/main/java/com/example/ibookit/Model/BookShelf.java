@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * @author zijun wu
  *
- * @version 1.0
+ * @version 1.1
  */
 public interface BookShelf {
 

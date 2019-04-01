@@ -9,7 +9,6 @@
  */
 package com.example.ibookit.Functionality;
 
-import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.widget.ArrayAdapter;
 

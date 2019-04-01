@@ -31,7 +31,7 @@ import java.util.ArrayList;
 /**
  * @author Jiazhen Li
  *
- * @version 1.0
+ * @version 1.1
  */
 public class RequestR {
     private static final String TAG = "RequestR";
@@ -226,6 +226,7 @@ public class RequestR {
         // Update book info
         dDatabase.child("books").child(request.getBookId()).child("status").setValue(0);
         dDatabase.child("users").child(username).child("ownerShelf").child(request.getBookId()).child("status").setValue(0);
+        dDatabase.child("locations").child(request.getRid()).removeValue();
 
         // remove all request for this book
         for (Request r :Rlist) {

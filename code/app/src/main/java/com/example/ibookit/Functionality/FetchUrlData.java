@@ -1,3 +1,13 @@
+/**
+ * Class name: FetchUrlData
+ *
+ * version 1.1
+ *
+ * Date: March 30, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
+
 package com.example.ibookit.Functionality;
 
 import android.os.AsyncTask;
@@ -18,39 +28,47 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-//https://www.youtube.com/watch?v=Vcn4OuV4Ixg
-
+/**
+ * @author zisen zhou
+ *
+ * @version 1.1
+ */
 public class FetchUrlData extends AsyncTask<String, Void, Void> {
     private String data = "";
     private String description = "";
     private String title = "";
     private String author = "";
+    /**
+     * fetch URL data in background
+     * @param urlString
+     */
     @Override
     protected Void doInBackground(String... urlString) {
         BufferedReader reader = null;
         HttpsURLConnection con = null;
 
         try {
-
+            // initiate connection
             Log.d("myslelf-readUrl", "reading url started");
             URL url = new URL(urlString[0]);
-            //https://stackoverflow.com/questions/43079460/how-to-read-json-data-from-url-in-android
             con = (HttpsURLConnection) url.openConnection();
             Log.d("myslelf-readUrl", "connection created");
             con.connect();
             Log.d("myshelf-readUrl", "connection established");
+            // prepare input stream and bufferReader
             InputStream inputStream = con.getInputStream();
             reader = new BufferedReader(new InputStreamReader(inputStream));
 
             String line = "";
             StringBuffer buffer = new StringBuffer();
 
-
+            // retrieve data
             while(line != null){
                 line = reader.readLine();
                 data = data + line;
             }
 
+            //navigate through the jason data and retrieve wanted attributes
             JSONObject JO = new JSONObject(data);
             JSONArray items = JO.getJSONArray("items");
             JSONObject basicInfos = (JSONObject) items.get(0);
@@ -82,10 +100,16 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
         return null;
     }
 
-
+    /**
+     * sets result to view
+     * @param aVoid
+     */
     @Override
     protected void onPostExecute(Void aVoid){
         super.onPostExecute(aVoid);
+
+        // sets the result to views in addBookOwnerActivity, set "Not Found" to the attributed that
+        // aren't found
         if (this.description != "") {
             AddBookOwnerActivity.mDescription.setText(this.description);
         }else{

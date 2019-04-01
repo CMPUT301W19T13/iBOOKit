@@ -1,25 +1,19 @@
+/**
+ * Class name: LocationVActivity
+ *
+ * version 1.2
+ *
+ * Date: March 29, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
-
-import android.Manifest;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Criteria;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.os.Build;
-import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.Menu;
-import android.widget.Toast;
 
 import com.example.ibookit.Model.GeoLocation;
-import com.example.ibookit.Model.Request;
 import com.example.ibookit.R;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -28,13 +22,18 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+/**
+ * @author jiazhen
+ *
+ * @version 1.2
+ */
 
 public class LocationVActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -55,6 +54,11 @@ public class LocationVActivity extends FragmentActivity implements OnMapReadyCal
 
     }
 
+    /**
+     * on map ready
+     *
+     * @param map
+     */
     @Override
     public void onMapReady(GoogleMap map) {
 
@@ -64,10 +68,14 @@ public class LocationVActivity extends FragmentActivity implements OnMapReadyCal
 
     }
 
+    /**
+     * set up map
+     */
     private void setUpMap() {
         String ridS = getIntent().getStringExtra("ridS");
         mDatabase = FirebaseDatabase.getInstance().getReference().child("locations").child(ridS);
-        mDatabase.addValueEventListener(new ValueEventListener(){
+        //given the lat and lon, set the marker on map with them
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener(){
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot!=null){
