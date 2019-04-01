@@ -131,19 +131,6 @@ public class RequestChActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.refresh_request:
-                requestR.RetriveBook(Rbook,adapterB);
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-
 
     /**
      * NavigationBar enabled
