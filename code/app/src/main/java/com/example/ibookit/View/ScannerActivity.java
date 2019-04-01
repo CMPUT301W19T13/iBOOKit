@@ -1,3 +1,12 @@
+/**
+ * Class name: ScannerActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.Manifest;
@@ -17,7 +26,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.SparseArray;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +36,12 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+
+/**
+ * @author zijun wu, zisen
+ *
+ * @version 1.0
+ */
 
 public class ScannerActivity extends AppCompatActivity {
 

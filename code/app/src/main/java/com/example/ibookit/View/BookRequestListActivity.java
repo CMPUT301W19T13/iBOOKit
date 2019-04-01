@@ -110,6 +110,11 @@ public class BookRequestListActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * check if the location is set
+     * if yes, accept the request
+     * refresh the list view
+     */
     @Override
     protected void onResume() {
         super.onResume();

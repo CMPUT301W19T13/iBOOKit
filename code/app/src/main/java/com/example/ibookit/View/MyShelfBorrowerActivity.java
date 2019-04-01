@@ -1,9 +1,9 @@
 /**
  * Class name: MyShelfBorrowerActivity
  *
- * version 1.0
+ * version 1.2
  *
- * Date: March 9, 2019
+ * Date: March 30, 2019
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
@@ -42,7 +42,7 @@ import java.util.ArrayList;
 /**
  * @author zijun wu
  *
- * @version 1.0
+ * @version 1.2
  */
 public class MyShelfBorrowerActivity extends AppCompatActivity {
 
@@ -191,6 +191,14 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * scanning isbn for borrow a book
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
         if (requestCode == BorrowScanRequestCode && resultCode == RESULT_OK ){
@@ -264,21 +272,7 @@ public class MyShelfBorrowerActivity extends AppCompatActivity {
                             final Book targetBook = d.getValue(Book.class);
                             borrowerShelf.remove_book(targetBook);
                             borrowerShelf.SyncBookShelf(mBooks, adapter, 3);
-//                            requestRef.addValueEventListener(new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                    for (DataSnapshot d: dataSnapshot.getChildren()){
-//                                        if (d.child("bookId").getValue().toString().equals(targetBook.getId())){
-//                                            requestRef.child(d.getKey()).removeValue();
-//                                        }
-//                                    }
-//                                }
-//
-//                                @Override
-//                                public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                                }
-//                            });
+
                             Toast.makeText(MyShelfBorrowerActivity.this, "Book returned",
                                     Toast.LENGTH_SHORT).show();
                         }

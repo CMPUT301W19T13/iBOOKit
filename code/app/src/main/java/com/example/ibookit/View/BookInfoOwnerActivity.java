@@ -173,6 +173,9 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
 
     }
 
+    /**
+     * select category
+     */
     private void categorySelector(){
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(BookInfoOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);

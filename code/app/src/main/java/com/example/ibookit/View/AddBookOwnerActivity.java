@@ -1,9 +1,9 @@
 /**
  * Class name: AddBookOwnerActivity
  *
- * version 1.0
+ * version 1.1
  *
- * Date: March 9, 2019
+ * Date: March 31, 2019
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
@@ -40,7 +40,7 @@ import com.squareup.picasso.Picasso;
 /**
  * @author zijun wu
  *
- * @version 1.0
+ * @version 1.1
  */
 public class AddBookOwnerActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -142,6 +142,9 @@ public class AddBookOwnerActivity extends AppCompatActivity implements AdapterVi
 
     }
 
+    /**
+     * select category
+     */
     private void categorySelector() {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(AddBookOwnerActivity.this, R.array.category, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -263,6 +266,9 @@ public class AddBookOwnerActivity extends AppCompatActivity implements AdapterVi
         });
     }
 
+    /**
+     * delete image enabled
+     */
     private void setDeleteImageDiag() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Delete?");

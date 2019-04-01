@@ -1,3 +1,12 @@
+/**
+ * Class name: SendRequestActivity
+ *
+ * version 1.0
+ *
+ * Date: March 9, 2019
+ *
+ * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
+ */
 package com.example.ibookit.View;
 
 import android.content.Intent;
@@ -10,7 +19,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Scroller;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +37,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.squareup.picasso.Picasso;
 
+/**
+ * @author zijunwu
+ *
+ * @version 1.0
+ */
 public class SendRequestActivity extends AppCompatActivity {
 
     private static final String TAG = "SendRequestActivity";
@@ -133,6 +146,12 @@ public class SendRequestActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * set photo image
+     *
+     * @param path
+     * @param image
+     */
     private void setImage(String path, ImageView image) {
         Picasso.get().load(path).fit().centerCrop().into(image);
     }

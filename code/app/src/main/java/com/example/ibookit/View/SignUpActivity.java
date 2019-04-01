@@ -1,9 +1,9 @@
 /**
  * Class name: SignUpActivity
  *
- * version 1.1
+ * version 1.2
  *
- * Date: March 9, 2019
+ * Date: March 29, 2019
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
@@ -38,7 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 /**
  * @author zijun wu
  *
- * @version 1.1
+ * @version 1.2
  */
 
 public class SignUpActivity extends AppCompatActivity {

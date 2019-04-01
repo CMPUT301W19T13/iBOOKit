@@ -1,9 +1,9 @@
 /**
  * Class name: HomeSearchActivity
  *
- * version 1.0
+ * version 1.2
  *
- * Date: March 9, 2019
+ * Date: March 29, 2019
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
@@ -48,7 +48,7 @@ import java.util.ArrayList;
 /**
  * @author zisen
  *
- * @version 1.0
+ * @version 1.2
  */
 
 public class HomeSearchActivity extends AppCompatActivity {
@@ -79,8 +79,6 @@ public class HomeSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_search);
 
         // get user info
-//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-//        String username = user.getDisplayName();
         Singleton singleton = new Singleton();
         String username = singleton.getUsername();
         Log.d(TAG, "onCreate: " + username);
@@ -110,6 +108,9 @@ public class HomeSearchActivity extends AppCompatActivity {
         setBottomNavigationView();
     }
 
+    /**
+     * check out the recommendation
+     */
     @Override
     protected void onStart() {
         super.onStart();
@@ -137,7 +138,9 @@ public class HomeSearchActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * clear focus
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -297,7 +300,9 @@ public class HomeSearchActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * remove the listener for notifications
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
