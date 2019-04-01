@@ -18,8 +18,6 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-//https://www.youtube.com/watch?v=Vcn4OuV4Ixg
-
 public class FetchUrlData extends AsyncTask<String, Void, Void> {
     private String data = "";
     private String description = "";
@@ -34,7 +32,6 @@ public class FetchUrlData extends AsyncTask<String, Void, Void> {
 
             Log.d("myslelf-readUrl", "reading url started");
             URL url = new URL(urlString[0]);
-            //https://stackoverflow.com/questions/43079460/how-to-read-json-data-from-url-in-android
             con = (HttpsURLConnection) url.openConnection();
             Log.d("myslelf-readUrl", "connection created");
             con.connect();
