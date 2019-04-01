@@ -1,0 +1,29 @@
+All re-use statements are mentioned here
+1. Codinginflow: https://codinginflow.com/tutorials/android
+2. CodingWithMitch: https://www.youtube.com/channel/UCoNZZLhPuuRteu02rh7bzsw
+3. Image picker in system: https://codinginflow.com/tutorials/android/firebase-storage-upload-and-retrieve-images/part-2-image-chooser
+4. FireBase startup: https://firebase.google.com/docs/auth/android/start
+5. Scanning picture: https://stackoverflow.com/questions/29163444/bitmapfactory-unable-to-decode-stream-null
+6. Check duplicate username when signup: https://stackoverflow.com/questions/39053248/how-to-search-if-a-username-exist-in-the-given-firebase-database
+7. Setup asycTask: //https://www.youtube.com/watch?v=Vcn4OuV4Ixg
+8. Read json data from url: https://stackoverflow.com/questions/43079460/how-to-read-json-data-from-url-in-android
+9. Showing mutiple notification: https://stackoverflow.com/questions/18102052/how-to-display-multiple-notifications-in-android
+10. Long click listener: https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
+11. Map crashing: https://stackoverflow.com/questions/50782806/android-google-maps-java-lang-noclassdeffounderror-failed-resolution-of-lorg-a/50794266
+12. Value Event Listener cause duplicate entries: https://stackoverflow.com/questions/48542864/firebase-valueeventlistener-causing-duplicate-entries-in-the-recyclerview
+13.Marker in Google map: https://stackoverflow.com/questions/16181945/get-latitude-and-longitude-of-marker-in-google-maps
+
+Other resources used are images for which the resources are mentioned below.
+
+For preferences -
+1) Sports - Icon made by Freepik Market from www.flaticon.com
+2) Horror - Icon made by Darius Dan from www.flaticon.com
+3) Comic - Icon made by Darius Dan from www.flaticon.com
+4) Romance - Icon made by Smashicons from www.flaticon.com
+5) SciFi - Icon made by Darius Dan from www.flaticon.com
+6) Business - Icon made by monkik from www.flaticon.com
+7) Classics - Icon made by Freepik from www.flaticon.com
+8) Thriller - Icon made by Nikita Golubev from www.flaticon.com
+9) Others - Icon made by Twitter from www.flaticon.com
+10) User default image - Icon made by Smashicons from www.flaticon.com
+11) Book default - Icon made by Smashicons from www.flaticon.com

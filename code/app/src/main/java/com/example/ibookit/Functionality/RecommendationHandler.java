@@ -99,6 +99,7 @@ public class RecommendationHandler {
                                         if (book.getStatus() == 0 || book.getStatus() == 1) {
                                             if (books.size() < maxShown) {
                                                 books.add(book);
+                                                Collections.shuffle(books);
                                                 adapter.notifyDataSetChanged();
                                             }
                                         }
