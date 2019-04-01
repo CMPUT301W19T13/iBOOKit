@@ -20,7 +20,11 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * @author zijun wu
+ *
+ * @version 1.1
+ */
 public class RecommendationHandler {
 
     private static final String TAG = "RecommendationHandler";
@@ -31,23 +35,36 @@ public class RecommendationHandler {
     private Singleton singleton;
     private Integer maxShown = 10;
 
+    /**
+     * Constructor
+     */
     public RecommendationHandler() {
         singleton = new Singleton();
         this.username = singleton.getUsername();
         mDatabase = singleton.getUserDatabase();
         aDatabase = singleton.getAllDatabase();
     }
-
+    /**
+     * Constructor
+     */
     public RecommendationHandler(String username) {
         this.username = username;
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users").child(username);
     }
 
+    /**
+     * Creates new recommendation
+     */
     public void CreateNewRecommendation() {
         Recommendation recommendation = new Recommendation(username);
         mDatabase.child("recommendation").setValue(recommendation);
     }
 
+    /**
+     * Renew recommendation page based on change of category point values
+     * @param books
+     * @param adapter
+     */
     public void syncRecommendationBookShelf(final ArrayList<Book> books, final ArrayAdapter<Book> adapter){
         mDatabase.child("recommendation").addValueEventListener(new ValueEventListener() {
             @Override
@@ -96,6 +113,11 @@ public class RecommendationHandler {
         });
     }
 
+    /**
+     * generate top three category based on category point
+     * @param points
+     * @return
+     */
     private ArrayList<String> getTopThreeCategory(HashMap<String, Double> points) {
         ArrayList<String> result = new ArrayList<>();
 
@@ -121,7 +143,12 @@ public class RecommendationHandler {
         return result;
     }
 
-
+    /**
+     * update category points upon user actions
+     * @param categories
+     * @param is_signup
+     * @param is_borrow
+     */
     public void UpdateRecommendation(final String[] categories, final Boolean is_signup, final Boolean is_borrow) {
         mDatabase.child("recommendation").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -157,6 +184,13 @@ public class RecommendationHandler {
         });
     }
 
+    /**
+     * update category points upon user borrow book
+     * @param points
+     * @param counts
+     * @param categories
+     * @return
+     */
     private PointCountContainer UpdateBorrowPoints(HashMap<String, Double> points, HashMap<String, Integer> counts, String[] categories) {
         for (Map.Entry<String, Double> kv : points.entrySet()) {
             String key = kv.getKey();
@@ -176,7 +210,13 @@ public class RecommendationHandler {
         return new PointCountContainer(points, counts);
     }
 
-
+    /**
+     * update category points upon user sign up
+     * @param points
+     * @param counts
+     * @param categories
+     * @return
+     */
     private PointCountContainer UpdateSignUpPoints(HashMap<String, Double> points, HashMap<String, Integer> counts, String[] categories) {
         for (Map.Entry<String, Double> kv: points.entrySet()) {
             String key = kv.getKey();
@@ -189,6 +229,13 @@ public class RecommendationHandler {
         return new PointCountContainer(points, counts);
     }
 
+    /**
+     * sum up and update category points
+     * @param points
+     * @param counts
+     * @param categories
+     * @return
+     */
     private PointCountContainer UpdatePoints(HashMap<String, Double> points, HashMap<String, Integer> counts, String[] categories) {
         for (Map.Entry<String, Double> kv: points.entrySet()) {
             String key = kv.getKey();
@@ -209,6 +256,12 @@ public class RecommendationHandler {
     }
 
 
+    /**
+     * Adds points by count
+     * @param point
+     * @param count
+     * @return
+     */
     private PointCountContainer AddPointsByCount(Double point, Integer count) {
         if (count >= 0 && count < 4) {
             if (point + 2 <= maxPoint) {
@@ -237,6 +290,12 @@ public class RecommendationHandler {
         }
     }
 
+    /**
+     * Refreshes points
+     * @param points
+     * @param counts
+     * @return
+     */
     private PointCountContainer RefreshPoints(HashMap<String, Double> points, HashMap<String, Integer> counts) {
         Integer countMax = 0;
         for (Map.Entry<String, Double> kv: points.entrySet()) {
