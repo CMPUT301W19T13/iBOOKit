@@ -1,9 +1,9 @@
 /**
  * Class name: SignUpActivity
  *
- * version 1.1
+ * version 1.2
  *
- * Date: March 9, 2019
+ * Date: March 29, 2019
  *
  * Copyright (c) Team 13, Winter, CMPUT301, University of Alberta
  */
@@ -38,7 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 /**
  * @author zijun wu
  *
- * @version 1.1
+ * @version 1.2
  */
 
 public class SignUpActivity extends AppCompatActivity {
@@ -49,7 +49,6 @@ public class SignUpActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private ProgressBar progressBar;
     private String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    private Boolean check_email = false;
 
     /**
      * Let user to sign up in UI
@@ -82,11 +81,10 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (mEmail.getText().toString().trim().matches(emailPattern) && mEmail.getText().toString().trim().length() > 0){
-                    check_email = true;
+
                 }
                 else{
                     mEmail.setError("Invalid Email Address");
-                    check_email = false;
                 }
 
             }
@@ -106,8 +104,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 progressBar.setVisibility(View.VISIBLE);
 
-                if (! check_email || username.isEmpty()) {
-                    Toast.makeText(SignUpActivity.this, "Something wrong",
+                if (email.isEmpty() || username.isEmpty()) {
+                    Toast.makeText(SignUpActivity.this, "Cannot leave empty",
                             Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
                     return;
@@ -161,7 +159,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @return
      */
     private void checkUserExist(final String username, final String email, final String password, final String phone){
-        mDatabase.child("users").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("users").child(username).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -227,5 +225,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
+
 
 }

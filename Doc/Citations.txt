@@ -1,0 +1,6 @@
+1. https://codinginflow.com/tutorials/android/firebase-storage-upload-and-retrieve-images/part-2-image-chooser
+2. https://firebase.google.com/docs/auth/android/start
+3. https://stackoverflow.com/questions/29163444/bitmapfactory-unable-to-decode-stream-null
+4. https://stackoverflow.com/questions/39053248/how-to-search-if-a-username-exist-in-the-given-firebase-database
+5. https://codinginflow.com/tutorials/android
+6. https://www.youtube.com/channel/UCoNZZLhPuuRteu02rh7bzsw
