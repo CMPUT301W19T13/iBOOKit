@@ -1,4 +1,5 @@
-All re-use statements are mentioned in their respective class of use.
+All re-use statements are mentioned here
+https://github.com/CMPUT301W19T13/iBOOKit/blob/master/Doc/Code%20credit.txt
 
 Other resources used are images for which the resources are mentioned below.
 
