@@ -63,23 +63,23 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
-            return;
-        }
-        Criteria crit = new Criteria();
-        crit.setAccuracy(Criteria.ACCURACY_FINE);
-        crit.setPowerRequirement(Criteria.POWER_LOW);
+//        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+//                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//            // TODO: Consider calling
+//            //    ActivityCompat#requestPermissions
+//            // here to request the missing permissions, and then overriding
+//            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//            //                                          int[] grantResults)
+//            // to handle the case where the user grants the permission. See the documentation
+//            // for ActivityCompat#requestPermissions for more details.
+//            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 2);
+//            return;
+//        }
+//        Criteria crit = new Criteria();
+//        crit.setAccuracy(Criteria.ACCURACY_FINE);
+//        crit.setPowerRequirement(Criteria.POWER_LOW);
 
     }
 
@@ -122,15 +122,6 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
     public void onMapReady(GoogleMap map) {
 
         mMap = map;
-
-        setUpMap();
-
-    }
-
-    /**
-     * set up map
-     */
-    private void setUpMap() {
         LatLng Your_Location = new LatLng(53.527503, -113.529492);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.addMarker(new MarkerOptions()
@@ -140,12 +131,20 @@ public class LocationSActivity extends FragmentActivity implements OnMapReadyCal
                 .snippet("Here!")
                 .icon(BitmapDescriptorFactory
                         .defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
-
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(Your_Location, 15));
         Toast.makeText(
                 LocationSActivity.this,
                 "Drag to the location you want! ",
                 Toast.LENGTH_LONG).show();
+
+        setUpMap();
+
+    }
+
+    /**
+     * set up map
+     */
+    private void setUpMap() {
         mMap.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
 
             @Override
