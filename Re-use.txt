@@ -1,0 +1,16 @@
+All re-use statements are mentioned in their respective class of use.
+
+Other resources used are images for which the resources are mentioned below.
+
+For preferences - 
+1) Sports - Icon made by Freepik Market from www.flaticon.com 
+2) Horror - Icon made by Darius Dan from www.flaticon.com 
+3) Comic - Icon made by Darius Dan from www.flaticon.com 
+4) Romance - Icon made by Smashicons from www.flaticon.com
+5) SciFi - Icon made by Darius Dan from www.flaticon.com
+6) Business - Icon made by monkik from www.flaticon.com
+7) Classics - Icon made by Freepik from www.flaticon.com
+8) Thriller - Icon made by Nikita Golubev from www.flaticon.com
+9) Others - Icon made by Twitter from www.flaticon.com
+10) User default image - Icon made by Smashicons from www.flaticon.com
+11) Book default - Icon made by Smashicons from www.flaticon.com
