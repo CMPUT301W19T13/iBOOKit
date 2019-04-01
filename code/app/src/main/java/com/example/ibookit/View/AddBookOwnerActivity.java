@@ -276,13 +276,18 @@ public class AddBookOwnerActivity extends AppCompatActivity implements AdapterVi
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 imageButton.setImageResource(android.R.color.transparent);
+                mImageUri = null;
+
                 dialog.dismiss();
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 dialog.dismiss();
+
             }
         }).show();
     }

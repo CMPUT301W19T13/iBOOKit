@@ -228,9 +228,11 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
 
             return;
 
+        } else {
+            book.setImageURL(null);
+            ownerShelf.update_book(book);
         }
 
-        ownerShelf.update_book(book);
 
     }
 
@@ -283,13 +285,18 @@ public class BookInfoOwnerActivity extends AppCompatActivity implements AdapterV
         builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 imageButton.setImageResource(android.R.color.transparent);
+                mImageUri = null;
                 dialog.dismiss();
+
             }
         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
                 dialog.dismiss();
+
             }
         }).show();
     }
