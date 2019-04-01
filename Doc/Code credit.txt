@@ -10,4 +10,4 @@
 10. Long click listener: https://stackoverflow.com/questions/4402740/android-long-click-on-a-button-perform-actions
 11. Map crashing: https://stackoverflow.com/questions/50782806/android-google-maps-java-lang-noclassdeffounderror-failed-resolution-of-lorg-a/50794266
 12. Value Event Listener cause duplicate entries: https://stackoverflow.com/questions/48542864/firebase-valueeventlistener-causing-duplicate-entries-in-the-recyclerview
-13.
+13.Marker in Google map: https://stackoverflow.com/questions/16181945/get-latitude-and-longitude-of-marker-in-google-maps
